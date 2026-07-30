@@ -1,0 +1,1 @@
+../cdn.sanity.io

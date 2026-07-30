@@ -1,0 +1,402 @@
+/*
+ * Adapter from Enerblock's RGB channels to the canonical Vshanuy tokens.
+ * Source of truth: /brand/tokens.css.
+ */
+@font-face {
+  font-family: "eUkraine";
+  src: url("../fonts/e-Ukraine-Light.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "eUkraine";
+  src: url("../fonts/e-Ukraine-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "eUkraine";
+  src: url("../fonts/e-Ukraine-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "eUkraine";
+  src: url("../fonts/e-Ukraine-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+}
+
+:root {
+  --font-ui: "eUkraine", system-ui, sans-serif;
+  --color-orange: 247, 245, 237; /* --paper */
+  --color-white: 247, 245, 237; /* --paper */
+  --color-grey-50: 247, 245, 237; /* --paper */
+  --color-grey-100: 225, 220, 206; /* --beige */
+  --color-grey-200: 65, 65, 65; /* --graphite */
+  --color-grey-300: 65, 65, 65; /* --graphite */
+  --color-grey-400: 159, 157, 155; /* --grey */
+  --color-grey-500: 65, 65, 65; /* --graphite */
+  --color-grey-600: 65, 65, 65; /* --graphite */
+  --color-grey-700: 24, 24, 24; /* --ink */
+  --color-grey-800: 24, 24, 24; /* --ink */
+  --color-grey-900: 24, 24, 24; /* --ink */
+  --color-black: 24, 24, 24; /* --ink */
+  --border-radius: 0;
+}
+
+/* Light canvas and neutral surfaces carry the composition. */
+body,
+.body--grey-50,
+.body--orange,
+.bg--orange,
+.bg--grey-50 {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-ui);
+}
+
+.bg--grey-100 {
+  background-color: var(--beige);
+  color: var(--ink);
+}
+
+.bg--black,
+.body--black {
+  background-color: var(--ink);
+  color: var(--paper);
+}
+
+.bg--black .text__description,
+.body--black .text__description {
+  color: var(--beige);
+}
+
+/* Keep controls and structural rules visibly distinct. */
+.bg--black toggle-box,
+.body--black toggle-box {
+  border-color: var(--grey);
+}
+
+/* Vshanuy wordmark: Volja Black only in the logo. */
+.vshanuy-logo {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.15rem;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.vshanuy-logo__name {
+  font-family: var(--font-logo);
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 0.85;
+  text-transform: uppercase;
+}
+
+.vshanuy-logo__time {
+  font-family: var(--font-logo);
+  font-size: 0.72rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--yellow);
+}
+
+.header__logo__link {
+  align-items: center;
+}
+
+.header__logo__link .vshanuy-logo {
+  box-sizing: border-box;
+  height: 2.125rem;
+  width: auto;
+}
+
+.header__logo__link .vshanuy-logo__time {
+  color: inherit;
+}
+
+.body--black .vshanuy-logo,
+.header--white .vshanuy-logo,
+.header--graph .vshanuy-logo,
+.fade--out .vshanuy-logo {
+  color: var(--paper);
+}
+
+.menu__logo__link .vshanuy-logo--menu .vshanuy-logo__name {
+  font-size: 1.75rem;
+}
+
+.menu__logo__link .vshanuy-logo--menu .vshanuy-logo__time {
+  font-size: 0.85rem;
+}
+
+/* Hero: one information block on the left, documentary image on the right. */
+.home__hero {
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.home__hero > .wrp,
+.home__hero > .wrp > .grid__layout {
+  height: 100%;
+  min-height: 0;
+}
+
+.home__hero > .wrp {
+  padding-right: 0;
+}
+
+.home__hero > .wrp > .grid__layout {
+  grid-auto-rows: 1fr;
+  column-gap: 0;
+}
+
+.home__hero__column--left,
+.home__hero__column--right,
+.home__hero__column--left .block__inner,
+.home__hero__column--left .home__hero__inner {
+  height: 100%;
+  min-height: 0;
+}
+
+.home__hero__column--left .block__inner {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.home__hero__column--left .home__hero__inner {
+  justify-content: center;
+  gap: clamp(1.5rem, 4vh, 3rem);
+  padding-bottom: var(--space-2);
+}
+
+.home__hero__column--left .home__hero__inner > hero-title .pt--xlarge {
+  padding-top: 0;
+}
+
+.home__hero .hero__title {
+  max-width: 100%;
+  font-size: clamp(2.75rem, 4.2vw, 4rem);
+  font-weight: 400;
+  line-height: 0.95;
+  overflow-wrap: anywhere;
+}
+
+.home__hero .hero__claim {
+  max-width: 100%;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 300;
+  overflow-wrap: anywhere;
+}
+
+.home__hero .line,
+.home__hero .line--inner {
+  max-width: 100%;
+}
+
+.vshanuy-hero__tags {
+  position: static;
+  box-sizing: border-box;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--grid-gutter);
+  padding: var(--space-2) var(--grid-margin);
+  border-top: var(--line);
+  border-bottom: var(--line-muted);
+  background: var(--paper);
+}
+
+.vshanuy-hero__tags .tag__name,
+.vshanuy-hero__tags .tag__data {
+  grid-column: auto;
+}
+
+.home__hero__column--right .hero__main {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding-top: var(--header-height);
+}
+
+.vshanuy-hero__media {
+  display: block !important;
+  position: relative;
+  box-sizing: border-box;
+  width: 100% !important;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  border-top: 0;
+  border-bottom: var(--line);
+}
+
+.vshanuy-hero__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+/* Documentary still instead of factory video: pause, not production motion. */
+.home__video .home__video.image--parallax {
+  background: var(--ink);
+}
+
+.home__video .home__video.image--parallax img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.72) contrast(1.05);
+}
+
+/* Documentary interlude is temporarily removed. */
+.home__video {
+  display: none;
+}
+
+/* The following section is separated with the brand's Beige surface. */
+.home__vision {
+  background-color: var(--beige);
+  color: var(--ink);
+}
+
+/* Carousel arrows share one frame, mirroring the hero menu control. */
+.carousel__body .carousel__control {
+  gap: 0;
+}
+
+.carousel__body .carousel__arrow {
+  border-color: var(--ink);
+}
+
+.carousel__body .carousel__arrow + .carousel__arrow {
+  border-left: 0;
+}
+
+.carousel__body .carousel__control > .button__link {
+  margin-left: var(--space-2);
+}
+
+/* Memory coordinate section uses the brand's Ink, not neutral black. */
+.schema--home,
+.schema--home .home-morph {
+  background-color: var(--ink) !important;
+}
+
+.schema--home {
+  color: var(--paper);
+}
+
+.schema--home .text__description {
+  color: var(--beige);
+}
+
+@media (min-width: 981px) {
+  .home__hero {
+    height: min(100svh, 39.0625vw);
+    min-height: 0;
+  }
+
+  .home__hero__column--left {
+    grid-column: span calc(var(--grid-columns) / 3);
+  }
+
+  .home__hero__column--right {
+    grid-column: span calc(var(--grid-columns) / 3 * 2);
+  }
+
+  .home__hero__column--left .home__hero__inner {
+    justify-content: space-between;
+    gap: 0;
+  }
+}
+
+button,
+a,
+.button,
+.menu__trigger,
+.contact__trigger {
+  border-radius: var(--radius);
+}
+
+/* Yellow is reserved for the keyboard action event, never a surface. */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.bg--black :focus-visible,
+.body--black :focus-visible {
+  outline-color: var(--yellow);
+}
+
+@media (max-width: 980px) {
+  .home__hero {
+    height: auto;
+    overflow: visible;
+  }
+
+  .home__hero > .wrp,
+  .home__hero > .wrp > .grid__layout {
+    height: auto;
+    min-height: auto;
+  }
+
+  .home__hero > .wrp > .grid__layout {
+    grid-auto-rows: auto;
+  }
+
+  .home__hero__column--left,
+  .home__hero__column--right,
+  .home__hero__column--left .home__hero__inner {
+    height: 100svh;
+    min-height: 100svh;
+  }
+
+  .home__hero__column--right .hero__main {
+    padding-top: 0;
+  }
+
+  .vshanuy-hero__media {
+    height: 100%;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .home__hero .hero__title {
+    font-size: 2.25rem;
+  }
+
+  .home__hero .hero__claim {
+    font-size: 1.125rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
