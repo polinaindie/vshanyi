@@ -1,5 +1,5 @@
 /*
- * Adapter from Enerblock's RGB channels to the canonical Vshanuy tokens.
+ * Adapter from the mirrored template's RGB channels to canonical Vshanuy tokens.
  * Source of truth: /brand/tokens.css.
  */
 @font-face {
@@ -123,7 +123,10 @@ body,
 }
 
 .header__logo__link .vshanuy-logo__time {
-  color: inherit;
+  width: fit-content;
+  padding: 0.12rem 0.24rem;
+  background: var(--ink);
+  color: var(--yellow);
 }
 
 .body--black .vshanuy-logo,
@@ -205,6 +208,14 @@ body,
 .home__hero .line,
 .home__hero .line--inner {
   max-width: 100%;
+}
+
+/* Large-to-small type contrast keeps section openings expressive. */
+.section__title .title--m {
+  max-width: 14ch;
+  font-size: clamp(2.75rem, 5vw, 5.5rem);
+  line-height: 0.94;
+  text-wrap: balance;
 }
 
 .vshanuy-hero__tags {
@@ -308,6 +319,41 @@ body,
   color: var(--beige);
 }
 
+/* Yellow appears as an action event, not permanent decoration. */
+.header__nav__item--contact:hover .contact__trigger,
+.header__nav__item--contact:focus-within .contact__trigger {
+  color: var(--yellow);
+}
+
+.vshanuy-footer-wordmark {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: clamp(4rem, 10vw, 9rem) var(--grid-margin) clamp(2rem, 4vw, 4rem);
+  border-top: var(--line);
+  color: var(--ink);
+}
+
+.vshanuy-footer-wordmark__name {
+  font-family: var(--font-logo);
+  font-size: clamp(4rem, 16vw, 15rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 0.72;
+}
+
+.vshanuy-footer-wordmark__time {
+  flex: 0 0 auto;
+  padding: 0.2em 0.3em;
+  background: var(--ink);
+  color: var(--yellow);
+  font-family: var(--font-logo);
+  font-size: clamp(1.25rem, 3vw, 3rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
 @media (min-width: 981px) {
   .home__hero {
     height: min(100svh, 39.0625vw);
@@ -387,6 +433,15 @@ a,
 
   .home__hero .hero__claim {
     font-size: 1.125rem;
+  }
+
+  .section__title .title--m {
+    font-size: clamp(2.25rem, 11vw, 3.75rem);
+  }
+
+  .vshanuy-footer-wordmark {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 
