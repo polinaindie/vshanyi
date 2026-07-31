@@ -2,40 +2,31 @@
  * Adapter from the mirrored template's RGB channels to canonical Vshanuy tokens.
  * Source of truth: /brand/tokens.css.
  */
-@font-face {
-  font-family: "eUkraine";
-  src: url("../fonts/e-Ukraine-Light.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "eUkraine";
-  src: url("../fonts/e-Ukraine-Regular.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "eUkraine";
-  src: url("../fonts/e-Ukraine-Medium.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "eUkraine";
-  src: url("../fonts/e-Ukraine-Bold.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 600 700;
-  font-display: swap;
-}
-
 :root {
-  --font-ui: "eUkraine", system-ui, sans-serif;
+  --font-ui: var(--font-text);
+
+  /* One type scale: label → body → lead → heading → display → monument. */
+  --type-label: 0.75rem;
+  --type-small: 0.875rem;
+  --type-body: 1rem;
+  --type-body-large: clamp(1.0625rem, 1.25vw, 1.25rem);
+  --type-lead: clamp(1.25rem, 1.8vw, 1.625rem);
+  --type-heading-small: clamp(1.625rem, 2.5vw, 2.5rem);
+  --type-heading: clamp(2rem, 3.6vw, 3.75rem);
+  --type-display: clamp(2.75rem, 5.4vw, 5.75rem);
+  --type-hero: clamp(3rem, 6.2vw, 6.75rem);
+  --type-monument: clamp(3.5rem, 8.5vw, 9rem);
+
+  --leading-label: 1.35;
+  --leading-body: 1.55;
+  --leading-lead: 1.4;
+  --leading-heading: 1.04;
+  --leading-display: 0.96;
+
+  --tracking-label: 0.1em;
+  --tracking-heading: -0.025em;
+  --tracking-display: -0.04em;
+
   --color-orange: 247, 245, 237; /* --paper */
   --color-white: 247, 245, 237; /* --paper */
   --color-grey-50: 247, 245, 237; /* --paper */
@@ -52,6 +43,625 @@
   --border-radius: 0;
 }
 
+/*
+ * REF-inspired opening composition.
+ * The reference supplies proportion and hierarchy; Vshanuy tokens, type and
+ * documentary photography keep the result inside the brand system.
+ */
+.vshanuy-skip-link {
+	position: fixed;
+	top: 0;
+	left: var(--grid-margin);
+	z-index: 10001;
+	padding: 0.75rem 1rem;
+	background: var(--ink);
+	color: var(--paper);
+	font-size: var(--type-small);
+	line-height: 1.25;
+	text-decoration: underline;
+	transform: translateY(-120%);
+}
+
+.vshanuy-skip-link:focus {
+	transform: translateY(0);
+}
+
+.ref-header {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 100;
+	height: auto;
+	color: var(--ink);
+	pointer-events: none;
+}
+
+.ref-header > .wrp {
+	width: 100%;
+	max-width: none;
+	padding: clamp(0.5rem, 0.8vw, 0.75rem) var(--grid-margin) 0;
+}
+
+.ref-header .page__header__inner {
+	display: grid;
+	width: 100%;
+	height: auto;
+	grid-template-columns: minmax(0, 1fr) auto auto;
+	align-items: start;
+	gap: clamp(1rem, 2vw, 2.5rem);
+	padding: 0;
+}
+
+.ref-header .header__logo,
+.ref-header .ref-header__links,
+.ref-header .header__nav {
+	pointer-events: auto;
+}
+
+.ref-header .header__logo {
+	min-width: 0;
+}
+
+.ref-header .header__logo__link {
+	display: inline-flex;
+	align-items: flex-start;
+	height: auto;
+	min-height: 2.75rem;
+	text-decoration: none;
+}
+
+.ref-header .header__logo__link .vshanuy-logo {
+	display: inline-flex;
+	width: auto;
+	height: auto;
+	justify-content: flex-start;
+	gap: clamp(0.25rem, 0.6vw, 0.6rem);
+}
+
+.ref-header .header__logo__link .vshanuy-logo__name {
+	font-size: clamp(5rem, 11.5vw, 13rem);
+	letter-spacing: -0.035em;
+	line-height: 0.68;
+	white-space: nowrap;
+}
+
+.ref-header .header__logo__link .vshanuy-logo__time {
+	width: fit-content;
+	padding: 0.18em 0.32em;
+	background: var(--ink);
+	color: var(--yellow);
+	font-size: clamp(0.75rem, 1.2vw, 1.2rem);
+	line-height: 1;
+}
+
+.ref-header__links {
+	display: flex;
+	align-items: flex-start;
+	gap: clamp(0.75rem, 1.6vw, 1.75rem);
+}
+
+.ref-header__links a {
+	display: inline-flex;
+	min-height: 2.75rem;
+	align-items: center;
+	color: var(--ink);
+	font-size: clamp(0.625rem, 0.68vw, 0.75rem);
+	font-weight: 500;
+	line-height: 1.2;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.ref-header__links a:hover,
+.ref-header__links a:focus-visible {
+	font-weight: 700;
+	text-decoration: underline;
+	text-underline-offset: 0.24em;
+}
+
+.ref-header .header__nav {
+	display: flex;
+	width: auto;
+	align-items: flex-start;
+	gap: 0;
+	margin: 0;
+}
+
+.ref-header .header__nav__item--contact {
+	height: 2.75rem;
+	margin: 0;
+}
+
+.ref-header .header__nav__item--contact .contact__trigger {
+	height: 2.75rem;
+	min-height: 2.75rem;
+	padding: 0 0.8rem;
+	border: var(--line);
+	background: transparent;
+	color: var(--ink);
+	font-size: clamp(0.625rem, 0.68vw, 0.75rem);
+}
+
+.ref-header .menu__trigger.header__nav__item--menu {
+	width: 2.75rem;
+	min-width: 2.75rem;
+	height: 2.75rem;
+	min-height: 2.75rem;
+	border: var(--line);
+	border-left: 0;
+}
+
+.ref-header .menu__trigger .menu__icon svg {
+	width: 1.4rem;
+}
+
+.ref-hero.home__hero {
+	display: block;
+	height: auto;
+	min-height: 100svh;
+	overflow: hidden;
+	background: var(--beige);
+	color: var(--ink);
+}
+
+.ref-hero__intro {
+	display: grid;
+	box-sizing: border-box;
+	width: 100%;
+	height: clamp(18rem, 40svh, 28rem);
+	min-height: 0;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	align-items: end;
+	padding-top: clamp(8.5rem, 15vw, 13rem);
+	padding-bottom: clamp(1.25rem, 2.5vw, 2.5rem);
+}
+
+.ref-hero__statement {
+	grid-column: 2;
+	max-width: 44rem;
+}
+
+.ref-hero__eyebrow {
+	max-width: 40ch;
+	margin: 0 0 clamp(1rem, 2vw, 2rem);
+	font-size: clamp(0.75rem, 0.85vw, 0.875rem);
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.ref-hero__statement h1 {
+	max-width: 16ch;
+	margin: 0;
+	font-family: var(--font-display);
+	font-size: clamp(2.25rem, 3.7vw, 4.25rem);
+	font-weight: 700;
+	letter-spacing: var(--tracking-heading);
+	line-height: 0.98;
+	text-wrap: balance;
+}
+
+.ref-hero__media {
+	position: relative;
+	width: 100%;
+	height: max(60svh, 28rem);
+	margin: 0;
+	overflow: hidden;
+	background: var(--ink);
+}
+
+.ref-hero__media img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	object-fit: cover;
+	object-position: center 42%;
+}
+
+.ref-hero__media figcaption {
+	position: absolute;
+	right: var(--grid-margin);
+	bottom: 0;
+	margin: 0;
+	padding: 0.55rem 0.75rem;
+	background: var(--paper);
+	color: var(--ink);
+	font-size: 0.75rem;
+	font-weight: 500;
+	letter-spacing: var(--tracking-label);
+	line-height: 1.35;
+	text-transform: uppercase;
+}
+
+@media (max-width: 980px) {
+	.ref-header .page__header__inner {
+		grid-template-columns: minmax(0, 1fr) auto;
+	}
+
+	.ref-header__links {
+		display: none;
+	}
+
+	.ref-header .header__nav {
+		grid-column: 2;
+	}
+
+	.ref-header .header__logo__link .vshanuy-logo__name {
+		font-size: clamp(4rem, 16vw, 8rem);
+	}
+
+	.ref-hero__intro {
+		height: auto;
+		min-height: clamp(25rem, 54svh, 34rem);
+		grid-template-columns: minmax(0, 1fr);
+		padding-top: clamp(10rem, 29vw, 15rem);
+	}
+
+	.ref-hero__statement {
+		grid-column: 1;
+		max-width: 38rem;
+		margin-left: min(22vw, 10rem);
+	}
+
+	.ref-hero__media {
+		height: max(52svh, 24rem);
+	}
+}
+
+@media (max-width: 680px) {
+	.ref-header > .wrp {
+		padding-top: 0.75rem;
+	}
+
+	.ref-header .header__logo__link .vshanuy-logo__name {
+		font-size: clamp(3.25rem, 17vw, 5rem);
+	}
+
+	.ref-header .header__nav__item--contact {
+		display: none;
+	}
+
+	.ref-header .menu__trigger.header__nav__item--menu {
+		border-left: var(--line);
+	}
+
+	.ref-hero__intro {
+		min-height: 29rem;
+		padding-top: clamp(9rem, 34vw, 12rem);
+	}
+
+	.ref-hero__statement {
+		margin-left: 0;
+	}
+
+	.ref-hero__statement h1 {
+		font-size: clamp(2.25rem, 11vw, 3.25rem);
+	}
+
+	.ref-hero__media {
+		height: 64svh;
+		min-height: 25rem;
+	}
+
+	.ref-hero__media img {
+		object-position: 46% center;
+	}
+
+	.ref-hero__media figcaption {
+		right: auto;
+		left: var(--grid-margin);
+		max-width: calc(100% - (2 * var(--grid-margin)));
+		font-size: 0.6875rem;
+	}
+}
+
+/*
+ * All-projects field: a sticky archive CTA surrounded by a paced documentary
+ * image field. The composition references Telha Clarke without importing its
+ * content, typography or visual assets.
+ */
+.vshanuy-work-field {
+	position: relative;
+	height: 280svh;
+	min-height: 100rem;
+	overflow: clip;
+	background: var(--paper);
+	color: var(--ink);
+	isolation: isolate;
+}
+
+.vshanuy-work-field__cta {
+	position: sticky;
+	top: 0;
+	z-index: 2;
+	display: grid;
+	height: 100svh;
+	place-items: center;
+	pointer-events: none;
+}
+
+.vshanuy-work-field__cta h1 {
+	margin: 0;
+	font: inherit;
+}
+
+.vshanuy-work-field__cta a {
+	display: inline-flex;
+	min-height: 2.75rem;
+	align-items: flex-start;
+	gap: 0.28em;
+	color: var(--ink);
+	font-family: var(--font-display);
+	font-size: clamp(3rem, 8.6vw, 9rem);
+	font-weight: 400;
+	letter-spacing: -0.055em;
+	line-height: 0.9;
+	text-decoration: none;
+	pointer-events: auto;
+}
+
+.vshanuy-work-field__cta a::after {
+	position: absolute;
+	right: 0;
+	bottom: -0.12em;
+	left: 0;
+	height: 1px;
+	background: currentColor;
+	content: "";
+	transform: scaleX(0);
+	transform-origin: right;
+	transition: transform 320ms ease;
+}
+
+.vshanuy-work-field__cta a {
+	position: relative;
+}
+
+.vshanuy-work-field__cta a:hover::after,
+.vshanuy-work-field__cta a:focus-visible::after {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+
+.vshanuy-work-field__cta sup {
+	margin-top: 0.2em;
+	font-size: 0.18em;
+	font-variant-numeric: tabular-nums;
+	letter-spacing: 0;
+	line-height: 1;
+}
+
+.vshanuy-work-field__images {
+	position: absolute;
+	z-index: 1;
+	inset: 0;
+	pointer-events: none;
+}
+
+.vshanuy-work-field__image {
+	--work-scroll-y: 0px;
+	--work-pointer-x: 0px;
+	--work-pointer-y: 0px;
+	position: absolute;
+	width: clamp(8rem, 15vw, 15rem);
+	margin: 0;
+	overflow: hidden;
+	background: var(--beige);
+	transform: translate3d(
+		var(--work-pointer-x),
+		calc(var(--work-scroll-y) + var(--work-pointer-y)),
+		0
+	);
+	will-change: transform;
+}
+
+.vshanuy-work-field__image--small {
+	width: clamp(7rem, 11vw, 11rem);
+}
+
+.vshanuy-work-field__image--large {
+	width: clamp(12rem, 23vw, 24rem);
+}
+
+.vshanuy-work-field__image img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 3 / 4;
+	object-fit: cover;
+}
+
+.vshanuy-work-field__image:nth-child(1) {
+	top: 4%;
+	left: 5%;
+}
+
+.vshanuy-work-field__image:nth-child(2) {
+	top: 12%;
+	right: -4%;
+}
+
+.vshanuy-work-field__image:nth-child(3) {
+	top: 29%;
+	left: 21%;
+	opacity: 0.48;
+}
+
+.vshanuy-work-field__image:nth-child(4) {
+	top: 37%;
+	right: 18%;
+}
+
+.vshanuy-work-field__image:nth-child(5) {
+	top: 47%;
+	left: -3%;
+}
+
+.vshanuy-work-field__image:nth-child(6) {
+	top: 56%;
+	right: 5%;
+	opacity: 0.42;
+}
+
+.vshanuy-work-field__image:nth-child(7) {
+	top: 67%;
+	left: 38%;
+}
+
+.vshanuy-work-field__image:nth-child(8) {
+	top: 74%;
+	right: 23%;
+}
+
+.vshanuy-work-field__image:nth-child(9) {
+	top: 84%;
+	left: 2%;
+}
+
+.vshanuy-work-field__image:nth-child(10) {
+	top: 90%;
+	right: 4%;
+	opacity: 0.52;
+}
+
+@media (max-width: 980px) {
+	.vshanuy-work-field {
+		height: 240svh;
+		min-height: 84rem;
+	}
+
+	.vshanuy-work-field__cta a {
+		font-size: clamp(3rem, 13vw, 7rem);
+	}
+
+	.vshanuy-work-field__image {
+		width: clamp(7rem, 22vw, 12rem);
+	}
+
+	.vshanuy-work-field__image--small {
+		width: clamp(6rem, 17vw, 9rem);
+	}
+
+	.vshanuy-work-field__image--large {
+		width: clamp(10rem, 31vw, 17rem);
+	}
+}
+
+@media (max-width: 680px) {
+	.vshanuy-work-field {
+		height: 220svh;
+		min-height: 76rem;
+	}
+
+	.vshanuy-work-field__cta a {
+		flex-direction: column;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: clamp(2.75rem, 15vw, 4.5rem);
+		text-align: center;
+	}
+
+	.vshanuy-work-field__cta sup {
+		margin: 0;
+		font-size: 0.28em;
+	}
+
+	.vshanuy-work-field__image:nth-child(3) {
+		left: 8%;
+	}
+
+	.vshanuy-work-field__image:nth-child(4) {
+		right: 7%;
+	}
+
+	.vshanuy-work-field__image:nth-child(7) {
+		left: 18%;
+	}
+
+	.vshanuy-work-field__image:nth-child(8) {
+		right: 5%;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.vshanuy-work-field {
+		height: auto;
+		min-height: 0;
+		overflow: visible;
+		padding: var(--space-silence) var(--grid-margin);
+	}
+
+	.vshanuy-work-field__cta {
+		position: relative;
+		height: auto;
+		min-height: 18rem;
+	}
+
+	.vshanuy-work-field__images {
+		position: relative;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-2);
+	}
+
+	.vshanuy-work-field__image,
+	.vshanuy-work-field__image:nth-child(n) {
+		position: relative;
+		top: auto;
+		right: auto;
+		left: auto;
+		width: 100%;
+		opacity: 1;
+		transform: none;
+		will-change: auto;
+	}
+}
+
+/* One site typeface; Volja remains exclusive to brand wordmarks and timers. */
+:where(
+	body,
+	button,
+	input,
+	select,
+	textarea,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p,
+	a,
+	li,
+	dt,
+	dd,
+	blockquote,
+	figcaption
+) {
+	font-family: var(--font-text);
+}
+
+:where(
+	.vshanuy-logo__name,
+	.vshanuy-logo__time,
+	.vshanuy-footer-wordmark__name,
+	.vshanuy-footer-wordmark__time
+) {
+	font-family: var(--font-logo);
+}
+
+/* Geologica headings use the regular cut throughout the site. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.title {
+	font-weight: 400 !important;
+}
+
 /* Light canvas and neutral surfaces carry the composition. */
 body,
 .body--grey-50,
@@ -61,6 +671,19 @@ body,
   background-color: var(--paper);
   color: var(--ink);
   font-family: var(--font-ui);
+}
+
+body {
+  font-size: var(--type-body);
+  font-weight: 400;
+  line-height: var(--leading-body);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-text);
 }
 
 .bg--grey-100 {
@@ -218,21 +841,81 @@ body,
   text-wrap: balance;
 }
 
-.vshanuy-hero__tags {
+/* 09:00 is the brand's icon, so the hero states it at clock scale. */
+.vshanuy-clock {
   position: static;
+  display: grid;
   box-sizing: border-box;
   width: 100%;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--grid-gutter);
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 0 var(--grid-gutter);
   padding: var(--space-2) var(--grid-margin);
   border-top: var(--line);
   border-bottom: var(--line-muted);
   background: var(--paper);
 }
 
-.vshanuy-hero__tags .tag__name,
-.vshanuy-hero__tags .tag__data {
+.vshanuy-clock > p {
+  margin: 0;
   grid-column: auto;
+}
+
+.vshanuy-clock__label {
+  grid-row: 1;
+  align-self: start;
+  color: var(--graphite);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.vshanuy-clock__time {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  font-size: clamp(2.75rem, 5.6vw, 5.25rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.82;
+}
+
+.vshanuy-clock__next {
+  grid-row: 2;
+  grid-column: 1;
+  align-self: end;
+  color: var(--graphite);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* Documentary caption: place · year · tag. */
+.vshanuy-caption {
+  margin: 0;
+  color: var(--graphite);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.vshanuy-hero__media .vshanuy-caption {
+  flex: 0 0 auto;
+  padding: 0.55rem var(--grid-margin);
+  border-top: var(--line-muted);
+  background: var(--paper);
+}
+
+.vshanuy-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .home__hero__column--right .hero__main {
@@ -245,8 +928,8 @@ body,
 }
 
 .vshanuy-hero__media {
-  display: block !important;
-  position: relative;
+  display: flex !important;
+  flex-direction: column;
   box-sizing: border-box;
   width: 100% !important;
   height: 100%;
@@ -258,11 +941,12 @@ body,
 
 .vshanuy-hero__media img {
   display: block;
+  flex: 1 1 auto;
   width: 100%;
   height: 100%;
   min-height: 0;
   object-fit: cover;
-  object-position: center 22%;
+  object-position: center 28%;
 }
 
 /* Documentary still instead of factory video: pause, not production motion. */
@@ -382,6 +1066,50 @@ a,
   border-radius: var(--radius);
 }
 
+.menu__trigger.header__nav__item--menu {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 2.125rem;
+  height: 2.125rem;
+  min-height: 2.125rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--ink);
+}
+
+.header__nav {
+  width: fit-content;
+  justify-self: end;
+  margin-left: auto;
+  gap: 0.75rem;
+}
+
+.menu__trigger.header__nav__item--menu::before,
+.menu__trigger.header__nav__item--menu::after {
+  display: none;
+}
+
+.menu__trigger .menu__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  width: auto;
+  height: auto;
+}
+
+.menu__trigger .menu__icon svg {
+  display: block;
+  width: 2.25rem;
+  height: auto;
+}
+
 /* Yellow is reserved for the keyboard action event, never a surface. */
 :focus-visible {
   outline: 2px solid var(--ink);
@@ -445,6 +1173,1207 @@ a,
   }
 }
 
+/* Шаблон ставить body { line-height: 0 }, тож власні блоки задають ритм самі. */
+.vshanuy-clock,
+.vshanuy-caption,
+.vshanuy-silence,
+.vshanuy-voice,
+.vshanuy-daily__meta,
+.vshanuy-anchor {
+  line-height: 1.5;
+}
+
+/*
+ * Порожнє поле — це зміст: смуга-пауза між важкими секціями.
+ * Empty field as a visual minute of silence.
+ */
+.vshanuy-silence {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: clamp(8rem, 22vh, 15rem) var(--grid-margin);
+  border-top: var(--line-muted);
+  background: var(--paper);
+  text-align: center;
+}
+
+.vshanuy-silence--bare {
+  border-top: 0;
+}
+
+.vshanuy-silence__time {
+  position: relative;
+  margin: 0;
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.vshanuy-silence__text {
+  max-width: 26ch;
+  margin: 0;
+  color: var(--graphite);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+}
+
+/* Засновниця: обличчя й фраза, з яких почався Вшануй. */
+.vshanuy-voice {
+  padding: clamp(4rem, 9vw, 8rem) 0;
+  background: var(--beige);
+  color: var(--ink);
+}
+
+.vshanuy-voice__label {
+  display: flex;
+  gap: 0.8rem;
+  margin: 0 0 clamp(3rem, 7vw, 6rem);
+  padding-top: 0.7rem;
+  border-top: var(--line);
+  color: var(--graphite);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.vshanuy-voice__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: end;
+}
+
+.vshanuy-voice__portrait {
+  margin: 0;
+}
+
+.vshanuy-voice__portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center 12%;
+}
+
+.vshanuy-voice__portrait .vshanuy-caption {
+  padding-top: 0.6rem;
+  border-top: var(--line-muted);
+}
+
+.vshanuy-voice__quote {
+  margin: 0;
+}
+
+.vshanuy-voice__quote p {
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 3.1vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.vshanuy-voice__quote footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-top: 0.8rem;
+  border-top: var(--line);
+}
+
+.vshanuy-voice__name {
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.vshanuy-voice__role {
+  color: var(--graphite);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Документальний кадр замість індустріальної анімації. */
+.vshanuy-daily {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+}
+
+.vshanuy-daily .image__picture {
+  display: block;
+  flex: 1 1 auto;
+  min-height: clamp(20rem, 42vw, 38rem);
+}
+
+.vshanuy-daily img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vshanuy-daily__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem clamp(1rem, 3vw, 2.5rem);
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--grey);
+  color: var(--beige);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Жовтий читається лише на чорнилі: 13.9:1 (WCAG 1.4.3 AA). */
+.vshanuy-daily__time {
+  color: var(--yellow);
+  font-weight: 700;
+}
+
+/* Гасло як якір бренду: один екран, одна думка. */
+.vshanuy-anchor {
+  display: flex;
+  align-items: center;
+  min-height: 86svh;
+  padding: var(--space-silence) var(--grid-margin);
+  border-top: var(--line-muted);
+  background: var(--paper);
+}
+
+.vshanuy-anchor__slogan {
+  margin: 0;
+  font-size: clamp(2.1rem, 6.4vw, 6.5rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1.02;
+}
+
+/*
+ * Чорнильний текст (16.3:1) з жовтою міткою: акцент бренду без втрати контрасту.
+ * Жовтий тут декоративний — сенс несе саме слово.
+ */
+.vshanuy-anchor__mark {
+  position: relative;
+  white-space: nowrap;
+}
+
+.vshanuy-anchor__mark::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.02em;
+  left: 0;
+  height: 0.09em;
+  background: var(--yellow);
+  content: "";
+}
+
+/* Prefooter: текст поверх затемненого документального фото. */
+.vshanuy-prefooter__media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.vshanuy-prefooter__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.32;
+}
+
+/* Повільний вдих замість slide-in: тиша, а не рух. */
+[data-breathe] {
+  opacity: 1;
+}
+
+.js-breathe [data-breathe] {
+  opacity: 0;
+  transition: opacity 600ms ease-out;
+}
+
+.js-breathe [data-breathe].is-breathed {
+  opacity: 1;
+}
+
+/* Text appears without the template's black wipe rectangles. */
+.line--mask {
+  display: none !important;
+}
+
+/*
+ * Пульс бренду: жовта стрілка головної дії на чорнилі — 13.9:1.
+ * Одна точка на екран, решта інтерфейсу тримається вагою.
+ */
+.header__nav__item--contact .contact__trigger .button__arrow svg,
+.header__nav__item--contact .contact__trigger .button__arrow path {
+  fill: var(--yellow);
+}
+
+/* Таймер логотипа завжди на чорнильній плашці — жовтий на Папері дає лише 1.2:1. */
+.vshanuy-logo__time {
+  width: fit-content;
+  padding: 0.12rem 0.24rem;
+  background: var(--ink);
+  color: var(--yellow);
+}
+
+/*
+ * Єдина типографічна система.
+ * Geologica — заголовки, текст, UI та архівні мітки.
+ * Volja залишається виключно у двох компоновках логотипа.
+ */
+h1,
+h2,
+h3,
+.title,
+.stack__title,
+.toggle__header .title,
+.slide__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-heading);
+}
+
+p,
+li,
+.text__description,
+.pretitle,
+.tag,
+.button,
+.menu__langs,
+.copyright,
+.subfooter {
+  font-family: var(--font-text);
+}
+
+/* Archive labels and controls share one compact voice. */
+.pretitle,
+.text--s,
+.tag,
+.c__header,
+.button__text,
+.vshanuy-caption,
+.vshanuy-clock__label,
+.vshanuy-clock__next,
+.vshanuy-voice__label,
+.vshanuy-voice__role,
+.vshanuy-daily__meta,
+.subfooter {
+  font-family: var(--font-text);
+  font-size: var(--type-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  line-height: var(--leading-label);
+}
+
+.button__text,
+.menu__trigger,
+.contact__trigger,
+.tag,
+.copyright {
+  font-weight: 700;
+}
+
+.button__text,
+.menu__trigger,
+.contact__trigger {
+  font-size: var(--type-small);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+/* Body copy: only three levels, all with readable measure and rhythm. */
+.text--m,
+.toggle__text,
+.footer__menu__item,
+.menu__secondary {
+  font-family: var(--font-text);
+  font-size: var(--type-body);
+  font-weight: 400;
+  line-height: var(--leading-body);
+  letter-spacing: 0;
+}
+
+.text--l,
+.stack__item__info .text__description,
+.matrix__main .text__description {
+  font-family: var(--font-text);
+  font-size: var(--type-body-large);
+  font-weight: 400;
+  line-height: var(--leading-body);
+  letter-spacing: 0;
+}
+
+.text--xl,
+.home__hero .hero__claim,
+.prefooter__top .text__description {
+  font-family: var(--font-text);
+  font-size: var(--type-lead);
+  font-weight: 400;
+  line-height: var(--leading-lead);
+  letter-spacing: -0.01em;
+}
+
+/* Headings use the same steps everywhere instead of template-specific sizes. */
+.title--xs,
+.toggle__header .title,
+.slide__title {
+  font-size: var(--type-heading-small);
+  line-height: var(--leading-heading);
+}
+
+.title--s,
+.stack__title {
+  font-size: var(--type-heading);
+  line-height: var(--leading-heading);
+}
+
+.section__title .title--m,
+.matrix__main .title--m,
+.values__section .title--m {
+  max-width: 15ch;
+  font-size: var(--type-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
+}
+
+.title--l,
+.prefooter .title--l {
+  font-size: var(--type-hero);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
+}
+
+.home__hero .hero__title {
+  max-width: 10ch;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 4.4vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
+  text-wrap: balance;
+}
+
+.main__menu__item,
+.main__menu__item .title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-heading);
+  line-height: var(--leading-heading);
+}
+
+.vshanuy-clock__time,
+.vshanuy-silence__time {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  line-height: 0.9;
+}
+
+.vshanuy-voice__quote p {
+  font-family: var(--font-display);
+  font-size: var(--type-heading);
+  font-weight: 500;
+  letter-spacing: var(--tracking-heading);
+  line-height: var(--leading-heading);
+}
+
+.vshanuy-anchor__slogan {
+  font-family: var(--font-display);
+  font-size: var(--type-monument);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
+}
+
+.vshanuy-footer-wordmark__name,
+.vshanuy-footer-wordmark__time {
+  font-family: var(--font-logo);
+}
+
+/*
+ * Hero tells one story in one composed screen.
+ * Message and context on the left; time and one complete documentary frame on the right.
+ */
+.home__hero {
+  height: auto;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.home__hero > .wrp,
+.home__hero > .wrp > .grid__layout {
+  height: auto;
+  min-height: 100svh;
+}
+
+.home__hero > .wrp > .grid__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  grid-template-rows: minmax(0, 1fr);
+  column-gap: 0;
+}
+
+.home__hero__column--left,
+.home__hero__column--right {
+  grid-column: auto;
+  min-width: 0;
+}
+
+.home__hero__column--left .home__hero__inner {
+  justify-content: center;
+  gap: clamp(2rem, 6vh, 4.5rem);
+  padding-top: var(--header-height);
+  padding-bottom: clamp(2rem, 5vh, 4rem);
+}
+
+.home__hero .hero__title {
+  max-width: 11ch;
+}
+
+.home__hero .hero__claim {
+  max-width: 25ch;
+  font-size: var(--type-body-large);
+  line-height: var(--leading-body);
+}
+
+.home__hero__column--right .hero__main {
+  height: 100%;
+  padding-top: var(--header-height);
+}
+
+.vshanuy-clock__time {
+  font-size: clamp(2.5rem, 3.8vw, 3.75rem);
+  font-weight: 500;
+}
+
+.vshanuy-hero__media {
+  justify-content: center;
+  background: var(--paper);
+}
+
+.vshanuy-hero__media img {
+  object-fit: contain;
+  object-position: center;
+}
+
+/* 2.5.8 Target Size (Minimum): кожна текстова ціль не менша за 24px. */
+.footer__social .menu__item__link,
+.secondary__menu .menu__item__link,
+.subfooter .legal__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+}
+
+/* Активний і наведений стан — вага й підкреслення, не колір (WCAG 1.4.1). */
+.menu__item__link:hover span,
+.menu__item__link:focus-visible span {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+.main__menu__item .menu__item__link[aria-current="page"] span,
+.footer__menu__item .menu__item__link[aria-current="page"] span {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* Наведення на картку: чорнильна лінійка та жовта мітка як подія. */
+.slide__card__inner {
+  position: relative;
+}
+
+.slide__card__inner::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 3px;
+  background: var(--yellow);
+  content: "";
+  transition: width 400ms ease-out;
+}
+
+.slide__card:hover .slide__card__inner::after,
+.slide__card:focus-within .slide__card__inner::after {
+  width: 3rem;
+}
+
+.slide__card:hover .slide__image,
+.slide__card:focus-within .slide__image {
+  outline: 1px solid var(--ink);
+  outline-offset: 0;
+}
+
+/*
+ * Story arc after hero:
+ * About → Directions → Guides → Partners → Support/Footer
+ */
+.vshanuy-kicker {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0 0 clamp(1.5rem, 3vw, 2.5rem);
+  padding-top: 0.7rem;
+  border-top: var(--line);
+  color: var(--graphite);
+  font-family: var(--font-text);
+  font-size: var(--type-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  line-height: var(--leading-label);
+  text-transform: uppercase;
+}
+
+.vshanuy-section-title {
+  max-width: 16ch;
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: var(--type-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
+  text-wrap: balance;
+}
+
+.vshanuy-section-lead {
+  max-width: 38rem;
+  margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+  color: var(--graphite);
+  font-family: var(--font-text);
+  font-size: var(--type-body-large);
+  line-height: var(--leading-body);
+}
+
+.vshanuy-about,
+.vshanuy-directions,
+.vshanuy-guides,
+.vshanuy-partners,
+.vshanuy-support {
+  line-height: var(--leading-body);
+}
+
+.vshanuy-about {
+  padding: clamp(5rem, 12vw, 10rem) 0;
+  background: var(--beige);
+}
+
+.vshanuy-about__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: end;
+}
+
+.vshanuy-about__title {
+  max-width: 14ch;
+  margin: 0 0 clamp(1.5rem, 3vw, 2.5rem);
+  font-family: var(--font-display);
+  font-size: var(--type-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
+}
+
+.vshanuy-about__text {
+  max-width: 38rem;
+  margin: 0 0 2rem;
+  font-family: var(--font-text);
+  font-size: var(--type-body-large);
+  line-height: var(--leading-body);
+}
+
+.vshanuy-about__media {
+  margin: 0;
+}
+
+.vshanuy-about__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center 12%;
+}
+
+.vshanuy-about__media .vshanuy-caption {
+  padding-top: 0.6rem;
+  border-top: var(--line-muted);
+}
+
+.vshanuy-directions {
+  padding: clamp(5rem, 12vw, 10rem) 0;
+  background: var(--paper);
+}
+
+.vshanuy-direction-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: var(--line);
+}
+
+.vshanuy-direction-card {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr) auto;
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: center;
+  min-height: 7.5rem;
+  padding: 1.5rem 0;
+  border-bottom: var(--line-muted);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 300ms ease-out;
+}
+
+.vshanuy-direction-card:hover,
+.vshanuy-direction-card:focus-visible {
+  background: color-mix(in srgb, var(--beige) 70%, transparent);
+}
+
+.vshanuy-direction-card:hover .vshanuy-direction-card__arrow,
+.vshanuy-direction-card:focus-visible .vshanuy-direction-card__arrow {
+  color: var(--ink);
+  transform: translateX(0.25rem);
+}
+
+.vshanuy-direction-card__num {
+  font-family: var(--font-text);
+  font-size: var(--type-label);
+  font-weight: 700;
+  letter-spacing: var(--tracking-label);
+}
+
+.vshanuy-direction-card__title {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-display);
+  font-size: var(--type-heading-small);
+  font-weight: 700;
+  letter-spacing: var(--tracking-heading);
+  line-height: var(--leading-heading);
+}
+
+.vshanuy-direction-card__text {
+  display: block;
+  max-width: 42rem;
+  color: var(--graphite);
+  font-family: var(--font-text);
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+}
+
+.vshanuy-direction-card__arrow {
+  color: var(--grey);
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: transform 300ms ease-out, color 300ms ease-out;
+}
+
+.vshanuy-guides {
+  padding: clamp(5rem, 12vw, 10rem) 0;
+  background: var(--beige);
+}
+
+.vshanuy-guides__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem 2rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.vshanuy-guides__head .vshanuy-section-title {
+  margin-bottom: 0;
+}
+
+.vshanuy-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: var(--line);
+}
+
+.vshanuy-guide-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 18rem;
+  padding: 1.5rem clamp(1.25rem, 2.5vw, 2rem) 1.5rem 0;
+  border-right: var(--line-muted);
+  text-decoration: none;
+  color: inherit;
+}
+
+.vshanuy-guide-grid > li:last-child .vshanuy-guide-card {
+  border-right: 0;
+  padding-right: 0;
+}
+
+.vshanuy-guide-grid > li:first-child .vshanuy-guide-card {
+  padding-left: 0;
+}
+
+.vshanuy-guide-card:hover,
+.vshanuy-guide-card:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: -1px;
+}
+
+.vshanuy-guide-card:hover .vshanuy-guide-card__cta,
+.vshanuy-guide-card:focus-visible .vshanuy-guide-card__cta {
+  text-decoration: underline;
+}
+
+.vshanuy-guide-card__meta {
+  margin-bottom: auto;
+  color: var(--graphite);
+  font-family: var(--font-text);
+  font-size: var(--type-label);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.vshanuy-guide-card__title {
+  display: block;
+  margin: 3rem 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: var(--type-heading-small);
+  font-weight: 700;
+  letter-spacing: var(--tracking-heading);
+  line-height: var(--leading-heading);
+}
+
+.vshanuy-guide-card__text {
+  display: block;
+  margin-bottom: 1.5rem;
+  color: var(--graphite);
+  font-family: var(--font-text);
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+}
+
+.vshanuy-guide-card__cta {
+  font-family: var(--font-text);
+  font-size: var(--type-small);
+  font-weight: 700;
+}
+
+.vshanuy-partners {
+  padding: clamp(5rem, 12vw, 10rem) 0;
+  background: var(--paper);
+}
+
+.vshanuy-partner-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: var(--line);
+  border-bottom: var(--line);
+}
+
+.vshanuy-partner-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 7rem;
+  padding: 1rem;
+  border-right: var(--line-muted);
+  color: var(--graphite);
+  font-family: var(--font-text);
+  font-size: var(--type-small);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.vshanuy-partner-row > li:last-child .vshanuy-partner-mark {
+  border-right: 0;
+}
+
+.vshanuy-support {
+  padding: clamp(5rem, 12vw, 10rem) 0;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.vshanuy-support .vshanuy-kicker {
+  border-top-color: var(--grey);
+  color: var(--beige);
+}
+
+.vshanuy-support__slogan {
+  max-width: 18ch;
+  margin: 0 0 clamp(3rem, 8vw, 6rem);
+  font-family: var(--font-display);
+  font-size: var(--type-hero);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
+}
+
+.vshanuy-support__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  border-top: 1px solid var(--grey);
+  padding-top: 1.5rem;
+}
+
+.vshanuy-support__contact,
+.vshanuy-support__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.vshanuy-support a {
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.vshanuy-support a:hover,
+.vshanuy-support a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.vshanuy-support__contact > a {
+  font-family: var(--font-display);
+  font-size: var(--type-heading-small);
+  font-weight: 700;
+  letter-spacing: var(--tracking-heading);
+}
+
+.vshanuy-support__social,
+.vshanuy-support__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vshanuy-support__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 3.25rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--paper);
+  background: var(--yellow);
+  color: var(--ink) !important;
+  font-family: var(--font-text);
+  font-size: var(--type-small);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none !important;
+  text-transform: uppercase;
+}
+
+.vshanuy-support__cta:hover,
+.vshanuy-support__cta:focus-visible {
+  background: var(--paper);
+  color: var(--ink) !important;
+}
+
+.vshanuy-support__links a {
+  font-size: var(--type-small);
+  font-weight: 500;
+}
+
+.vshanuy-footer {
+  padding: 2rem 0 2.5rem;
+  background: var(--ink);
+  color: var(--beige);
+  border-top: 1px solid var(--grey);
+  line-height: var(--leading-body);
+}
+
+.vshanuy-footer .vshanuy-logo {
+  color: var(--paper);
+}
+
+.vshanuy-footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.vshanuy-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+}
+
+.vshanuy-footer__nav a,
+.vshanuy-footer__langs,
+.vshanuy-footer__bottom {
+  color: var(--beige);
+  font-family: var(--font-text);
+  font-size: var(--type-small);
+  text-decoration: none;
+}
+
+.vshanuy-footer__nav a:hover,
+.vshanuy-footer__nav a:focus-visible {
+  color: var(--paper);
+  text-decoration: underline;
+}
+
+.vshanuy-footer__langs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.vshanuy-footer__langs .lang--active {
+  color: var(--paper);
+  font-weight: 700;
+}
+
+.vshanuy-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--grey);
+}
+
+.vshanuy-footer__bottom p {
+  margin: 0;
+}
+
+.vshanuy-support :focus-visible,
+.vshanuy-footer :focus-visible {
+  outline-color: var(--yellow);
+}
+
+@media (max-width: 980px) {
+  .home__hero > .wrp,
+  .home__hero > .wrp > .grid__layout {
+    min-height: 0;
+  }
+
+  .home__hero > .wrp > .grid__layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .home__hero__column--left,
+  .home__hero__column--right,
+  .home__hero__column--left .block__inner,
+  .home__hero__column--left .home__hero__inner {
+    height: auto;
+    min-height: 0;
+  }
+
+  .home__hero__column--left .home__hero__inner {
+    min-height: 0;
+    gap: 1.5rem;
+    padding-top: clamp(7rem, 14svh, 9rem);
+    padding-bottom: 1.5rem;
+  }
+
+  .home__hero .hero__title {
+    max-width: none;
+    font-size: clamp(2.625rem, 11vw, 3rem);
+  }
+
+  .home__hero__column--right .hero__main {
+    height: auto;
+    padding-top: 0;
+  }
+
+  .vshanuy-hero__media {
+    height: auto;
+  }
+
+  .vshanuy-hero__media img {
+    flex: none;
+    height: auto;
+    aspect-ratio: auto;
+  }
+
+  .vshanuy-about__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vshanuy-about__media img {
+    aspect-ratio: 3 / 2;
+  }
+
+  .vshanuy-guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vshanuy-guide-card {
+    min-height: auto;
+    padding: 1.5rem 0;
+    border-right: 0;
+    border-bottom: var(--line-muted);
+  }
+
+  .vshanuy-guide-grid > li:last-child .vshanuy-guide-card {
+    border-bottom: 0;
+  }
+
+  .vshanuy-guide-card__title {
+    margin-top: 2rem;
+  }
+
+  .vshanuy-partner-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .vshanuy-partner-mark {
+    min-height: 5.5rem;
+  }
+
+  .vshanuy-partner-row > li:nth-child(2n) .vshanuy-partner-mark {
+    border-right: 0;
+  }
+
+  .vshanuy-support__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .vshanuy-clock {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+
+  .vshanuy-clock__time {
+    grid-row: auto;
+    grid-column: 1;
+    font-size: clamp(3rem, 13vw, 3.5rem);
+  }
+
+  .vshanuy-clock__next {
+    grid-row: auto;
+  }
+
+  .vshanuy-ligne {
+    padding-top: 5rem;
+  }
+
+  .vshanuy-ligne__top .vshanuy-section-title {
+    margin-top: 1.5rem;
+  }
+
+  .vshanuy-ligne__progress {
+    position: static;
+    transform: none;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .vshanuy-ligne__track {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .vshanuy-ligne__slide {
+    width: min(78vw, 22rem);
+  }
+
+  .vshanuy-ligne__card {
+    grid-template-columns: 1fr;
+  }
+
+  .vshanuy-ligne__media img {
+    height: min(48vh, 24rem);
+  }
+
+  .vshanuy-ligne__discover {
+    left: 0.75rem;
+    transform: translateY(-50%);
+  }
+
+  .vshanuy-ligne__chrome {
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    gap: 1.25rem;
+  }
+
+  .vshanuy-ligne__lines {
+    order: 2;
+  }
+
+  .vshanuy-ligne__year {
+    order: 1;
+  }
+
+  .vshanuy-ligne__modes {
+    order: 3;
+    justify-self: stretch;
+    grid-template-columns: repeat(3, 1fr);
+    min-width: 0;
+  }
+
+  .vshanuy-direction-card {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    min-height: auto;
+  }
+
+  .vshanuy-direction-card__arrow {
+    display: none;
+  }
+
+  .vshanuy-partner-row {
+    grid-template-columns: 1fr;
+  }
+
+  .vshanuy-partner-mark {
+    border-right: 0;
+    border-bottom: var(--line-muted);
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .vshanuy-partner-row > li:last-child .vshanuy-partner-mark {
+    border-bottom: 0;
+  }
+
+  .vshanuy-support__slogan {
+    font-size: clamp(2.25rem, 11vw, 3.5rem);
+  }
+
+  .vshanuy-footer__top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -454,4 +2383,1218 @@ a,
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
   }
+
+  .js-breathe [data-breathe] {
+    opacity: 1;
+  }
 }
+
+/* July composition pass: clearer hero, four explicit directions, one dark photo pause. */
+.home__hero__column--left .home__hero__inner {
+  justify-content: flex-start;
+  padding-top: clamp(8rem, 18vh, 11rem);
+  padding-bottom: clamp(2rem, 5vh, 3.5rem);
+}
+
+.vshanuy-clock {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  padding-block: 0.8rem;
+}
+
+.vshanuy-clock__time {
+  grid-row: 1;
+  font-size: clamp(2.5rem, 4.4vw, 4rem);
+  font-weight: 500;
+}
+
+.vshanuy-clock__next {
+  display: none;
+}
+
+.vshanuy-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(100%, 20rem);
+  min-height: 3.25rem;
+  margin-top: auto;
+  padding: 0.8rem 0;
+  border-top: var(--line-muted);
+  border-bottom: var(--line-muted);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: var(--type-small);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.vshanuy-hero__cta:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.vshanuy-hero__cta:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.vshanuy-about__title {
+  max-width: 12ch;
+  font-size: clamp(3.5rem, 6.4vw, 7rem);
+}
+
+.vshanuy-directions {
+  height: auto;
+  min-height: 0;
+  padding: clamp(5rem, 10vw, 9rem) 0;
+  overflow: visible;
+  background: var(--paper);
+}
+
+.vshanuy-directions__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: end;
+  margin-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+.vshanuy-directions__head .vshanuy-section-title,
+.vshanuy-directions__head .vshanuy-section-lead {
+  margin-bottom: 0;
+}
+
+.vshanuy-direction-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  border-top: var(--line-muted);
+  border-left: var(--line-muted);
+  list-style: none;
+}
+
+.vshanuy-direction-grid > li {
+  min-width: 0;
+}
+
+.vshanuy-direction-tile {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-height: clamp(19rem, 32vw, 27rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border-right: var(--line-muted);
+  border-bottom: var(--line-muted);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color 250ms ease;
+}
+
+.vshanuy-direction-tile:hover,
+.vshanuy-direction-tile:focus-visible {
+  background: var(--beige);
+}
+
+.vshanuy-direction-tile:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+}
+
+.vshanuy-direction-tile__num {
+  font-family: var(--font-display);
+  font-size: clamp(3.75rem, 8vw, 7.5rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.85;
+}
+
+.vshanuy-direction-tile__body {
+  align-self: end;
+  max-width: 30rem;
+  padding-top: clamp(3rem, 8vw, 7rem);
+}
+
+.vshanuy-direction-tile__title {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: var(--tracking-heading);
+  line-height: 1;
+}
+
+.vshanuy-direction-tile__text {
+  display: block;
+  max-width: 34rem;
+  color: var(--graphite);
+  font-family: var(--font-text);
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+}
+
+.vshanuy-direction-tile__arrow {
+  justify-self: end;
+  padding-top: 1.5rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: transform 250ms ease;
+}
+
+.vshanuy-direction-tile:hover .vshanuy-direction-tile__arrow,
+.vshanuy-direction-tile:focus-visible .vshanuy-direction-tile__arrow {
+  transform: translateX(0.3rem);
+}
+
+.vshanuy-photo-break {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(20rem, 5fr) minmax(0, 7fr);
+  height: clamp(32rem, 72svh, 52rem);
+  margin: 0;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.vshanuy-photo-break img {
+  display: block;
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vshanuy-photo-break blockquote {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  max-width: 14ch;
+  margin: 0;
+  padding: clamp(3rem, 7vw, 7rem) max(var(--grid-margin), calc((100vw - 88rem) / 2));
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5.5vw, 6rem);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  line-height: 0.92;
+}
+
+.vshanuy-photo-break .vshanuy-caption {
+  position: absolute;
+  left: max(var(--grid-margin), calc((100vw - 88rem) / 2));
+  bottom: 1.5rem;
+  color: var(--paper);
+}
+
+.vshanuy-guide-card {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  min-height: 16rem;
+}
+
+.vshanuy-guide-card__meta {
+  margin-bottom: 0;
+}
+
+.vshanuy-guide-card__title {
+  margin: 0.75rem 0 0.75rem;
+}
+
+.vshanuy-guide-card__text {
+  margin-bottom: 1.25rem;
+}
+
+.vshanuy-partner-row {
+  margin-top: clamp(2rem, 5vw, 4rem);
+}
+
+.vshanuy-partner-mark {
+  min-height: 6rem;
+  padding-block: 1.5rem;
+}
+
+@media (max-width: 980px) {
+  .home__hero__column--left .home__hero__inner {
+    padding-top: clamp(7rem, 14svh, 9rem);
+    padding-bottom: 2rem;
+  }
+
+  .vshanuy-hero__cta {
+    margin-top: 1rem;
+  }
+
+  .vshanuy-directions__head {
+    grid-template-columns: 1fr;
+  }
+
+  .vshanuy-about__title {
+    font-size: clamp(3rem, 9vw, 5.5rem);
+  }
+}
+
+@media (max-width: 680px) {
+  .vshanuy-clock {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .vshanuy-clock__time {
+    grid-row: 1;
+    grid-column: 2;
+    font-size: 2.75rem;
+  }
+
+  .vshanuy-direction-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vshanuy-direction-tile {
+    min-height: 20rem;
+  }
+
+  .vshanuy-photo-break {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    height: auto;
+    min-height: 80svh;
+  }
+
+  .vshanuy-photo-break img {
+    grid-column: 1;
+    grid-row: 2;
+    min-height: 50svh;
+  }
+
+  .vshanuy-photo-break blockquote {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 4rem var(--grid-margin);
+    font-size: clamp(2.75rem, 13vw, 4.5rem);
+  }
+
+  .vshanuy-photo-break .vshanuy-caption {
+    left: var(--grid-margin);
+    bottom: 1rem;
+  }
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* === NAPRYAMY RESTORED === */
+.napryamy.vshanuy-directions {
+	--napryamy-bg: var(--paper);
+	--napryamy-ink: var(--ink);
+	--content-inset: max(1.25rem, calc((100vw - min(100vw, 88rem)) / 2 + 1.25rem));
+	--ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+	--intro-progress: 0;
+	--intro-media-scale: 1.65;
+	--intro-media-top: max(6.5rem, 13vh);
+	--intro-media-bottom: clamp(4rem, 8.5vh, 5.5rem);
+	position: relative;
+	/* Висоту runway задає JS; мінімум — один екран */
+	height: auto;
+	min-height: 100vh;
+	min-height: 100dvh;
+	padding: 0;
+	margin: 0;
+	background: var(--napryamy-bg);
+	color: var(--napryamy-ink);
+	border-top: 1px solid color-mix(in srgb, var(--napryamy-ink) 18%, transparent);
+	overflow: visible;
+}
+
+.napryamy-shell {
+	position: sticky;
+	top: 0;
+	height: 100vh;
+	height: 100dvh;
+	padding: 0;
+	box-sizing: border-box;
+	display: block;
+	overflow: hidden;
+	background: var(--napryamy-bg);
+}
+
+.napryamy-head {
+	position: absolute;
+	inset: 0;
+	z-index: 4;
+	pointer-events: none;
+}
+
+.napryamy-intro-copy {
+	position: absolute;
+	top: max(var(--intro-media-top), 6.5rem);
+	left: var(--content-inset);
+	width: min(32rem, 38vw);
+	opacity: calc(1 - var(--intro-progress));
+	transition: opacity 80ms linear;
+}
+
+.napryamy-intro-copy p {
+	margin: 0;
+	max-width: 42ch;
+	font-size: var(--type-body);
+	line-height: var(--leading-body);
+}
+
+.napryamy-intro-copy .napryamy-intro-label {
+	margin-bottom: 1rem;
+	font-size: var(--type-label);
+	font-weight: 700;
+	letter-spacing: var(--tracking-label);
+}
+
+.napryamy-title.vshanuy-section-title {
+	position: absolute;
+	left: var(--content-inset);
+	bottom: max(var(--intro-media-bottom), env(safe-area-inset-bottom, 0px));
+	max-width: 18ch;
+	margin: 0;
+	font-size: 77px;
+	font-weight: 700;
+	letter-spacing: var(--tracking-display);
+	line-height: var(--leading-display);
+	text-align: left;
+	white-space: normal;
+	opacity: calc(1 - var(--intro-progress));
+	transition: opacity 80ms linear;
+}
+
+/* Прогрес ховається в секції; у pinned-стані — у зоні хедера / меню */
+.napryamy-progress {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition:
+		opacity 220ms var(--ease-out),
+		visibility 0s linear 220ms;
+}
+
+body.is-napryamy .napryamy-progress {
+	position: fixed;
+	top: max(0.75rem, calc(var(--header-height, 3.5rem) / 2 - 0.65rem));
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 12;
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transition:
+		opacity 220ms var(--ease-out),
+		visibility 0s;
+	color: var(--ink);
+}
+
+.napryamy-progress small {
+	font-size: 0.8rem;
+	letter-spacing: 0.02em;
+	opacity: 0.85;
+	white-space: nowrap;
+}
+
+.napryamy-progress progress {
+	width: min(220px, 40vw);
+	height: 3px;
+	appearance: none;
+	border: 0;
+	background: color-mix(in srgb, var(--napryamy-ink) 18%, transparent);
+}
+
+body.is-napryamy .napryamy-progress progress {
+	background: color-mix(in srgb, var(--ink) 18%, transparent);
+}
+
+.napryamy-progress progress::-webkit-progress-bar {
+	background: color-mix(in srgb, var(--napryamy-ink) 18%, transparent);
+}
+
+body.is-napryamy .napryamy-progress progress::-webkit-progress-bar {
+	background: color-mix(in srgb, var(--ink) 18%, transparent);
+}
+
+.napryamy-progress progress::-webkit-progress-value {
+	background: var(--napryamy-ink);
+}
+
+body.is-napryamy .napryamy-progress progress::-webkit-progress-value {
+	background: var(--ink);
+}
+
+.napryamy-progress progress::-moz-progress-bar {
+	background: var(--napryamy-ink);
+}
+
+body.is-napryamy .napryamy-progress progress::-moz-progress-bar {
+	background: var(--ink);
+}
+
+.napryamy-viewport {
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+	min-height: 100%;
+	display: flex;
+	align-items: center;
+	padding-top: 5rem;
+	padding-bottom: clamp(100px, 14vh, 160px);
+	box-sizing: border-box;
+}
+
+.napryamy-track {
+	display: flex;
+	align-items: center;
+	gap: clamp(48px, 8vw, 120px);
+	width: max-content;
+	height: 100%;
+	padding-left: 50%;
+	padding-right: 50%;
+	/* Місце з боків, щоб перше/останнє фото центрувались */
+	padding-left: 50vw;
+	padding-right: 50vw;
+	box-sizing: content-box;
+	transform: translate3d(0, 0, 0);
+	will-change: transform;
+}
+
+.napryamy-slide {
+	flex: 0 0 auto;
+	opacity: 0.34;
+	pointer-events: none;
+	transition: opacity 280ms var(--ease-out);
+}
+
+.napryamy-slide.is-active {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.napryamy.vshanuy-directions.is-intro .napryamy-slide:not(:first-child) {
+	opacity: 0;
+}
+
+.napryamy.vshanuy-directions.is-intro .napryamy-slide:first-child .napryamy-figure figcaption {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.napryamy-slide:first-child .napryamy-media {
+	transform: scale(var(--intro-media-scale));
+	transform-origin: right center;
+	will-change: transform;
+}
+
+.napryamy.vshanuy-directions.is-intro .napryamy-slide:first-child .napryamy-discover {
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.napryamy-figure {
+	--napryamy-caption-space: clamp(16rem, 24vw, 24rem);
+	position: relative;
+	display: block;
+	margin: 0;
+	height: min(55vh, 560px);
+	width: max-content;
+	padding-right: var(--napryamy-caption-space);
+	box-sizing: content-box;
+}
+
+.napryamy-media {
+	position: relative;
+	height: 100%;
+	width: max-content;
+}
+
+.napryamy-figure img {
+	display: block;
+	height: 100%;
+	width: auto;
+	max-width: min(52vw, 720px);
+	object-fit: contain;
+	user-select: none;
+	pointer-events: none;
+}
+
+.napryamy-discover {
+	--napryamy-discover-bg: var(--yellow);
+	position: absolute;
+	top: 50%;
+	left: 0;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	gap: 0;
+	min-width: 36px;
+	min-height: 36px;
+	padding: 9px;
+	border: 0;
+	border-radius: 0;
+	background: var(--napryamy-discover-bg);
+	color: var(--napryamy-ink);
+	text-decoration: none;
+	overflow: hidden;
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+	transform: translate(-50%, -50%);
+	transition:
+		opacity 333ms var(--ease-out),
+		gap 333ms var(--ease-out),
+		visibility 0s linear 333ms;
+}
+
+.napryamy-slide.is-active .napryamy-discover,
+.napryamy-figure:hover .napryamy-discover,
+.napryamy-figure:focus-within .napryamy-discover {
+	visibility: visible;
+	opacity: 1;
+	pointer-events: auto;
+	transition:
+		opacity 333ms var(--ease-out),
+		gap 333ms var(--ease-out),
+		visibility 0s;
+}
+
+.napryamy-figure:hover .napryamy-discover,
+.napryamy-figure:focus-within .napryamy-discover,
+.napryamy-discover:hover,
+.napryamy-discover:focus-visible {
+	gap: 9px;
+}
+
+.napryamy-discover:focus-visible {
+	outline: 2px solid var(--napryamy-ink);
+	outline-offset: 3px;
+}
+
+.napryamy-discover svg {
+	display: block;
+	flex-shrink: 0;
+	width: 18px;
+	height: 18px;
+}
+
+.napryamy-discover-label {
+	display: block;
+	width: 0;
+	opacity: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	font-family: var(--font-display);
+	font-size: 0.875rem;
+	font-weight: 500;
+	line-height: 1;
+	letter-spacing: 0.01em;
+	transition:
+		opacity 333ms var(--ease-out),
+		width 333ms var(--ease-out);
+}
+
+.napryamy-figure:hover .napryamy-discover-label,
+.napryamy-figure:focus-within .napryamy-discover-label,
+.napryamy-discover:hover .napryamy-discover-label,
+.napryamy-discover:focus-visible .napryamy-discover-label {
+	width: 5.75em;
+	opacity: 1;
+}
+
+@media (hover: none) {
+	.napryamy-slide.is-active .napryamy-discover {
+		gap: 9px;
+	}
+
+	.napryamy-slide.is-active .napryamy-discover-label {
+		width: 5.75em;
+		opacity: 1;
+	}
+}
+
+.napryamy-slide[data-index="3"] .napryamy-figure {
+	height: min(62vh, 640px);
+}
+
+.napryamy-slide[data-index="3"] .napryamy-figure img {
+	max-width: min(28vw, 360px);
+}
+
+.napryamy-figure figcaption {
+	position: absolute;
+	left: calc(100% - var(--napryamy-caption-space) + clamp(1rem, 1.6vw, 1.5rem));
+	top: 50%;
+	transform: translateY(-50%);
+	width: min(18vw, 280px);
+	min-width: 200px;
+	opacity: 0;
+	color: var(--napryamy-ink);
+	pointer-events: none;
+	transition: opacity 333ms var(--ease-out);
+}
+
+.napryamy-slide.is-active .napryamy-figure figcaption {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.napryamy-figure h3 {
+	margin: 0 0 14px;
+	font-family: var(--font-display);
+	font-size: clamp(20px, 1.9vw, 26px);
+	font-weight: 500;
+	line-height: 1.222;
+	letter-spacing: -0.015em;
+	color: var(--napryamy-ink);
+}
+
+.napryamy-figure p {
+	margin: 0;
+	font-size: clamp(0.85rem, 1vw, 1rem);
+	line-height: 1.35;
+	color: color-mix(in srgb, var(--napryamy-ink) 88%, transparent);
+}
+
+.napryamy-foot {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	pointer-events: none;
+	z-index: 3;
+	opacity: 1;
+	transition: opacity 180ms var(--ease-out);
+}
+
+.napryamy.vshanuy-directions.is-intro .napryamy-foot {
+	opacity: 0;
+}
+
+.napryamy-index {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: clamp(16px, 2vw, 28px);
+	pointer-events: auto;
+}
+
+.napryamy-num {
+	margin: 0;
+	font-family: Volja, sans-serif;
+	font-size: clamp(64px, 14vw, 140px);
+	line-height: 0.9;
+	letter-spacing: -0.03em;
+	font-weight: 900;
+	color: color-mix(in srgb, var(--napryamy-ink) 55%, transparent);
+	font-variant-numeric: tabular-nums;
+	pointer-events: none;
+}
+
+.napryamy-prev,
+.napryamy-next {
+	color: color-mix(in srgb, var(--napryamy-ink) 55%, transparent);
+	padding: 8px;
+	transform: translateY(-18%);
+}
+
+.napryamy-prev:focus-visible,
+.napryamy-next:focus-visible {
+	outline: 2px solid var(--napryamy-ink);
+	outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+	.napryamy-shell {
+		padding: 0;
+	}
+
+	.napryamy-title.vshanuy-section-title {
+		font-size: clamp(2.5rem, 10vw, 4.25rem);
+		max-width: 12ch;
+		white-space: normal;
+	}
+
+	.napryamy-intro-copy {
+		top: 6rem;
+		width: min(68vw, 24rem);
+	}
+
+	.napryamy-intro-copy p {
+		font-size: 0.875rem;
+	}
+
+	.napryamy-track {
+		padding-left: 50%;
+		padding-right: 50%;
+		gap: 28px;
+	}
+
+	.napryamy-figure {
+		height: auto;
+		max-height: min(52vh, 480px);
+		padding-right: 0;
+	}
+
+	.napryamy-media {
+		height: auto;
+		max-height: min(36vh, 340px);
+	}
+
+	.napryamy-figure img {
+		height: min(36vh, 340px);
+		max-width: min(78vw, 420px);
+	}
+
+	.napryamy-discover {
+		transform: translate(-40%, -50%);
+	}
+
+	.napryamy-slide[data-index="3"] .napryamy-figure {
+		height: auto;
+	}
+
+	.napryamy-slide[data-index="3"] .napryamy-figure img {
+		max-width: min(58vw, 300px);
+		height: min(40vh, 380px);
+	}
+
+	.napryamy-slide[data-index="3"] .napryamy-media {
+		max-height: min(40vh, 380px);
+	}
+
+	.napryamy-figure figcaption {
+		position: static;
+		left: auto;
+		top: auto;
+		transform: none;
+		width: min(88vw, 360px);
+		min-width: 0;
+		margin-top: 12px;
+		text-align: center;
+		pointer-events: auto;
+	}
+
+	.napryamy-num {
+		font-size: clamp(3.2rem, 18vw, 5.5rem);
+	}
+
+	.napryamy-viewport {
+		padding-bottom: 96px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.napryamy.vshanuy-directions {
+		height: auto !important;
+		min-height: 0;
+		overflow: visible;
+	}
+
+	.napryamy-shell {
+		position: relative;
+		height: auto;
+		overflow: visible;
+		padding-bottom: 2rem;
+	}
+
+	.napryamy-head {
+		position: relative;
+		inset: auto;
+		padding: 4rem 1.25rem 2rem;
+	}
+
+	.napryamy-intro-copy {
+		display: none;
+	}
+
+	.napryamy-title.vshanuy-section-title {
+		position: static;
+		max-width: 12ch;
+		opacity: 1;
+	}
+
+	.napryamy-slide:first-child .napryamy-media {
+		transform: none;
+	}
+
+	.napryamy-progress {
+		position: static;
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		transform: none;
+	}
+
+	.napryamy-viewport {
+		height: auto;
+		min-height: 0;
+		padding-top: 0;
+	}
+
+	.napryamy-track {
+		flex-wrap: wrap;
+		width: 100%;
+		justify-content: center;
+		gap: 40px;
+		padding-left: 1.25rem;
+		padding-right: 1.25rem;
+		transform: none !important;
+		transition: none;
+	}
+
+	.napryamy-slide {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.napryamy-figure figcaption {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.napryamy-foot {
+		position: relative;
+		bottom: auto;
+		margin-top: 1.5rem;
+	}
+
+	.napryamy-discover,
+	.napryamy-discover-label {
+		transition: none;
+	}
+}
+
+/* Основні CTA: одна форма, типографіка й жовтий сигнал дії. */
+.vshanuy-hero__cta,
+a.button__link > .button.button--ghost-black,
+.vshanuy-support__cta,
+.napryamy-discover {
+	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	width: auto;
+	min-width: 0;
+	min-height: 3.375rem;
+	padding: 0.75rem 1rem;
+	border: 1px solid var(--ink);
+	border-radius: 0;
+	background: var(--yellow);
+	color: var(--ink) !important;
+	font-family: var(--font-text);
+	font-size: var(--type-small);
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	line-height: 1.2;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+.vshanuy-hero__cta:hover,
+a.button__link:hover > .button.button--ghost-black,
+.vshanuy-support__cta:hover,
+.napryamy-discover:hover {
+	background: var(--ink);
+	color: var(--yellow) !important;
+}
+
+.vshanuy-hero__cta:focus-visible,
+a.button__link:focus-visible,
+.vshanuy-support__cta:focus-visible,
+.napryamy-discover:focus-visible {
+	outline: 2px solid var(--ink);
+	outline-offset: 3px;
+}
+
+.vshanuy-support__cta:focus-visible {
+	outline-color: var(--paper);
+}
+
+/* CTA напрямків завжди має той самий завершений вигляд. */
+.napryamy-discover {
+	gap: 0.75rem;
+}
+
+.napryamy-discover-label,
+.napryamy-slide.is-active .napryamy-discover-label {
+	width: auto;
+	opacity: 1;
+	font-family: var(--font-text);
+	font-size: var(--type-small);
+	font-weight: 700;
+	letter-spacing: 0.04em;
+}
+
+/* Напрямок: компактний «+», що розкривається разом із підписом. */
+.napryamy-discover {
+	justify-content: flex-start;
+	gap: 0;
+	min-width: 2.875rem;
+	min-height: 2.875rem;
+	padding: 0.875rem;
+	border: 0;
+	background: var(--yellow);
+	color: var(--ink) !important;
+}
+
+.napryamy-discover-label,
+.napryamy-slide.is-active .napryamy-discover-label {
+	width: 0;
+	opacity: 0;
+}
+
+.napryamy-figure:hover .napryamy-discover,
+.napryamy-figure:focus-within .napryamy-discover,
+.napryamy-discover:hover,
+.napryamy-discover:focus-visible {
+	gap: 0.625rem;
+	background: var(--yellow);
+	color: var(--ink) !important;
+}
+
+.napryamy-figure:hover .napryamy-discover-label,
+.napryamy-figure:focus-within .napryamy-discover-label,
+.napryamy-discover:hover .napryamy-discover-label,
+.napryamy-discover:focus-visible .napryamy-discover-label {
+	width: 6.5em;
+	opacity: 1;
+}
+
+/*
+ * Hero: гасло стоїть нерухомо по центру екрана, документальні кадри
+ * проходять поверх нього. Наступна секція відкривається лише після
+ * останнього кадру, тому висота секції — екран плюс крок на кожен кадр.
+ */
+.home__hero[data-hero-scroll] {
+	--hero-frames: 5;
+	--hero-step: 110svh;
+	position: relative;
+	height: calc(100svh + (var(--hero-frames) * var(--hero-step)));
+	min-height: 0;
+	overflow: visible;
+}
+
+.home__hero[data-hero-scroll] > .wrp {
+	position: sticky;
+	top: 0;
+	height: 100svh;
+	min-height: 0;
+	overflow: hidden;
+	padding-right: 0;
+}
+
+.home__hero[data-hero-scroll] > .wrp > .grid__layout {
+	display: grid;
+	height: 100%;
+	min-height: 0;
+	grid-template-columns: minmax(0, 1fr);
+	grid-template-rows: minmax(0, 1fr);
+	column-gap: 0;
+}
+
+.home__hero[data-hero-scroll] .home__hero__column--left,
+.home__hero[data-hero-scroll] .home__hero__column--right {
+	min-width: 0;
+	height: 100%;
+	grid-area: 1 / 1;
+}
+
+.home__hero[data-hero-scroll] .home__hero__column--left {
+	z-index: 1;
+}
+
+.home__hero[data-hero-scroll] .home__hero__column--left .block__inner,
+.home__hero[data-hero-scroll] .home__hero__column--left .home__hero__inner {
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: clamp(1rem, 2.6vh, 2rem);
+	padding-top: var(--header-height);
+	padding-bottom: clamp(2rem, 6vh, 4rem);
+	text-align: center;
+}
+
+.home__hero[data-hero-scroll] .hero__title {
+	max-width: 22ch;
+	font-size: clamp(3rem, 11.4vw, 12.5rem);
+	letter-spacing: -0.05em;
+	line-height: 0.82;
+}
+
+.home__hero[data-hero-scroll] .hero__claim {
+	max-width: 36ch;
+	font-size: var(--type-body-large);
+}
+
+/* 09:00 лишається службовою міткою вгорі, кадри проходять поверх неї. */
+.home__hero[data-hero-scroll] .home__hero__column--right .hero__main {
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding-top: var(--header-height);
+}
+
+.home__hero[data-hero-scroll] .vshanuy-clock {
+	width: min(100%, 24rem);
+	margin-left: auto;
+}
+
+.vshanuy-hero__gallery {
+	position: absolute;
+	z-index: 2;
+	overflow: hidden;
+	inset: 0;
+	pointer-events: none;
+}
+
+.vshanuy-hero__frame {
+	--hero-shift: 120vh;
+	position: absolute;
+	top: 50%;
+	width: clamp(13rem, 26vw, 30rem);
+	margin: 0;
+	transform: translate3d(0, calc(-50% + var(--hero-shift)), 0);
+	will-change: transform;
+}
+
+.vshanuy-hero__frame--1 {
+	left: 6vw;
+}
+
+.vshanuy-hero__frame--2 {
+	right: 8vw;
+	width: clamp(12rem, 22vw, 26rem);
+}
+
+.vshanuy-hero__frame--3 {
+	left: 50%;
+	width: clamp(15rem, 30vw, 34rem);
+	transform: translate3d(-50%, calc(-50% + var(--hero-shift)), 0);
+}
+
+.vshanuy-hero__frame--4 {
+	left: 13vw;
+	width: clamp(13rem, 24vw, 28rem);
+}
+
+.vshanuy-hero__frame--5 {
+	right: 12vw;
+	width: clamp(12rem, 21vw, 24rem);
+}
+
+.vshanuy-hero__frame img {
+	display: block;
+	width: 100%;
+	max-height: 66svh;
+	object-fit: cover;
+}
+
+.vshanuy-hero__frame .vshanuy-caption {
+	padding-top: 0.55rem;
+	border-top: var(--line-muted);
+	margin-top: 0.55rem;
+}
+
+@media (max-width: 980px) {
+	.home__hero[data-hero-scroll] .hero__title {
+		font-size: clamp(2.75rem, 12.5vw, 6rem);
+		line-height: 0.88;
+	}
+
+	.home__hero[data-hero-scroll] .vshanuy-clock {
+		width: 100%;
+		margin-left: 0;
+	}
+
+	.vshanuy-hero__frame {
+		width: clamp(12rem, 52vw, 22rem);
+	}
+
+	.vshanuy-hero__frame--1,
+	.vshanuy-hero__frame--4 {
+		left: 5vw;
+	}
+
+	.vshanuy-hero__frame--2,
+	.vshanuy-hero__frame--5 {
+		right: 5vw;
+		width: clamp(11rem, 46vw, 20rem);
+	}
+
+	.vshanuy-hero__frame--3 {
+		width: clamp(14rem, 62vw, 24rem);
+	}
+}
+
+/* Без анімації кадри лишаються звичайною документальною добіркою. */
+@media (prefers-reduced-motion: reduce) {
+	.home__hero[data-hero-scroll] {
+		height: auto;
+	}
+
+	.home__hero[data-hero-scroll] > .wrp {
+		position: static;
+		height: auto;
+		overflow: visible;
+	}
+
+	.home__hero[data-hero-scroll] > .wrp > .grid__layout {
+		display: block;
+		height: auto;
+		min-height: 100svh;
+	}
+
+	.home__hero[data-hero-scroll] .home__hero__column--left,
+	.home__hero[data-hero-scroll] .home__hero__column--right {
+		height: auto;
+	}
+
+	.vshanuy-hero__gallery {
+		position: relative;
+		display: grid;
+		overflow: visible;
+		gap: var(--space-3);
+		inset: auto;
+		padding-block: var(--space-4);
+		pointer-events: auto;
+	}
+
+	.vshanuy-hero__frame,
+	.vshanuy-hero__frame--3 {
+		position: relative;
+		top: auto;
+		right: auto;
+		left: auto;
+		width: min(100%, 40rem);
+		transform: none;
+		will-change: auto;
+	}
+
+	.vshanuy-hero__frame:nth-child(even) {
+		justify-self: end;
+	}
+}
+
