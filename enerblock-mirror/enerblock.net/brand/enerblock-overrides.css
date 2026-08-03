@@ -651,7 +651,7 @@
 	font-family: var(--font-logo);
 }
 
-/* Geologica headings use the regular cut throughout the site. */
+/* Piazzolla is the heading face; Geologica remains the UI and text face. */
 h1,
 h2,
 h3,
@@ -659,6 +659,7 @@ h4,
 h5,
 h6,
 .title {
+	font-family: var(--font-display) !important;
 	font-weight: 400 !important;
 }
 
@@ -3595,6 +3596,466 @@ a.button__link:focus-visible,
 
 	.vshanuy-hero__frame:nth-child(even) {
 		justify-self: end;
+	}
+}
+
+/* Slim page: keep body visible without Enerblock preload/transition. */
+body[data-page="directions"] {
+	opacity: 1 !important;
+}
+
+/* Hero and menu adapted from Figma node 1:128. */
+.vshanuy-figma-hero {
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	box-sizing: border-box;
+	height: 100vh;
+	height: 100svh;
+	min-height: 100svh;
+	overflow: hidden;
+	background: var(--paper);
+	color: var(--ink);
+	border-bottom: var(--line-muted);
+}
+
+.vshanuy-figma-hero__nav {
+	display: grid;
+	grid-template-columns: repeat(7, auto);
+	align-items: center;
+	justify-content: space-between;
+	min-height: 4.1875rem;
+	padding-inline: clamp(1rem, 4.5vw, 5.5rem);
+	border-bottom: var(--line-muted);
+}
+
+.vshanuy-figma-hero__nav a {
+	display: inline-flex;
+	align-items: center;
+	min-height: 2.75rem;
+	color: var(--ink);
+	font-family: var(--font-controls);
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.vshanuy-figma-hero__nav a:hover {
+	text-decoration: underline;
+	text-underline-offset: 0.25em;
+}
+
+.vshanuy-figma-hero__body {
+	display: grid;
+	grid-template-rows: auto 1fr;
+	align-items: center;
+	min-height: 0;
+	padding: clamp(1.25rem, 3vw, 3.5rem) clamp(1rem, 4.5vw, 5.5rem) 0;
+}
+
+.vshanuy-figma-hero__wordmark {
+	position: relative;
+	justify-self: start;
+	width: 100%;
+	font-family: var(--font-logo);
+	font-size: clamp(5rem, 17.15vw, 20rem);
+	font-weight: 900;
+	line-height: 0.78;
+	letter-spacing: -0.035em;
+	white-space: nowrap;
+}
+
+.vshanuy-figma-hero__wordmark::after {
+	content: "";
+	position: absolute;
+	bottom: calc(-1 * clamp(0.5rem, 1.5vw, 1.25rem));
+	left: 50%;
+	width: 100vw;
+	border-bottom: var(--line-muted);
+	pointer-events: none;
+	transform: translateX(-50%);
+}
+
+.vshanuy-wordmark-char-mask {
+	--char-index: 0;
+	display: inline-block;
+	overflow: hidden;
+	vertical-align: top;
+}
+
+.vshanuy-wordmark-char-mask:nth-child(2) {
+	--char-index: 1;
+}
+
+.vshanuy-wordmark-char-mask:nth-child(3) {
+	--char-index: 2;
+}
+
+.vshanuy-wordmark-char-mask:nth-child(4) {
+	--char-index: 3;
+}
+
+.vshanuy-wordmark-char-mask:nth-child(5) {
+	--char-index: 4;
+}
+
+.vshanuy-wordmark-char-mask:nth-child(6) {
+	--char-index: 5;
+}
+
+.vshanuy-wordmark-char-mask:nth-child(7) {
+	--char-index: 6;
+}
+
+.vshanuy-wordmark-char {
+	display: inline-block;
+	transform: translateY(105%);
+	will-change: transform;
+	animation: vshanuy-wordmark-rise 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+	animation-delay: calc(0.2s + var(--char-index) * 0.05s);
+}
+
+@keyframes vshanuy-wordmark-rise {
+	to {
+		transform: translateY(0);
+	}
+}
+
+.vshanuy-figma-hero__message {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.75rem;
+	padding-block: 0;
+	text-align: center;
+}
+
+.vshanuy-figma-hero__message h1 {
+	width: 100%;
+	max-width: none;
+	margin: 0;
+	color: var(--graphite);
+	font-family: var(--font-display);
+	font-size: clamp(1rem, 5vw, 6rem);
+	font-weight: 400 !important;
+	line-height: 1.01;
+	letter-spacing: -0.035em;
+	text-wrap: balance;
+	white-space: nowrap;
+}
+
+.vshanuy-figma-hero__artwork {
+	box-sizing: border-box;
+	width: min(360px, calc(100vw - 2rem));
+	margin: 0;
+	padding: 30px;
+	background: var(--beige);
+}
+
+.vshanuy-figma-hero__artwork img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.vshanuy-figma-hero__cta {
+	display: inline-flex;
+	box-sizing: border-box;
+	align-items: center;
+	justify-content: center;
+	min-width: 10.25rem;
+	min-height: 44px;
+	padding: 10px 20px;
+	border: var(--line);
+	border-radius: 0;
+	color: var(--ink);
+	font-family: var(--font-controls);
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.vshanuy-figma-hero__cta:hover,
+.vshanuy-figma-hero__cta:focus-visible {
+	background: var(--ink);
+	color: var(--paper);
+}
+
+.vshanuy-figma-hero__time {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: clamp(4.5rem, 9vh, 6.75rem);
+	border-top: var(--line-muted);
+	color: var(--ink);
+	font-family: var(--font-logo);
+	font-size: clamp(3.5rem, 6vw, 7rem);
+	font-weight: 900;
+	line-height: 0.85;
+	letter-spacing: -0.045em;
+	text-decoration: none;
+}
+
+.vshanuy-figma-hero__time:hover {
+	background: var(--beige);
+}
+
+@media (max-width: 62rem) {
+	.vshanuy-figma-hero__nav {
+		grid-template-columns: repeat(4, auto);
+		gap: 0.25rem 1rem;
+		justify-content: stretch;
+		padding-block: 0.5rem;
+	}
+
+	.vshanuy-figma-hero__nav a {
+		justify-content: center;
+		text-align: center;
+	}
+}
+
+@media (max-width: 42.5rem) {
+	.vshanuy-figma-hero {
+		height: 100vh;
+		height: 100svh;
+		min-height: 100svh;
+	}
+
+	.vshanuy-figma-hero__nav {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.vshanuy-figma-hero__nav a {
+		min-height: 2.75rem;
+		font-size: 16px;
+	}
+
+	.vshanuy-figma-hero__nav a:last-child {
+		grid-column: 1 / -1;
+		border-top: var(--line-muted);
+	}
+
+	.vshanuy-figma-hero__body {
+		padding-inline: 1rem;
+	}
+
+	.vshanuy-figma-hero__wordmark {
+		font-size: 17.2vw;
+	}
+
+	.vshanuy-figma-hero__artwork {
+		width: clamp(8rem, 36vw, 13rem);
+		padding: 20px;
+	}
+}
+
+@media (max-width: 42.5rem) and (max-height: 43.75rem) {
+	.vshanuy-figma-hero__body {
+		padding-block: 0.5rem;
+	}
+
+	.vshanuy-figma-hero__message {
+		gap: 0.375rem;
+		padding-block: 0.25rem;
+	}
+
+	.vshanuy-figma-hero__artwork {
+		width: 5rem;
+		padding: 0.25rem;
+	}
+
+	.vshanuy-figma-hero__cta {
+		min-height: 44px;
+		padding-block: 0.375rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.vshanuy-figma-hero__nav a,
+	.vshanuy-figma-hero__cta,
+	.vshanuy-figma-hero__time {
+		transition: none;
+	}
+
+	.vshanuy-wordmark-char {
+		animation: none;
+		transform: none;
+		will-change: auto;
+	}
+}
+
+/* Про нас — sticky-навігація та редакційна колонка. */
+.vshanuy-about-story {
+	position: relative;
+	padding: clamp(4rem, 9vw, 9rem) clamp(1rem, 4.5vw, 5.5rem);
+	background: var(--paper);
+	color: var(--ink);
+	border-bottom: var(--line-muted);
+}
+
+.vshanuy-about-story__grid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	align-items: stretch;
+}
+
+.vshanuy-about-story__sidebar {
+	position: sticky;
+	top: clamp(1rem, 6vh, 4rem);
+	align-self: start;
+	grid-column: 1;
+	padding: 0.75rem 0 0;
+	border-top: var(--line-muted);
+}
+
+.vshanuy-about-story__spacer {
+	grid-column: 2;
+}
+
+.vshanuy-about-story__logo {
+	display: block;
+	text-decoration: none;
+}
+
+.vshanuy-about-story__logo-mark {
+	display: block;
+	width: 100%;
+	aspect-ratio: 977.942 / 266.892;
+	background: var(--ink);
+	-webkit-mask: url("./vshanuy-original-logo.svg") center / contain no-repeat;
+	mask: url("./vshanuy-original-logo.svg") center / contain no-repeat;
+}
+
+.vshanuy-about-story__divider {
+	margin: 1rem 0;
+	border: 0;
+	border-top: var(--line-muted);
+}
+
+.vshanuy-about-story__description {
+	margin: 0 0 2rem;
+	color: var(--ink);
+	font-size: clamp(1rem, 1.4vw, 1.25rem);
+	line-height: 1.45;
+}
+
+.vshanuy-about-story__button {
+	display: inline-flex;
+	box-sizing: border-box;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 44px;
+	padding: 10px 20px;
+	border: var(--line);
+	border-radius: 0;
+	color: var(--ink);
+	font-family: var(--font-controls);
+	font-size: 1rem;
+	font-weight: 500;
+	line-height: 1;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.vshanuy-about-story__button:hover,
+.vshanuy-about-story__button:focus-visible {
+	background: var(--ink);
+	color: var(--paper);
+}
+
+.vshanuy-about-story__content {
+	position: relative;
+	grid-column: 3 / 5;
+	min-width: 0;
+	padding: 0 clamp(0.75rem, 2vw, 2rem);
+}
+
+.vshanuy-about-story__content h2 {
+	position: relative;
+	max-width: none;
+	margin: 0 0 clamp(3rem, 7vw, 6rem);
+	background: var(--paper);
+	color: var(--ink);
+	font-family: var(--font-display);
+	font-size: clamp(1.75rem, 2.9vw, 3.5rem);
+	font-weight: 500;
+	line-height: 0.98;
+	letter-spacing: -0.04em;
+}
+
+.vshanuy-about-story__content h2 span {
+	display: block;
+	white-space: nowrap;
+}
+
+.vshanuy-about-story__content p {
+	position: relative;
+	max-width: 44rem;
+	margin: 0 0 clamp(2rem, 4vw, 3.5rem);
+	background: var(--paper);
+	font-size: clamp(1.125rem, 1.6vw, 1.5rem);
+	line-height: 1.6;
+}
+
+.vshanuy-about-story__figure {
+	position: relative;
+	width: min(100%, 32rem);
+	margin: clamp(4rem, 8vw, 8rem) 0 0;
+	background: var(--paper);
+}
+
+.vshanuy-about-story__figure img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.vshanuy-about-story__figure figcaption {
+	padding-top: 0.75rem;
+	border-top: var(--line-muted);
+	color: var(--graphite);
+	font-family: var(--font-controls);
+	font-size: 0.8125rem;
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+@media (max-width: 48rem) {
+	.vshanuy-about-story__grid {
+		grid-template-columns: 1fr;
+		gap: 4rem;
+	}
+
+	.vshanuy-about-story__sidebar {
+		position: static;
+		grid-column: 1;
+		padding-inline: 0;
+	}
+
+	.vshanuy-about-story__spacer {
+		display: none;
+	}
+
+	.vshanuy-about-story__content {
+		grid-column: 1;
+		padding-inline: 0;
+	}
+
+	.vshanuy-about-story__content h2 {
+		max-width: none;
+	}
+
+	.vshanuy-about-story__content h2 span {
+		white-space: normal;
+	}
+
+	.vshanuy-about-story__figure {
+		width: min(100%, 24rem);
 	}
 }
 
