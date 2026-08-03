@@ -1,12 +1,28 @@
 (() => {
   const footerMarkup = `
     <footer class="vshanuy-site-footer" aria-label="Нижня навігація та контакти">
+      <div class="vshanuy-site-footer__guides" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
       <div class="vshanuy-site-footer__grid">
         <section class="vshanuy-site-footer__column vshanuy-site-footer__column--brand" aria-label="Вшануй">
           <a class="vshanuy-site-footer__wordmark" href="./" aria-label="Вшануй. 09:00 — на головну">
             <img src="_next/static/media/vshanuy-original-logo.svg" alt="">
           </a>
-          <p class="vshanuy-site-footer__motto">Пам'ятай про полеглих<br>допомагай живим</p>
+          <div class="vshanuy-site-footer__brand-action">
+            <p class="vshanuy-site-footer__motto">Пам'ятай про полеглих<br>допомагай живим</p>
+            <a class="vshanuy-site-footer__cta" href="contacto.html?topic=donate">Підтримати <span aria-hidden="true">→</span></a>
+          </div>
+        </section>
+
+        <section class="vshanuy-site-footer__column vshanuy-site-footer__column--contacts" aria-label="Контакти">
+          <h2 class="vshanuy-site-footer__label">КОНТАКТИ</h2>
+          <ul class="vshanuy-site-footer__inline-list" aria-label="Соціальні мережі">
+            <li><a href="https://www.instagram.com/moment_of_honor/" target="_blank" rel="noopener noreferrer">Instagram.</a></li>
+            <li><a href="contacto.html#social">Telegram.</a></li>
+            <li><a href="https://www.facebook.com/momentofhonor" target="_blank" rel="noopener noreferrer">Facebook.</a></li>
+          </ul>
+          <a class="vshanuy-site-footer__email" href="mailto:hello@vshanuy.org">hello@vshanuy.org</a>
         </section>
 
         <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections" aria-label="Розділи сайту">
@@ -21,34 +37,15 @@
           </ul>
         </nav>
 
-        <section class="vshanuy-site-footer__column vshanuy-site-footer__column--contacts" aria-label="Контакти">
-          <h2 class="vshanuy-site-footer__label">КОНТАКТИ</h2>
-          <ul class="vshanuy-site-footer__inline-list" aria-label="Соціальні мережі">
-            <li><a href="https://www.instagram.com/moment_of_honor/" target="_blank" rel="noopener noreferrer">Instagram.</a></li>
-            <li><a href="contacto.html#social">Telegram.</a></li>
-            <li><a href="https://www.facebook.com/momentofhonor" target="_blank" rel="noopener noreferrer">Facebook.</a></li>
-          </ul>
-          <a class="vshanuy-site-footer__email" href="mailto:hello@vshanuy.org">hello@vshanuy.org</a>
-        </section>
-
-        <section class="vshanuy-site-footer__column vshanuy-site-footer__column--support" aria-label="Підтримка">
-          <h2 class="vshanuy-site-footer__label">ПІДТРИМКА</h2>
-          <ul class="vshanuy-site-footer__inline-list" aria-label="Підтримка">
-            <li><a href="contacto.html?topic=donate">Донати.</a></li>
-            <li><a href="contacto.html?topic=details">Реквізити.</a></li>
-          </ul>
-          <a class="vshanuy-site-footer__cta" href="contacto.html?topic=donate">Підтримати <span aria-hidden="true">→</span></a>
-        </section>
-      </div>
-
-      <div class="vshanuy-site-footer__bottom">
-        <div class="vshanuy-site-footer__meta">
+        <section class="vshanuy-site-footer__column vshanuy-site-footer__column--support" aria-label="Службова інформація">
+          <div class="vshanuy-site-footer__meta">
           <p>© 2026 ВШАНУЙ <span aria-hidden="true">·</span> Київ <span aria-hidden="true">·</span> Україна</p>
           <a href="legal/politica-de-privacidad.html">Політика конфіденційності</a>
-        </div>
-        <div class="vshanuy-site-footer__developer">
-          <img src="_next/static/media/OpenTech.svg" alt="Розроблено в OpenTech і SoftServe">
-        </div>
+          </div>
+          <div class="vshanuy-site-footer__developer">
+            <img src="_next/static/media/OpenTech.svg" alt="Розроблено в OpenTech і SoftServe">
+          </div>
+        </section>
       </div>
     </footer>
   `;

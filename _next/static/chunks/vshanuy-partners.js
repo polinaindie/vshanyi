@@ -42,8 +42,38 @@
       )
       .join("");
 
+  const setupReveal = (section) => {
+    if (section.dataset.revealReady === "true") return;
+
+    section.dataset.revealReady = "true";
+    section.classList.add("vshanuy-partners--animated");
+
+    if (!("IntersectionObserver" in window)) {
+      section.classList.add("is-visible");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        section.classList.add("is-visible");
+        observer.disconnect();
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -10% 0px",
+      },
+    );
+
+    observer.observe(section);
+  };
+
   const mount = () => {
-    if (document.querySelector(".vshanuy-partners")) return true;
+    const existingSection = document.querySelector(".vshanuy-partners");
+    if (existingSection) {
+      setupReveal(existingSection);
+      return true;
+    }
 
     const articleSection = document.querySelector(
       'section[data-block-type="blockArticleOverview"]',
@@ -64,7 +94,7 @@
             id="vshanuy-partners-title"
             class="font-serif"
           >
-            ПРАЦЮЄМО РАЗОМ
+            Працюємо разом
           </h2>
         </header>
         <div class="vshanuy-partners__viewport">
@@ -74,6 +104,7 @@
     `;
 
     articleSection.insertAdjacentElement("afterend", section);
+    setupReveal(section);
 
     return true;
   };
