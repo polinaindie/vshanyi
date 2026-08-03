@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&family=Inter:wght@600&family=Piazzolla:opsz,wght@8..30,100..900&display=swap");
+
+/* Вшануй — бренд-токени. Джерело правил: BRAND.md */
+
+/* Volja Black допустима виключно в логотипі */
+@font-face {
+  font-family: "Volja";
+  src: url("../fonts/Volja-Black.woff2") format("woff2"),
+       url("../fonts/Volja-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Колір */
+  --paper: #f7f5ed;
+  --beige: #e1dcce;
+  --ink: #181818;
+  --graphite: #414141;
+  --grey: #9f9d9b;
+  --yellow: #ffe500;
+
+  --bg: var(--paper);
+  --bg-surface: var(--beige);
+  --bg-inverse: var(--ink);
+  --text: var(--ink);
+  --text-secondary: var(--graphite);
+  --text-muted: var(--grey);
+  --text-inverse: var(--paper);
+  --accent: var(--yellow);
+
+  /* Типографіка. Текстовий шрифт сайту ще на підтвердженні */
+  --font-logo: "Volja", sans-serif;
+  --font-display: "Piazzolla", Georgia, serif;
+  --font-text: "Geologica", system-ui, sans-serif;
+
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.75rem;
+  --step-3: clamp(2rem, 4vw, 3.25rem);
+  --step-4: clamp(2.75rem, 8vw, 6rem);
+  --step-5: clamp(3.5rem, 13vw, 11rem);
+
+  --leading-display: 0.95;
+  --leading-text: 1.55;
+  --tracking-label: 0.12em;
+
+  /* Тиша */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 2rem;
+  --space-4: 4rem;
+  --space-5: 8rem;
+  --space-silence: clamp(6rem, 14vh, 12rem);
+
+  /* Форма */
+  --radius: 0;
+  --line: 1px solid var(--ink);
+  --line-muted: 1px solid rgba(24, 24, 24, 0.18);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-text);
+  font-size: var(--step-0);
+  line-height: var(--leading-text);
+}
+
+.hairline {
+  border: 0;
+  border-top: var(--line-muted);
+  margin: 0;
+}
+
+.section-label {
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-4);
+  line-height: var(--leading-display);
+  text-wrap: balance;
+}
+
+.logo {
+  font-family: var(--font-logo);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.logo__timer {
+  color: var(--accent);
+}
