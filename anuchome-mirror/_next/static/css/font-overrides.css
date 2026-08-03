@@ -365,7 +365,7 @@ main
   width: 100%;
   aspect-ratio: 977.942 / 266.892;
   overflow: hidden;
-  background-color: var(--paper);
+  background-color: transparent;
 }
 
 main
