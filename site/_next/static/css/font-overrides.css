@@ -2334,6 +2334,11 @@ main .after\:bg-accent-metal\/20::after {
 }
 
 main
+  .relative.h-full.origin-top.after\:absolute.after\:inset-y-0.after\:right-0.after\:translate-x-full::after {
+  transform: none;
+}
+
+main
   .pointer-events-none.absolute.inset-0.translate-x-\[0\.15rem\] {
   transform: none;
 }
