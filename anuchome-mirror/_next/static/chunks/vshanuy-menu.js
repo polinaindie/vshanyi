@@ -190,20 +190,11 @@
     root.querySelectorAll("a[href]").forEach((anchor) => {
       if (anchor.closest(".vshanuy-desktop-menu__brand")) return;
       if (anchor.closest(".vshanuy-site-footer__wordmark")) return;
-      // Keep project/article cards as anchors so CSS photos + hover copy still match.
-      if (anchor.classList.contains("group/link")) {
-        anchor.setAttribute("aria-disabled", "true");
-        return;
-      }
       const href = anchor.getAttribute("href") || "";
       if (shouldKeepLink(href)) return;
-
-      const span = document.createElement("span");
-      span.className = `${anchor.className} vshanuy-dead-link`.trim();
-      span.innerHTML = anchor.innerHTML;
-      const label = anchor.getAttribute("aria-label");
-      if (label) span.setAttribute("aria-label", label);
-      anchor.replaceWith(span);
+      if (anchor.hasAttribute("data-vshanuy-no-nav")) return;
+      // Keep the original anchor markup so hover/focus styles still apply.
+      anchor.setAttribute("data-vshanuy-no-nav", "");
     });
   };
 
