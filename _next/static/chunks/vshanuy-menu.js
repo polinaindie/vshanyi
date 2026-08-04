@@ -1,51 +1,54 @@
 (() => {
   const sections = [
-    ["Про нас", "nosotros.html", [
-      ["Історія створення", "nosotros.html#history"],
-      ["Місія і цінності", "nosotros.html#mission"],
-      ["Команда", "nosotros.html#team"],
-      ["Звіти про діяльність", "nosotros.html#reports"],
-    ]],
-    ["Наша діяльність", "#projects", [
-      ["Для громад", "napryamky/ceremonial-dorozhnya-karta.html"],
-      ["Для бізнесів", "napryamky/osvitni-programy.html"],
-      ["Наші проєкти", "#projects"],
-      ["Посібники", "posibnyky/index.html"],
-      ["Як підтримати", "contacto.html?topic=support"],
-    ]],
-    ["Блог", "#articles", [
-      ["Опис кейсів", "articulos/pomizh-nas-tablichky.html"],
-      ["Колонка Каті", "articulos/kolonka-kati-pamyat.html"],
-    ]],
-    ["Співпраця", "contacto.html", [
-      ["Актуальні опитування", "contacto.html?topic=survey"],
-      ["Стати волонтером", "contacto.html?topic=volunteer"],
-      ["Стати партнером", "contacto.html?topic=partner"],
-      ["Запросити нас у громаду", "contacto.html?topic=community"],
-      ["Долучитися до акції/ініціативи", "contacto.html?topic=initiative"],
-    ]],
-    ["Партнери", "#partners", [
-      ["Хто з нами працює, з ким ми дружимо", "#partners"],
-      ["Донори", "#partners"],
-      ["Організації", "#partners"],
-      ["Бізнеси", "#partners"],
-    ]],
-    ["Контакти", "contacto.html", [
-      ["Пошта", "contacto.html#email"],
-      ["Соцмережі", "contacto.html#social"],
-    ]],
-    ["Підтримати", "contacto.html?topic=donate", [
-      ["Донати", "contacto.html?topic=donate"],
-      ["Реквізити", "contacto.html?topic=details"],
-    ], "support"],
+    [
+      "Про нас",
+      [
+        "Історія створення",
+        "Місія і цінності",
+        "Команда",
+        "Звіти про діяльність",
+      ],
+    ],
+    [
+      "Наша діяльність",
+      [
+        "Для громад",
+        "Для бізнесів",
+        "Наші проєкти",
+        "Посібники",
+        "Як підтримати",
+      ],
+    ],
+    ["Блог", ["Опис кейсів", "Колонка Каті"]],
+    [
+      "Співпраця",
+      [
+        "Актуальні опитування",
+        "Стати волонтером",
+        "Стати партнером",
+        "Запросити нас у громаду",
+        "Долучитися до акції/ініціативи",
+      ],
+    ],
+    [
+      "Партнери",
+      [
+        "Хто з нами працює, з ким ми дружимо",
+        "Донори",
+        "Організації",
+        "Бізнеси",
+      ],
+    ],
+    ["Контакти", ["Пошта", "Соцмережі"]],
+    ["Підтримати", ["Донати", "Реквізити"], "support"],
   ];
 
-  const submenuMarkup = (links) => `
+  const submenuMarkup = (labels) => `
     <ul class="vshanuy-desktop-menu__submenu" role="list">
-      ${links
+      ${labels
         .map(
-          ([label, link]) =>
-            `<li><a href="${link}">${label}</a></li>`,
+          (label) =>
+            `<li><span class="vshanuy-desktop-menu__submenu-item">${label}</span></li>`,
         )
         .join("")}
     </ul>
@@ -53,7 +56,6 @@
 
   const desktopItem = ({
     label,
-    href,
     links,
     modifier = "",
     isButton = false,
@@ -71,9 +73,7 @@
               </span>
             </span>
           </button>`
-      : `<a class="vshanuy-desktop-menu__label" href="${href}"${
-          links ? ' aria-haspopup="true"' : ""
-        }>
+      : `<span class="vshanuy-desktop-menu__label">
             <span class="vshanuy-desktop-menu__slide">
               <span class="vshanuy-desktop-menu__layer">
                 <span>${label}</span>
@@ -84,7 +84,7 @@
                 <span class="vshanuy-desktop-menu__dot" aria-hidden="true"></span>
               </span>
             </span>
-          </a>`;
+          </span>`;
 
     return `
       <li class="vshanuy-desktop-menu__item${modifier ? ` ${modifier}` : ""}">
@@ -96,14 +96,14 @@
 
   const sectionMarkup = sections
     .map(
-      ([title, href, links, modifier], index) => `
+      ([title, labels, modifier], index) => `
       <section class="vshanuy-menu__section${
         modifier ? ` vshanuy-menu__section--${modifier}` : ""
       }" aria-labelledby="menu-section-${index}">
-        <h3 id="menu-section-${index}"><a href="${href}">${title}</a></h3>
+        <h3 id="menu-section-${index}">${title}</h3>
         <ul>
-          ${links
-            .map(([label, link]) => `<li><a href="${link}">${label}</a></li>`)
+          ${labels
+            .map((label) => `<li><span class="vshanuy-menu__item">${label}</span></li>`)
             .join("")}
         </ul>
       </section>
@@ -127,18 +127,15 @@
       <ul class="vshanuy-desktop-menu__primary">
         ${desktopItem({
           label: "Наша діяльність.",
-          href: sections[1][1],
-          links: sections[1][2],
+          links: sections[1][1],
         })}
         ${desktopItem({
           label: "Підтримати.",
-          href: sections[6][1],
-          links: sections[6][2],
+          links: sections[6][1],
           modifier: "vshanuy-desktop-menu__item--support",
         })}
         ${desktopItem({
           label: "Усі розділи",
-          href: "#",
           isButton: true,
           modifier: "vshanuy-desktop-menu__item--menu",
         })}
@@ -171,6 +168,45 @@
     </div>
   `;
 
+  const shouldKeepLink = (href) => {
+    if (!href) return true;
+    if (href.startsWith("mailto:") || href.startsWith("tel:")) return true;
+    if (/^https?:\/\//i.test(href)) return true;
+    if (
+      href === "./" ||
+      href === "/" ||
+      href === "index.html" ||
+      href.startsWith("./#") ||
+      href.startsWith("/#")
+    ) {
+      return true;
+    }
+    if (href.startsWith("#")) return true;
+    if (/\.pdf($|\?)/i.test(href)) return true;
+    return false;
+  };
+
+  const neutralizeInternalPageLinks = (root = document) => {
+    root.querySelectorAll("a[href]").forEach((anchor) => {
+      if (anchor.closest(".vshanuy-desktop-menu__brand")) return;
+      if (anchor.closest(".vshanuy-site-footer__wordmark")) return;
+      // Keep project/article cards as anchors so CSS photos + hover copy still match.
+      if (anchor.classList.contains("group/link")) {
+        anchor.setAttribute("aria-disabled", "true");
+        return;
+      }
+      const href = anchor.getAttribute("href") || "";
+      if (shouldKeepLink(href)) return;
+
+      const span = document.createElement("span");
+      span.className = `${anchor.className} vshanuy-dead-link`.trim();
+      span.innerHTML = anchor.innerHTML;
+      const label = anchor.getAttribute("aria-label");
+      if (label) span.setAttribute("aria-label", label);
+      anchor.replaceWith(span);
+    });
+  };
+
   const mountDesktop = () => {
     const header = document.querySelector("header.sticky");
     if (!header) return false;
@@ -183,6 +219,7 @@
 
   const mount = () => {
     const desktopMounted = mountDesktop();
+    neutralizeInternalPageLinks();
     if (document.querySelector(".vshanuy-menu-trigger")) return desktopMounted;
     if (!document.body) return false;
 
@@ -232,9 +269,6 @@
       else closeMenu();
     });
     closeButton.addEventListener("click", closeMenu);
-    menu.addEventListener("click", (event) => {
-      if (event.target.closest("a")) closeMenu();
-    });
     document.addEventListener("keydown", (event) => {
       if (menu.hidden) return;
       if (event.key === "Escape") {
@@ -264,6 +298,21 @@
     const observer = new MutationObserver(mount);
     observer.observe(document.body, { childList: true, subtree: true });
     window.setTimeout(() => observer.disconnect(), 10000);
+
+    document.addEventListener(
+      "click",
+      (event) => {
+        const anchor = event.target.closest("a[href]");
+        if (!anchor) return;
+        if (anchor.closest(".vshanuy-desktop-menu__brand")) return;
+        if (anchor.closest(".vshanuy-site-footer__wordmark")) return;
+        const href = anchor.getAttribute("href") || "";
+        if (shouldKeepLink(href)) return;
+        event.preventDefault();
+        event.stopPropagation();
+      },
+      true,
+    );
 
     const updateBrandOnScroll = () => {
       document
