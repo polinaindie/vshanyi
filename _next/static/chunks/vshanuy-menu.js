@@ -115,10 +115,12 @@
     <nav class="vshanuy-desktop-menu" aria-label="Головна навігація">
       <a class="vshanuy-desktop-menu__brand" href="./" aria-label="Вшануй. 09:00 — на головну">
         <span class="vshanuy-desktop-menu__slide" aria-hidden="true">
-          <span class="vshanuy-desktop-menu__layer vshanuy-desktop-menu__brand-primary">09:00</span>
+          <span class="vshanuy-desktop-menu__layer vshanuy-desktop-menu__brand-primary">
+            <span class="vshanuy-desktop-menu__time">09:00</span>
+          </span>
           <span class="vshanuy-desktop-menu__layer vshanuy-desktop-menu__brand-active">
             <span class="vshanuy-desktop-menu__wordmark">ВШАНУЙ.</span>
-            <span>09:00</span>
+            <span class="vshanuy-desktop-menu__time">09:00</span>
           </span>
         </span>
       </a>
