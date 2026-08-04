@@ -517,8 +517,8 @@ section[data-block-type="blockSelectedProjects"] a.group\/link:focus-visible {
   outline-offset: 4px;
 }
 
-section[data-block-type="blockSelectedProjects"] a.group\/link[aria-disabled="true"] {
-  cursor: default;
+section[data-block-type="blockSelectedProjects"] a.group\/link[data-vshanuy-no-nav] {
+  cursor: pointer;
 }
 
 @media (min-width: 1024px) {
@@ -1376,7 +1376,8 @@ header.sticky.vshanuy-desktop-header {
 }
 
 .vshanuy-desktop-menu__submenu a:hover,
-.vshanuy-desktop-menu__submenu a:focus-visible {
+.vshanuy-desktop-menu__submenu a:focus-visible,
+.vshanuy-desktop-menu__submenu-item:hover {
   background: var(--beige);
   text-decoration: underline;
   text-underline-offset: 0.2em;
@@ -1385,7 +1386,6 @@ header.sticky.vshanuy-desktop-header {
 .vshanuy-dead-link {
   cursor: default;
   text-decoration: none;
-  pointer-events: none;
 }
 
 .vshanuy-desktop-menu a:focus-visible {
@@ -2521,7 +2521,12 @@ main
 }
 
 .vshanuy-site-footer__brand-action .vshanuy-site-footer__cta {
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
   margin-top: 24px;
+  justify-content: center;
+  gap: 0.8rem;
 }
 
 .vshanuy-site-footer__column--support {
