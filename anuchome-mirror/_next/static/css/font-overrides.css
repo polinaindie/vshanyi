@@ -1183,7 +1183,7 @@ header.sticky.vshanuy-desktop-header {
 
 .vshanuy-desktop-menu__label {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .vshanuy-desktop-menu__brand {
@@ -1232,21 +1232,32 @@ header.sticky.vshanuy-desktop-header {
   color: var(--ink);
 }
 
+.vshanuy-desktop-menu__brand-primary,
 .vshanuy-desktop-menu__brand-active {
-  background: var(--beige);
-  color: var(--ink);
-  gap: 4px;
+  gap: 10px;
   padding-inline: 12px;
 }
 
-.vshanuy-desktop-menu__brand-primary,
-.vshanuy-desktop-menu__brand-active > span:last-child {
-  font-size: 14px;
+.vshanuy-desktop-menu__brand-primary {
+  justify-content: flex-start;
+}
+
+.vshanuy-desktop-menu__brand-active {
+  justify-content: flex-start;
+  background: var(--beige);
+  color: var(--ink);
 }
 
 .vshanuy-desktop-menu__wordmark {
   flex: none;
   overflow: visible;
+  font-size: 18px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.vshanuy-desktop-menu__time {
+  flex: none;
   font-size: 16px;
   line-height: 1;
   white-space: nowrap;
