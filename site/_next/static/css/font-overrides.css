@@ -1181,6 +1181,11 @@ header.sticky.vshanuy-desktop-header {
   white-space: nowrap;
 }
 
+.vshanuy-desktop-menu__label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
 .vshanuy-desktop-menu__brand {
   border-right: 1px solid var(--vshanuy-grid-line);
   font-family: "Volja", sans-serif;
