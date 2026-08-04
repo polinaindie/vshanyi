@@ -517,6 +517,10 @@ section[data-block-type="blockSelectedProjects"] a.group\/link:focus-visible {
   outline-offset: 4px;
 }
 
+section[data-block-type="blockSelectedProjects"] a.group\/link[aria-disabled="true"] {
+  cursor: default;
+}
+
 @media (min-width: 1024px) {
   section[data-block-type="blockSelectedProjects"]
     .vshanuy-gallery-controls
@@ -1030,25 +1034,33 @@ section[data-block-type="blockBenefits"]
   }
 }
 
-/* Branded intro loader — above menu (header/trigger use z-index 1000+) */
-div.fixed.inset-0.z-5.bg-base-white {
+/* Branded intro loader — only on the homepage */
+html:not(.vshanuy-home) div.fixed.inset-0.z-5.bg-base-white {
+  display: none !important;
+}
+
+html.vshanuy-home div.fixed.inset-0.z-5.bg-base-white {
   z-index: 1100;
 }
 
 /* While the intro loader is on screen, do not show the menu */
-body:has(div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full))
+html.vshanuy-home
+  body:has(div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full))
   :is(header.sticky, .vshanuy-menu-trigger, .vshanuy-menu) {
   visibility: hidden;
   pointer-events: none;
 }
 
-div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)
+html.vshanuy-home
+  div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)
   .grid.size-full.grid-cols-1.lg\:grid-cols-4 {
   visibility: hidden;
 }
 
-div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::before,
-div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::after {
+html.vshanuy-home
+  div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::before,
+html.vshanuy-home
+  div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::after {
   position: absolute;
   z-index: 2;
   top: 50%;
@@ -1059,7 +1071,8 @@ div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::after {
   pointer-events: none;
 }
 
-div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::before {
+html.vshanuy-home
+  div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::before {
   left: 50%;
   color: var(--graphite);
   content: "Пам'ятай про полеглих\A допомагай живим.";
@@ -1075,7 +1088,8 @@ div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::before {
   white-space: pre-line;
 }
 
-div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::after {
+html.vshanuy-home
+  div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::after {
   left: 0;
   color: var(--ink);
   content: "09:00";
@@ -1124,13 +1138,15 @@ div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::after {
 }
 
 @media (min-width: 1024px) {
-  div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::before {
+  html.vshanuy-home
+    div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::before {
     left: 50%;
     width: 25%;
     font-size: clamp(20px, 2vw, 28px);
   }
 
-  div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::after {
+  html.vshanuy-home
+    div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::after {
     left: 25%;
     width: 25%;
   }
@@ -1341,7 +1357,8 @@ header.sticky.vshanuy-desktop-header {
   pointer-events: auto;
 }
 
-.vshanuy-desktop-menu__submenu a {
+.vshanuy-desktop-menu__submenu a,
+.vshanuy-desktop-menu__submenu-item {
   display: flex;
   min-height: 32px;
   align-items: center;
@@ -1363,6 +1380,12 @@ header.sticky.vshanuy-desktop-header {
   background: var(--beige);
   text-decoration: underline;
   text-underline-offset: 0.2em;
+}
+
+.vshanuy-dead-link {
+  cursor: default;
+  text-decoration: none;
+  pointer-events: none;
 }
 
 .vshanuy-desktop-menu a:focus-visible {
@@ -1568,15 +1591,15 @@ header.sticky.vshanuy-desktop-header {
   margin-top: 8px;
 }
 
-.vshanuy-menu__section a {
+.vshanuy-menu__section a,
+.vshanuy-menu__item {
   display: inline-flex;
   min-height: 24px;
   align-items: center;
   color: var(--ink);
   font-size: 13px;
   line-height: 1.4;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.25em;
+  text-decoration: none;
 }
 
 .vshanuy-menu__section a:hover {
@@ -1952,6 +1975,19 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   text-underline-offset: 0.3em;
 }
 
+.vshanuy-site-footer__column .vshanuy-dead-link,
+.vshanuy-site-footer__meta .vshanuy-dead-link {
+  display: inline-flex;
+  min-height: 2.4rem;
+  align-items: center;
+  color: inherit;
+  font-family: "Piazzolla", Georgia, serif;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-decoration: none;
+}
+
 .vshanuy-site-footer__column a:hover,
 .vshanuy-site-footer__meta a:hover {
   text-decoration-thickness: 2px;
@@ -2038,6 +2074,14 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   text-transform: uppercase;
 }
 
+.vshanuy-site-footer__links .vshanuy-dead-link {
+  font-family: "Piazzolla", Georgia, serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
 .vshanuy-site-footer__column--sections {
   display: flex;
 }
@@ -2050,6 +2094,14 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
 }
 
 .vshanuy-site-footer__inline-list a {
+  font-family: "Piazzolla", Georgia, serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.vshanuy-site-footer__inline-list .vshanuy-dead-link {
   font-family: "Piazzolla", Georgia, serif;
   font-size: 11px;
   font-weight: 400;
@@ -2236,7 +2288,9 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
 }
 
 .vshanuy-site-footer__links a,
-.vshanuy-site-footer__inline-list a {
+.vshanuy-site-footer__inline-list a,
+.vshanuy-site-footer__links .vshanuy-dead-link,
+.vshanuy-site-footer__inline-list .vshanuy-dead-link {
   font-family: "Piazzolla", Georgia, serif;
   font-size: 13px;
   font-weight: 400;
