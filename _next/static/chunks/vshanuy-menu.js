@@ -135,7 +135,7 @@
           modifier: "vshanuy-desktop-menu__item--support",
         })}
         ${desktopItem({
-          label: "Меню.",
+          label: "Усі розділи",
           href: "#",
           isButton: true,
           modifier: "vshanuy-desktop-menu__item--menu",
