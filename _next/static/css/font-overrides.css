@@ -2113,7 +2113,14 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 3.2rem;
+  gap: 2.4rem;
+}
+
+.vshanuy-site-footer__brand-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .vshanuy-site-footer__motto {
@@ -2516,15 +2523,15 @@ main
   border-right: 0;
 }
 
-.vshanuy-site-footer__brand-action {
-  margin-top: auto;
+.vshanuy-site-footer__brand-lockup {
+  flex: 0 0 auto;
 }
 
-.vshanuy-site-footer__brand-action .vshanuy-site-footer__cta {
+.vshanuy-site-footer__column--brand > .vshanuy-site-footer__cta {
   width: fit-content;
   max-width: 100%;
   min-width: 0;
-  margin-top: 24px;
+  margin-top: auto;
   justify-content: center;
   gap: 0.8rem;
 }
