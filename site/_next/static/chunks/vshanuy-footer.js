@@ -6,13 +6,13 @@
       </div>
       <div class="vshanuy-site-footer__grid">
         <section class="vshanuy-site-footer__column vshanuy-site-footer__column--brand" aria-label="Вшануй">
-          <a class="vshanuy-site-footer__wordmark" href="./" aria-label="Вшануй. 09:00 — на головну">
-            <img src="_next/static/media/vshanuy-original-logo.svg" alt="">
-          </a>
-          <div class="vshanuy-site-footer__brand-action">
+          <div class="vshanuy-site-footer__brand-lockup">
+            <a class="vshanuy-site-footer__wordmark" href="./" aria-label="Вшануй. 09:00 — на головну">
+              <img src="_next/static/media/vshanuy-original-logo.svg" alt="">
+            </a>
             <p class="vshanuy-site-footer__motto">Пам'ятай про полеглих<br>допомагай живим</p>
-            <span class="vshanuy-site-footer__cta vshanuy-dead-link">Підтримати <span aria-hidden="true">→</span></span>
           </div>
+          <span class="vshanuy-site-footer__cta vshanuy-dead-link">Підтримати <span aria-hidden="true">→</span></span>
         </section>
 
         <section class="vshanuy-site-footer__column vshanuy-site-footer__column--contacts" aria-label="Контакти">
