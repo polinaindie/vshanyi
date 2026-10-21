@@ -202,27 +202,8 @@ body,
 }
 
 .about-vshanuy__link {
-  display: inline-flex;
   min-width: 200px;
-  min-height: 44px;
   margin-top: 40px;
-  padding-top: 8px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  border-top: var(--line);
-  color: var(--text);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.about-vshanuy__link:hover {
-  background: var(--bg-surface);
-}
-
-.about-vshanuy__link:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
 }
 
 .bg-base-white {
@@ -451,6 +432,38 @@ section[data-block-type="blockServices"] {
 
 /* vshanuy practice cards */
 
+/* Tighten section top so the row sits closer to the headline */
+section[data-block-type="blockSelectedProjects"] > .overflow-x-clip > .relative.isolate.size-full {
+  padding-top: 48px;
+}
+
+@media (min-width: 1024px) {
+  section[data-block-type="blockSelectedProjects"] > .overflow-x-clip > .relative.isolate.size-full {
+    padding-top: 96px;
+  }
+}
+
+/* Equal gutters between all cards (undo first-slide pl-0) */
+section[data-block-type="blockSelectedProjects"] .group\/slide > .p-4 {
+  padding: 8px !important;
+}
+
+section[data-block-type="blockSelectedProjects"] a.group\/link {
+  gap: 24px !important;
+  height: auto !important;
+}
+
+/* Keep titles/copy visible even if MotionReveal never fires */
+section[data-block-type="blockSelectedProjects"] a.group\/link > .flex.flex-col > span {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Drop archive numbers — title alone is enough */
+section[data-block-type="blockSelectedProjects"] a.group\/link p.text-caption-30 {
+  display: none !important;
+}
+
 section[data-block-type="blockSelectedProjects"] a.group\/link .absolute.inset-0::before {
   content: "";
   position: absolute;
@@ -466,22 +479,28 @@ section[data-block-type="blockSelectedProjects"] a.group\/link:focus-visible .ab
   transform: scale(1.1);
 }
 
-/* Reserve room for the hover description so the slider controls never shift */
+/* Reserve room for the hover description so cards stay equal height.
+   Title stays put — only the description fades in below. */
 section[data-block-type="blockSelectedProjects"] a.group\/link .flex.flex-col.gap-x-24 {
   position: relative;
+  flex: 0 0 auto;
   padding-bottom: 104px;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  align-items: flex-start;
+  gap: 0;
+  transform: none;
 }
 
 section[data-block-type="blockSelectedProjects"] a.group\/link .flex.flex-col.gap-x-24 > span:last-child {
   position: relative;
   flex: 1 1 auto;
   min-width: 0;
+  width: 100%;
 }
 
-section[data-block-type="blockSelectedProjects"] a.group\/link:hover .flex.flex-col.gap-x-24,
-section[data-block-type="blockSelectedProjects"] a.group\/link:focus-visible .flex.flex-col.gap-x-24 {
-  transform: translateY(-12px);
+section[data-block-type="blockSelectedProjects"] a.group\/link h3.font-serif {
+  position: relative;
+  display: block;
+  width: 100%;
 }
 
 section[data-block-type="blockSelectedProjects"] a.group\/link h3.font-serif::after {
@@ -490,13 +509,15 @@ section[data-block-type="blockSelectedProjects"] a.group\/link h3.font-serif::af
   left: 0;
   display: -webkit-box;
   width: 100%;
+  max-width: 36ch;
+  margin: 0;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
   line-clamp: 4;
   color: var(--text-secondary);
   font-family: "Fixel", system-ui, sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.45;
   letter-spacing: 0;
@@ -521,12 +542,59 @@ section[data-block-type="blockSelectedProjects"] a.group\/link[data-vshanuy-no-n
   cursor: pointer;
 }
 
+/* Keep slides in one horizontal track — no vertical stretch */
+section[data-block-type="blockSelectedProjects"] .group\/slider {
+  position: relative;
+}
+
+section[data-block-type="blockSelectedProjects"] .will-change-transform {
+  align-items: flex-start !important;
+}
+
+section[data-block-type="blockSelectedProjects"] .group\/slide {
+  align-self: flex-start !important;
+  height: auto !important;
+}
+
+/* Controls: 2 of 4 vertical columns, same gap as title → cards */
+section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+  margin-top: 0 !important;
+  padding-top: 48px !important;
+  padding-bottom: 0 !important;
+  justify-items: stretch;
+  align-items: center;
+}
+
+section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls.pt-24,
+section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls.lg\:pt-80 {
+  padding-top: 48px !important;
+}
+
+section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls > div {
+  width: 100%;
+  max-width: none;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  grid-column: 1 / -1;
+}
+
 @media (min-width: 1024px) {
-  section[data-block-type="blockSelectedProjects"]
-    .vshanuy-gallery-controls
-    > .lg\:col-span-2.lg\:col-start-2 {
-    width: calc(100% + 2px);
-    margin-left: -1px;
+  section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding-top: 96px !important;
+  }
+
+  section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls.pt-24,
+  section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls.lg\:pt-80 {
+    padding-top: 96px !important;
+  }
+
+  section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls > div {
+    grid-column: 2 / span 2;
   }
 }
 
@@ -537,57 +605,7 @@ section[data-block-type="blockSelectedProjects"] a.group\/link[href*="hvylyna-mo
   opacity: 0;
 }
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="hvylyna-movchannya"] h3.font-serif::after {
-  content: "Популяризація загальнонаціонального щоденного ритуалу вшанування полеглих.";
-}
-
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="ceremonial-dorozhnya-karta"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-ceremonial-dorozhnya-karta.jpg");
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="ceremonial-dorozhnya-karta"] img {
-  opacity: 0;
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="ceremonial-dorozhnya-karta"] h3.font-serif::after {
-  content: "Практичні рекомендації для органів влади, громад і установ у населених пунктах.";
-}
-
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="osvitni-programy"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-osvitni-programy.jpg");
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="osvitni-programy"] img {
-  opacity: 0;
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="osvitni-programy"] h3.font-serif::after {
-  content: "Лекції, консультації та матеріали про впровадження культури пам’яті в корпоративному середовищі.";
-}
-
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="stoyu-za"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-stoyu-za.jpg");
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="stoyu-za"] img {
-  opacity: 0;
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="stoyu-za"] h3.font-serif::after {
-  content: "Проєкт персоналізації пам’яті, який повертає кожному полеглому його ім’я, історію та обличчя.";
-}
-
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pomizh-nas"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-pomizh-nas.jpg");
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pomizh-nas"] img {
-  opacity: 0;
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pomizh-nas"] h3.font-serif::after {
-  content: "Пам’ятні таблички у міському просторі, що нагадують: Герої жили серед нас.";
-}
-
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vikno-pamyati"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-vikno-pamyati.jpg");
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vikno-pamyati"] img {
-  opacity: 0;
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vikno-pamyati"] h3.font-serif::after {
-  content: "Проєкт, який через особисті історії відкриває простір для розмови про втрату, любов і пам’ять.";
+  content: "Вкорінюємо загальнонаціональний щоденний ритуал памʼяті про полеглих.";
 }
 
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="chekafest"] .absolute.inset-0 {
@@ -597,20 +615,101 @@ section[data-block-type="blockSelectedProjects"] a.group\/link[href*="chekafest"
   opacity: 0;
 }
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="chekafest"] h3.font-serif::after {
-  content: "Фестиваль пам’яті Ірини «Чеки» Цибух, присвячений свободі, відповідальності та силі спільноти.";
+  content: "Співтворимо фестиваль памʼяті Іринки «Чеки», присвячений її цінностям. Про неї і про всіх загиблих.";
 }
 
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="spivpratsya"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-spivpratsya.jpg");
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vinkuvannya"] .absolute.inset-0 {
+  background: center / cover no-repeat url("../media/vshanuy-ceremonial-dorozhnya-karta.jpg");
 }
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="spivpratsya"] img {
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vinkuvannya"] img {
   opacity: 0;
 }
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="spivpratsya"] h3.font-serif::after {
-  content: "Співпраця з державними інституціями, громадами та партнерами над розвитком законодавчих, меморіальних і освітніх ініціатив.";
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vinkuvannya"] h3.font-serif::after {
+  content: "Повертаємо українську традицію плетіння вінків із живих квітів на честь поляглих вояків.";
+}
+
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="gayd-z-komunikatsiy"] .absolute.inset-0 {
+  background: center / cover no-repeat url("../media/vshanuy-osvitni-programy.jpg");
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="gayd-z-komunikatsiy"] img {
+  opacity: 0;
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="gayd-z-komunikatsiy"] h3.font-serif::after {
+  content: "«Не нашкодь» – практичний гайд про те, як говорити про війну, втрати, дні памʼяті та обстріли. Допомагаємо комунікувати чутливо, людяно й без додаткової травматизації.";
+}
+
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pomizh-nas"] .absolute.inset-0 {
+  background: center / cover no-repeat url("../media/vshanuy-pomizh-nas.jpg");
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pomizh-nas"] img {
+  opacity: 0;
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pomizh-nas"] h3.font-serif::after {
+  content: "Створюємо нативні нагадування у міському просторі – таблички на спинках лавочок. Повертаємо памʼять про людей у місця, де ми щодня живемо, ходимо й зустрічаємося.";
+}
+
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pamyat-v-mystetstvi"] .absolute.inset-0 {
+  background: center / cover no-repeat url("../media/vshanuy-vikno-pamyati.jpg");
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pamyat-v-mystetstvi"] img {
+  opacity: 0;
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pamyat-v-mystetstvi"] h3.font-serif::after {
+  content: "Співтворимо виставки та мистецькі проєкти від світлин неба над могилами захисників до історії Хвилини мовчання.";
+}
+
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="robota-z-gromadamy"] .absolute.inset-0 {
+  background: center / cover no-repeat url("../media/vshanuy-spivpratsya.jpg");
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="robota-z-gromadamy"] img {
+  opacity: 0;
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="robota-z-gromadamy"] h3.font-serif::after {
+  content: "Підсилюємо регіони у їхньому бажанні творити гідну культуру памʼяті про своїх земляків.";
+}
+
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="spivpratsya-z-biznesom"] .absolute.inset-0 {
+  background: center / cover no-repeat url("../media/vshanuy-osvitni-programy.jpg");
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="spivpratsya-z-biznesom"] img {
+  opacity: 0;
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="spivpratsya-z-biznesom"] h3.font-serif::after {
+  content: "Залучаємо бізнес до щоденної культури памʼяті: від підтримки практик до створення власних ініціатив, бо памʼять може бути частиною відповідального життя компанії.";
+}
+
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="proshchannya-z-praporom"] .absolute.inset-0 {
+  background: center / cover no-repeat url("../media/vshanuy-stoyu-za.jpg");
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="proshchannya-z-praporom"] img {
+  opacity: 0;
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="proshchannya-z-praporom"] h3.font-serif::after {
+  content: "Повертаємо увагу до українського прапора як символу, який супроводжує людину від служби до останнього прощання. Пояснюємо значення цього ритуалу та допомагаємо зробити його зрозумілим для суспільства.";
+}
+
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tryzna"] .absolute.inset-0 {
+  background: center / cover no-repeat url("../media/vshanuy-ceremonial-dorozhnya-karta.jpg");
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tryzna"] img {
+  opacity: 0;
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tryzna"] h3.font-serif::after {
+  content: "Вибудовуємо ритуал, у якому місто може гідно попрощатися зі своїм захисником чи захисницею.";
+}
+
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="lektsiya-pro-praktyky"] .absolute.inset-0 {
+  background: center / cover no-repeat url("../media/vshanuy-blog-pamyat.jpg");
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="lektsiya-pro-praktyky"] img {
+  opacity: 0;
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="lektsiya-pro-praktyky"] h3.font-serif::after {
+  content: "Говоримо про те, як памʼять працює в містах, громадах і щоденному житті. Ділимося досвідом, обговорюємо виклики та шукаємо нові способи памʼятати про тих, кого вже немає поруч.";
 }
 
 section[data-block-type="blockBanner"] .overflow-hidden.absolute.inset-0.z-behind {
+  z-index: 1;
   background-image: url("../media/vshanuy-banner.jpg");
   background-position: center calc(50% + var(--banner-parallax-y, 0px));
   background-repeat: no-repeat;
@@ -633,8 +732,25 @@ section[data-block-type="blockBanner"]
   display: none;
 }
 
+/* Column guides continue under the banner photo (below the image layer) */
 section[data-block-type="blockBanner"]
   .pointer-events-none.absolute.inset-0.translate-x-\[0\.15rem\] {
+  display: block;
+  z-index: -2;
+  pointer-events: none;
+}
+
+section[data-block-type="blockBanner"]
+  .pointer-events-none.absolute.inset-0.translate-x-\[0\.15rem\]
+  .relative.h-full.origin-top {
+  transform: scaleY(1) !important;
+  height: 100%;
+}
+
+/* White-on-photo guides not needed — structural lines stay under the image */
+section[data-block-type="blockBanner"]
+  .relative.isolate.aspect-\[0\.6\].lg\:aspect-\[1\.4\]
+  > .pointer-events-none.absolute.inset-0.translate-x-\[0\.15rem\] {
   display: none;
 }
 
@@ -739,17 +855,134 @@ section[data-block-type="blockBenefits"] .vshanuy-guide-download:focus-visible {
   outline-offset: 4px;
 }
 
-/* Unified archive-style CTAs */
+/* Primary archive CTAs — solid ink (ПРО НАС, ВСІ ПОСІБНИКИ) */
 .about-vshanuy__link,
+section[data-block-type="blockBenefits"]
+  .grid.grid-cols-1.py-96
+  a[href*="posibnyky/index"] {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  min-width: 200px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 300ms ease-out, color 300ms ease-out;
+}
+
+.about-vshanuy__link {
+  font-size: 0;
+}
+
+.about-vshanuy__link::before {
+  font-size: 12px;
+  font-weight: 600;
+  content: "ПРО НАС";
+}
+
+.about-vshanuy__link::after,
+section[data-block-type="blockBenefits"]
+  .grid.grid-cols-1.py-96
+  a[href*="posibnyky/index"]::after {
+  font-size: 20px;
+  line-height: 1;
+  content: "→";
+  transform: translateX(-4px);
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Kill source wipe / icon hover so it matches ПРО НАС */
+section[data-block-type="blockBenefits"]
+  .grid.grid-cols-1.py-96
+  a[href*="posibnyky/index"]
+  > span {
+  display: none !important;
+}
+
+section[data-block-type="blockBenefits"]
+  .grid.grid-cols-1.py-96
+  a[href*="posibnyky/index"] {
+  margin-top: 16px;
+  margin-left: 8px;
+  height: auto;
+}
+
+.about-vshanuy__link:hover,
+.about-vshanuy__link:focus-visible,
+section[data-block-type="blockBenefits"]
+  .grid.grid-cols-1.py-96
+  a[href*="posibnyky/index"]:hover,
+section[data-block-type="blockBenefits"]
+  .grid.grid-cols-1.py-96
+  a[href*="posibnyky/index"]:focus-visible {
+  background-color: var(--yellow);
+  color: var(--ink);
+}
+
+.about-vshanuy__link:hover::after,
+.about-vshanuy__link:focus-visible::after,
+section[data-block-type="blockBenefits"]
+  .grid.grid-cols-1.py-96
+  a[href*="posibnyky/index"]:hover::after,
+section[data-block-type="blockBenefits"]
+  .grid.grid-cols-1.py-96
+  a[href*="posibnyky/index"]:focus-visible::after {
+  transform: translateX(4px);
+}
+
+.about-vshanuy__link:focus-visible,
+section[data-block-type="blockBenefits"]
+  .grid.grid-cols-1.py-96
+  a[href*="posibnyky/index"]:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-vshanuy__link,
+  .about-vshanuy__link::after,
+  section[data-block-type="blockBenefits"]
+    .grid.grid-cols-1.py-96
+    a[href*="posibnyky/index"],
+  section[data-block-type="blockBenefits"]
+    .grid.grid-cols-1.py-96
+    a[href*="posibnyky/index"]::after {
+    transition: none;
+  }
+
+  .about-vshanuy__link::after,
+  section[data-block-type="blockBenefits"]
+    .grid.grid-cols-1.py-96
+    a[href*="posibnyky/index"]::after {
+    transform: none;
+  }
+}
+
+/* Secondary — ЗАВАНТАЖИТИ PDF: quiet archive line, not primary */
 section[data-block-type="blockBenefits"] .vshanuy-guide-button {
   display: inline-flex;
+  width: 100%;
   min-height: 44px;
+  margin: 0;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   padding: 8px;
   border: 0;
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid var(--paper);
   border-radius: 0;
   background: transparent;
   color: var(--ink);
@@ -761,61 +994,6 @@ section[data-block-type="blockBenefits"] .vshanuy-guide-button {
   text-decoration: none;
   text-transform: uppercase;
   transition: background-color 300ms ease-out;
-}
-
-section[data-block-type="blockBenefits"] .vshanuy-guide-button {
-  width: 100%;
-  margin: 0;
-  border-top-color: var(--paper);
-}
-
-@media (min-width: 1024px) and (hover: hover) {
-  section[data-block-type="blockBenefits"] .vshanuy-guide-button {
-    opacity: 0;
-    transform: translateY(8px);
-    transition:
-      background-color 300ms ease-out,
-      opacity 400ms ease-out,
-      transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  section[data-block-type="blockBenefits"]
-    .vshanuy-guide-download:hover
-    .vshanuy-guide-button,
-  section[data-block-type="blockBenefits"]
-    .vshanuy-guide-download:focus-visible
-    .vshanuy-guide-button {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  section[data-block-type="blockBenefits"] .vshanuy-guide-button {
-    transform: none;
-    transition: none;
-  }
-}
-
-.about-vshanuy__link {
-  overflow: hidden;
-  background-color: transparent;
-  box-shadow: inset 0 0 0 0 var(--beige);
-  font-size: 0;
-  transition: box-shadow 450ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.about-vshanuy__link::before {
-  font-size: 12px;
-  content: "ПРО НАС";
-}
-
-.about-vshanuy__link::after {
-  font-size: 20px;
-  line-height: 1;
-  content: "→";
-  transform: translateX(-4px);
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 section[data-block-type="blockBenefits"]
@@ -839,34 +1017,12 @@ section[data-block-type="blockBenefits"]
   background-color: var(--beige);
 }
 
-.about-vshanuy__link:hover,
-.about-vshanuy__link:focus-visible {
-  background-color: transparent;
-  box-shadow: inset 240px 0 0 0 var(--beige);
-}
-
-.about-vshanuy__link:hover::after,
-.about-vshanuy__link:focus-visible::after {
-  transform: translateX(4px);
-}
-
-.about-vshanuy__link:focus-visible,
 section[data-block-type="blockBenefits"]
   .vshanuy-guide-download:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .about-vshanuy__link,
-  .about-vshanuy__link::after {
-    transition: none;
-  }
-
-  .about-vshanuy__link::after {
-    transform: none;
-  }
-}
 
 @media (min-width: 1024px) {
   section[data-block-type="blockBenefits"]
@@ -978,45 +1134,6 @@ section[data-block-type="blockArticleOverview"]
   #article-overview-carousel
   img[src*="63ae489882bfa558c9ff8677257bca254bcd7508"] {
   opacity: 0;
-}
-
-/* «всі посібники» — той самий патерн, що CTA-посилання з верхньою лінією */
-section[data-block-type="blockBenefits"]
-  .grid.grid-cols-1.py-96
-  a[href*="posibnyky/index"] {
-  min-height: 36px;
-  justify-content: space-between;
-  border-top-color: var(--ink);
-  color: var(--ink);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-section[data-block-type="blockBenefits"]
-  .grid.grid-cols-1.py-96
-  a[href*="posibnyky/index"]
-  span:has([data-icon]) {
-  width: 28px;
-  height: 28px;
-}
-
-section[data-block-type="blockBenefits"]
-  .grid.grid-cols-1.py-96
-  a[href*="posibnyky/index"]
-  [data-icon] {
-  width: 28px !important;
-  height: 28px !important;
-  font-size: 28px;
-}
-
-section[data-block-type="blockBenefits"]
-  .grid.grid-cols-1.py-96
-  a[href*="posibnyky/index"]:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 4px;
 }
 
 @media (min-width: 1024px) {
@@ -1797,6 +1914,13 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   opacity: 1;
 }
 
+/* NVMK lockup is wider (cross + 4-line wordmark) — keep visual weight with peers */
+.vshanuy-partners__item img[alt*="Кладовище"] {
+  max-width: min(200px, 100%);
+  max-height: 52px;
+}
+
+
 .vshanuy-partners--animated .vshanuy-partners__guides > span {
   transform: scaleY(0);
   transform-origin: top;
@@ -2036,30 +2160,63 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
 }
 
 .vshanuy-site-footer__cta {
-  display: flex !important;
-  width: 100%;
-  min-height: 4.8rem !important;
+  display: inline-flex !important;
+  overflow: hidden;
+  width: fit-content;
+  min-width: 200px;
+  min-height: 44px !important;
+  align-items: center;
   justify-content: space-between;
+  gap: 16px;
   margin-bottom: 0;
-  padding: 1.2rem 1.6rem;
+  padding: 10px 12px;
+  border: 0;
   border-radius: 0;
-  background: var(--yellow);
-  color: var(--ink) !important;
+  background: var(--ink);
+  color: var(--paper) !important;
   font-family: "Fixel", system-ui, sans-serif !important;
-  font-size: 1.4rem !important;
+  font-size: 12px !important;
   font-weight: 600 !important;
-  letter-spacing: 0.04em;
+  line-height: 1;
+  letter-spacing: 0.08em;
   text-decoration: none !important;
   text-transform: uppercase;
+  transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
-.vshanuy-site-footer__cta:hover {
-  text-decoration: underline !important;
+.vshanuy-site-footer__cta > span[aria-hidden="true"] {
+  font-size: 20px;
+  line-height: 1;
+  transform: translateX(-4px);
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.vshanuy-site-footer__cta:hover,
+.vshanuy-site-footer__cta:focus-visible {
+  background: var(--yellow);
+  color: var(--ink) !important;
+  text-decoration: none !important;
+}
+
+.vshanuy-site-footer__cta:hover > span[aria-hidden="true"],
+.vshanuy-site-footer__cta:focus-visible > span[aria-hidden="true"] {
+  transform: translateX(4px);
 }
 
 .vshanuy-site-footer__cta:focus-visible {
-  outline-color: var(--paper) !important;
-  outline-offset: 4px !important;
+  outline: 2px solid var(--ink) !important;
+  outline-offset: 3px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vshanuy-site-footer__cta,
+  .vshanuy-site-footer__cta > span[aria-hidden="true"] {
+    transition: none;
+  }
+
+  .vshanuy-site-footer__cta > span[aria-hidden="true"] {
+    transform: none;
+  }
 }
 
 .vshanuy-site-footer__links li + li {
@@ -2335,8 +2492,8 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
 }
 
 .vshanuy-site-footer__cta {
-  background: var(--yellow);
-  color: var(--ink) !important;
+  background: var(--ink);
+  color: var(--paper) !important;
 }
 
 .vshanuy-site-footer__column--support
@@ -2530,10 +2687,9 @@ main
 .vshanuy-site-footer__column--brand > .vshanuy-site-footer__cta {
   width: fit-content;
   max-width: 100%;
-  min-width: 0;
+  min-width: 200px;
   margin-top: auto;
-  justify-content: center;
-  gap: 0.8rem;
+  justify-content: space-between;
 }
 
 .vshanuy-site-footer__column--support {

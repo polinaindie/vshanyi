@@ -50,6 +50,69 @@
     </footer>
   `;
 
+  /** Rebuild project track if hydration nested cards inside each other. */
+  const fixProjectsTrack = () => {
+    const section = document.querySelector(
+      'section[data-block-type="blockSelectedProjects"]',
+    );
+    if (!section) return false;
+
+    const flex = section.querySelector(".will-change-transform");
+    if (!flex) return false;
+
+    const nestedCount = section.querySelectorAll(
+      'a[class*="group/link"] a[class*="group/link"]',
+    ).length;
+    if (!nestedCount && section.dataset.vshanuyProjectsFixed === "1") {
+      return true;
+    }
+    if (!nestedCount) {
+      section.dataset.vshanuyProjectsFixed = "1";
+      return true;
+    }
+
+    const byHref = new Map();
+    section.querySelectorAll('a[href*="napryamky/"]').forEach((anchor) => {
+      const href = anchor.getAttribute("href");
+      if (!href) return;
+      // Keep the outermost occurrence for each href
+      if (!byHref.has(href) || anchor.querySelector('a[href*="napryamky/"]')) {
+        byHref.set(href, anchor);
+      }
+    });
+
+    const cards = [...byHref.values()].map((anchor) => {
+      const clone = anchor.cloneNode(true);
+      clone.querySelectorAll('a[href*="napryamky/"]').forEach((child) => {
+        child.remove();
+      });
+      // MotionReveal opacity may never fire on cloned nodes
+      clone.querySelectorAll("span[style]").forEach((span) => {
+        span.style.opacity = "1";
+        span.style.transform = "none";
+      });
+      return clone;
+    });
+
+    flex.replaceChildren(
+      ...cards.map((card, index) => {
+        const slide = document.createElement("div");
+        slide.className = "group/slide flex-[0_0_50%] lg:flex-[0_0_25%]";
+        const pad = document.createElement("div");
+        pad.className = "p-4";
+        if (index === 0) pad.classList.add("group-first/slide:pl-0");
+        if (index === cards.length - 1) pad.classList.add("group-last/slide:pr-0");
+        pad.appendChild(card);
+        slide.appendChild(pad);
+        return slide;
+      }),
+    );
+
+    section.dataset.vshanuyProjectsFixed = "1";
+    window.dispatchEvent(new Event("resize"));
+    return true;
+  };
+
   const mount = () => {
     document.querySelector(".about-vshanuy")?.closest("section")?.setAttribute("id", "about");
     document
@@ -59,6 +122,8 @@
       .querySelector('section[data-block-type="blockArticleOverview"]')
       ?.setAttribute("id", "articles");
     document.querySelector(".vshanuy-partners")?.setAttribute("id", "partners");
+
+    fixProjectsTrack();
 
     const currentFooter = document.querySelector("footer");
     if (!currentFooter) return false;
@@ -75,6 +140,10 @@
     const observer = new MutationObserver(mount);
     observer.observe(document.body, { childList: true, subtree: true });
     window.setTimeout(() => observer.disconnect(), 10000);
+    // Hydration can finish after first paint — re-check a few times
+    [300, 800, 1600, 3000].forEach((ms) => {
+      window.setTimeout(fixProjectsTrack, ms);
+    });
   };
 
   if (document.readyState === "loading") {

@@ -1,28 +1,24 @@
 (() => {
   const partners = [
     {
-      name: "Міністерство у справах ветеранів України",
-      logo: "_next/static/media/partners/minveteraniv.svg",
-    },
-    {
-      name: "Міністерство розвитку громад та територій України",
-      logo: "_next/static/media/partners/minrozvytku.svg",
-    },
-    {
-      name: "Міністерство культури України",
-      logo: "_next/static/media/partners/minkult.svg",
-    },
-    {
       name: "Український інститут національної пам’яті",
       logo: "_next/static/media/partners/uinp.png",
     },
     {
-      name: "ПУМБ",
-      logo: "_next/static/media/partners/pumb.svg",
+      name: "Starlight Media",
+      logo: "_next/static/media/partners/starlight.svg",
     },
     {
-      name: "MOKO",
-      logo: "_next/static/media/partners/moko.svg",
+      name: "Суспільне Мовлення",
+      logo: "_next/static/media/partners/suspilne.svg",
+    },
+    {
+      name: "Платформа пам’яті Меморіал",
+      logo: "_next/static/media/partners/memorial.svg",
+    },
+    {
+      name: "Національне військове меморіальне кладовище",
+      logo: "_next/static/media/partners/nvmk.svg",
     },
   ];
 
@@ -68,9 +64,15 @@
     observer.observe(section);
   };
 
+  const fillList = (section) => {
+    const list = section.querySelector(".vshanuy-partners__list");
+    if (list) list.innerHTML = renderItems();
+  };
+
   const mount = () => {
     const existingSection = document.querySelector(".vshanuy-partners");
     if (existingSection) {
+      fillList(existingSection);
       setupReveal(existingSection);
       return true;
     }
@@ -127,7 +129,7 @@
   }
 
   const footerScript = document.createElement("script");
-  footerScript.src = "_next/static/chunks/vshanuy-footer.js";
+  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261021k";
   document.head.append(footerScript);
 
   const menuScript = document.createElement("script");
