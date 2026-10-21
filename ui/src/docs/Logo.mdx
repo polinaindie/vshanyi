@@ -1,0 +1,24 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+import { Logo } from '../components/Logo/Logo'
+import '../components/Logo/Logo.css'
+
+<Meta title="Docs/Logo" />
+
+# Логотип
+
+Оригінальний вектор: `brand/vshanuy-original-logo.svg`. Не набирати шрифтом і не перемальовувати.
+
+- Верх: `ВШАНУЙ.` на всю ширину
+- Низ: `09:00` ліворуч
+- Масштаб — лише як єдиний SVG
+- Змінювати дозволено тільки `fill` контурів
+
+Канон на Ink: назва — paper/white, `09:00` — accent.
+
+<div style={{ background: 'var(--ink)', padding: 'var(--space-4)' }}>
+  <Logo variant="onInk" />
+</div>
+
+<div style={{ background: 'var(--paper)', padding: 'var(--space-4)', marginTop: 'var(--space-3)' }}>
+  <Logo variant="onPaper" />
+</div>

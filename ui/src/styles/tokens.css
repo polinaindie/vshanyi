@@ -1,0 +1,112 @@
+/* Шрифти як на головній (font-overrides.css):
+   Fixel — UI/текст, Piazzolla Light — дисплей, Volja — тільки лого.
+   Файли: ui/public/fonts/ (копії з fonts/ + Piazzolla з site media). */
+
+@font-face {
+  font-family: "Fixel";
+  src: url("/fonts/FixelText-Light.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fixel";
+  src: url("/fonts/FixelText-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fixel";
+  src: url("/fonts/FixelText-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fixel";
+  src: url("/fonts/FixelText-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Piazzolla";
+  src: url("/fonts/Piazzolla-Light.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Piazzolla";
+  src: url("/fonts/Piazzolla-Light.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Volja";
+  src:
+    url("/fonts/Volja-Black.woff2") format("woff2"),
+    url("/fonts/Volja-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --paper: #f7f5ed;
+  --beige: #e1dcce;
+  --ink: #181818;
+  --graphite: #414141;
+  --grey: #9f9d9b;
+  --yellow: #ffe500;
+
+  --bg: var(--paper);
+  --bg-surface: var(--beige);
+  --bg-inverse: var(--ink);
+  --text: var(--ink);
+  --text-secondary: var(--graphite);
+  --text-muted: var(--grey);
+  --text-inverse: var(--paper);
+  --accent: var(--yellow);
+
+  --font-logo: "Volja", sans-serif;
+  --font-display: "Piazzolla", Georgia, serif;
+  --font-text: "Fixel", system-ui, sans-serif;
+
+  --weight-display: 300;
+  --weight-text: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.75rem;
+  --step-3: clamp(2rem, 4vw, 3.25rem);
+  --step-4: clamp(2.75rem, 8vw, 6rem);
+  --step-5: clamp(3.5rem, 13vw, 11rem);
+
+  --leading-display: 0.95;
+  --leading-text: 1.55;
+  --tracking-label: 0.12em;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 2rem;
+  --space-4: 4rem;
+  --space-5: 8rem;
+  --space-silence: clamp(6rem, 14vh, 12rem);
+
+  --radius: 0;
+  --line: 1px solid var(--ink);
+  --line-muted: 1px solid rgba(24, 24, 24, 0.18);
+  --grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
+}

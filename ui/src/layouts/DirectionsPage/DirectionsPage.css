@@ -1,0 +1,5 @@
+.vshanuy-directions-page {
+  background: var(--paper);
+  color: var(--text);
+  min-height: 100%;
+}

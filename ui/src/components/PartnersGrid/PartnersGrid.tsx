@@ -1,0 +1,47 @@
+export type Partner = {
+  name: string
+}
+
+export type PartnersGridProps = {
+  title?: string
+  label?: string
+  partners?: Partner[]
+}
+
+const defaultPartners: Partner[] = [
+  { name: 'Український інститут національної памʼяті' },
+  { name: 'Starlight Media' },
+  { name: 'Суспільне Мовлення' },
+  { name: 'Платформа памʼяті Меморіал' },
+  { name: 'Національне військове меморіальне кладовище' },
+]
+
+export function PartnersGrid({
+  title = 'Працюємо разом',
+  label = 'ПАРТНЕРИ',
+  partners = defaultPartners,
+}: PartnersGridProps) {
+  return (
+    <section className="vshanuy-partners" aria-labelledby="vshanuy-partners-title">
+      <div className="vshanuy-partners__guides" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="vshanuy-partners__inner">
+        <header className="vshanuy-partners__header">
+          <p className="vshanuy-partners__label">{label}</p>
+          <h2 id="vshanuy-partners-title">{title}</h2>
+        </header>
+        <ul className="vshanuy-partners__list">
+          {partners.map((partner) => (
+            <li key={partner.name} className="vshanuy-partners__item">
+              <span className="vshanuy-partners__placeholder">{partner.name}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}

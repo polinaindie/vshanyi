@@ -1,0 +1,61 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-text);
+  font-size: var(--step-0);
+  font-weight: var(--weight-text);
+  line-height: var(--leading-text);
+  border-radius: var(--radius);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  border-radius: var(--radius);
+}
+
+a {
+  color: inherit;
+}
+
+/* Дисплейні заголовки — Piazzolla Light, як .font-serif на головній */
+.font-display,
+h1,
+h2,
+h3.display {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-display);
+}
+
+.sb-main-padded {
+  padding: 0 !important;
+}
+
+.story-canvas {
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-text);
+}

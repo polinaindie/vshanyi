@@ -1,0 +1,27 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Docs/LayoutSystem" />
+
+# Система леяуту — архівна сітка
+
+Вертикальні лінії — не декор. Це видима структура архіву: порядок і чесність. Вони прошивають різні секції в одне ціле й перетворюють порожнечу на осмислену паузу.
+
+## Правила
+
+- Desktop: 4 колонки; mobile: 2
+- Guides — `1px` через `--grid-line` / `--line-muted`
+- Між великими секціями — `--space-silence`
+- Контент чіпляється до лівого краю колонки, не «плаває» по центру
+- Без карток із тінню й радіусом — hairline і повітря
+
+## Драматургія головної
+
+1. Зупинись (Hero + час)
+2. Хто ми (About / ImageText)
+3. Практики (NumberedDirections)
+4. Зроби сам (GuideCta)
+5. Що працює (ArticleCards / PracticeCarousel)
+6. Ти не сам (Partners)
+7. Доєднайся (Footer CTA / Contact)
+
+Компонент-примітив: **ArchiveGrid** у Foundations.

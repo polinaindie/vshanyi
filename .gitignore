@@ -6,3 +6,7 @@
 tmp/
 tmp-*
 .gh-pages-worktree/
+ui/node_modules/
+ui/storybook-static/
+ui/dist/
+ui/debug-storybook.log

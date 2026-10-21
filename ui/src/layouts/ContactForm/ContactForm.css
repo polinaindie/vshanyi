@@ -1,0 +1,62 @@
+.vshanuy-contact {
+  padding: var(--space-silence) var(--space-2);
+}
+
+.vshanuy-contact__header h2 {
+  margin: var(--space-2) 0 var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  line-height: var(--leading-display);
+  font-weight: var(--weight-display);
+}
+
+.vshanuy-contact__header p {
+  margin: 0 0 var(--space-4);
+  color: var(--text-secondary);
+  max-width: 36ch;
+}
+
+.vshanuy-contact__form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  max-width: 40rem;
+}
+
+@media (min-width: 720px) {
+  .vshanuy-contact__form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .vshanuy-contact__full {
+    grid-column: 1 / -1;
+  }
+}
+
+.vshanuy-contact__form label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.vshanuy-contact__form input,
+.vshanuy-contact__form textarea {
+  border: 0;
+  border-bottom: var(--line);
+  background: transparent;
+  padding: var(--space-1) 0;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: var(--step-0);
+}
+
+.vshanuy-contact__form input:focus-visible,
+.vshanuy-contact__form textarea:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}

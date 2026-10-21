@@ -1,0 +1,186 @@
+.vshanuy-desktop-header {
+  z-index: 1000;
+  height: 33px;
+  padding: 0 var(--space-1);
+  background: var(--paper);
+  border-bottom: 1px solid var(--grid-line);
+}
+
+.vshanuy-desktop-menu {
+  display: grid;
+  width: 100%;
+  height: 32px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  color: var(--ink);
+}
+
+.vshanuy-desktop-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vshanuy-desktop-menu__brand,
+.vshanuy-desktop-menu__label {
+  display: block;
+  min-width: 0;
+  height: 32px;
+  overflow: hidden;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.vshanuy-desktop-menu__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.vshanuy-desktop-menu__brand {
+  border-right: 1px solid var(--grid-line);
+  font-family: var(--font-logo);
+  font-weight: 900;
+}
+
+.vshanuy-desktop-menu__slide {
+  display: block;
+  transform: translateY(0);
+  transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.vshanuy-desktop-menu__brand:hover .vshanuy-desktop-menu__slide,
+.vshanuy-desktop-menu__brand:focus-visible .vshanuy-desktop-menu__slide,
+.vshanuy-desktop-header[data-scrolled] .vshanuy-desktop-menu__brand .vshanuy-desktop-menu__slide,
+.vshanuy-desktop-menu__item:hover > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__slide,
+.vshanuy-desktop-menu__item:focus-within > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__slide {
+  transform: translateY(-32px);
+}
+
+.vshanuy-desktop-menu__layer {
+  display: flex;
+  width: 100%;
+  height: 32px;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+  padding: 0 var(--space-1);
+}
+
+.vshanuy-desktop-menu__layer--active {
+  background: var(--graphite);
+  color: var(--paper);
+}
+
+.vshanuy-desktop-menu__item--support .vshanuy-desktop-menu__layer--active {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.vshanuy-desktop-menu__brand-primary {
+  justify-content: flex-start;
+  padding-inline: 12px;
+}
+
+.vshanuy-desktop-menu__brand-active {
+  justify-content: flex-start;
+  gap: 10px;
+  padding-inline: 12px;
+  background: var(--beige);
+  color: var(--ink);
+}
+
+.vshanuy-desktop-menu__wordmark {
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.vshanuy-desktop-menu__time {
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.vshanuy-desktop-menu__brand-active .vshanuy-desktop-menu__time {
+  color: var(--ink);
+}
+
+.vshanuy-desktop-menu__dot {
+  width: 7px;
+  height: 5px;
+  flex: none;
+  background: currentColor;
+}
+
+.vshanuy-desktop-menu__dot--large {
+  width: 18px;
+  height: 13px;
+}
+
+.vshanuy-desktop-menu__primary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.vshanuy-desktop-menu__item {
+  position: relative;
+  min-width: 0;
+  border-right: 1px solid var(--grid-line);
+}
+
+.vshanuy-desktop-menu__item:last-child {
+  border-right: 0;
+}
+
+.vshanuy-desktop-menu__trigger {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.vshanuy-desktop-menu__submenu {
+  position: absolute;
+  top: 32px;
+  left: -1px;
+  z-index: 2;
+  width: max(100%, 240px);
+  border: 1px solid var(--grid-line);
+  background: var(--paper);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition:
+    opacity 300ms ease-out,
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 500ms;
+  pointer-events: none;
+}
+
+.vshanuy-desktop-menu__item:hover > .vshanuy-desktop-menu__submenu,
+.vshanuy-desktop-menu__item:focus-within > .vshanuy-desktop-menu__submenu,
+.vshanuy-desktop-menu__item.is-open > .vshanuy-desktop-menu__submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
+  pointer-events: auto;
+}
+
+.vshanuy-desktop-menu__submenu-item {
+  display: block;
+  padding: var(--space-1) var(--space-2);
+  font-family: var(--font-text);
+  font-size: var(--step--1);
+  border-top: 1px solid var(--grid-line);
+}
+
+.vshanuy-desktop-menu__submenu li:first-child .vshanuy-desktop-menu__submenu-item {
+  border-top: 0;
+}

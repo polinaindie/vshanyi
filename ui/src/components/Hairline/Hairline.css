@@ -1,0 +1,5 @@
+.vshanuy-hairline {
+  border: 0;
+  border-top: var(--line-muted);
+  margin: 0;
+}

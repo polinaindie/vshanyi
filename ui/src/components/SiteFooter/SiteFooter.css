@@ -1,0 +1,117 @@
+.vshanuy-site-footer {
+  position: relative;
+  isolation: isolate;
+  margin-top: var(--space-silence);
+  padding: var(--space-4) var(--space-2);
+  background: var(--ink);
+  color: var(--text-inverse);
+}
+
+.vshanuy-site-footer__guides {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.vshanuy-site-footer__guides > span {
+  border-right: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+}
+
+.vshanuy-site-footer__guides > span:last-child {
+  border-right: 0;
+}
+
+.vshanuy-site-footer__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 960px) {
+  .vshanuy-site-footer__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+  }
+
+  .vshanuy-site-footer__column {
+    padding-inline: var(--space-2);
+    border-right: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+  }
+
+  .vshanuy-site-footer__column:last-child {
+    border-right: 0;
+  }
+}
+
+.vshanuy-site-footer__motto {
+  margin: var(--space-3) 0 0;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  line-height: var(--leading-display);
+}
+
+.vshanuy-site-footer__cta {
+  display: inline-block;
+  margin-top: var(--space-3);
+  padding: var(--space-1) var(--space-2);
+  background: var(--accent);
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--step--1);
+  font-weight: 600;
+}
+
+.vshanuy-site-footer__label {
+  margin: 0 0 var(--space-2);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  font-weight: 500;
+  color: var(--grey);
+}
+
+.vshanuy-site-footer__inline-list,
+.vshanuy-site-footer__links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vshanuy-site-footer__inline-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+}
+
+.vshanuy-site-footer__links li,
+.vshanuy-site-footer__inline-list li {
+  padding: 0.25rem 0;
+}
+
+.vshanuy-site-footer__email {
+  display: inline-block;
+  margin-top: var(--space-2);
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.vshanuy-site-footer__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  color: var(--grey);
+  font-size: var(--step--1);
+}
+
+.vshanuy-site-footer__meta p {
+  margin: 0;
+}
+
+.vshanuy-site-footer .vshanuy-logo {
+  width: min(100%, 14rem);
+}

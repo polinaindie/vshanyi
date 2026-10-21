@@ -1,0 +1,40 @@
+import { Meta, ColorPalette, ColorItem, Typeset } from '@storybook/addon-docs/blocks'
+
+<Meta title="Docs/Tokens" />
+
+# Токени
+
+Канон: `brand/tokens.css`. У Storybook підключено `src/styles/tokens.css` (ті самі змінні, шляхи до шрифтів для Vite).
+
+## Колір
+
+<ColorPalette>
+  <ColorItem title="paper" subtitle="--paper / --bg" colors={{ Paper: '#f7f5ed' }} />
+  <ColorItem title="beige" subtitle="--beige / --bg-surface" colors={{ Beige: '#e1dcce' }} />
+  <ColorItem title="ink" subtitle="--ink / --text" colors={{ Ink: '#181818' }} />
+  <ColorItem title="graphite" subtitle="--graphite" colors={{ Graphite: '#414141' }} />
+  <ColorItem title="grey" subtitle="--grey / muted" colors={{ Grey: '#9f9d9b' }} />
+  <ColorItem title="yellow" subtitle="--accent — лише дія" colors={{ Yellow: '#ffe500' }} />
+</ColorPalette>
+
+> У компонентах використовуйте `var(--…)`, не ці hex-значення.
+
+## Типографіка
+
+| Роль | Token | Шрифт | Начерк |
+|---|---|---|---|
+| Лого | `--font-logo` | Volja (тільки лого) | 900 |
+| Дисплей | `--font-display` | Piazzolla Light (як на головній) | `--weight-display` = 300 |
+| Текст / UI | `--font-text` | Fixel | 400 / 500 / 600 |
+
+Локальні файли з `fonts/` — ті самі, що на сайті (не Google Fonts).
+
+Шкала: `--step--1` … `--step-5`. Leading: `--leading-display`, `--leading-text`.
+
+## Простір (тиша)
+
+`--space-1` … `--space-5`, `--space-silence` — пауза між великими блоками.
+
+## Форма
+
+`--radius: 0` · `--line` · `--line-muted` · `--grid-line`

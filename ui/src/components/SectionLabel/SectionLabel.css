@@ -1,0 +1,13 @@
+.vshanuy-section-label {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.vshanuy-section-label__trail {
+  color: var(--text-secondary);
+}
