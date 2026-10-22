@@ -74,11 +74,32 @@ export function FullscreenMenu({
             >
               <h3>{section.title}</h3>
               <ul>
-                {section.items.map((item) => (
-                  <li key={item}>
-                    <span className="vshanuy-menu__item">{item}</span>
-                  </li>
-                ))}
+                {section.items.map((item) => {
+                  const external =
+                    item === 'Донати' || item === 'Як підтримати'
+                      ? 'https://send.monobank.ua/jar/7rme78odM9'
+                      : null
+                  const internal =
+                    item === 'Пошта' || item === 'Соцмережі' ? 'kontakty.html' : null
+                  const href = external ?? internal
+                  return (
+                    <li key={item}>
+                      {href ? (
+                        <a
+                          className="vshanuy-menu__item"
+                          href={href}
+                          {...(external
+                            ? { target: '_blank', rel: 'noopener noreferrer' }
+                            : {})}
+                        >
+                          {item}
+                        </a>
+                      ) : (
+                        <span className="vshanuy-menu__item">{item}</span>
+                      )}
+                    </li>
+                  )
+                })}
               </ul>
             </section>
           ))}

@@ -1,5 +1,6 @@
 export type Partner = {
   name: string
+  href?: string
 }
 
 export type PartnersGridProps = {
@@ -9,11 +10,17 @@ export type PartnersGridProps = {
 }
 
 const defaultPartners: Partner[] = [
-  { name: 'Український інститут національної памʼяті' },
-  { name: 'Starlight Media' },
-  { name: 'Суспільне Мовлення' },
-  { name: 'Платформа памʼяті Меморіал' },
-  { name: 'Національне військове меморіальне кладовище' },
+  {
+    name: 'Український інститут національної памʼяті',
+    href: 'https://uinp.gov.ua/',
+  },
+  { name: 'Starlight Media', href: 'https://starlight.media/' },
+  { name: 'Суспільне Мовлення', href: 'https://corp.suspilne.media/' },
+  { name: 'Платформа памʼяті Меморіал', href: 'https://memorial.ua/' },
+  {
+    name: 'Національне військове меморіальне кладовище',
+    href: 'https://nmmc.gov.ua/',
+  },
 ]
 
 export function PartnersGrid({
@@ -37,7 +44,19 @@ export function PartnersGrid({
         <ul className="vshanuy-partners__list">
           {partners.map((partner) => (
             <li key={partner.name} className="vshanuy-partners__item">
-              <span className="vshanuy-partners__placeholder">{partner.name}</span>
+              {partner.href ? (
+                <a
+                  className="vshanuy-partners__link"
+                  href={partner.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={partner.name}
+                >
+                  <span className="vshanuy-partners__placeholder">{partner.name}</span>
+                </a>
+              ) : (
+                <span className="vshanuy-partners__placeholder">{partner.name}</span>
+              )}
             </li>
           ))}
         </ul>

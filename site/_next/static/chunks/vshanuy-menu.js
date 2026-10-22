@@ -43,12 +43,34 @@
     ["Підтримати", ["Донати", "Реквізити"], "support"],
   ];
 
+  const supportHref = "https://send.monobank.ua/jar/7rme78odM9";
+  const linkForLabel = (label) => {
+    if (label === "Донати" || label === "Як підтримати") {
+      return { href: supportHref, external: true };
+    }
+    if (label === "Пошта" || label === "Соцмережі" || label === "Контакти.") {
+      return { href: "kontakty.html", external: false };
+    }
+    return null;
+  };
+
+  const renderMenuLink = (label, className) => {
+    const link = linkForLabel(label);
+    if (!link) {
+      return `<span class="${className}">${label}</span>`;
+    }
+    const externalAttrs = link.external
+      ? ' target="_blank" rel="noopener noreferrer"'
+      : "";
+    return `<a class="${className}" href="${link.href}"${externalAttrs}>${label}</a>`;
+  };
+
   const submenuMarkup = (labels) => `
     <ul class="vshanuy-desktop-menu__submenu" role="list">
       ${labels
         .map(
           (label) =>
-            `<li><span class="vshanuy-desktop-menu__submenu-item">${label}</span></li>`,
+            `<li>${renderMenuLink(label, "vshanuy-desktop-menu__submenu-item")}</li>`,
         )
         .join("")}
     </ul>
@@ -103,7 +125,10 @@
         <h3 id="menu-section-${index}">${title}</h3>
         <ul>
           ${labels
-            .map((label) => `<li><span class="vshanuy-menu__item">${label}</span></li>`)
+            .map(
+              (label) =>
+                `<li>${renderMenuLink(label, "vshanuy-menu__item")}</li>`,
+            )
             .join("")}
         </ul>
       </section>
@@ -113,7 +138,7 @@
 
   const desktopMarkup = `
     <nav class="vshanuy-desktop-menu" aria-label="Головна навігація">
-      <a class="vshanuy-desktop-menu__brand" href="./" aria-label="Вшануй. 09:00 — на головну">
+      <a class="vshanuy-desktop-menu__brand" href="index.html" aria-label="Вшануй. 09:00 — на головну">
         <span class="vshanuy-desktop-menu__slide" aria-hidden="true">
           <span class="vshanuy-desktop-menu__layer vshanuy-desktop-menu__brand-primary">
             <span class="vshanuy-desktop-menu__time">09:00</span>
@@ -176,6 +201,7 @@
       href === "./" ||
       href === "/" ||
       href === "index.html" ||
+      href === "kontakty.html" ||
       href.startsWith("./#") ||
       href.startsWith("/#")
     ) {

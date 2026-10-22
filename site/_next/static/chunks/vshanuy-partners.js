@@ -3,36 +3,49 @@
     {
       name: "Український інститут національної пам’яті",
       logo: "_next/static/media/partners/uinp.png",
+      href: "https://uinp.gov.ua/",
     },
     {
       name: "Starlight Media",
       logo: "_next/static/media/partners/starlight.svg",
+      href: "https://starlight.media/",
     },
     {
       name: "Суспільне Мовлення",
       logo: "_next/static/media/partners/suspilne.svg",
+      href: "https://corp.suspilne.media/",
     },
     {
       name: "Платформа пам’яті Меморіал",
       logo: "_next/static/media/partners/memorial.svg",
+      href: "https://memorial.ua/",
     },
     {
       name: "Національне військове меморіальне кладовище",
       logo: "_next/static/media/partners/nvmk.svg",
+      href: "https://nmmc.gov.ua/",
     },
   ];
 
   const renderItems = () =>
     partners
       .map(
-        ({ name, logo }) => `
+        ({ name, logo, href }) => `
           <li class="vshanuy-partners__item">
-            <img
-              src="${logo}"
-              alt="${name}"
-              loading="lazy"
-              decoding="async"
+            <a
+              class="vshanuy-partners__link"
+              href="${href}"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="${name}"
             >
+              <img
+                src="${logo}"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              >
+            </a>
           </li>
         `,
       )
@@ -129,11 +142,11 @@
   }
 
   const footerScript = document.createElement("script");
-  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261022b";
+  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261022i";
   document.head.append(footerScript);
 
   const menuScript = document.createElement("script");
-  menuScript.src = "_next/static/chunks/vshanuy-menu.js";
+  menuScript.src = "_next/static/chunks/vshanuy-menu.js?v=20261022n";
   document.head.append(menuScript);
 
   const heroScript = document.createElement("script");
