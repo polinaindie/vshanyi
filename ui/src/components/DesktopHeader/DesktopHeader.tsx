@@ -44,17 +44,15 @@ function SlideLabel({
     <span className="vshanuy-desktop-menu__slide">
       <span className="vshanuy-desktop-menu__layer">
         <span>{label}</span>
-        <span
-          className={`vshanuy-desktop-menu__dot${isButton ? ' vshanuy-desktop-menu__dot--large' : ''}`}
-          aria-hidden="true"
-        />
+        {isButton ? (
+          <span className="vshanuy-desktop-menu__dot vshanuy-desktop-menu__dot--large" aria-hidden="true" />
+        ) : null}
       </span>
       <span className="vshanuy-desktop-menu__layer vshanuy-desktop-menu__layer--active" aria-hidden="true">
         <span>{label}</span>
-        <span
-          className={`vshanuy-desktop-menu__dot${isButton ? ' vshanuy-desktop-menu__dot--large' : ''}`}
-          aria-hidden="true"
-        />
+        {isButton ? (
+          <span className="vshanuy-desktop-menu__dot vshanuy-desktop-menu__dot--large" aria-hidden="true" />
+        ) : null}
       </span>
     </span>
   )
