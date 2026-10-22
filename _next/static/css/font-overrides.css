@@ -609,7 +609,7 @@ section[data-block-type="blockSelectedProjects"] a.group\/link[href*="hvylyna-mo
 }
 
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="chekafest"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/iryna-cheka-tsybukh.png");
+  background: center / cover no-repeat url("../media/vshanuy-chekafest.jpg");
 }
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="chekafest"] img {
   opacity: 0;
@@ -618,22 +618,30 @@ section[data-block-type="blockSelectedProjects"] a.group\/link[href*="chekafest"
   content: "Співтворимо фестиваль памʼяті Іринки «Чеки», присвячений її цінностям. Про неї і про всіх загиблих.";
 }
 
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vinkuvannya"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-ceremonial-dorozhnya-karta.jpg");
+/* Placeholder when a practice has no dedicated photo yet */
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vinkuvannya"] .absolute.inset-0,
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="gayd-z-komunikatsiy"] .absolute.inset-0,
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pamyat-v-mystetstvi"] .absolute.inset-0,
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="robota-z-gromadamy"] .absolute.inset-0,
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="spivpratsya-z-biznesom"] .absolute.inset-0,
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="proshchannya-z-praporom"] .absolute.inset-0,
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tryzna"] .absolute.inset-0 {
+  background: var(--ink);
 }
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vinkuvannya"] img {
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vinkuvannya"] img,
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="gayd-z-komunikatsiy"] img,
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pamyat-v-mystetstvi"] img,
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="robota-z-gromadamy"] img,
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="spivpratsya-z-biznesom"] img,
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="proshchannya-z-praporom"] img,
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tryzna"] img {
   opacity: 0;
 }
+
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vinkuvannya"] h3.font-serif::after {
   content: "Повертаємо українську традицію плетіння вінків із живих квітів на честь поляглих вояків.";
 }
 
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="gayd-z-komunikatsiy"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-osvitni-programy.jpg");
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="gayd-z-komunikatsiy"] img {
-  opacity: 0;
-}
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="gayd-z-komunikatsiy"] h3.font-serif::after {
   content: "«Не нашкодь» – практичний гайд про те, як говорити про війну, втрати, дні памʼяті та обстріли. Допомагаємо комунікувати чутливо, людяно й без додаткової травматизації.";
 }
@@ -648,64 +656,24 @@ section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pomizh-nas
   content: "Створюємо нативні нагадування у міському просторі – таблички на спинках лавочок. Повертаємо памʼять про людей у місця, де ми щодня живемо, ходимо й зустрічаємося.";
 }
 
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pamyat-v-mystetstvi"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-vikno-pamyati.jpg");
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pamyat-v-mystetstvi"] img {
-  opacity: 0;
-}
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pamyat-v-mystetstvi"] h3.font-serif::after {
   content: "Співтворимо виставки та мистецькі проєкти від світлин неба над могилами захисників до історії Хвилини мовчання.";
 }
 
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="robota-z-gromadamy"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-spivpratsya.jpg");
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="robota-z-gromadamy"] img {
-  opacity: 0;
-}
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="robota-z-gromadamy"] h3.font-serif::after {
   content: "Підсилюємо регіони у їхньому бажанні творити гідну культуру памʼяті про своїх земляків.";
 }
 
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="spivpratsya-z-biznesom"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-osvitni-programy.jpg");
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="spivpratsya-z-biznesom"] img {
-  opacity: 0;
-}
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="spivpratsya-z-biznesom"] h3.font-serif::after {
   content: "Залучаємо бізнес до щоденної культури памʼяті: від підтримки практик до створення власних ініціатив, бо памʼять може бути частиною відповідального життя компанії.";
 }
 
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="proshchannya-z-praporom"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-stoyu-za.jpg");
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="proshchannya-z-praporom"] img {
-  opacity: 0;
-}
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="proshchannya-z-praporom"] h3.font-serif::after {
   content: "Повертаємо увагу до українського прапора як символу, який супроводжує людину від служби до останнього прощання. Пояснюємо значення цього ритуалу та допомагаємо зробити його зрозумілим для суспільства.";
 }
 
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tryzna"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-ceremonial-dorozhnya-karta.jpg");
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tryzna"] img {
-  opacity: 0;
-}
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tryzna"] h3.font-serif::after {
   content: "Вибудовуємо ритуал, у якому місто може гідно попрощатися зі своїм захисником чи захисницею.";
-}
-
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="lektsiya-pro-praktyky"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-blog-pamyat.jpg");
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="lektsiya-pro-praktyky"] img {
-  opacity: 0;
-}
-section[data-block-type="blockSelectedProjects"] a.group\/link[href*="lektsiya-pro-praktyky"] h3.font-serif::after {
-  content: "Говоримо про те, як памʼять працює в містах, громадах і щоденному житті. Ділимося досвідом, обговорюємо виклики та шукаємо нові способи памʼятати про тих, кого вже немає поруч.";
 }
 
 section[data-block-type="blockBanner"] .overflow-hidden.absolute.inset-0.z-behind {
@@ -795,7 +763,11 @@ section[data-block-type="blockBenefits"] .sticky:has(.vshanuy-guide-button) h2 {
 
 section[data-block-type="blockBenefits"] .vshanuy-guide-title {
   display: block;
+  max-width: 100%;
   margin-bottom: 24px;
+  /* text-title-20 reaches ~56px — too wide for 1/4 column + long UA words */
+  font-size: clamp(22px, 2.1vw, 36px);
+  line-height: 1.05;
 }
 
 section[data-block-type="blockBenefits"] .vshanuy-guide-button {
@@ -2356,6 +2328,16 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
 
 .vshanuy-site-footer__developer {
   justify-self: start;
+}
+
+.vshanuy-site-footer__developer a {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.vshanuy-site-footer__developer a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
 }
 
 .vshanuy-site-footer__developer img {
