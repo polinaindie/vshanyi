@@ -146,7 +146,7 @@
   document.head.append(footerScript);
 
   const menuScript = document.createElement("script");
-  menuScript.src = "_next/static/chunks/vshanuy-menu.js?v=20261022n";
+  menuScript.src = "_next/static/chunks/vshanuy-menu.js?v=20261023a";
   document.head.append(menuScript);
 
   const heroScript = document.createElement("script");
