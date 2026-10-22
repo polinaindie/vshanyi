@@ -12,17 +12,17 @@
             </a>
             <p class="vshanuy-site-footer__motto">Пам'ятай про полеглих<br>допомагай живим</p>
           </div>
-          <span class="vshanuy-site-footer__cta vshanuy-dead-link">Підтримати <span aria-hidden="true">→</span></span>
+          <a class="vshanuy-site-footer__cta" href="https://send.monobank.ua/jar/7rme78odM9" target="_blank" rel="noopener noreferrer">Підтримати <span aria-hidden="true">→</span></a>
         </section>
 
         <section class="vshanuy-site-footer__column vshanuy-site-footer__column--contacts" aria-label="Контакти">
           <h2 class="vshanuy-site-footer__label">КОНТАКТИ</h2>
           <ul class="vshanuy-site-footer__inline-list" aria-label="Соціальні мережі">
             <li><a href="https://www.instagram.com/moment_of_honor/" target="_blank" rel="noopener noreferrer">Instagram.</a></li>
-            <li><span class="vshanuy-dead-link">Telegram.</span></li>
+            <li><a href="https://www.threads.com/@moment_of_honor" target="_blank" rel="noopener noreferrer">Threads.</a></li>
             <li><a href="https://www.facebook.com/momentofhonor" target="_blank" rel="noopener noreferrer">Facebook.</a></li>
           </ul>
-          <a class="vshanuy-site-footer__email" href="mailto:hello@vshanuy.org">hello@vshanuy.org</a>
+          <a class="vshanuy-site-footer__email" href="mailto:momentofhonorukraine@gmail.com">momentofhonorukraine@<wbr>gmail.com</a>
         </section>
 
         <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections" aria-label="Розділи сайту">
@@ -33,7 +33,7 @@
             <li><span class="vshanuy-dead-link">Блог.</span></li>
             <li><span class="vshanuy-dead-link">Співпраця.</span></li>
             <li><span class="vshanuy-dead-link">Партнери.</span></li>
-            <li><span class="vshanuy-dead-link">Контакти.</span></li>
+            <li><a href="kontakty.html">Контакти.</a></li>
           </ul>
         </nav>
 
