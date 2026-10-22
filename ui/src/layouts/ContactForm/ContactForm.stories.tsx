@@ -9,7 +9,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Як служить переходу памʼять → дія: спокійний канал доєднатися — без сервісного «продажного» тону.',
+          'Як служить переходу памʼять → дія: спокійний канал доєднатися — без сервісного «продажного» тону. Опційно — обовʼязковий вибір теми (showTopic).',
       },
     },
   },
@@ -20,4 +20,13 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {},
+}
+
+export const WithTopic: Story = {
+  args: {
+    id: 'contact-form',
+    showTopic: true,
+    index: '02',
+    label: 'ФОРМА',
+  },
 }

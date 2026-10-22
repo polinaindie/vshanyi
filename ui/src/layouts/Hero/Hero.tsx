@@ -33,7 +33,12 @@ export function Hero({
         <h1 className="vshanuy-hero__title">{title}</h1>
         <div className="vshanuy-hero__spacer" />
         <div className="vshanuy-hero__cta">
-          <BlockButton variant={ctaAccent ? 'accent' : 'ink'}>{ctaLabel}</BlockButton>
+          <BlockButton
+            variant={ctaAccent ? 'accent' : 'ink'}
+            href="https://send.monobank.ua/jar/7rme78odM9"
+          >
+            {ctaLabel}
+          </BlockButton>
           <PhotoCaption {...caption} />
         </div>
       </div>

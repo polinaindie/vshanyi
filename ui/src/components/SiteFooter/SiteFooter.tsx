@@ -5,7 +5,9 @@ export type SiteFooterProps = {
   email?: string
 }
 
-export function SiteFooter({ email = 'hello@vshanuy.org' }: SiteFooterProps) {
+export function SiteFooter({
+  email = 'momentofhonorukraine@gmail.com',
+}: SiteFooterProps) {
   return (
     <footer className="vshanuy-site-footer" aria-label="Нижня навігація та контакти">
       <div className="vshanuy-site-footer__guides" aria-hidden="true">
@@ -24,17 +26,46 @@ export function SiteFooter({ email = 'hello@vshanuy.org' }: SiteFooterProps) {
               допомагай живим
             </p>
           </div>
-          <span className="vshanuy-site-footer__cta">
+          <a
+            className="vshanuy-site-footer__cta"
+            href="https://send.monobank.ua/jar/7rme78odM9"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Підтримати <span aria-hidden="true">→</span>
-          </span>
+          </a>
         </section>
 
         <section className="vshanuy-site-footer__column" aria-label="Контакти">
           <h2 className="vshanuy-site-footer__label">КОНТАКТИ</h2>
           <ul className="vshanuy-site-footer__inline-list">
-            <li>Instagram.</li>
-            <li>Telegram.</li>
-            <li>Facebook.</li>
+            <li>
+              <a
+                href="https://www.instagram.com/moment_of_honor/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Instagram.
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.threads.com/@moment_of_honor"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Threads.
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.facebook.com/momentofhonor"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Facebook.
+              </a>
+            </li>
           </ul>
           <a className="vshanuy-site-footer__email" href={`mailto:${email}`}>
             {email}
@@ -44,11 +75,14 @@ export function SiteFooter({ email = 'hello@vshanuy.org' }: SiteFooterProps) {
         <nav className="vshanuy-site-footer__column" aria-label="Розділи сайту">
           <h2 className="vshanuy-site-footer__label">НАВІГАЦІЯ</h2>
           <ul className="vshanuy-site-footer__links">
-            {['Про нас.', 'Наша діяльність.', 'Блог.', 'Співпраця.', 'Партнери.', 'Контакти.'].map(
-              (item) => (
-                <li key={item}>{item}</li>
-              ),
-            )}
+            <li>Про нас.</li>
+            <li>Наша діяльність.</li>
+            <li>Блог.</li>
+            <li>Співпраця.</li>
+            <li>Партнери.</li>
+            <li>
+              <a href="kontakty.html">Контакти.</a>
+            </li>
           </ul>
         </nav>
 

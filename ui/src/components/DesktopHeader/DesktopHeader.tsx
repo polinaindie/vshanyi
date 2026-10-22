@@ -126,11 +126,32 @@ export function DesktopHeader({
               />
               {item.links ? (
                 <ul className="vshanuy-desktop-menu__submenu" role="list">
-                  {item.links.map((link) => (
-                    <li key={link}>
-                      <span className="vshanuy-desktop-menu__submenu-item">{link}</span>
-                    </li>
-                  ))}
+                  {item.links.map((link) => {
+                    const external =
+                      link === 'Донати' || link === 'Як підтримати'
+                        ? 'https://send.monobank.ua/jar/7rme78odM9'
+                        : null
+                    const internal =
+                      link === 'Пошта' || link === 'Соцмережі' ? 'kontakty.html' : null
+                    const href = external ?? internal
+                    return (
+                      <li key={link}>
+                        {href ? (
+                          <a
+                            className="vshanuy-desktop-menu__submenu-item"
+                            href={href}
+                            {...(external
+                              ? { target: '_blank', rel: 'noopener noreferrer' }
+                              : {})}
+                          >
+                            {link}
+                          </a>
+                        ) : (
+                          <span className="vshanuy-desktop-menu__submenu-item">{link}</span>
+                        )}
+                      </li>
+                    )
+                  })}
                 </ul>
               ) : null}
             </li>

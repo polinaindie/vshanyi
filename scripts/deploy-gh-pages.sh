@@ -7,7 +7,7 @@ WORKTREE="$ROOT/.gh-pages-worktree"
 
 "$ROOT/scripts/fix-github-pages-paths.sh"
 
-if [[ ! -d "$WORKTREE/.git" ]]; then
+if [[ ! -e "$WORKTREE/.git" ]]; then
   git -C "$ROOT" worktree add -B gh-pages "$WORKTREE" gh-pages
 fi
 
