@@ -43,7 +43,9 @@
           <span class="vshanuy-dead-link">Політика конфіденційності</span>
           </div>
           <div class="vshanuy-site-footer__developer">
-            <img src="_next/static/media/OpenTech.svg" alt="Розроблено в OpenTech і SoftServe">
+            <a href="https://opentech.softserveinc.com/" target="_blank" rel="noopener noreferrer" aria-label="Розроблено в OpenTech і SoftServe">
+              <img src="_next/static/media/OpenTech.svg" alt="">
+            </a>
           </div>
         </section>
       </div>
