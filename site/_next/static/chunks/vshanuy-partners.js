@@ -129,7 +129,7 @@
   }
 
   const footerScript = document.createElement("script");
-  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261021k";
+  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261022b";
   document.head.append(footerScript);
 
   const menuScript = document.createElement("script");
