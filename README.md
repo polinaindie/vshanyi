@@ -4,7 +4,7 @@
 
 ## Design system / Storybook
 
-React UI і документація бренду:
+Нові сторінки й UI — у **`ui/`** + Storybook (не в `site/`, якщо не просили окремо).
 
 ```bash
 cd ui
@@ -12,6 +12,6 @@ npm install
 npm run storybook
 ```
 
-→ http://localhost:6006
+→ http://localhost:6006 → Docs/BrandRules, Docs/PageChecklist
 
-Деталі: [`ui/README.md`](ui/README.md).
+Деталі: [`ui/README.md`](ui/README.md) · бренд: [`BRAND.md`](BRAND.md) · внесок: [`CONTRIBUTING.md`](CONTRIBUTING.md)

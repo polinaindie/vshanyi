@@ -22,7 +22,7 @@ npm run build-storybook
 
 ## Структура
 
-- `src/docs/` — концепт, бренд-правила, токени, Anuc vs Вшануй
+- `src/docs/` — концепт, бренд-правила, чеклист сторінки, токени, Anuc vs Вшануй
 - `src/components/` — foundations, chrome, content
 - `src/layouts/` — секції (Hero, FAQ, форми тощо)
 - `src/styles/tokens.css` — токени (канон: `../brand/tokens.css`)
