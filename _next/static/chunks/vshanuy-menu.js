@@ -99,9 +99,11 @@
             <span class="vshanuy-desktop-menu__slide">
               <span class="vshanuy-desktop-menu__layer">
                 <span>${label}</span>
+                <span class="vshanuy-desktop-menu__dot" aria-hidden="true"></span>
               </span>
               <span class="vshanuy-desktop-menu__layer vshanuy-desktop-menu__layer--active" aria-hidden="true">
                 <span>${label}</span>
+                <span class="vshanuy-desktop-menu__dot" aria-hidden="true"></span>
               </span>
             </span>
           </span>`;
