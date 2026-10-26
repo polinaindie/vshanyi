@@ -49,9 +49,9 @@ a.vshanuy-section-label__trail:focus-visible {
 /* Page */
 
 .vshanuy-contacts-page__main {
-  max-width: 90rem;
-  margin: 0 auto;
-  padding: var(--space-4) var(--space-2) var(--space-silence);
+  max-width: none;
+  margin: 0;
+  padding: var(--space-4) 8px var(--space-silence);
 }
 
 .vshanuy-contacts-page__intro {
@@ -81,11 +81,7 @@ a.vshanuy-section-label__trail:focus-visible {
   padding-top: var(--space-4);
 }
 
-@media (min-width: 960px) {
-  .vshanuy-contacts-page__main {
-    padding-inline: var(--space-4);
-  }
-
+@media (min-width: 1024px) {
   .vshanuy-contacts-page__grid {
     grid-template-columns: 5fr 7fr;
     gap: 0;

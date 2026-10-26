@@ -29,7 +29,7 @@ export default function App() {
           href="#directions"
           aria-current={view === 'directions' ? 'page' : undefined}
         >
-          Напрямки діяльності
+          Наші напрямки
         </a>
         <a
           href="#activity"

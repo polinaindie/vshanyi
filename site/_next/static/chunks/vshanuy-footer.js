@@ -12,7 +12,7 @@
             </a>
             <p class="vshanuy-site-footer__motto">Пам'ятай про полеглих<br>допомагай живим</p>
           </div>
-          <a class="vshanuy-site-footer__cta" href="https://send.monobank.ua/jar/7rme78odM9" target="_blank" rel="noopener noreferrer">Підтримати <span aria-hidden="true">→</span></a>
+          <a class="vshanuy-site-footer__cta" href="pidtrymaty.html">Підтримати <span aria-hidden="true">→</span></a>
         </section>
 
         <section class="vshanuy-site-footer__column vshanuy-site-footer__column--contacts" aria-label="Контакти">
@@ -28,11 +28,17 @@
         <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections" aria-label="Розділи сайту">
           <h2 class="vshanuy-site-footer__label">НАВІГАЦІЯ</h2>
           <ul class="vshanuy-site-footer__links">
+            <li><span class="vshanuy-dead-link">Держава.</span></li>
+            <li><span class="vshanuy-dead-link">Суспільство.</span></li>
+            <li><span class="vshanuy-dead-link">Бізнес.</span></li>
+            <li><span class="vshanuy-dead-link">Освіта.</span></li>
+            <li><span class="vshanuy-dead-link">Військо.</span></li>
+            <li><span class="vshanuy-dead-link">Мистецтво.</span></li>
+            <li><a href="posibnyky/">Посібники.</a></li>
+            <li><a href="pidtrymaty.html">Підтримати.</a></li>
             <li><span class="vshanuy-dead-link">Про нас.</span></li>
-            <li><span class="vshanuy-dead-link">Наша діяльність.</span></li>
             <li><span class="vshanuy-dead-link">Блог.</span></li>
             <li><span class="vshanuy-dead-link">Співпраця.</span></li>
-            <li><span class="vshanuy-dead-link">Партнери.</span></li>
             <li><a href="kontakty.html">Контакти.</a></li>
           </ul>
         </nav>

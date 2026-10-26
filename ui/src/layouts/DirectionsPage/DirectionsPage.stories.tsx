@@ -9,7 +9,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Сторінка «Напрямки діяльності»: chrome + DirectionsRegister (7 рядків expand) + міст на «Наша діяльність». Жовтий-бюджет 0.',
+          'Сторінка «Наші напрямки»: chrome + DirectionsRegister (7 рядків) + міст на «Наша діяльність». Жовтий-бюджет 0.',
       },
     },
   },

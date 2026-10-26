@@ -40,7 +40,7 @@ const defaultAudiences: AudienceBlock[] = [
     title: 'Для бізнесів',
     lead:
       'Бізнес є важливою частиною суспільства — і маленькі команди теж громади. Культура памʼяті формується природно, без формальності та примусу.',
-    href: '#',
+    href: 'napryamky/spivpratsya-z-biznesom.html',
   },
 ]
 
@@ -54,7 +54,7 @@ const defaultTools: GuideItem[] = [
   {
     title: 'Гайд «Не нашкодити»',
     description: 'Опора для етичної роботи з темою памʼяті — щоб не травмувати і не знеособлювати.',
-    href: '#',
+    href: 'napryamky/spivpratsya-z-biznesom.html#gayd',
   },
   {
     title: 'Дорожня карта громад',
@@ -64,7 +64,7 @@ const defaultTools: GuideItem[] = [
   {
     title: 'Дорожня карта бізнесу',
     description: 'Як впроваджувати культуру памʼяті в команді — без пафосу, з чіткими діями.',
-    href: '#',
+    href: 'napryamky/spivpratsya-z-biznesom.html#dorozhnya',
   },
 ]
 
