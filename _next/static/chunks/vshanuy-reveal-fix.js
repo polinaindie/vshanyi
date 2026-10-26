@@ -1,11 +1,17 @@
 (() => {
+  if (window.__vshanuyRevealFix) return;
+  window.__vshanuyRevealFix = true;
+
   /**
-   * MotionReveal keeps opacity:0 until intro + viewport enter fire.
-   * On refresh mid-page (scroll restoration) those never catch up —
-   * content above/in the viewport stays invisible. Force-reveal it.
+   * MotionReveal keeps opacity:0 until intro + viewport enter fire
+   * (viewport margin: 0 0 -100px 0 — late). On refresh mid-page those
+   * never catch up; content stays invisible. Force-reveal past/near
+   * viewport early so about (and peers) appear immediately / sooner.
    */
   const INTRO = "div.fixed.inset-0.z-5.bg-base-white";
   const SCROLL_SKIP_INTRO = 100;
+  /** Reveal ~220px before the element fully enters — earlier than MotionReveal. */
+  const EARLY_PX = 220;
 
   const dismissIntro = () => {
     const intro = document.querySelector(INTRO);
@@ -16,6 +22,8 @@
 
   const revealEl = (el) => {
     if (!(el instanceof HTMLElement)) return;
+    // Attribute + CSS !important beats Framer's non-important inline opacity.
+    el.setAttribute("data-vshanuy-revealed", "");
     el.style.setProperty("opacity", "1", "important");
     el.style.setProperty("transform", "none", "important");
   };
@@ -24,14 +32,18 @@
     if (!(el instanceof HTMLElement)) return false;
     const inline = el.getAttribute("style") || "";
     if (/opacity:\s*0/.test(inline)) return true;
-    // Framer may have moved opacity onto the style object
     return el.style.opacity === "0";
   };
 
-  /** Everything already scrolled past or currently on screen. */
+  const revealCandidates = () =>
+    document.querySelectorAll(
+      ".about-vshanuy__content span.block, section[data-block-type] span.block",
+    );
+
+  /** Everything already scrolled past or near the viewport. */
   const revealPastAndVisible = () => {
-    const limit = window.innerHeight - 24;
-    document.querySelectorAll("span.block").forEach((el) => {
+    const limit = window.innerHeight + EARLY_PX;
+    revealCandidates().forEach((el) => {
       if (!isHiddenReveal(el)) return;
       const top = el.getBoundingClientRect().top;
       if (top < limit) revealEl(el);
@@ -48,7 +60,7 @@
   const start = () => {
     run();
     // Hydration / MotionReveal re-apply opacity:0 after first paint
-    [50, 200, 600, 1200, 2500, 4000].forEach((ms) => {
+    [0, 50, 150, 400, 800, 1600, 3000].forEach((ms) => {
       window.setTimeout(run, ms);
     });
 
@@ -65,10 +77,14 @@
             if (isHiddenReveal(el)) revealEl(el);
           });
         },
-        { rootMargin: "0px 0px -24px 0px", threshold: 0 },
+        {
+          // Positive bottom margin → fire before MotionReveal's -100px
+          rootMargin: `${EARLY_PX}px 0px ${EARLY_PX}px 0px`,
+          threshold: 0,
+        },
       );
       const observeHidden = () => {
-        document.querySelectorAll("span.block").forEach((el) => {
+        revealCandidates().forEach((el) => {
           if (isHiddenReveal(el)) io.observe(el);
         });
       };
@@ -83,7 +99,7 @@
         attributes: true,
         attributeFilter: ["style"],
       });
-      window.setTimeout(() => mo.disconnect(), 8000);
+      window.setTimeout(() => mo.disconnect(), 10000);
     }
   };
 

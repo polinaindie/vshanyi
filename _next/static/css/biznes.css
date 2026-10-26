@@ -1,0 +1,458 @@
+/* Співпраця з бізнесами — ритм по 4-колонковій сітці */
+
+.vshanuy-business-page {
+  margin: 0;
+  background: var(--beige);
+  color: var(--text);
+  min-height: 100%;
+}
+
+/* Beige на shell; гайди поверх тла секцій (pointer-events: none) */
+.vshanuy-business-page .vshanuy-page-shell {
+  background: var(--beige);
+}
+
+.vshanuy-business-page .vshanuy-page-shell__guides {
+  z-index: 2;
+}
+
+.vshanuy-business-page__main {
+  max-width: none;
+  margin: 0;
+  padding: 0 0 var(--space-silence);
+  background: transparent;
+}
+
+/* «Наша діяльність» — активний шар як на hover, підменю лише при hover */
+.vshanuy-business-page .vshanuy-desktop-menu__item--activity.vshanuy-desktop-menu__item--nav-active
+  > .vshanuy-desktop-menu__label
+  .vshanuy-desktop-menu__slide {
+  transform: translateY(-32px);
+}
+
+.vshanuy-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.vshanuy-business-page__band {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-business-page__band {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.vshanuy-business-page__cell {
+  min-width: 0;
+  padding: var(--space-3) 8px;
+  box-sizing: border-box;
+}
+
+.vshanuy-business-page__cell--span-2 {
+  grid-column: span 2;
+}
+
+.vshanuy-business-page__cell--span-full {
+  grid-column: 1 / -1;
+}
+
+@keyframes vshanuy-business-page-title-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero: full-bleed beige через shell; сітка з полями 8px як гайди */
+.vshanuy-business-page__band--hero {
+  padding-block: 96px 64px;
+  padding-inline: 8px;
+  min-height: min(70vh, 36rem);
+  align-content: end;
+  background: transparent;
+}
+
+.vshanuy-business-page__hero-content {
+  grid-column: 1 / -1;
+  min-width: 0;
+  padding-inline: 8px;
+}
+
+.vshanuy-business-page__hero-copy {
+  max-width: none;
+  margin: 0.15em 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-business-page__band--hero {
+    padding-block: 240px 96px;
+    min-height: min(78vh, 42rem);
+  }
+
+  .vshanuy-business-page__hero-content {
+    grid-column: 2 / 5;
+    padding-inline: 16px;
+  }
+}
+
+/* Інші bands сторінки — ті самі поля 8px, що гайди */
+.vshanuy-business-page__band:not(.vshanuy-business-page__band--hero) {
+  padding-inline: 8px;
+}
+
+/* Контекст: як Anuc 2-й блок — фото 2 кол. landscape + текст col 3–4; тло paper */
+.vshanuy-business-page__band--context {
+  padding-block: 96px;
+  background: var(--paper);
+  align-items: start;
+  column-gap: 0;
+  row-gap: 40px;
+}
+
+.vshanuy-business-page__context-photo {
+  grid-column: 1 / -1;
+  margin: 0;
+  /* марджин зліва і справа всередині смуги фото */
+  padding-inline: 16px;
+  min-width: 0;
+}
+
+.vshanuy-business-page__context-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: var(--ink);
+}
+
+.vshanuy-business-page__context-copy {
+  grid-column: 1 / -1;
+  min-width: 0;
+  padding-inline: 16px;
+}
+
+.vshanuy-business-page__context-title {
+  margin: 0;
+  font-family: var(--font-display);
+  /* text-title-40 — як h2 секцій на головній */
+  font-size: clamp(36px, 22.53px + 3.592vw, 80px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.vshanuy-business-page__context-body {
+  margin: 32px 0 0;
+  max-width: 36ch;
+  color: var(--text-secondary);
+  font-family: var(--font-text);
+  /* text-body-30 — як абзаци на головній */
+  font-size: clamp(16px, 15.39px + 0.163vw, 18px);
+  line-height: 1.55;
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-business-page__band--context {
+    padding-block: 240px;
+    row-gap: 0;
+  }
+
+  .vshanuy-business-page__context-photo {
+    grid-column: 1 / 3;
+    padding-inline: 16px;
+  }
+
+  .vshanuy-business-page__context-copy {
+    grid-column: 3 / 5;
+    padding-inline: 16px;
+    padding-top: 0;
+  }
+
+  .vshanuy-business-page__context-body {
+    margin-top: 48px;
+  }
+}
+
+.vshanuy-business-page__band--offer-head,
+.vshanuy-business-page__band--offer-body {
+  padding-block: var(--space-4);
+}
+
+.vshanuy-business-page__band--consult {
+  padding-block: var(--space-silence) 0;
+}
+
+.vshanuy-business-page__eyebrow {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.vshanuy-business-page__title {
+  margin: 24px 0 0;
+  max-width: none;
+  font-family: var(--font-display);
+  /* h1 hero — як на головній */
+  font-size: clamp(36px, 4vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  text-wrap: balance;
+  color: var(--ink);
+  animation: vshanuy-business-page-title-in 1s ease-out both;
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-business-page__title {
+    margin-top: 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vshanuy-business-page__title {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+}
+
+.vshanuy-business-page__lead {
+  margin: var(--space-3) 0 0;
+  max-width: 36ch;
+  color: var(--text-secondary);
+  font-size: var(--step-1);
+  line-height: 1.4;
+}
+
+.vshanuy-business-page__figure {
+  margin: 0;
+}
+
+.vshanuy-business-page__figure img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--beige);
+}
+
+.vshanuy-photo-caption {
+  margin-top: 8px;
+  font-family: var(--font-text);
+  font-size: 12px;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.vshanuy-business-page__prose-p {
+  margin: 0;
+  max-width: 36ch;
+  color: var(--text-secondary);
+  font-size: var(--step-0);
+  line-height: 1.55;
+}
+
+.vshanuy-business-page__offer-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  line-height: var(--leading-display);
+  font-weight: 300;
+  text-wrap: balance;
+}
+
+.vshanuy-business-page__offer-kicker {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--step-0);
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.vshanuy-business-page__offer-text {
+  margin: var(--space-2) 0 0;
+  max-width: 36ch;
+  color: var(--text-secondary);
+  font-size: var(--step-0);
+  line-height: 1.55;
+}
+
+.vshanuy-business-page__offer-aside {
+  margin: var(--space-3) 0 0;
+  color: var(--text-secondary);
+  font-size: var(--step--1);
+  line-height: 1.45;
+}
+
+.vshanuy-business-page__offer-aside a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.vshanuy-business-page__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vshanuy-business-page__step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-2);
+  align-items: start;
+  min-height: 3rem;
+  padding: var(--space-2) 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+a.vshanuy-business-page__step:hover .vshanuy-business-page__step-title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a.vshanuy-business-page__step:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.vshanuy-business-page__step-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.vshanuy-business-page__step-title {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  line-height: 1.2;
+  font-weight: 300;
+}
+
+.vshanuy-business-page__step-note {
+  color: var(--text-secondary);
+  font-size: var(--step--1);
+  line-height: 1.4;
+}
+
+.vshanuy-business-page__step-arrow {
+  font-size: var(--step-1);
+  padding-top: 0.15em;
+}
+
+.vshanuy-business-page__consult-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  justify-content: flex-end;
+  padding-block: var(--space-3);
+}
+
+.vshanuy-block-button {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  width: 100%;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border: 0;
+  border-radius: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--step--1);
+  font-weight: 600;
+  overflow: hidden;
+}
+
+.vshanuy-block-button--accent {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.vshanuy-block-button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.vshanuy-business-page__telegram {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 1.5rem;
+  width: fit-content;
+  color: var(--ink);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: var(--line);
+  padding-bottom: 0.2rem;
+}
+
+.vshanuy-business-page__consult-email {
+  margin: 0;
+  font-size: var(--step--1);
+  color: var(--text-secondary);
+}
+
+.vshanuy-business-page__consult-email a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.vshanuy-business-page__consult-email a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+@media (max-width: 1023px) {
+  .vshanuy-business-page__band--flip .vshanuy-business-page__cell:first-child {
+    order: 2;
+  }
+
+  .vshanuy-business-page__band--flip .vshanuy-business-page__cell:last-child {
+    order: 1;
+  }
+}

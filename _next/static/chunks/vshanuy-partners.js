@@ -141,12 +141,16 @@
     window.addEventListener("load", schedule, { once: true });
   }
 
+  const revealFixScript = document.createElement("script");
+  revealFixScript.src = "_next/static/chunks/vshanuy-reveal-fix.js?v=20261026about2";
+  document.head.append(revealFixScript);
+
   const footerScript = document.createElement("script");
-  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261022i";
+  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261023a";
   document.head.append(footerScript);
 
   const menuScript = document.createElement("script");
-  menuScript.src = "_next/static/chunks/vshanuy-menu.js?v=20261023a";
+  menuScript.src = "_next/static/chunks/vshanuy-menu.js?v=20261023h";
   document.head.append(menuScript);
 
   const heroScript = document.createElement("script");
