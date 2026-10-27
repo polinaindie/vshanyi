@@ -15,11 +15,11 @@ export type FullscreenMenuProps = {
 const defaultSections: MenuSection[] = [
   { title: 'Про нас', items: ['Історія створення', 'Місія і цінності', 'Команда', 'Звіти про діяльність'] },
   { title: 'Наша діяльність', items: ['Для громад', 'Для бізнесів', 'Наші проєкти', 'Посібники', 'Як підтримати'] },
-  { title: 'Блог', items: ['Опис кейсів', 'Колонка Каті'] },
+  { title: 'Матеріали', items: ['Колонка автора', 'Дослідження'] },
   { title: 'Співпраця', items: ['Актуальні опитування', 'Стати волонтером', 'Стати партнером'] },
   { title: 'Партнери', items: ['Донори', 'Організації', 'Бізнеси'] },
   { title: 'Контакти', items: ['Пошта', 'Соцмережі'] },
-  { title: 'Підтримати', items: ['Донати', 'Реквізити'], modifier: 'support' },
+  { title: 'Підтримати', items: ['Донати', 'Реквізити', 'Мерч'], modifier: 'support' },
 ]
 
 export function FullscreenMenu({
@@ -76,11 +76,27 @@ export function FullscreenMenu({
               <ul>
                 {section.items.map((item) => {
                   const external =
-                    item === 'Донати' || item === 'Як підтримати'
+                    item === 'Донати'
                       ? 'https://send.monobank.ua/jar/7rme78odM9'
                       : null
                   const internal =
-                    item === 'Пошта' || item === 'Соцмережі' ? 'kontakty.html' : null
+                    item === 'Пошта' || item === 'Соцмережі'
+                        ? 'kontakty.html'
+                        : item === 'Як підтримати'
+                          ? 'pidtrymaty.html'
+                          : item === 'Колонка автора'
+                            ? 'materialy.html#kolonka-avtora'
+                            : item === 'Дослідження'
+                              ? 'materialy.html#doslidzhennya'
+                              : item === 'Мерч'
+                            ? 'merch.html'
+                            : item === 'Реквізити'
+                            ? 'pidtrymaty.html#rekvizyty'
+                            : item === 'Історія створення'
+                              ? 'pro-nas.html#istoriya'
+                              : item === 'Місія і цінності'
+                                ? 'pro-nas.html#misiya'
+                                : null
                   const href = external ?? internal
                   return (
                     <li key={item}>

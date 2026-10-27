@@ -28,9 +28,7 @@ export function SiteFooter({
           </div>
           <a
             className="vshanuy-site-footer__cta"
-            href="https://send.monobank.ua/jar/7rme78odM9"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="pidtrymaty.html"
           >
             Підтримати <span aria-hidden="true">→</span>
           </a>
@@ -75,9 +73,18 @@ export function SiteFooter({
         <nav className="vshanuy-site-footer__column" aria-label="Розділи сайту">
           <h2 className="vshanuy-site-footer__label">НАВІГАЦІЯ</h2>
           <ul className="vshanuy-site-footer__links">
-            <li>Про нас.</li>
-            <li>Наша діяльність.</li>
-            <li>Блог.</li>
+            <li>
+              <a href="pro-nas.html">Про нас.</a>
+            </li>
+            <li>
+              <a href="diyalnist.html">Наша діяльність.</a>
+            </li>
+            <li>
+              <a href="proekty.html">Проєкти.</a>
+            </li>
+            <li>
+              <a href="materialy.html">Матеріали.</a>
+            </li>
             <li>Співпраця.</li>
             <li>Партнери.</li>
             <li>

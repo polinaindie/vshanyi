@@ -12,15 +12,41 @@
   color: var(--ink);
 }
 
+.vshanuy-contacts-page {
+  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
+
+  position: relative;
+}
+
+.vshanuy-page-guides {
+  position: absolute;
+  z-index: 0;
+  inset: 0 8px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  pointer-events: none;
+}
+
+.vshanuy-page-guides > span {
+  border-right: 1px solid var(--vshanuy-page-grid-line);
+}
+
+.vshanuy-page-guides > span:nth-child(n + 2) {
+  display: none;
+}
+
+.vshanuy-contacts-page > main,
+.vshanuy-contacts-page > .vshanuy-site-footer {
+  position: relative;
+  z-index: 1;
+}
+
 .vshanuy-contacts-page__main {
-  max-width: 90rem;
-  margin: 0 auto;
-  padding: var(--space-4) var(--space-2) var(--space-silence);
+  padding: var(--space-4) 8px var(--space-silence);
 }
 
 .vshanuy-contacts-page__intro {
-  padding-bottom: var(--space-3);
-  border-bottom: var(--line);
+  padding: 0 var(--space-2) var(--space-3);
 }
 
 .vshanuy-contacts-page__title {
@@ -45,23 +71,28 @@
   padding-top: var(--space-4);
 }
 
-@media (min-width: 960px) {
-  .vshanuy-contacts-page__main {
-    padding-inline: var(--space-4);
+.vshanuy-contacts-page__channels,
+.vshanuy-contacts-page__form {
+  min-width: 0;
+  padding-inline: var(--space-2);
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-page-guides {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .vshanuy-page-guides > span:nth-child(n + 2) {
+    display: block;
+  }
+
+  .vshanuy-page-guides > span:last-child {
+    border-right: 0;
   }
 
   .vshanuy-contacts-page__grid {
-    grid-template-columns: 5fr 7fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0;
-  }
-
-  .vshanuy-contacts-page__channels {
-    padding-right: var(--space-4);
-    border-right: var(--line-muted);
-  }
-
-  .vshanuy-contacts-page__form {
-    padding-left: var(--space-4);
   }
 }
 
@@ -83,7 +114,7 @@
 }
 
 .vshanuy-contacts-page__list li:last-child {
-  border-bottom: var(--line);
+  border-bottom: 0;
 }
 
 .vshanuy-contacts-page__link {

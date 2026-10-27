@@ -141,12 +141,49 @@
     window.addEventListener("load", schedule, { once: true });
   }
 
+  const findProjectsHeadline = () =>
+    [...document.querySelectorAll('section[data-block-type="blockHeadline"]')].find(
+      (section) => /Наші проєкти/i.test(section.textContent || ""),
+    );
+
+  const markProjectsAnchor = () => {
+    const section = findProjectsHeadline();
+    if (section && section.id !== "proekty") section.id = "proekty";
+    return section;
+  };
+
+  /* Hydration drops the static id, and the directions block mounts above it later,
+     so the browser's own hash jump lands in the wrong place. */
+  let userScrolled = false;
+  const stopAutoScroll = () => {
+    userScrolled = true;
+  };
+  ["wheel", "touchstart", "keydown"].forEach((type) =>
+    window.addEventListener(type, stopAutoScroll, { once: true, passive: true }),
+  );
+
+  const scrollToProjects = (event) => {
+    if (window.location.hash !== "#proekty") return;
+    if (userScrolled && event?.type !== "hashchange") return;
+    const section = markProjectsAnchor();
+    if (!section) return;
+    const top = section.getBoundingClientRect().top + window.scrollY - 40;
+    if (window.vshanuyLenis?.scrollTo) window.vshanuyLenis.scrollTo(top, { immediate: true });
+    else window.scrollTo(0, top);
+  };
+
+  const anchorObserver = new MutationObserver(markProjectsAnchor);
+  anchorObserver.observe(document.documentElement, { childList: true, subtree: true });
+  window.setTimeout(() => anchorObserver.disconnect(), 10000);
+  [0, 1800, 2800].forEach((ms) => window.setTimeout(scrollToProjects, ms));
+  window.addEventListener("hashchange", scrollToProjects);
+
   const footerScript = document.createElement("script");
-  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261022i";
+  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261027d";
   document.head.append(footerScript);
 
   const menuScript = document.createElement("script");
-  menuScript.src = "_next/static/chunks/vshanuy-menu.js?v=20261023a";
+  menuScript.src = "_next/static/chunks/vshanuy-menu.js?v=20261027d";
   document.head.append(menuScript);
 
   const heroScript = document.createElement("script");
@@ -154,6 +191,10 @@
   document.head.append(heroScript);
 
   const articlesScript = document.createElement("script");
-  articlesScript.src = "_next/static/chunks/vshanuy-articles.js";
+  articlesScript.src = "_next/static/chunks/vshanuy-articles.js?v=20261027a";
   document.head.append(articlesScript);
+
+  const revealScript = document.createElement("script");
+  revealScript.src = "_next/static/chunks/vshanuy-reveal-fix.js?v=20261026about2";
+  document.head.append(revealScript);
 })();

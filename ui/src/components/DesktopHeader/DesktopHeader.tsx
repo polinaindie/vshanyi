@@ -20,7 +20,7 @@ const defaultItems: DesktopNavItem[] = [
   },
   {
     label: 'Підтримати.',
-    links: ['Донати', 'Реквізити'],
+    links: ['Донати', 'Реквізити', 'Мерч'],
     support: true,
   },
   {
@@ -44,15 +44,17 @@ function SlideLabel({
     <span className="vshanuy-desktop-menu__slide">
       <span className="vshanuy-desktop-menu__layer">
         <span>{label}</span>
-        {isButton ? (
-          <span className="vshanuy-desktop-menu__dot vshanuy-desktop-menu__dot--large" aria-hidden="true" />
-        ) : null}
+        <span
+          className={`vshanuy-desktop-menu__dot${isButton ? ' vshanuy-desktop-menu__dot--large' : ''}`}
+          aria-hidden="true"
+        />
       </span>
       <span className="vshanuy-desktop-menu__layer vshanuy-desktop-menu__layer--active" aria-hidden="true">
         <span>{label}</span>
-        {isButton ? (
-          <span className="vshanuy-desktop-menu__dot vshanuy-desktop-menu__dot--large" aria-hidden="true" />
-        ) : null}
+        <span
+          className={`vshanuy-desktop-menu__dot${isButton ? ' vshanuy-desktop-menu__dot--large' : ''}`}
+          aria-hidden="true"
+        />
       </span>
     </span>
   )
@@ -126,11 +128,19 @@ export function DesktopHeader({
                 <ul className="vshanuy-desktop-menu__submenu" role="list">
                   {item.links.map((link) => {
                     const external =
-                      link === 'Донати' || link === 'Як підтримати'
+                      link === 'Донати'
                         ? 'https://send.monobank.ua/jar/7rme78odM9'
                         : null
                     const internal =
-                      link === 'Пошта' || link === 'Соцмережі' ? 'kontakty.html' : null
+                      link === 'Пошта' || link === 'Соцмережі'
+                        ? 'kontakty.html'
+                        : link === 'Як підтримати'
+                          ? 'pidtrymaty.html'
+                          : link === 'Мерч'
+                            ? 'merch.html'
+                            : link === 'Реквізити'
+                            ? 'pidtrymaty.html#rekvizyty'
+                            : null
                     const href = external ?? internal
                     return (
                       <li key={link}>

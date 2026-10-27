@@ -1,4 +1,13 @@
 (() => {
+  const rootPrefix = (() => {
+    const src = document.currentScript?.src;
+    if (!src) return "";
+    const root = new URL("../../../", src).pathname;
+    const path = window.location.pathname;
+    if (!path.startsWith(root)) return "";
+    return "../".repeat(path.slice(root.length).split("/").length - 1);
+  })();
+
   const sections = [
     [
       "Про нас",
@@ -19,7 +28,7 @@
         "Як підтримати",
       ],
     ],
-    ["Блог", ["Опис кейсів", "Колонка Каті"]],
+    ["Матеріали", ["Колонка автора", "Дослідження"]],
     [
       "Співпраця",
       [
@@ -40,13 +49,37 @@
       ],
     ],
     ["Контакти", ["Пошта", "Соцмережі"]],
-    ["Підтримати", ["Донати", "Реквізити"], "support"],
+    ["Підтримати", ["Донати", "Реквізити", "Мерч"], "support"],
   ];
 
   const supportHref = "https://send.monobank.ua/jar/7rme78odM9";
   const linkForLabel = (label) => {
-    if (label === "Донати" || label === "Як підтримати") {
+    if (label === "Донати") {
       return { href: supportHref, external: true };
+    }
+    if (label === "Як підтримати") {
+      return { href: "pidtrymaty.html", external: false };
+    }
+    if (label === "Наші проєкти") {
+      return { href: "proekty.html", external: false };
+    }
+    if (label === "Колонка автора") {
+      return { href: "materialy.html#kolonka-avtora", external: false };
+    }
+    if (label === "Дослідження") {
+      return { href: "materialy.html#doslidzhennya", external: false };
+    }
+    if (label === "Мерч") {
+      return { href: "merch.html", external: false };
+    }
+    if (label === "Реквізити") {
+      return { href: "pidtrymaty.html#rekvizyty", external: false };
+    }
+    if (label === "Історія створення") {
+      return { href: "pro-nas.html#istoriya", external: false };
+    }
+    if (label === "Місія і цінності") {
+      return { href: "pro-nas.html#misiya", external: false };
     }
     if (label === "Пошта" || label === "Соцмережі" || label === "Контакти.") {
       return { href: "kontakty.html", external: false };
@@ -62,7 +95,8 @@
     const externalAttrs = link.external
       ? ' target="_blank" rel="noopener noreferrer"'
       : "";
-    return `<a class="${className}" href="${link.href}"${externalAttrs}>${label}</a>`;
+    const href = link.external ? link.href : rootPrefix + link.href;
+    return `<a class="${className}" href="${href}"${externalAttrs}>${label}</a>`;
   };
 
   const submenuMarkup = (labels) => `
@@ -99,9 +133,11 @@
             <span class="vshanuy-desktop-menu__slide">
               <span class="vshanuy-desktop-menu__layer">
                 <span>${label}</span>
+                <span class="vshanuy-desktop-menu__dot" aria-hidden="true"></span>
               </span>
               <span class="vshanuy-desktop-menu__layer vshanuy-desktop-menu__layer--active" aria-hidden="true">
                 <span>${label}</span>
+                <span class="vshanuy-desktop-menu__dot" aria-hidden="true"></span>
               </span>
             </span>
           </span>`;
@@ -136,7 +172,7 @@
 
   const desktopMarkup = `
     <nav class="vshanuy-desktop-menu" aria-label="Головна навігація">
-      <a class="vshanuy-desktop-menu__brand" href="index.html" aria-label="Вшануй. 09:00 — на головну">
+      <a class="vshanuy-desktop-menu__brand" href="${rootPrefix}index.html" aria-label="Вшануй. 09:00 — на головну">
         <span class="vshanuy-desktop-menu__slide" aria-hidden="true">
           <span class="vshanuy-desktop-menu__layer vshanuy-desktop-menu__brand-primary">
             <span class="vshanuy-desktop-menu__time">09:00</span>
@@ -191,7 +227,8 @@
     </div>
   `;
 
-  const shouldKeepLink = (href) => {
+  const shouldKeepLink = (rawHref) => {
+    const href = (rawHref || "").replace(/^(?:\.\.\/)+/, "");
     if (!href) return true;
     if (href.startsWith("mailto:") || href.startsWith("tel:")) return true;
     if (/^https?:\/\//i.test(href)) return true;
@@ -200,6 +237,14 @@
       href === "/" ||
       href === "index.html" ||
       href === "kontakty.html" ||
+      href.startsWith("pidtrymaty.html") ||
+      href.startsWith("pro-nas.html") ||
+      href === "merch.html" ||
+      href === "proekty.html" ||
+      href === "diyalnist.html" ||
+      href.startsWith("materialy") ||
+      href.startsWith("napryamky/") ||
+      ["rehiony.html", "biznes.html", "derzhava.html", "suspilstvo.html", "osvita.html", "viysko.html", "mystetstvo.html"].includes(href) ||
       href.startsWith("./#") ||
       href.startsWith("/#")
     ) {
