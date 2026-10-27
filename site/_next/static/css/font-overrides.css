@@ -467,9 +467,10 @@ section[data-block-type="blockSelectedProjects"] > .overflow-x-clip > .relative.
   }
 }
 
-/* Equal gutters between all cards (undo first-slide pl-0) */
-section[data-block-type="blockSelectedProjects"] .group\/slide > .p-4 {
-  padding: 8px !important;
+/* 16px from card to vertical guides on both sides (undo first/last pl-0/pr-0) */
+section[data-block-type="blockSelectedProjects"] .group\/slide > .p-4,
+section[data-block-type="blockSelectedProjects"] .group\/slide.p-4 {
+  padding: 8px 16px !important;
 }
 
 section[data-block-type="blockSelectedProjects"] a.group\/link {
