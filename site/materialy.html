@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Матеріали — Вшануй</title>
+  <link rel="stylesheet" href="_next/static/css/font-overrides.css?v=20261026f"/>
+  <link rel="stylesheet" href="_next/static/css/materialy.css?v=20261026b"/>
+</head>
+<body class="vshanuy-materials-page">
+  <div class="vshanuy-page-guides" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  <header class="sticky"></header>
+
+  <main class="vshanuy-materials-page__main">
+    <header class="vshanuy-materials-page__intro">
+      <h1 class="vshanuy-materials-page__title">Матеріали.</h1>
+      <ul class="vshanuy-materials-page__filters" aria-label="Тип матеріалу">
+        <li><button type="button" data-filter="all" aria-pressed="true">Усі <span data-count>4</span></button></li>
+        <li><button type="button" data-filter="kolonka-avtora" aria-pressed="false">Колонка автора <span data-count>3</span></button></li>
+        <li><button type="button" data-filter="doslidzhennya" aria-pressed="false">Дослідження <span data-count>1</span></button></li>
+      </ul>
+    </header>
+
+    <ul class="vshanuy-materials-page__list" data-materials>
+      <li class="vshanuy-materials-page__item vshanuy-materials-page__item--featured" data-type="kolonka-avtora" data-featured>
+        <a class="vshanuy-materials-page__card" href="materialy/istoriya-khvylyny-movchannya.html">
+          <img src="_next/static/media/vshanuy-material-istoriya.jpg" alt="" width="1024" height="760" decoding="async"/>
+          <span class="vshanuy-materials-page__body">
+            <span class="vshanuy-materials-page__tag">Колонка Катерини Даценко</span>
+            <span class="vshanuy-materials-page__name">Історія Хвилини мовчання</span>
+            <span class="vshanuy-materials-page__excerpt">Яка ще країна проводила Хвилину мовчання щодня і від кого ми успадкували цю практику.</span>
+            <span class="vshanuy-materials-page__more">Читати <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+      </li>
+      <li class="vshanuy-materials-page__item" data-type="kolonka-avtora">
+        <a class="vshanuy-materials-page__card" href="materialy/yak-vshanuvaty-u-den-pamyati.html">
+          <img src="_next/static/media/vshanuy-material-den-pamyati.jpg" alt="" width="920" height="613" loading="lazy" decoding="async"/>
+          <span class="vshanuy-materials-page__body">
+            <span class="vshanuy-materials-page__tag">Колонка Катерини Даценко</span>
+            <span class="vshanuy-materials-page__name">Як вшанувати полеглих захисників та захисниць у День памʼяті</span>
+            <span class="vshanuy-materials-page__excerpt">Чому нам так важливо обʼєднуватись і як памʼять може це зробити.</span>
+          </span>
+        </a>
+      </li>
+      <li class="vshanuy-materials-page__item" data-type="kolonka-avtora">
+        <a class="vshanuy-materials-page__card" href="materialy/dlya-choho-pamyatayesh-ty.html">
+          <img src="_next/static/media/vshanuy-material-dlya-choho.jpg?v=20261027a" alt="" width="1024" height="682" loading="lazy" decoding="async"/>
+          <span class="vshanuy-materials-page__body">
+            <span class="vshanuy-materials-page__tag">Колонка Катерини Даценко</span>
+            <span class="vshanuy-materials-page__name">А для чого памʼятаєш ти?</span>
+            <span class="vshanuy-materials-page__excerpt">Про що фестиваль памʼяті ЧекаFest і як це продовжує життя.</span>
+          </span>
+        </a>
+      </li>
+      <li class="vshanuy-materials-page__item" data-type="doslidzhennya">
+        <a class="vshanuy-materials-page__card" href="materialy/doslidzhennya-kharkiv.html">
+          <img src="_next/static/media/vshanuy-material-kharkiv.jpg" alt="" width="1024" height="682" loading="lazy" decoding="async"/>
+          <span class="vshanuy-materials-page__body">
+            <span class="vshanuy-materials-page__tag">Дослідження</span>
+            <span class="vshanuy-materials-page__name">Дослідження міських практик пам’яті, прощання та меморіалізації в Харкові</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+    <p class="vshanuy-visually-hidden" role="status" aria-live="polite" data-materials-status></p>
+  </main>
+
+  <footer></footer>
+
+  <script src="_next/static/chunks/vshanuy-materials.js?v=20261026b"></script>
+  <script src="_next/static/chunks/vshanuy-smooth-scroll.js?v=20261023a"></script>
+  <script src="_next/static/chunks/vshanuy-menu.js?v=20261027e"></script>
+  <script src="_next/static/chunks/vshanuy-footer.js?v=20261027d"></script>
+</body>
+</html>
