@@ -157,7 +157,11 @@
   heroScript.src = "_next/static/chunks/vshanuy-hero.js";
   document.head.append(heroScript);
 
-  const articlesScript = document.createElement("script");
-  articlesScript.src = "_next/static/chunks/vshanuy-articles.js";
-  document.head.append(articlesScript);
+  // articles.js is loaded from index.html; keep a fallback if missing
+  if (![...document.scripts].some((s) => s.src.includes("vshanuy-articles.js"))) {
+    const articlesScript = document.createElement("script");
+    articlesScript.src =
+      "_next/static/chunks/vshanuy-articles.js?v=20261027bloglayout3";
+    document.head.append(articlesScript);
+  }
 })();
