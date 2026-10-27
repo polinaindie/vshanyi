@@ -220,7 +220,7 @@
   };
 
   const setupSticky = (section) => {
-    const chrome = 40;
+    const chrome = 80;
     section.style.setProperty("--directions-sticky-chrome", `${chrome}px`);
 
     let runwayH = 0;

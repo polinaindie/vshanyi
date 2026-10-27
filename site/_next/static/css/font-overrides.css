@@ -483,18 +483,9 @@ section[data-block-type="blockSelectedProjects"] a.group\/link > .flex.flex-col 
   transform: none !important;
 }
 
-/* Archive numbers: same face/size as card title (Piazzolla), with gap before title.
-   Slightly above text-caption-30-fixed (16px), below text-subtitle-20. */
-section[data-block-type="blockSelectedProjects"] a.group\/link p.text-caption-30 {
-  display: block !important;
-  margin: 0;
-  font-family: "Piazzolla", Georgia, serif;
-  font-weight: 300;
-  font-size: clamp(16px, 14.5px + 0.4vw, 20px);
-  line-height: 1.15;
-  text-transform: uppercase;
-  color: var(--ink);
-  letter-spacing: inherit;
+/* Archive numbers removed — title + description only */
+section[data-block-type="blockSelectedProjects"] a.group\/link .flex.flex-col.gap-x-24 > span:first-child {
+  display: none !important;
 }
 
 section[data-block-type="blockSelectedProjects"] a.group\/link h3.font-serif.text-caption-30-fixed {
@@ -518,15 +509,14 @@ section[data-block-type="blockSelectedProjects"] a.group\/link:focus-visible .ab
   transform: scale(1.1);
 }
 
-/* Reserve room for the hover description so cards stay equal height.
-   Title stays put — only the description fades in below.
-   Hover copy = text-body-30 (як about / directions). */
+/* Reserve room for the always-visible description so cards stay equal height.
+   Description copy = text-body-30 (як about / directions). */
 section[data-block-type="blockSelectedProjects"] a.group\/link .flex.flex-col.gap-x-24 {
   position: relative;
   flex: 0 0 auto;
   padding-bottom: 112px;
   align-items: baseline;
-  gap: 8px; /* відступ між «02» і назвою */
+  gap: 0;
   transform: none;
 }
 
@@ -562,28 +552,14 @@ section[data-block-type="blockSelectedProjects"] a.group\/link h3.font-serif::af
   line-height: 1.45;
   letter-spacing: 0;
   text-transform: none;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-section[data-block-type="blockSelectedProjects"] a.group\/link:hover h3.font-serif::after,
-section[data-block-type="blockSelectedProjects"] a.group\/link:focus-visible h3.font-serif::after {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   section[data-block-type="blockSelectedProjects"] a.group\/link .absolute.inset-0::before,
   section[data-block-type="blockSelectedProjects"] a.group\/link:hover .absolute.inset-0::before,
   section[data-block-type="blockSelectedProjects"] a.group\/link:focus-visible .absolute.inset-0::before {
-    transition: none;
-    transform: none;
-  }
-
-  section[data-block-type="blockSelectedProjects"] a.group\/link h3.font-serif::after,
-  section[data-block-type="blockSelectedProjects"] a.group\/link:hover h3.font-serif::after,
-  section[data-block-type="blockSelectedProjects"] a.group\/link:focus-visible h3.font-serif::after {
     transition: none;
     transform: none;
   }
@@ -3044,7 +3020,7 @@ main
     color-mix(in srgb, var(--grey) 20%, transparent)
   );
   --vshanuy-directions-hairline: color-mix(in srgb, var(--ink) 16%, transparent);
-  --directions-sticky-chrome: 40px;
+  --directions-sticky-chrome: 80px;
   --directions-stage-h: min(64vh, 28rem);
 
   position: relative;
