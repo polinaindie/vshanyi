@@ -238,7 +238,9 @@
     </div>
   `;
 
-  const shouldKeepLink = (href) => {
+  const shouldKeepLink = (rawHref) => {
+    if (!rawHref) return true;
+    const href = rawHref.replace(/^(?:\.\.\/)+/, "");
     if (!href) return true;
     if (href.startsWith("mailto:") || href.startsWith("tel:")) return true;
     if (/^https?:\/\//i.test(href)) return true;
@@ -247,7 +249,12 @@
       href === "/" ||
       href === "index.html" ||
       href === "kontakty.html" ||
-      href === "pidtrymaty.html" ||
+      href.startsWith("pidtrymaty.html") ||
+      href.startsWith("pro-nas.html") ||
+      href.startsWith("materialy") ||
+      href === "merch.html" ||
+      href === "proekty.html" ||
+      href === "diyalnist.html" ||
       href === "posibnyky/" ||
       href === "posibnyky/index.html" ||
       href === "napryamky/spivpratsya-z-biznesom.html" ||

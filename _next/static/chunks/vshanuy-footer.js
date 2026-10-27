@@ -1,4 +1,13 @@
 (() => {
+  const rootPrefix = (() => {
+    const src = document.currentScript?.src;
+    if (!src) return "";
+    const root = new URL("../../../", src).pathname;
+    const path = window.location.pathname;
+    if (!path.startsWith(root)) return "";
+    return "../".repeat(path.slice(root.length).split("/").length - 1);
+  })();
+
   const footerMarkup = `
     <footer class="vshanuy-site-footer" aria-label="Нижня навігація та контакти">
       <div class="vshanuy-site-footer__guides" aria-hidden="true">
@@ -7,12 +16,12 @@
       <div class="vshanuy-site-footer__grid">
         <section class="vshanuy-site-footer__column vshanuy-site-footer__column--brand" aria-label="Вшануй">
           <div class="vshanuy-site-footer__brand-lockup">
-            <a class="vshanuy-site-footer__wordmark" href="./" aria-label="Вшануй. 09:00 — на головну">
-              <img src="_next/static/media/vshanuy-original-logo.svg" alt="">
+            <a class="vshanuy-site-footer__wordmark" href="${rootPrefix || "./"}" aria-label="Вшануй. 09:00 — на головну">
+              <img src="${rootPrefix}_next/static/media/vshanuy-original-logo.svg" alt="">
             </a>
             <p class="vshanuy-site-footer__motto">Пам'ятай про полеглих<br>допомагай живим</p>
           </div>
-          <a class="vshanuy-site-footer__cta" href="pidtrymaty.html">Підтримати <span aria-hidden="true">→</span></a>
+          <a class="vshanuy-site-footer__cta" href="${rootPrefix}pidtrymaty.html">Підтримати <span aria-hidden="true">→</span></a>
         </section>
 
         <section class="vshanuy-site-footer__column vshanuy-site-footer__column--contacts" aria-label="Контакти">
@@ -28,18 +37,14 @@
         <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections" aria-label="Розділи сайту">
           <h2 class="vshanuy-site-footer__label">НАВІГАЦІЯ</h2>
           <ul class="vshanuy-site-footer__links">
-            <li><span class="vshanuy-dead-link">Держава.</span></li>
-            <li><span class="vshanuy-dead-link">Суспільство.</span></li>
-            <li><span class="vshanuy-dead-link">Бізнес.</span></li>
-            <li><span class="vshanuy-dead-link">Освіта.</span></li>
-            <li><span class="vshanuy-dead-link">Військо.</span></li>
-            <li><span class="vshanuy-dead-link">Мистецтво.</span></li>
-            <li><a href="posibnyky/">Посібники.</a></li>
-            <li><a href="pidtrymaty.html">Підтримати.</a></li>
-            <li><span class="vshanuy-dead-link">Про нас.</span></li>
-            <li><span class="vshanuy-dead-link">Блог.</span></li>
+            <li><a href="${rootPrefix}pro-nas.html">Про нас.</a></li>
+            <li><a href="${rootPrefix}diyalnist.html">Наша діяльність.</a></li>
+            <li><a href="${rootPrefix}proekty.html">Проєкти.</a></li>
+            <li><a href="${rootPrefix}materialy.html">Матеріали.</a></li>
+            <li><a href="${rootPrefix}posibnyky/">Посібники.</a></li>
             <li><span class="vshanuy-dead-link">Співпраця.</span></li>
-            <li><a href="kontakty.html">Контакти.</a></li>
+            <li><span class="vshanuy-dead-link">Партнери.</span></li>
+            <li><a href="${rootPrefix}kontakty.html">Контакти.</a></li>
           </ul>
         </nav>
 
@@ -50,7 +55,7 @@
           </div>
           <div class="vshanuy-site-footer__developer">
             <a href="https://opentech.softserveinc.com/" target="_blank" rel="noopener noreferrer" aria-label="Розроблено в OpenTech і SoftServe">
-              <img src="_next/static/media/OpenTech.svg" alt="">
+              <img src="${rootPrefix}_next/static/media/OpenTech.svg" alt="">
             </a>
           </div>
         </section>
@@ -133,9 +138,11 @@
 
     fixProjectsTrack();
 
-    const currentFooter = document.querySelector("footer");
+    if (document.querySelector("footer.vshanuy-site-footer")) return true;
+    const currentFooter = [...document.querySelectorAll("footer")].find(
+      (footer) => !footer.closest("article, blockquote"),
+    );
     if (!currentFooter) return false;
-    if (currentFooter.classList.contains("vshanuy-site-footer")) return true;
 
     const template = document.createElement("template");
     template.innerHTML = footerMarkup.trim();
