@@ -41,6 +41,7 @@
             <li><a href="${rootPrefix}diyalnist.html">Наша діяльність.</a></li>
             <li><a href="${rootPrefix}proekty.html">Проєкти.</a></li>
             <li><a href="${rootPrefix}materialy.html">Матеріали.</a></li>
+            <li><a href="${rootPrefix}posibnyky/">Посібники.</a></li>
             <li><span class="vshanuy-dead-link">Співпраця.</span></li>
             <li><span class="vshanuy-dead-link">Партнери.</span></li>
             <li><a href="${rootPrefix}kontakty.html">Контакти.</a></li>

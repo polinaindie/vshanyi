@@ -179,11 +179,11 @@
   window.addEventListener("hashchange", scrollToProjects);
 
   const footerScript = document.createElement("script");
-  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261027d";
+  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261027e";
   document.head.append(footerScript);
 
   const menuScript = document.createElement("script");
-  menuScript.src = "_next/static/chunks/vshanuy-menu.js?v=20261027d";
+  menuScript.src = "_next/static/chunks/vshanuy-menu.js?v=20261027e";
   document.head.append(menuScript);
 
   const heroScript = document.createElement("script");

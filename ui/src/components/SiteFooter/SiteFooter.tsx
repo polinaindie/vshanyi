@@ -85,6 +85,9 @@ export function SiteFooter({
             <li>
               <a href="materialy.html">Матеріали.</a>
             </li>
+            <li>
+              <a href="posibnyky/">Посібники.</a>
+            </li>
             <li>Співпраця.</li>
             <li>Партнери.</li>
             <li>

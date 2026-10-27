@@ -242,6 +242,7 @@
       href === "merch.html" ||
       href === "proekty.html" ||
       href === "diyalnist.html" ||
+      href.startsWith("posibnyky/") ||
       href.startsWith("materialy") ||
       href.startsWith("napryamky/") ||
       ["rehiony.html", "biznes.html", "derzhava.html", "suspilstvo.html", "osvita.html", "viysko.html", "mystetstvo.html"].includes(href) ||
