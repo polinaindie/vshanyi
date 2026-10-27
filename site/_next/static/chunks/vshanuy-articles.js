@@ -80,11 +80,19 @@
       });
     }
 
-    const activate = (hrefPart) => {
+    const activate = (hrefPart, activeCard) => {
       stage.querySelectorAll("img").forEach((img) => {
         img.classList.toggle("is-active", img.dataset.article === hrefPart);
       });
+      cards.forEach((card) => {
+        card.classList.toggle("is-active", card === activeCard);
+      });
     };
+
+    const hasActive = cards.some((card) => card.classList.contains("is-active"));
+    if (!hasActive && cards[0]) {
+      cards[0].classList.add("is-active");
+    }
 
     cards.forEach((card) => {
       if (card.dataset.vshanuyPhotoBound === "1") return;
@@ -92,9 +100,27 @@
       const href = card.getAttribute("href") || "";
       const match = articlePhotos.find((p) => href.includes(p.hrefPart));
       if (!match) return;
-      card.addEventListener("mouseenter", () => activate(match.hrefPart));
-      card.addEventListener("focusin", () => activate(match.hrefPart));
+      const show = () => activate(match.hrefPart, card);
+      card.addEventListener("mouseenter", show);
+      card.addEventListener("focusin", show);
     });
+  };
+
+  const normalizeCard = (card) => {
+    card.className =
+      "vshanuy-articles__card flex flex-col gap-y-24 p-8 lg:p-24 border border-base-stone-20 lg:border-none h-full";
+    card.querySelectorAll("p, h3").forEach((el) => {
+      el.classList.remove(
+        "text-base-brown",
+        "text-base-stone-100",
+        "lg:text-base-brown",
+        "lg:text-base-stone-100",
+        "text-base-black",
+        "text-base-white",
+      );
+    });
+    card.querySelectorAll("picture, img").forEach((el) => el.remove());
+    return card;
   };
 
   const uniqueArticleLinks = (root) => {
@@ -104,7 +130,7 @@
       const href = a.getAttribute("href") || "";
       if (!href || seen.has(href)) return;
       seen.add(href);
-      out.push(a.cloneNode(true));
+      out.push(normalizeCard(a.cloneNode(true)));
     });
     return out;
   };
@@ -132,11 +158,19 @@
 
     const label = intro.querySelector("h2");
     const title = intro.querySelector("h3");
-    if (label) label.classList.add("vshanuy-articles__label");
+    if (label) {
+      label.classList.add("vshanuy-articles__label");
+      const labelRaw = (label.textContent || "").replace(/\s+/g, " ").trim();
+      if (/^блог$/i.test(labelRaw)) label.textContent = "Матеріали";
+    }
     if (title) {
       title.classList.add("vshanuy-articles__title");
       title.id = title.id || "vshanuy-articles-title";
       section.setAttribute("aria-labelledby", title.id);
+      const raw = (title.textContent || "").replace(/\s+/g, " ").trim();
+      if (raw === "Як пам'ять живе у практиках, діях, місцях") {
+        title.textContent = "Як пам'ять живе\nу практиках, діях, місцях";
+      }
     }
 
     mediaCol.classList.add("vshanuy-articles__media");
@@ -149,7 +183,7 @@
     const cta = document.createElement("a");
     cta.className = "vshanuy-articles__all";
     cta.href = `${siteRoot()}materialy.html`;
-    cta.textContent = "Усі статті";
+    cta.textContent = "Усі матеріали";
     cta.setAttribute("data-vshanuy-no-nav", "");
 
     listCol.replaceChildren(stack, cta);

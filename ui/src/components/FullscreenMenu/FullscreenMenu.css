@@ -93,7 +93,8 @@
   border-right: 1px solid var(--grid-line);
 }
 
-.vshanuy-menu__section h3 {
+.vshanuy-menu__section h3,
+.vshanuy-menu__section-title {
   margin: 0 0 var(--space-2);
   color: var(--ink);
   font-family: var(--font-display);
@@ -101,6 +102,31 @@
   font-weight: var(--weight-display, 300);
   line-height: var(--leading-display);
   letter-spacing: -0.01em;
+}
+
+.vshanuy-menu__section-title {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35em;
+  text-decoration: none;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color 250ms ease-out;
+}
+
+.vshanuy-menu__section-title:hover,
+.vshanuy-menu__section-title:focus-visible {
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+}
+
+.vshanuy-menu__section-title:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.vshanuy-menu__section--link .vshanuy-menu__section-title {
+  margin-bottom: 0;
 }
 
 .vshanuy-menu__section ul {
@@ -186,6 +212,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .vshanuy-menu__section-title,
   .vshanuy-menu__support-btn,
   .vshanuy-menu__support-btn > span[aria-hidden='true'] {
     transition: none;

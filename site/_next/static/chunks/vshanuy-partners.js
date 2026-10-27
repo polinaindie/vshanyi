@@ -150,7 +150,7 @@
   document.head.append(footerScript);
 
   const menuScript = document.createElement("script");
-  menuScript.src = "_next/static/chunks/vshanuy-menu.js?v=20261027e";
+  menuScript.src = "_next/static/chunks/vshanuy-menu.js?v=20261027actmenu";
   document.head.append(menuScript);
 
   const heroScript = document.createElement("script");
@@ -161,7 +161,7 @@
   if (![...document.scripts].some((s) => s.src.includes("vshanuy-articles.js"))) {
     const articlesScript = document.createElement("script");
     articlesScript.src =
-      "_next/static/chunks/vshanuy-articles.js?v=20261027bloglayout3";
+      "_next/static/chunks/vshanuy-articles.js?v=20261027materials2colnarrow";
     document.head.append(articlesScript);
   }
 })();

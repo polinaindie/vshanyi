@@ -9,14 +9,14 @@ export type WorkDirection = {
 export const workDirections: WorkDirection[] = [
   {
     index: '01',
-    title: 'Громада',
+    title: 'Робота з громадами',
     href: 'napryamky/gromada.html',
     description:
       'Працюємо з громадами та координаторами осередків, допомагаємо створювати й впроваджувати локальні практики памʼяті. Поширюємо ініціативи в громадах, розробляємо ритуали памʼяті та прощання.',
   },
   {
     index: '02',
-    title: 'Бізнес',
+    title: 'Співпраця з бізнесами',
     href: 'napryamky/spivpratsya-z-biznesom.html',
     description:
       'Допомагаємо бізнесу інтегрувати культуру памʼяті у свої комунікації. Проводимо консультації, аудити, лекції та сесії, щоб компанії могли говорити про війну, втрати й памʼять.',
@@ -51,7 +51,7 @@ export const workDirections: WorkDirection[] = [
   },
   {
     index: '07',
-    title: 'Мистецтво',
+    title: 'Памʼять в мистецтві',
     href: 'napryamky/mystetstvo.html',
     description:
       'Використовуємо мистецтво як спосіб говорити про памʼять, людей і наш досвід.',

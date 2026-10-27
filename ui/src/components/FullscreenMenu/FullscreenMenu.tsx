@@ -2,63 +2,45 @@ import { useEffect, useRef } from 'react'
 import { Logo } from '../Logo/Logo'
 import '../Logo/Logo.css'
 
-export type MenuSection = {
-  title: string
-  items: string[]
+export type MenuItem = {
+  label: string
+  href?: string | null
 }
+
+export type MenuColumn =
+  | { kind: 'group'; title: string; items: MenuItem[] }
+  | { kind: 'link'; title: string; href: string }
 
 export type FullscreenMenuProps = {
   open: boolean
   onClose: () => void
-  sections?: MenuSection[]
+  sections?: MenuColumn[]
   supportHref?: string
 }
 
-const defaultSections: MenuSection[] = [
+const defaultSections: MenuColumn[] = [
   {
+    kind: 'group',
     title: 'Про нас',
-    items: ['Історія створення', 'Місія і цінності', 'Команда', 'Звіти про діяльність'],
+    items: [
+      { label: 'Хто ми', href: 'pro-nas.html' },
+      { label: 'Звіт про діяльність', href: null },
+      { label: 'Мерч', href: 'merch.html' },
+    ],
   },
   {
+    kind: 'group',
     title: 'Наша діяльність',
     items: [
-      'Держава',
-      'Суспільство',
-      'Бізнес',
-      'Освіта',
-      'Військо',
-      'Мистецтво',
-      'Посібники',
+      { label: 'Напрямки роботи', href: 'diyalnist.html' },
+      { label: 'Проєкти', href: 'proekty.html' },
+      { label: 'Посібники', href: 'posibnyky/' },
     ],
   },
-  {
-    title: 'Співпраця',
-    items: [
-      'Актуальні опитування',
-      'Стати волонтером',
-      'Стати партнером',
-      'Запросити нас у громаду',
-      'Долучитися до акції/ініціативи',
-    ],
-  },
-  {
-    title: 'Блог',
-    items: ['Опис кейсів', 'Колонка Каті'],
-  },
-  {
-    title: 'Контакти',
-    items: ['Пошта', 'Соцмережі'],
-  },
+  { kind: 'link', title: 'Матеріали', href: 'materialy.html' },
+  { kind: 'link', title: 'Співпраця', href: 'spivpratsya.html' },
+  { kind: 'link', title: 'Контакти', href: 'kontakty.html' },
 ]
-
-function hrefForLabel(label: string): string | null {
-  if (label === 'Посібники') return 'posibnyky/'
-  if (label === 'Бізнес') return 'napryamky/spivpratsya-z-biznesom.html'
-  if (label === 'Пошта' || label === 'Соцмережі' || label === 'Контакти') {
-    return 'kontakty.html'
-  }
-  return null
-}
 
 export function FullscreenMenu({
   open,
@@ -105,29 +87,43 @@ export function FullscreenMenu({
       </div>
       <nav className="vshanuy-menu__nav" aria-labelledby="vshanuy-menu-title">
         <div className="vshanuy-menu__grid">
-          {sections.map((section) => (
-            <section key={section.title} className="vshanuy-menu__section">
-              <h3>{section.title}</h3>
-              {section.items.length > 0 ? (
-                <ul>
-                  {section.items.map((item) => {
-                    const href = hrefForLabel(item)
-                    return (
-                      <li key={item}>
-                        {href ? (
-                          <a className="vshanuy-menu__item" href={href}>
-                            {item}
+          {sections.map((section, index) => {
+            const titleId = `menu-section-${index}`
+            if (section.kind === 'link') {
+              return (
+                <section
+                  key={section.title}
+                  className="vshanuy-menu__section vshanuy-menu__section--link"
+                  aria-labelledby={titleId}
+                >
+                  <a className="vshanuy-menu__section-title" id={titleId} href={section.href}>
+                    <span>{section.title}</span>
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </section>
+              )
+            }
+            return (
+              <section key={section.title} className="vshanuy-menu__section" aria-labelledby={titleId}>
+                <h3 id={titleId}>{section.title}</h3>
+                {section.items.length > 0 ? (
+                  <ul>
+                    {section.items.map((item) => (
+                      <li key={item.label}>
+                        {item.href ? (
+                          <a className="vshanuy-menu__item" href={item.href}>
+                            {item.label}
                           </a>
                         ) : (
-                          <span className="vshanuy-menu__item">{item}</span>
+                          <span className="vshanuy-menu__item">{item.label}</span>
                         )}
                       </li>
-                    )
-                  })}
-                </ul>
-              ) : null}
-            </section>
-          ))}
+                    ))}
+                  </ul>
+                ) : null}
+              </section>
+            )
+          })}
         </div>
         <div className="vshanuy-menu__cta">
           <a className="vshanuy-menu__support-btn" href={supportHref}>

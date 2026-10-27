@@ -1,0 +1,36 @@
+.vshanuy-collab-page {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100%;
+}
+
+.vshanuy-collab-page__main {
+  max-width: none;
+  margin: 0;
+  padding: var(--space-4) 8px var(--space-silence);
+}
+
+.vshanuy-collab-page__intro {
+  padding-bottom: var(--space-3);
+  border-bottom: var(--line);
+}
+
+.vshanuy-collab-page__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 22.5306px + 3.59184vw, 80px);
+  line-height: 1;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.vshanuy-collab-page__lead {
+  margin: var(--space-3) 0 0;
+  max-width: 36ch;
+  color: var(--text-secondary);
+  font-family: var(--font-text);
+  font-size: var(--step-1);
+  line-height: 1.4;
+}

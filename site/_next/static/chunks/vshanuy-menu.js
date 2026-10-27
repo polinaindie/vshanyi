@@ -1,11 +1,7 @@
 (() => {
   const activityLinks = [
-    "Держава",
-    "Суспільство",
-    "Бізнес",
-    "Освіта",
-    "Військо",
-    "Мистецтво",
+    "Напрямки роботи",
+    "Проєкти",
     "Посібники",
   ];
 
@@ -14,48 +10,72 @@
     : "";
   const supportPageHref = `${siteRoot}pidtrymaty.html`;
 
-  // Порядок: Про нас → Наша діяльність → Співпраця → Блог → Контакти
+  // Порядок: Про нас → Наша діяльність → Матеріали → Співпраця → Контакти
+  // kind: 'group' = inert h3 + items; 'link' = title-лінк на рівні заголовка
   const sections = [
-    [
-      "Про нас",
-      [
-        "Історія створення",
-        "Місія і цінності",
-        "Команда",
-        "Звіти про діяльність",
+    {
+      kind: "group",
+      title: "Про нас",
+      items: [
+        { label: "Хто ми", href: `${siteRoot}pro-nas.html` },
+        { label: "Звіт про діяльність", href: null },
+        { label: "Мерч", href: `${siteRoot}merch.html` },
       ],
-    ],
-    ["Наша діяльність", activityLinks],
-    [
-      "Співпраця",
-      [
-        "Актуальні опитування",
-        "Стати волонтером",
-        "Стати партнером",
-        "Запросити нас у громаду",
-        "Долучитися до акції/ініціативи",
-      ],
-    ],
-    ["Блог", ["Опис кейсів", "Колонка Каті"]],
-    ["Контакти", ["Пошта", "Соцмережі"]],
+    },
+    {
+      kind: "group",
+      title: "Наша діяльність",
+      items: activityLinks.map((label) => ({
+        label,
+        href: linkHrefForActivity(label),
+      })),
+    },
+    {
+      kind: "link",
+      title: "Матеріали",
+      href: `${siteRoot}materialy.html`,
+    },
+    {
+      kind: "link",
+      title: "Співпраця",
+      href: `${siteRoot}spivpratsya.html`,
+    },
+    {
+      kind: "link",
+      title: "Контакти",
+      href: `${siteRoot}kontakty.html`,
+    },
   ];
 
-  const linkForLabel = (label) => {
+  function linkHrefForActivity(label) {
+    if (label === "Напрямки роботи" || label === "Напрямки роботи.") {
+      return `${siteRoot}diyalnist.html`;
+    }
+    if (label === "Проєкти" || label === "Проєкти.") {
+      return `${siteRoot}proekty.html`;
+    }
     if (label === "Посібники" || label === "Посібники.") {
-      return { href: `${siteRoot}posibnyky/`, external: false };
+      return `${siteRoot}posibnyky/`;
     }
-    if (label === "Бізнес" || label === "Бізнес.") {
-      return {
-        href: `${siteRoot}napryamky/spivpratsya-z-biznesom.html`,
-        external: false,
-      };
+    return null;
+  }
+
+  const linkForLabel = (label) => {
+    const href = linkHrefForActivity(label);
+    if (href) return { href, external: false };
+    if (label === "Хто ми") {
+      return { href: `${siteRoot}pro-nas.html`, external: false };
     }
-    if (
-      label === "Пошта" ||
-      label === "Соцмережі" ||
-      label === "Контакти" ||
-      label === "Контакти."
-    ) {
+    if (label === "Мерч") {
+      return { href: `${siteRoot}merch.html`, external: false };
+    }
+    if (label === "Матеріали") {
+      return { href: `${siteRoot}materialy.html`, external: false };
+    }
+    if (label === "Співпраця") {
+      return { href: `${siteRoot}spivpratsya.html`, external: false };
+    }
+    if (label === "Контакти" || label === "Контакти.") {
       return { href: `${siteRoot}kontakty.html`, external: false };
     }
     return null;
@@ -151,22 +171,37 @@
     `;
   };
 
+  const renderItem = (item) => {
+    if (item.href) {
+      return `<a class="vshanuy-menu__item" href="${item.href}">${item.label}</a>`;
+    }
+    return `<span class="vshanuy-menu__item">${item.label}</span>`;
+  };
+
   const sectionMarkup = sections
-    .map(([title, labels], index) => {
+    .map((section, index) => {
+      const titleId = `menu-section-${index}`;
+      if (section.kind === "link") {
+        return `
+      <section class="vshanuy-menu__section vshanuy-menu__section--link" aria-labelledby="${titleId}">
+        <a class="vshanuy-menu__section-title" id="${titleId}" href="${section.href}">
+          <span>${section.title}</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </section>
+    `;
+      }
       const list =
-        labels.length > 0
+        section.items.length > 0
           ? `<ul>
-          ${labels
-            .map(
-              (label) =>
-                `<li>${renderMenuLink(label, "vshanuy-menu__item")}</li>`,
-            )
+          ${section.items
+            .map((item) => `<li>${renderItem(item)}</li>`)
             .join("")}
         </ul>`
           : "";
       return `
-      <section class="vshanuy-menu__section" aria-labelledby="menu-section-${index}">
-        <h3 id="menu-section-${index}">${title}</h3>
+      <section class="vshanuy-menu__section" aria-labelledby="${titleId}">
+        <h3 id="${titleId}">${section.title}</h3>
         ${list}
       </section>
     `;
@@ -253,6 +288,8 @@
       href.startsWith("pro-nas.html") ||
       href.startsWith("materialy") ||
       href === "merch.html" ||
+      href === "spivpratsya.html" ||
+      href.startsWith("spivpratsya.html") ||
       href === "proekty.html" ||
       href === "diyalnist.html" ||
       href === "posibnyky/" ||

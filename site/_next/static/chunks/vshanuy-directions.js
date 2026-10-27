@@ -2,7 +2,7 @@
   const directions = [
     {
       index: "01",
-      title: "Громада",
+      title: "Робота з громадами",
       href: "napryamky/gromada.html",
       image: "_next/static/media/vshanuy-spivpratsya.jpg",
       description:
@@ -10,7 +10,7 @@
     },
     {
       index: "02",
-      title: "Бізнес",
+      title: "Співпраця з бізнесами",
       href: "napryamky/spivpratsya-z-biznesom.html",
       image: "_next/static/media/vshanuy-business-intro.jpg",
       description:
@@ -50,7 +50,7 @@
     },
     {
       index: "07",
-      title: "Мистецтво",
+      title: "Памʼять в мистецтві",
       href: "napryamky/mystetstvo.html",
       image: "_next/static/media/vshanuy-chekafest.jpg",
       description:
