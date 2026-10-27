@@ -1309,6 +1309,7 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__media {
     grid-column: 1 / span 2;
     grid-row: 2;
+    align-self: start;
     display: flex;
     flex-direction: column;
     min-height: 0;
@@ -1328,6 +1329,8 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     align-items: stretch;
     min-width: 0;
     padding-left: 0;
+    container-type: inline-size;
+    container-name: articles-list;
   }
 
   /* Block bleeds to the page edge; text keeps a readable measure */
@@ -1337,25 +1340,26 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     max-width: none;
   }
 
+  /* Text ≤ 1.5 page columns (list spans 2 → 75cqw) */
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__card
     > p,
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__card
     > h3 {
-    max-width: 42ch;
+    max-width: 75cqw;
   }
 
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     #article-overview-carousel {
     position: relative;
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     width: 100%;
-    height: 100%;
+    height: auto;
     min-height: 0;
     max-width: none;
     margin: 0;
-    aspect-ratio: auto;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
   }
 
@@ -1365,6 +1369,7 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     inset: 0;
   }
 
+  /* Same as Anucho ArticleOverviewCarousel: slide up from below */
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__photo img {
     position: absolute;
@@ -1372,19 +1377,27 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0;
-    transition: opacity 700ms ease-out;
+    transform: translateY(100%);
+    transition: transform 1000ms ease-out;
+    z-index: 0;
   }
 
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__photo img.is-active {
-    opacity: 1;
+    transform: translateY(0);
+    z-index: 1;
   }
 
   @media (prefers-reduced-motion: reduce) {
     section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
       .vshanuy-articles__photo img {
       transition: none;
+      transform: translateY(100%);
+    }
+
+    section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+      .vshanuy-articles__photo img.is-active {
+      transform: translateY(0);
     }
   }
 
