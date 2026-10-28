@@ -32,8 +32,9 @@ export function MaterialDlyaChohoPage({ showHeader = true }: MaterialDlyaChohoPa
         <article>
           <header className="vshanuy-article__intro">
             <a className="vshanuy-article__back" href="materialy.html"><span aria-hidden="true">←</span> Публікації</a>
-            <p className="vshanuy-article__tag">Колонка Катерини Даценко <span aria-hidden="true">·</span> <time dateTime="2026-05-22">22 травня 2026</time></p>
+            <p className="vshanuy-article__tag">Колонка Катерини Даценко</p>
             <h1 className="vshanuy-article__title">А для чого памʼятаєш ти?</h1>
+            <p className="vshanuy-article__date"><time dateTime="2026-05-22">22 травня 2026</time></p>
             <p className="vshanuy-article__standfirst">«Не сумуйте за мною, життя дуже коротке, якщо воно продовжується після смерті, то побачимось», – писала наша подруга і бойова медикиня Іра «Чека» Цибух у листі на випадок загибелі.</p>
           </header>
 

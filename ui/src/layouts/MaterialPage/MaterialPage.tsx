@@ -71,8 +71,9 @@ export function MaterialPage({ showHeader = true }: MaterialPageProps) {
         <article>
           <header className="vshanuy-article__intro">
             <a className="vshanuy-article__back" href="materialy.html"><span aria-hidden="true">←</span> Публікації</a>
-            <p className="vshanuy-article__tag">Колонка Катерини Даценко <span aria-hidden="true">·</span> <time dateTime="2026-10-09">9 жовтня 2026</time></p>
+            <p className="vshanuy-article__tag">Колонка Катерини Даценко</p>
             <h1 className="vshanuy-article__title">Історія Хвилини мовчання</h1>
+            <p className="vshanuy-article__date"><time dateTime="2026-10-09">9 жовтня 2026</time></p>
             <p className="vshanuy-article__standfirst">Під час війни – у лісах, криївках – Українська повстанська армія завмирає на «Загальне вшанування трихвилинною мовчанкою памʼяті всіх поляглих вояків УПА та учасників збройного підпілля, які загинули у рр. 1942–1947». Це цитата зі Святочного наказу, в якому є Інструкція відзначення пʼятиріччя Свята УПА, 14 жовтня 1947 року. Але виявилося, що документ від 1947 року – не найдавніший.</p>
           </header>
 
