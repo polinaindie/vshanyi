@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Контакти — Вшануй</title>
   <link rel="stylesheet" href="_next/static/css/font-overrides.css?v=20261028navf"/>
-  <link rel="stylesheet" href="_next/static/css/kontakty.css?v=20261023e"/>
+  <link rel="stylesheet" href="_next/static/css/kontakty.css?v=20261028a"/>
 </head>
 <body class="vshanuy-contacts-page">
   <div class="vshanuy-page-guides" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
@@ -112,6 +112,13 @@
     document.querySelector(".vshanuy-contact__form")?.addEventListener("submit", (event) => {
       event.preventDefault();
     });
+
+    (() => {
+      const topic = new URLSearchParams(location.search).get("tema");
+      if (!topic) return;
+      const input = document.querySelector(`input[name="topic"][value="${CSS.escape(topic)}"]`);
+      if (input) input.checked = true;
+    })();
   </script>
   <script src="_next/static/chunks/vshanuy-smooth-scroll.js?v=20261023a"></script>
   <script src="_next/static/chunks/vshanuy-menu.js?v=20261028k"></script>
