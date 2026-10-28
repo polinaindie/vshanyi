@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import placeholderPhoto from '../../assets/support-placeholder.jpg'
+import supportPhoto from '../../assets/support-photo.jpg'
 import { DesktopHeader } from '../../components/DesktopHeader/DesktopHeader'
 import { SiteFooter } from '../../components/SiteFooter/SiteFooter'
 import '../../components/DesktopHeader/DesktopHeader.css'
@@ -98,8 +98,8 @@ export function SupportPage({
   lead = 'Ваша підтримка допомагає масштабувати Хвилину мовчання на національному рівні та розвивати культуру памʼяті в українських містах.',
   donateHref = 'https://send.monobank.ua/jar/7rme78odM9',
   bankFields = defaultBankFields,
-  photoSrc = placeholderPhoto,
-  photoAlt = 'Фото-заглушка: Хвилина мовчання',
+  photoSrc = supportPhoto,
+  photoAlt = 'Картонна табличка з цитатою Ірини (Чеки) Цибух «Памʼять формує суспільство» серед вінків і польових квітів',
 }: SupportPageProps) {
   const [status, setStatus] = useState('')
 
