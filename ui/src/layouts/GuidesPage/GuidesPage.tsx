@@ -25,6 +25,7 @@ export const guides: Guide[] = [
   {
     title: 'Практичний комунікаційний гайд «Не нашкодити»',
     text: 'Що говорити після обстрілів або у дні памʼяті.',
+    href: 'https://drive.google.com/file/d/1H-nnZ88YKFs8vQYmUwhedCzPSwdhwPck/view?usp=drive_link',
   },
 ]
 
