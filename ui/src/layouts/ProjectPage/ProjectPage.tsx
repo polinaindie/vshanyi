@@ -3,6 +3,7 @@ import hvylynaMovchannyaPhoto from '../../assets/projects/proekt-hvylyna-movchan
 import chekafestPhoto from '../../assets/projects/proekt-chekafest.webp'
 import proshchannyaZPraporomPhoto from '../../assets/projects/proekt-proshchannya-z-praporom.webp'
 import tryznaPhoto from '../../assets/projects/proekt-tryzna.webp'
+import tryznaSurveyPhoto from '../../assets/projects/tryzna-opytuvannya.jpg'
 import pomizhNasPhoto from '../../assets/projects/proekt-pomizh-nas.webp'
 import dzerkaloPamyatiPhoto from '../../assets/projects/proekt-dzerkalo-pamyati.webp'
 import vinkuvannyaPhoto from '../../assets/projects/proekt-vinkuvannya.webp'
@@ -20,6 +21,13 @@ export type ProjectMaterial = {
   document: string
 }
 
+export type ProjectSection = {
+  id: string
+  heading: string
+  image: { src: string; width: number; height: number; alt: string }
+  body: ReactNode[]
+}
+
 export type Project = {
   slug: string
   number: string
@@ -32,6 +40,7 @@ export type Project = {
   imageCaption?: string
   standfirst: string
   body: ReactNode[]
+  sections?: ProjectSection[]
   materials: ProjectMaterial[]
 }
 
@@ -97,7 +106,25 @@ export const projects: Project[] = [
     standfirst: 'Прощання з військовим – це публічний спосіб вшанувати людину й символічно подякувати їй за службу. Прощання з містом – остання зустріч загиблого з його громадою. Це важливий, майже сакральний момент для всіх учасників, а надто для родини, яка втратила найдорожче – свою людину.',
     body: [
       <p>Ми прагнемо, щоб це прощання відбувалось однаково гідно як у великому мегаполісі, так і в маленькому селі, щоб місто прощалось шанобливо як з генералом, так і з рядовим солдатом. Тому в межах проєкту «Тризна» ми збираємо та досліджуємо досвід громад і людей, щоб розробити алгоритм із мінімально необхідних кроків, завдяки яким церемонія прощання з містом буде гідною.</p>,
-      <p>Просимо всіх, хто має досвід прощання з військовими, <a className="vshanuy-article__inline-link" href="https://forms.gle/hz4xq3g1Hz4ccVAz8" target="_blank" rel="noopener noreferrer">пройти наше опитування</a>.</p>,
+    ],
+    sections: [
+      {
+        id: 'opytuvannya',
+        heading: 'Опитування про прощання з військовим',
+        image: {
+          src: tryznaSurveyPhoto,
+          width: 1024,
+          height: 682,
+          alt: 'Почесна варта в білих рукавичках тримає розгорнутий державний прапор, позаду на щоглах майорять прапори України',
+        },
+        body: [
+          <p>Прощання із загиблим військовим — дуже особистий досвід для родини й водночас момент, у якому бере участь уся громада. У різних містах України такі прощання відбуваються по-різному: десь вони дають родині відчуття підтримки та гідного вшанування, а десь можуть залишати біль, розгубленість чи відчуття, що важливого не було почуто.</p>,
+          <p>Ми хочемо зібрати досвід родин і близьких загиблих військових, щоб зрозуміти, які практики прощання сьогодні допомагають, що потребує змін і яким може бути гідне прощання — з повагою до людини, її родини та громади.</p>,
+          <p>Ваші відповіді допоможуть нам сформувати рекомендації для громад і зробити практики вшанування більш людяними та чутливими.</p>,
+          <p><strong><a className="vshanuy-article__inline-link" href="https://forms.gle/2Sj6jCphk5hiPoEY6" target="_blank" rel="noopener noreferrer">Заповнити опитування</a></strong></p>,
+          <p>Участь є добровільною. Ви можете не відповідати на будь-яке запитання, зупинитися в будь-який момент або залишити свою історію анонімно.</p>,
+        ],
+      },
     ],
     materials: [],
   },
@@ -258,6 +285,32 @@ export function ProjectPage({ slug, showHeader = true }: ProjectPageProps) {
                   ))}
                 </div>
               ) : null}
+
+              {project.sections?.map((section) => (
+                <section
+                  key={section.id}
+                  className="vshanuy-article__section"
+                  id={section.id}
+                  aria-labelledby={`${section.id}-title`}
+                >
+                  <h2 className="vshanuy-article__heading" id={`${section.id}-title`}>
+                    {section.heading}
+                  </h2>
+                  <figure className="vshanuy-article__figure">
+                    <img
+                      src={section.image.src}
+                      alt={section.image.alt}
+                      width={section.image.width}
+                      height={section.image.height}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </figure>
+                  {section.body.map((paragraph, index) => (
+                    <Fragment key={index}>{paragraph}</Fragment>
+                  ))}
+                </section>
+              ))}
 
               {project.materials.length ? (
                 <section className="vshanuy-article__sources" aria-labelledby="vshanuy-project-materials">
