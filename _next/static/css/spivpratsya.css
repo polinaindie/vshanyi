@@ -1,19 +1,52 @@
+/* Collaboration page — mirrors ui/ CollaborationPage */
+
 .vshanuy-collab-page {
+  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
+
+  position: relative;
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
   min-height: 100%;
+  background: var(--paper);
+  color: var(--text);
 }
 
+.vshanuy-collab-page *,
+.vshanuy-collab-page *::before,
+.vshanuy-collab-page *::after {
+  box-sizing: border-box;
+}
+
+.vshanuy-page-guides {
+  position: absolute;
+  z-index: 0;
+  inset: 0 8px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  pointer-events: none;
+}
+
+.vshanuy-page-guides > span {
+  border-right: 1px solid var(--vshanuy-page-grid-line);
+}
+
+.vshanuy-page-guides > span:nth-child(n + 2) {
+  display: none;
+}
+
+.vshanuy-collab-page > main,
+.vshanuy-collab-page > .vshanuy-site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Page */
+
 .vshanuy-collab-page__main {
-  max-width: none;
-  margin: 0;
   padding: var(--space-4) 8px var(--space-silence);
 }
 
 .vshanuy-collab-page__intro {
-  padding-bottom: var(--space-3);
-  border-bottom: var(--line);
+  padding: 0 var(--space-2);
 }
 
 .vshanuy-collab-page__title {
@@ -22,15 +55,153 @@
   font-size: clamp(36px, 22.5306px + 3.59184vw, 80px);
   line-height: 1;
   font-weight: 300;
-  letter-spacing: -0.02em;
-  text-wrap: balance;
 }
 
-.vshanuy-collab-page__lead {
+.vshanuy-collab-page__section {
+  margin-top: var(--space-4);
+}
+
+/* Photo */
+
+.vshanuy-collab-page__figure {
+  margin: 0;
+  padding-inline: var(--space-2);
+}
+
+.vshanuy-collab-page__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+/* Split */
+
+.vshanuy-collab-page__split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+.vshanuy-collab-page__prose {
+  max-width: 60ch;
+  padding-inline: var(--space-2);
+}
+
+.vshanuy-collab-page__prose p {
+  margin: 0 0 var(--space-2);
+  font-size: var(--step-0);
+  line-height: var(--leading-text);
+}
+
+.vshanuy-collab-page__prose p:last-of-type {
+  margin-bottom: 0;
+}
+
+.vshanuy-collab-page__prose .vshanuy-collab-page__accent {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 300;
+  line-height: 1.25;
+}
+
+/* Contact list */
+
+.vshanuy-collab-page__list {
+  list-style: none;
   margin: var(--space-3) 0 0;
-  max-width: 36ch;
+  padding: 0;
+  border-top: var(--line);
+  border-bottom: var(--line-muted);
+}
+
+.vshanuy-collab-page__link {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr auto;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-height: 3rem;
+  padding: var(--space-2) 0;
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: var(--radius);
+}
+
+.vshanuy-collab-page__link--primary {
+  grid-template-columns: 1fr;
+  gap: var(--space-1);
+  padding: var(--space-3) 0;
+}
+
+.vshanuy-collab-page__service {
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
   color: var(--text-secondary);
-  font-family: var(--font-text);
+}
+
+.vshanuy-collab-page__value {
+  min-width: 0;
+  font-family: var(--font-display);
   font-size: var(--step-1);
-  line-height: 1.4;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 250ms ease-out;
+}
+
+.vshanuy-collab-page__link--primary .vshanuy-collab-page__value {
+  font-size: clamp(var(--step-1), 5vw, var(--step-2));
+  font-weight: 700;
+}
+
+.vshanuy-collab-page__link:hover .vshanuy-collab-page__value {
+  text-decoration-color: currentColor;
+}
+
+.vshanuy-collab-page__link:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vshanuy-collab-page__value {
+    transition: none;
+  }
+}
+
+/* Layout */
+
+@media (min-width: 1024px) {
+  .vshanuy-page-guides {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .vshanuy-page-guides > span:nth-child(n + 2) {
+    display: block;
+  }
+
+  .vshanuy-page-guides > span:last-child {
+    border-right: 0;
+  }
+
+  .vshanuy-collab-page__split {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+  }
+
+  .vshanuy-collab-page__figure {
+    grid-column: 1 / span 2;
+  }
+
+  .vshanuy-collab-page__prose {
+    grid-column: 3 / span 2;
+    align-self: start;
+  }
 }
