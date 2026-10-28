@@ -37,7 +37,7 @@
               <li><a href="https://www.facebook.com/momentofhonor" target="_blank" rel="noopener noreferrer">Facebook.</a></li>
             </ul>
           </div>
-          <p class="vshanuy-site-footer__column-foot">© 2026 ВШАНУЙ <span aria-hidden="true">·</span> Київ <span aria-hidden="true">·</span> Україна</p>
+          <p class="vshanuy-site-footer__column-foot">© 2026 ВШАНУЙ</p>
         </nav>
 
         <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-secondary" aria-label="Діяльність">
