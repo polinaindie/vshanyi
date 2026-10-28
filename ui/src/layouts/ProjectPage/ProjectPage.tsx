@@ -7,6 +7,8 @@ import tryznaSurveyPhoto from '../../assets/projects/tryzna-opytuvannya.jpg'
 import pomizhNasPhoto from '../../assets/projects/proekt-pomizh-nas.webp'
 import dzerkaloPamyatiPhoto from '../../assets/projects/proekt-dzerkalo-pamyati.webp'
 import vinkuvannyaPhoto from '../../assets/projects/proekt-vinkuvannya.webp'
+import vinkuvannyaTeamPhoto from '../../assets/projects/vinkuvannya-komanda.jpg'
+import starlightLogo from '../../assets/partners/starlight.svg'
 import tseMozheButyTyshaPhoto from '../../assets/projects/proekt-tse-mozhe-buty-tysha.webp'
 import { DesktopHeader } from '../../components/DesktopHeader/DesktopHeader'
 import { SiteFooter } from '../../components/SiteFooter/SiteFooter'
@@ -28,6 +30,12 @@ export type ProjectSection = {
   body: ReactNode[]
 }
 
+export type ProjectPartner = {
+  name: string
+  logo: string
+  href: string
+}
+
 export type Project = {
   slug: string
   number: string
@@ -39,6 +47,8 @@ export type Project = {
   imageAlt: string
   imageCaption?: string
   standfirst: string
+  partners?: ProjectPartner[]
+  bodyImage?: ProjectSection['image']
   body: ReactNode[]
   sections?: ProjectSection[]
   materials: ProjectMaterial[]
@@ -173,8 +183,19 @@ export const projects: Project[] = [
     imageWidth: 1600,
     imageHeight: 1067,
     imageAlt: 'Учасниці плетуть вінки з живих квітів за довгим столом',
-    standfirst: '29 серпня 2026 року, в День памʼяті загиблих захисників та захисниць, ми відновлювали давню українську традицію вінкування на честь полеглих. Родини та друзі загиблих під розповіді про їх найщасливіші моменти власноруч створювали вінки з живих квітів. Кожна квітка та рослинка – як спомин про рідну людину: волошка – бо він мав сині очі…',
-    body: [],
+    standfirst: '29 серпня, у День памʼяті загиблих Захисників і Захисниць України, Starlight Media разом із ГО «Вшануй», громадами, експертами та небайдужими українцями долучилася до відновлення практики вінкування.',
+    partners: [{ name: 'Starlight Media', logo: starlightLogo, href: 'https://starlight.media/' }],
+    bodyImage: {
+      src: vinkuvannyaTeamPhoto,
+      width: 1600,
+      height: 1066,
+      alt: 'Учасники вінкування стоять у ряд у залі, двоє тримають вінки й букети з польових квітів і соняшників',
+    },
+    body: [
+      <p key="0">Вінкування — це плетіння памʼятальних вінків на честь полеглих Захисників і Захисниць. Ця практика має глибоке коріння в українській культурі: вінок супроводжував людину у важливі моменти життя, а памʼятальні вінки здавна приносили до могил загиблих.</p>,
+      <p key="1">Для нас важливо не просто відтворити традицію, а повернути її в сучасну культуру памʼяті — як живу дію, у якій є місце імені, історії та розмові про людину.</p>,
+      <p key="2">Вінкування не замінює вже існуючих способів ушанування. Воно може стати їхнім продовженням: після Хвилини мовчання — дія, після названого імені — розповідь про людину, після покладеного вінка — можливість залишитися разом і продовжити говорити про тих, кого ми памʼятаємо.</p>,
+    ],
     materials: [
       { label: 'Вінкування для бізнесу', document: 'Вінкування для бізнесу (PDF)' },
       { label: 'Гайд, як організувати вінкування', document: 'Гайд з вінкування' }
@@ -272,6 +293,25 @@ export function ProjectPage({ slug, showHeader = true }: ProjectPageProps) {
                   ))}
                 </dd>
               </div>
+              {project.partners?.length ? (
+                <div className="vshanuy-project__partners">
+                  <dt className="vshanuy-article__label">{project.partners.length === 1 ? 'Партнер:' : 'Партнери:'}</dt>
+                  <dd>
+                    {project.partners.map((partner) => (
+                      <a
+                        key={partner.name}
+                        className="vshanuy-project__partner"
+                        href={partner.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img src={partner.logo} alt={partner.name} decoding="async" />
+                        <span className="vshanuy-project__hidden"> (відкриється в новій вкладці)</span>
+                      </a>
+                    ))}
+                  </dd>
+                </div>
+              ) : null}
             </dl>
             <p className="vshanuy-article__standfirst">{project.standfirst}</p>
           </header>
@@ -280,6 +320,18 @@ export function ProjectPage({ slug, showHeader = true }: ProjectPageProps) {
             <div className="vshanuy-article__body">
               {project.body.length ? (
                 <div className="vshanuy-article__section">
+                  {project.bodyImage ? (
+                    <figure className="vshanuy-article__figure">
+                      <img
+                        src={project.bodyImage.src}
+                        alt={project.bodyImage.alt}
+                        width={project.bodyImage.width}
+                        height={project.bodyImage.height}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </figure>
+                  ) : null}
                   {project.body.map((paragraph, index) => (
                     <Fragment key={index}>{paragraph}</Fragment>
                   ))}

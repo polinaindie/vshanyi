@@ -144,8 +144,14 @@ PROJECTS = [
         "w": 1600, "h": 1067,
         "hero": "vshanuy-proekt-vinkuvannya.webp", "hw": 3600, "hh": 2400,
         "alt": "Учасниці плетуть вінки з живих квітів за довгим столом",
-        "standfirst": "29 серпня 2026 року, в День памʼяті загиблих захисників та захисниць, ми відновлювали давню українську традицію вінкування на честь полеглих. Родини та друзі загиблих під розповіді про їх найщасливіші моменти власноруч створювали вінки з живих квітів. Кожна квітка та рослинка – як спомин про рідну людину: волошка – бо він мав сині очі…",
-        "body": [],
+        "standfirst": "29 серпня, у День памʼяті загиблих Захисників і Захисниць України, Starlight Media разом із ГО «Вшануй», громадами, експертами та небайдужими українцями долучилася до відновлення практики вінкування.",
+        "partners": [("Starlight Media", "partners/starlight.svg", "https://starlight.media/")],
+        "body_figure": ("vshanuy-vinkuvannya-komanda.jpg", 1600, 1066, "Учасники вінкування стоять у ряд у залі, двоє тримають вінки й букети з польових квітів і соняшників"),
+        "body": [
+            "Вінкування — це плетіння памʼятальних вінків на честь полеглих Захисників і Захисниць. Ця практика має глибоке коріння в українській культурі: вінок супроводжував людину у важливі моменти життя, а памʼятальні вінки здавна приносили до могил загиблих.",
+            "Для нас важливо не просто відтворити традицію, а повернути її в сучасну культуру памʼяті — як живу дію, у якій є місце імені, історії та розмові про людину.",
+            "Вінкування не замінює вже існуючих способів ушанування. Воно може стати їхнім продовженням: після Хвилини мовчання — дія, після названого імені — розповідь про людину, після покладеного вінка — можливість залишитися разом і продовжити говорити про тих, кого ми памʼятаємо.",
+        ],
         "materials": [
             (link("https://drive.google.com/file/d/1SyFeIjwcupOJZPUTYNJFIsi2RbxUZDC-/view?usp=sharing", "Вінкування для бізнесу"),),
             (link("https://docs.google.com/document/d/1iucw8UpdVfRackWgp6bO3CeKnNr2xDGRWq2xpRRfgao/edit?tab=t.0#heading=h.8x4pmlb5ixnp", "Гайд, як організувати вінкування"),),
@@ -179,8 +185,30 @@ def caption(p):
     return f'\n          <figcaption>{p["caption"]}</figcaption>'
 
 
+def partners_row(p):
+    if not p.get("partners"):
+        return ""
+    label = "Партнер:" if len(p["partners"]) == 1 else "Партнери:"
+    logos = "".join(
+        f'<a class="vshanuy-project__partner" href="{href}" target="_blank" rel="noopener noreferrer">'
+        f'<img src="../_next/static/media/{logo}" alt="{name}" decoding="async"/>'
+        f'<span class="vshanuy-project__hidden"> (відкриється в новій вкладці)</span></a>'
+        for name, logo, href in p["partners"])
+    return f"""
+          <div class="vshanuy-project__partners">
+            <dt class="vshanuy-article__label">{label}</dt>
+            <dd>{logos}</dd>
+          </div>"""
+
+
 def page(p):
     body = "\n".join(f"            <p>{t}</p>" for t in p["body"])
+    if p.get("body_figure"):
+        image, w, h, alt = p["body_figure"]
+        body = f"""            <figure class="vshanuy-article__figure">
+              <img src="../_next/static/media/{image}" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async"/>
+            </figure>
+{body}"""
     section = f"""          <div class="vshanuy-article__section">
 {body}
           </div>
@@ -254,7 +282,7 @@ def page(p):
   <link rel="stylesheet" href="../_next/static/css/materialy.css?v={CSS_V['mats']}"/>
   <link rel="stylesheet" href="../_next/static/css/material.css?v={CSS_V['mat']}"/>
   <link rel="stylesheet" href="../_next/static/css/napryamok.css?v={CSS_V['dir']}"/>
-  <link rel="stylesheet" href="../_next/static/css/project-slider.css?v=20261028a"/>
+  <link rel="stylesheet" href="../_next/static/css/project-slider.css?v=20261028b"/>
 </head>
 <body class="vshanuy-article-page vshanuy-project-page">
   <div class="vshanuy-page-guides" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
@@ -272,7 +300,7 @@ def page(p):
           <div>
             <dt class="vshanuy-article__label">Напрями:</dt>
             <dd>{directions_links(p['slug'])}</dd>
-          </div>
+          </div>{partners_row(p)}
         </dl>
         <p class="vshanuy-article__standfirst">{p['standfirst']}</p>
       </header>
@@ -405,7 +433,7 @@ def list_shell(title, body_class, body, extra_scripts):
   <title>{title} — Вшануй</title>
   <link rel="stylesheet" href="_next/static/css/font-overrides.css?v={CSS_V['fo']}"/>
   <link rel="stylesheet" href="_next/static/css/materialy.css?v={CSS_V['mats']}"/>
-  <link rel="stylesheet" href="_next/static/css/project-slider.css?v=20261028a"/>
+  <link rel="stylesheet" href="_next/static/css/project-slider.css?v=20261028b"/>
   <link rel="stylesheet" href="_next/static/css/diyalnist.css?v={CSS_V['diyal']}"/>
 </head>
 <body class="vshanuy-materials-page {body_class}">
