@@ -320,6 +320,9 @@ export function ProjectPage({ slug, showHeader = true }: ProjectPageProps) {
             <div className="vshanuy-article__body">
               {project.body.length ? (
                 <div className="vshanuy-article__section">
+                  {project.body.map((paragraph, index) => (
+                    <Fragment key={index}>{paragraph}</Fragment>
+                  ))}
                   {project.bodyImage ? (
                     <figure className="vshanuy-article__figure">
                       <img
@@ -332,9 +335,6 @@ export function ProjectPage({ slug, showHeader = true }: ProjectPageProps) {
                       />
                     </figure>
                   ) : null}
-                  {project.body.map((paragraph, index) => (
-                    <Fragment key={index}>{paragraph}</Fragment>
-                  ))}
                 </div>
               ) : null}
 

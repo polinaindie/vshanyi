@@ -1,5 +1,7 @@
 import collabPhoto from '../../assets/spivpratsya.jpg'
 import volunteerPhoto from '../../assets/spivpratsya-volonter.jpg'
+import communityPhoto from '../../assets/spivpratsya-gromada.jpg'
+import partnerPhoto from '../../assets/projects/vinkuvannya-komanda.jpg'
 import { DesktopHeader } from '../../components/DesktopHeader/DesktopHeader'
 import { SiteFooter } from '../../components/SiteFooter/SiteFooter'
 import '../../components/DesktopHeader/DesktopHeader.css'
@@ -49,6 +51,8 @@ export const collaborationFormats: CollaborationFormat[] = [
   {
     id: 'partner',
     title: 'Стати партнером',
+    image: partnerPhoto,
+    alt: 'Учасники вінкування стоять у ряд у залі, двоє тримають вінки й букети з польових квітів і соняшників',
     paragraphs: [
       'Культура памʼяті формується не однією організацією. Вона виникає там, де громади, медіа, бізнес, культурні й освітні інституції та небайдужі люди обʼєднують свої можливості заради гідного вшанування загиблих.',
       'Ми співпрацюємо з партнерами у створенні меморіальних практик, інформаційних кампаній, публічних подій, досліджень та проєктів, які допомагають говорити про памʼять уважно, сучасно й без знеособлення.',
@@ -66,6 +70,8 @@ export const collaborationFormats: CollaborationFormat[] = [
   {
     id: 'gromada',
     title: 'Запросити нас в громаду',
+    image: communityPhoto,
+    alt: 'Учасники зустрічі сидять за столами в залі й слухають жінку, яка стоїть спиною до камери',
     paragraphs: [
       'Працюємо з громадами та координаторами осередків, допомагаємо створювати й впроваджувати локальні практики памʼяті.',
       'Під час поїздок ми зустрічаємося з родинами загиблих, місцевими активістами, представниками міста та області, відвідуємо кладовища, меморіали та інші місця памʼяті, досліджуємо вже наявні ритуали й практики.',

@@ -205,10 +205,10 @@ def page(p):
     body = "\n".join(f"            <p>{t}</p>" for t in p["body"])
     if p.get("body_figure"):
         image, w, h, alt = p["body_figure"]
-        body = f"""            <figure class="vshanuy-article__figure">
+        body = f"""{body}
+            <figure class="vshanuy-article__figure">
               <img src="../_next/static/media/{image}" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async"/>
-            </figure>
-{body}"""
+            </figure>"""
     section = f"""          <div class="vshanuy-article__section">
 {body}
           </div>
