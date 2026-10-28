@@ -9,10 +9,15 @@ export type CollaborationFormat = {
   /** Якір секції: `volonter` → `#volonter`. */
   id: string
   title: string
-  image: string
-  alt: string
+  /** Без фото показується заглушка. */
+  image?: string
+  alt?: string
   paragraphs: string[]
   cta: {
+    label: string
+    href: string
+  }
+  more?: {
     label: string
     href: string
   }
@@ -39,6 +44,40 @@ export const collaborationFormats: CollaborationFormat[] = [
     cta: {
       label: 'Залишити контакти',
       href: 'kontakty.html?tema=volunteer#contact-form',
+    },
+  },
+  {
+    id: 'partner',
+    title: 'Стати партнером',
+    paragraphs: [
+      'Культура памʼяті формується не однією організацією. Вона виникає там, де громади, медіа, бізнес, культурні й освітні інституції та небайдужі люди обʼєднують свої можливості заради гідного вшанування загиблих.',
+      'Ми співпрацюємо з партнерами у створенні меморіальних практик, інформаційних кампаній, публічних подій, досліджень та проєктів, які допомагають говорити про памʼять уважно, сучасно й без знеособлення.',
+      'Допомагаємо бізнесу інтегрувати культуру памʼяті у свої комунікації. Проводимо консультації, аудити, лекції та сесії, щоб компанії могли говорити про війну, втрати й памʼять.',
+    ],
+    cta: {
+      label: 'Залишити контакти',
+      href: 'kontakty.html?tema=partner#contact-form',
+    },
+    more: {
+      label: 'Наші партнери',
+      href: 'partnery.html',
+    },
+  },
+  {
+    id: 'gromada',
+    title: 'Запросити нас в громаду',
+    paragraphs: [
+      'Працюємо з громадами та координаторами осередків, допомагаємо створювати й впроваджувати локальні практики памʼяті.',
+      'Під час поїздок ми зустрічаємося з родинами загиблих, місцевими активістами, представниками міста та області, відвідуємо кладовища, меморіали та інші місця памʼяті, досліджуємо вже наявні ритуали й практики.',
+      'Під час таких поїздок не лише збираємо досвід, а й допомагаємо людям знаходити одне одного. Обмінюємося рішеннями, які вже працюють в інших містах, говоримо про різні практики та намагаємося зрозуміти, чому одна й та сама ідея може працювати в одній громаді й не працювати в іншій.',
+    ],
+    cta: {
+      label: 'Залишити контакти',
+      href: 'kontakty.html?tema=community#contact-form',
+    },
+    more: {
+      label: 'Робота з громадами',
+      href: 'napryamky/gromada.html',
     },
   },
 ]
@@ -103,22 +142,36 @@ export function CollaborationPage({
                   {format.title}
                 </h2>
                 <figure className="vshanuy-collab-page__figure">
-                  <img
-                    src={format.image}
-                    alt={format.alt}
-                    width={1024}
-                    height={682}
-                    loading="lazy"
-                    decoding="async"
-                  />
+                  {format.image ? (
+                    <img
+                      src={format.image}
+                      alt={format.alt ?? ''}
+                      width={1024}
+                      height={682}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <div className="vshanuy-collab-page__placeholder" aria-hidden="true">
+                      Фото
+                    </div>
+                  )}
                 </figure>
                 <div className="vshanuy-collab-page__prose">
                   {format.paragraphs.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
-                  <a className="vshanuy-collab-page__cta" href={format.cta.href}>
-                    {format.cta.label} <span aria-hidden="true">→</span>
-                  </a>
+                  <div className="vshanuy-collab-page__actions">
+                    <a className="vshanuy-collab-page__cta" href={format.cta.href}>
+                      {format.cta.label} <span aria-hidden="true">→</span>
+                    </a>
+                    {format.more ? (
+                      <a className="vshanuy-collab-page__more" href={format.more.href}>
+                        <span className="vshanuy-collab-page__more-text">{format.more.label}</span>{' '}
+                        <span className="vshanuy-collab-page__more-arrow" aria-hidden="true">→</span>
+                      </a>
+                    ) : null}
+                  </div>
                 </div>
               </section>
             ))}

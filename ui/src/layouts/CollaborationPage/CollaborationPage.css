@@ -271,6 +271,86 @@
   }
 }
 
+/* Photo placeholder — until the real photo arrives */
+
+.vshanuy-collab-page__placeholder {
+  display: flex;
+  aspect-ratio: 3 / 2;
+  align-items: center;
+  justify-content: center;
+  background: var(--beige);
+  color: var(--text-secondary);
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/* Actions: CTA + secondary link */
+
+.vshanuy-collab-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.vshanuy-collab-page__actions .vshanuy-collab-page__cta {
+  margin-top: 0;
+}
+
+.vshanuy-collab-page__more {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink);
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.vshanuy-collab-page__more-text {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 300ms ease-out;
+}
+
+.vshanuy-collab-page__more-arrow {
+  font-size: 20px;
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.vshanuy-collab-page__more:hover .vshanuy-collab-page__more-text,
+.vshanuy-collab-page__more:focus-visible .vshanuy-collab-page__more-text {
+  text-decoration-color: currentColor;
+}
+
+.vshanuy-collab-page__more:hover .vshanuy-collab-page__more-arrow,
+.vshanuy-collab-page__more:focus-visible .vshanuy-collab-page__more-arrow {
+  transform: translateX(4px);
+}
+
+.vshanuy-collab-page__more:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vshanuy-collab-page__more-text,
+  .vshanuy-collab-page__more-arrow {
+    transition: none;
+  }
+}
+
 /* Layout */
 
 @media (min-width: 1024px) {
