@@ -10,9 +10,9 @@ HERE = Path(__file__).resolve().parent
 SITE = HERE.parent.parent / "site"
 PROJECTS_JSON = HERE / "projects.json"
 
-CSS_V = {"fo": "20261028e", "mats": "20261026b", "mat": "20261027j", "slider": "20261027h", "dir": "20261027m"}
-MENU_V = "20261028j"
-FOOTER_V = "20261028g"
+CSS_V = {"fo": "20261028navf", "mats": "20261026b", "mat": "20261027j", "slider": "20261027h", "dir": "20261027m"}
+MENU_V = "20261028join"
+FOOTER_V = "20261028join"
 LAW = "https://zakon.rada.gov.ua/laws/show/4783-20"
 EMAIL = "momentofhonorukraine@gmail.com"
 GROMADA_FORM = "https://forms.gle/YCupf54quWyLLyfT8"
@@ -158,7 +158,7 @@ DIRECTIONS = [
                    "Під час таких поїздок не лише збираємо досвід, а й допомагаємо людям знаходити одне одного. Обмінюємося рішеннями, які вже працюють в інших містах, говоримо про різні практики та намагаємося зрозуміти, чому одна й та сама ідея може працювати в одній громаді й не працювати в іншій."),
             ])),
             section("dlya-hromad", "Що ми вже маємо для громад", toolkit([
-                (ext("https://drive.google.com/file/d/1Xz3Sg27o3mEHlHnsqzsjcW7bERJ65fFr/view", "Дорожня карта для міст"),
+                (ext("https://drive.google.com/file/d/1Xz3Sg27o3mEHlHnsqzsjcW7bERJ65fFr/view", "Дорожня карта Хвилини мовчання для міст"),
                  "Як впровадити Хвилину мовчання в місті: приклади розпоряджень, листів, комунікацій і потрібні документи."),
                 ("Візуальні матеріали",
                  "Оформлення Хвилини мовчання у просторі міста.",
@@ -186,7 +186,7 @@ DIRECTIONS = [
                 ps("Дорожня карта для бізнесу – це покрокова інструкція, як бізнес може вбудувати Хвилину мовчання в свої процеси, аби підтримати тих, хто втратив, та віддати шану співробітникам та всім загиблим.",
                    f"Корисні матеріали зібрані в одній теці: «{ext('https://drive.google.com/drive/folders/16psMcEeBOMho4B_rr64QF-85FeGd3NKK?usp=drive_link', 'Хвилина мовчання для бізнесу')}»."),
                 toolkit([
-                    (ext("https://docs.google.com/document/d/1X-qyI5rbkrLuLo7jJjDyRM8zb3cmT51dSv-Qps_wfKU/edit?tab=t.0#heading=h.19im2pk2pd0u", "Дорожня карта для бізнесу"),
+                    (ext("https://docs.google.com/document/d/1X-qyI5rbkrLuLo7jJjDyRM8zb3cmT51dSv-Qps_wfKU/edit?tab=t.0#heading=h.19im2pk2pd0u", "Дорожня карта Хвилини мовчання для бізнесу"),
                      "Покрокова інструкція, як впровадити Хвилину мовчання в компанії."),
                     (ext("https://drive.google.com/drive/folders/1NcnQe0vvwyVJZCN28pats-ZHJs374Yt2?usp=drive_link", "Звук-оголошення Хвилини мовчання"),
                      "Готовий запис, яким можна скористатися одразу.",

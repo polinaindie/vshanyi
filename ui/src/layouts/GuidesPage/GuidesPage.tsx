@@ -8,17 +8,19 @@ import './GuidesPage.css'
 export type Guide = {
   title: string
   text: string
-  file?: { href: string; size: string }
+  href?: string
 }
 
 export const guides: Guide[] = [
   {
     title: 'Дорожня карта Хвилини мовчання',
     text: 'Покрокова інструкція для міста, як запровадити Хвилину мовчання.',
+    href: 'https://drive.google.com/file/d/1Xz3Sg27o3mEHlHnsqzsjcW7bERJ65fFr/view',
   },
   {
     title: 'Як впровадити Хвилину мовчання у бізнесі',
     text: 'Як комунікувати з працівниками і пояснити аудиторії ритуал.',
+    href: 'https://docs.google.com/document/d/1X-qyI5rbkrLuLo7jJjDyRM8zb3cmT51dSv-Qps_wfKU/edit?tab=t.0#heading=h.19im2pk2pd0u',
   },
   {
     title: 'Практичний комунікаційний гайд «Не нашкодити»',
@@ -31,7 +33,7 @@ export type GuidesPageProps = {
   items?: Guide[]
 }
 
-/** Page composition: H1 «Гайди.» → нумерований список, розділений лінійками: номер (кол. 1), назва й опис (кол. 2–3), «Завантажити PDF» з розміром файлу (кол. 4), лише якщо є файл. Жовтий-бюджет 0. */
+/** Page composition: H1 «Гайди.» → нумерований список, розділений лінійками: номер (кол. 1), назва й опис (кол. 2–3), «Відкрити ↗» (кол. 4), лише якщо є посилання. Жовтий-бюджет 0. */
 export function GuidesPage({ showHeader = true, items = guides }: GuidesPageProps) {
   return (
     <div className="vshanuy-materials-page vshanuy-guides-page">
@@ -62,10 +64,15 @@ export function GuidesPage({ showHeader = true, items = guides }: GuidesPageProp
                   </h2>
                   <p className="vshanuy-guides-page__text">{guide.text}</p>
                 </div>
-                {guide.file ? (
-                  <a className="vshanuy-guides-page__download" href={guide.file.href} download aria-describedby={titleId}>
-                    Завантажити PDF <span className="vshanuy-guides-page__size">{guide.file.size}</span>{' '}
-                    <span aria-hidden="true">↓</span>
+                {guide.href ? (
+                  <a
+                    className="vshanuy-guides-page__link"
+                    href={guide.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-describedby={titleId}
+                  >
+                    Відкрити <span aria-hidden="true">↗</span>
                   </a>
                 ) : null}
               </li>
