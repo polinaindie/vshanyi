@@ -1,14 +1,13 @@
 (() => {
-  const aboutLinks = ["Хто ми", "Звіт про діяльність", "Контакти"];
+  const aboutLinks = ["Місія та цінності", "Звіт про діяльність", "Контакти"];
   const activityLinks = [
     "Напрями роботи",
     "Проєкти",
     "Гайди",
     "Публікації",
-    "Співпраця",
     "Партнери",
   ];
-  const joinLinks = ["Підтримати", "Купити мерч"];
+  const joinLinks = ["Підтримати", "Співпраця", "Купити мерч"];
 
   const siteRoot = (() => {
     if (typeof window.__VSHANUY_SITE_ROOT__ === "string") return window.__VSHANUY_SITE_ROOT__;

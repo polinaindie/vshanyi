@@ -27,7 +27,7 @@
         <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-primary" aria-label="Про нас">
           <div class="vshanuy-site-footer__stack">
             <ul class="vshanuy-site-footer__links">
-              <li><a href="${rootPrefix}pro-nas.html">Хто ми.</a></li>
+              <li><a href="${rootPrefix}pro-nas.html">Місія та цінності.</a></li>
               <li><span class="vshanuy-dead-link">Звіт про діяльність.</span></li>
               <li><a href="${rootPrefix}kontakty.html">Контакти.</a></li>
             </ul>
@@ -46,7 +46,6 @@
             <li><a href="${rootPrefix}proekty.html">Проєкти.</a></li>
             <li><a href="${rootPrefix}posibnyky/">Гайди.</a></li>
             <li><a href="${rootPrefix}materialy.html">Публікації.</a></li>
-            <li><a href="${rootPrefix}spivpratsya.html">Співпраця.</a></li>
             <li><span class="vshanuy-dead-link">Партнери.</span></li>
           </ul>
           <a class="vshanuy-site-footer__column-foot" href="${rootPrefix}polityka-konfidentsiynosti.html">Політика конфіденційності</a>
@@ -56,6 +55,7 @@
           <div class="vshanuy-site-footer__contacts">
             <ul class="vshanuy-site-footer__links" aria-label="Долучитися">
               <li><a href="${rootPrefix}pidtrymaty.html">Підтримати.</a></li>
+              <li><a href="${rootPrefix}spivpratsya.html">Співпраця.</a></li>
               <li><a href="${rootPrefix}merch.html">Купити мерч.</a></li>
             </ul>
           </div>
