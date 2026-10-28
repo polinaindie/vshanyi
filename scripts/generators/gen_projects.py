@@ -11,7 +11,7 @@ SITE = HERE.parent.parent / "site"
 PROJECTS_JSON = HERE / "projects.json"
 
 CSS_V = {"fo": "20261028navf", "mats": "20261026b", "mat": "20261028a", "dir": "20261027m", "diyal": "20261028b"}
-MENU_V = "20261028k"
+MENU_V = "20261028m"
 FOOTER_V = "20261028l"
 
 FORM = "https://forms.gle/2Sj6jCphk5hiPoEY6"
