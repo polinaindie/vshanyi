@@ -10,7 +10,7 @@ HERE = Path(__file__).resolve().parent
 SITE = HERE.parent.parent / "site"
 PROJECTS_JSON = HERE / "projects.json"
 
-CSS_V = {"fo": "20261028d", "mats": "20261026b", "mat": "20261027j", "slider": "20261027h", "dir": "20261027m"}
+CSS_V = {"fo": "20261028e", "mats": "20261026b", "mat": "20261027j", "slider": "20261027h", "dir": "20261027m"}
 MENU_V = "20261028i"
 FOOTER_V = "20261028f"
 LAW = "https://zakon.rada.gov.ua/laws/show/4783-20"

@@ -1349,8 +1349,8 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     flex-direction: column;
     min-height: 0;
     margin: 0;
-    /* Match card text inset from the shared vertical guide (lg:p-24 → 2.4rem) */
-    padding: 0 2.4rem 0 0;
+    /* Cell inset from center guide (desktop 16px), like other homepage bands */
+    padding: 0 16px 0 0;
     overflow: hidden;
   }
 
@@ -1362,28 +1362,47 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    align-self: start;
     min-width: 0;
     padding-left: 0;
     container-type: inline-size;
     container-name: articles-list;
   }
 
-  /* Block bleeds to the page edge; text keeps a readable measure */
+  /* At least the photo height (16:9 after media’s 16px inset); cards share it.
+     Grows when the lead text needs more room, so cards never overlap. */
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__stack {
-    width: calc(100% + 8px);
+    width: 100%;
     max-width: none;
+    min-height: calc((100cqw - 16px) * 9 / 16);
+    display: flex;
+    flex-direction: column;
   }
 
-  /* Text ≤ 1.5 page columns (list spans 2 → 75cqw) */
+  section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+    .vshanuy-articles__card {
+    flex: 1 1 auto;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+  }
+
+  /* Tag/lead: readable measure. Title: fuller width as the column narrows */
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__card
-    > p,
+    > p {
+    max-width: 75cqw;
+  }
+
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__card
     > h3 {
-    max-width: 75cqw;
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
   }
+
 
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     #article-overview-carousel {
