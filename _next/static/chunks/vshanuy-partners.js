@@ -161,7 +161,7 @@
   if (![...document.scripts].some((s) => s.src.includes("vshanuy-articles.js"))) {
     const articlesScript = document.createElement("script");
     articlesScript.src =
-      "_next/static/chunks/vshanuy-articles.js?v=20261027materials2colnarrow";
+      "_next/static/chunks/vshanuy-articles.js?v=20261028materials-bind1";
     document.head.append(articlesScript);
   }
 })();

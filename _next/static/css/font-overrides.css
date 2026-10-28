@@ -1314,8 +1314,8 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     flex-direction: column;
     min-height: 0;
     margin: 0;
-    /* Match card text inset from the shared vertical guide (lg:p-24 → 2.4rem) */
-    padding: 0 2.4rem 0 0;
+    /* Cell inset from center guide (desktop 16px), like other homepage bands */
+    padding: 0 16px 0 0;
     overflow: hidden;
   }
 
@@ -1327,17 +1327,32 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    align-self: start;
     min-width: 0;
     padding-left: 0;
     container-type: inline-size;
     container-name: articles-list;
   }
 
-  /* Block bleeds to the page edge; text keeps a readable measure */
+  /* Content-sized cards; floor at photo 16:9 after media’s 16px inset */
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__stack {
-    width: calc(100% + 8px);
+    width: 100%;
     max-width: none;
+    min-height: calc((100cqw - 16px) * 9 / 16);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+    .vshanuy-articles__card {
+    flex: 0 0 auto;
+    justify-content: center;
+    gap: 8px;
+    /* Room for multi-line titles (no equal-flex squash) */
+    padding: 16px;
+    overflow: visible;
   }
 
   /* Text ≤ 1.5 page columns (list spans 2 → 75cqw) */
@@ -1348,6 +1363,20 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__card
     > h3 {
     max-width: 75cqw;
+  }
+
+  section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+    .vshanuy-articles__card
+    > h3 {
+    margin: 0;
+  }
+
+  /* Lead under title — hide on desktop to keep stack near photo height */
+  section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+    .vshanuy-articles__card
+    > h3
+    + p {
+    display: none;
   }
 
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
