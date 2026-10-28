@@ -24,34 +24,39 @@
           <a class="vshanuy-site-footer__cta" href="${rootPrefix}pidtrymaty.html">Підтримати <span aria-hidden="true">→</span></a>
         </section>
 
-        <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-primary" aria-label="Про організацію">
-          <ul class="vshanuy-site-footer__links">
-            <li><a href="${rootPrefix}pro-nas.html">Місія та цінності.</a></li>
-            <li><span class="vshanuy-dead-link">Звіт про діяльність.</span></li>
-            <li><a href="${rootPrefix}spivpratsya.html">Співпраця.</a></li>
-            <li><a href="${rootPrefix}index.html#partners">Партнери.</a></li>
-            <li><a href="${rootPrefix}kontakty.html">Контакти.</a></li>
-          </ul>
-          <p class="vshanuy-site-footer__column-foot">© 2026 ВШАНУЙ</p>
+        <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-primary" aria-label="Про нас">
+          <div class="vshanuy-site-footer__stack">
+            <ul class="vshanuy-site-footer__links">
+              <li><a href="${rootPrefix}pro-nas.html">Хто ми.</a></li>
+              <li><span class="vshanuy-dead-link">Звіт про діяльність.</span></li>
+              <li><a href="${rootPrefix}kontakty.html">Контакти.</a></li>
+            </ul>
+            <ul class="vshanuy-site-footer__links vshanuy-site-footer__links--social" aria-label="Соцмережі">
+              <li><a href="https://www.instagram.com/moment_of_honor/" target="_blank" rel="noopener noreferrer">Instagram.</a></li>
+              <li><a href="https://www.threads.com/@moment_of_honor" target="_blank" rel="noopener noreferrer">Threads.</a></li>
+              <li><a href="https://www.facebook.com/momentofhonor" target="_blank" rel="noopener noreferrer">Facebook.</a></li>
+            </ul>
+          </div>
+          <p class="vshanuy-site-footer__column-foot">© 2026 ВШАНУЙ <span aria-hidden="true">·</span> Київ <span aria-hidden="true">·</span> Україна</p>
         </nav>
 
-        <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-secondary" aria-label="Діяльність і публікації">
+        <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-secondary" aria-label="Діяльність">
           <ul class="vshanuy-site-footer__links">
             <li><a href="${rootPrefix}diyalnist.html">Напрями роботи.</a></li>
             <li><a href="${rootPrefix}proekty.html">Проєкти.</a></li>
             <li><a href="${rootPrefix}posibnyky/">Гайди.</a></li>
             <li><a href="${rootPrefix}materialy.html">Публікації.</a></li>
+            <li><a href="${rootPrefix}spivpratsya.html">Співпраця.</a></li>
+            <li><span class="vshanuy-dead-link">Партнери.</span></li>
           </ul>
           <a class="vshanuy-site-footer__column-foot" href="${rootPrefix}polityka-konfidentsiynosti.html">Політика конфіденційності</a>
         </nav>
 
-        <section class="vshanuy-site-footer__column vshanuy-site-footer__column--support" aria-label="Контакти та службова інформація">
+        <section class="vshanuy-site-footer__column vshanuy-site-footer__column--support" aria-label="Долучитися">
           <div class="vshanuy-site-footer__contacts">
-            <ul class="vshanuy-site-footer__inline-list" aria-label="Контакти">
-              <li><a href="https://www.instagram.com/moment_of_honor/" target="_blank" rel="noopener noreferrer">Instagram.</a></li>
-              <li><a href="https://www.threads.com/@moment_of_honor" target="_blank" rel="noopener noreferrer">Threads.</a></li>
-              <li><a href="https://www.facebook.com/momentofhonor" target="_blank" rel="noopener noreferrer">Facebook.</a></li>
-              <li><a class="vshanuy-site-footer__email" href="mailto:momentofhonorukraine@gmail.com">написати нам</a></li>
+            <ul class="vshanuy-site-footer__links" aria-label="Долучитися">
+              <li><a href="${rootPrefix}pidtrymaty.html">Підтримати.</a></li>
+              <li><a href="${rootPrefix}merch.html">Купити мерч.</a></li>
             </ul>
           </div>
           <div class="vshanuy-site-footer__support-foot">
