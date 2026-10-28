@@ -92,16 +92,13 @@ export function CollaborationPage({
 
         {formats.length > 0 ? (
           <div className="vshanuy-collab-page__formats">
-            {formats.map((format, index) => (
+            {formats.map((format) => (
               <section
                 key={format.id}
                 className="vshanuy-collab-page__format"
                 id={format.id}
                 aria-labelledby={`${format.id}-title`}
               >
-                <p className="vshanuy-collab-page__format-label" aria-hidden="true">
-                  {String(index + 1).padStart(2, '0')} —
-                </p>
                 <h2 className="vshanuy-collab-page__format-title" id={`${format.id}-title`}>
                   {format.title}
                 </h2>
