@@ -8,7 +8,7 @@ export type MenuItem = {
 }
 
 export type MenuColumn =
-  | { kind: 'group'; title: string; items: MenuItem[] }
+  | { kind: 'group'; title: string; items: MenuItem[]; support?: boolean }
   | { kind: 'link'; title: string; href: string }
 
 export type FullscreenMenuProps = {
@@ -23,23 +23,35 @@ const defaultSections: MenuColumn[] = [
     kind: 'group',
     title: 'Про нас',
     items: [
-      { label: 'Хто ми', href: 'pro-nas.html' },
+      { label: 'Місія та цінності', href: 'pro-nas.html' },
       { label: 'Звіт про діяльність', href: null },
-      { label: 'Мерч', href: 'merch.html' },
+      { label: 'Контакти', href: 'kontakty.html' },
     ],
   },
   {
     kind: 'group',
-    title: 'Наша діяльність',
+    title: 'Діяльність',
     items: [
-      { label: 'Напрямки роботи', href: 'diyalnist.html' },
+      { label: 'Напрями роботи', href: 'diyalnist.html' },
       { label: 'Проєкти', href: 'proekty.html' },
-      { label: 'Посібники', href: 'posibnyky/' },
+      { label: 'Гайди', href: 'posibnyky/' },
+      { label: 'Публікації', href: 'materialy.html' },
     ],
   },
-  { kind: 'link', title: 'Матеріали', href: 'materialy.html' },
-  { kind: 'link', title: 'Співпраця', href: 'spivpratsya.html' },
-  { kind: 'link', title: 'Контакти', href: 'kontakty.html' },
+  {
+    kind: 'group',
+    title: 'Спільнота',
+    items: [
+      { label: 'Співпраця', href: 'spivpratsya.html' },
+      { label: 'Партнери', href: 'index.html#partners' },
+    ],
+  },
+  {
+    kind: 'group',
+    title: 'Долучитися',
+    items: [{ label: 'Мерч', href: 'merch.html' }],
+    support: true,
+  },
 ]
 
 export function FullscreenMenu({
@@ -104,7 +116,11 @@ export function FullscreenMenu({
               )
             }
             return (
-              <section key={section.title} className="vshanuy-menu__section" aria-labelledby={titleId}>
+              <section
+                key={titleId}
+                className="vshanuy-menu__section"
+                aria-labelledby={titleId}
+              >
                 <h3 id={titleId}>{section.title}</h3>
                 {section.items.length > 0 ? (
                   <ul>
@@ -121,15 +137,17 @@ export function FullscreenMenu({
                     ))}
                   </ul>
                 ) : null}
+                {section.support ? (
+                  <div className="vshanuy-menu__cta">
+                    <a className="vshanuy-menu__support-btn" href={supportHref}>
+                      <span>Підтримати</span>
+                      <span aria-hidden="true">→</span>
+                    </a>
+                  </div>
+                ) : null}
               </section>
             )
           })}
-        </div>
-        <div className="vshanuy-menu__cta">
-          <a className="vshanuy-menu__support-btn" href={supportHref}>
-            <span>Підтримати</span>
-            <span aria-hidden="true">→</span>
-          </a>
         </div>
       </nav>
     </div>

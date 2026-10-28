@@ -20,7 +20,6 @@
 }
 
 .vshanuy-project-slider__viewport {
-  margin-inline: -4px;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
@@ -53,7 +52,7 @@
 .vshanuy-project-slider__slide {
   flex: 0 0 50%;
   min-width: 0;
-  padding-inline: 4px;
+  padding-inline: 16px;
   scroll-snap-align: start;
 }
 
@@ -72,7 +71,7 @@
 
 .vshanuy-project-slider__media {
   display: block;
-  aspect-ratio: 0.95;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   background: var(--beige);
 }
@@ -98,7 +97,6 @@
   gap: 8px;
 }
 
-.vshanuy-project-slider__num,
 .vshanuy-project-slider__name {
   margin: 0;
   font-family: var(--font-display);
@@ -110,22 +108,83 @@
 }
 
 .vshanuy-project-slider__desc {
+  display: -webkit-box;
   max-width: 36ch;
   margin: 8px 0 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
   font-family: "Fixel", system-ui, sans-serif;
   font-size: clamp(13px, 12.5px + 0.2vw, 15px);
   font-weight: 400;
   line-height: 1.45;
   color: var(--text-secondary);
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.vshanuy-project-slider__card:hover .vshanuy-project-slider__desc,
-.vshanuy-project-slider__card:focus-visible .vshanuy-project-slider__desc {
-  opacity: 1;
-  transform: translateY(0);
+/* Сторінка проєкту, перший екран: фото першим, під ним назва й паспорт */
+.vshanuy-project__hero {
+  margin: var(--space-2) 0 0;
+}
+
+.vshanuy-project__hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.vshanuy-project__hero figcaption {
+  margin-top: var(--space-1);
+  font-family: var(--font-text);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.vshanuy-project__intro .vshanuy-project__hero + .vshanuy-article__title {
+  margin-top: var(--space-3);
+}
+
+.vshanuy-project__passport {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin: var(--space-4) 0 0;
+  border-top: var(--line-muted);
+  border-bottom: var(--line-muted);
+}
+
+.vshanuy-project__passport > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-block: var(--space-2);
+}
+
+.vshanuy-project__passport dd {
+  margin: 0;
+  font-size: var(--step-0);
+  line-height: var(--leading-text);
+}
+
+.vshanuy-project__passport a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--grey);
+  transition: text-decoration-color 300ms ease-out;
+}
+
+.vshanuy-project__passport a:hover,
+.vshanuy-project__passport a:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.vshanuy-project__intro .vshanuy-article__standfirst {
+  margin-top: var(--space-3);
 }
 
 /* Сторінка «Проєкти»: ті самі картки сіткою */
@@ -133,14 +192,14 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   row-gap: var(--space-4);
-  margin: var(--space-5) -4px 0;
+  margin: var(--space-5) 0 0;
   padding: 0;
   list-style: none;
 }
 
 .vshanuy-projects-page__item {
   min-width: 0;
-  padding-inline: 4px;
+  padding-inline: 16px;
 }
 
 /* Смуга керування: «‹ 9:00 ›» */
@@ -213,13 +272,6 @@
   height: 8px;
 }
 
-/* Без наведення опис ніколи не з'явиться — не резервуємо під нього місце */
-@media (hover: none) {
-  .vshanuy-project-slider__desc {
-    display: none;
-  }
-}
-
 @media (min-width: 1024px) {
   .vshanuy-project-slider__slide {
     flex-basis: 25%;
@@ -228,10 +280,6 @@
   .vshanuy-projects-page__list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     row-gap: var(--space-5);
-  }
-
-  .vshanuy-project-slider__media {
-    aspect-ratio: 1.4;
   }
 
   .vshanuy-project-slider__meta {
@@ -251,6 +299,24 @@
 
   .vshanuy-project-slider__bar {
     grid-column: 2 / span 2;
+  }
+
+  .vshanuy-project__hero img {
+    aspect-ratio: 21 / 9;
+    object-position: 50% 25%;
+  }
+
+  .vshanuy-project__passport {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-inline: calc(-1 * var(--space-2));
+  }
+
+  .vshanuy-project__passport > div {
+    padding-inline: var(--space-2);
+  }
+
+  .vshanuy-project__passport > div + div {
+    border-left: var(--line-muted);
   }
 }
 

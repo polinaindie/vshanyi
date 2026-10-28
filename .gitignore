@@ -13,8 +13,4 @@ ui/node_modules/
 ui/storybook-static/
 ui/dist/
 ui/debug-storybook.log
-
-# Local photo originals — keep on disk, do not push (use site/_next/static/media for web assets)
-img/Гайд _Не нашкодити_/
-img/Дзеркало Пам_яті/
-img/Фото - напрямки роботи/
+scripts/generators/projects.json

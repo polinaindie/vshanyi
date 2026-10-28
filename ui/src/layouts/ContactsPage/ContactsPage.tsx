@@ -65,6 +65,12 @@ export function ContactsPage({
 }: ContactsPageProps) {
   return (
     <div className="vshanuy-contacts-page">
+      <div className="vshanuy-page-guides" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
       {showHeader ? <DesktopHeader /> : null}
 
       <main className="vshanuy-contacts-page__main">

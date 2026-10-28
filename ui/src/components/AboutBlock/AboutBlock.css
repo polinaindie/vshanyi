@@ -18,20 +18,9 @@
 
 .about-vshanuy__portrait img {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
   background: var(--beige);
-}
-
-.about-vshanuy__label {
-  margin: 0 0 var(--space-2);
-  color: var(--text-secondary);
-  font-family: var(--font-text);
-  font-size: var(--step--1);
-  font-weight: 500;
-  letter-spacing: var(--tracking-label);
-  line-height: 1.2;
-  text-transform: uppercase;
 }
 
 .about-vshanuy__lead {

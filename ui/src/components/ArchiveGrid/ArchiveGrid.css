@@ -24,12 +24,8 @@
   border-right: 1px solid var(--grid-line);
 }
 
-.vshanuy-archive-grid__guides > span:first-child {
-  border-left: 1px solid var(--grid-line);
-}
-
 .vshanuy-archive-grid__guides > span:last-child {
-  border-right: 1px solid var(--grid-line);
+  border-right: 0;
 }
 
 .vshanuy-archive-grid__content {

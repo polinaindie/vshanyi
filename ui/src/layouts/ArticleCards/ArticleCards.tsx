@@ -11,39 +11,44 @@ export type Article = {
 export type ArticleCardsProps = {
   title?: string
   items?: Article[]
+  allHref?: string
 }
 
 const defaultItems: Article[] = [
   {
     date: '09.00 · 2024',
-    title: 'Ритуал, якому понад 100 років',
-    tag: 'Хвилина мовчання – Історія',
+    title: 'Історія Хвилини мовчання',
+    tag: 'Колонка Катерини Даценко',
     summary:
       'Яка ще країна проводила Хвилину мовчання щодня і від кого ми успадкували цю практику.',
   },
   {
     date: '2024',
     title: 'Як вшанувати полеглих захисників та захисниць у День памʼяті',
-    tag: 'Вінкування – Традиція',
+    tag: 'Колонка Катерини Даценко',
     summary: 'Чому нам так важливо обʼєднуватись і як памʼять може це зробити.',
   },
   {
     date: '2023 → 2026',
     title: 'А для чого памʼятаєш ти?',
-    tag: 'ЧекаFest – Історія',
+    tag: 'Колонка Катерини Даценко',
     summary: 'Про що фестиваль памʼяті ЧекаFest і як це продовжує життя.',
   },
 ]
 
 export function ArticleCards({
-  title = "Як пам'ять живе у практиках, діях, місцях",
+  title = "Як памʼять живе у практиках, діях, місцях",
   items = defaultItems,
+  allHref = 'materialy.html',
 }: ArticleCardsProps) {
   return (
     <section className="vshanuy-articles" aria-labelledby="articles-title">
       <header className="vshanuy-articles__header">
-        <SectionLabel>БЛОГ</SectionLabel>
+        <SectionLabel>ПУБЛІКАЦІЇ</SectionLabel>
         <h2 id="articles-title">{title}</h2>
+        <a className="vshanuy-articles__all" href={allHref}>
+          Усі публікації <span aria-hidden="true">→</span>
+        </a>
       </header>
       <ul className="vshanuy-articles__list">
         {items.map((item) => (

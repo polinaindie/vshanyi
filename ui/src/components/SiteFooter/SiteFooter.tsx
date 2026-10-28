@@ -21,7 +21,7 @@ export function SiteFooter({
           <div className="vshanuy-site-footer__brand-lockup">
             <Logo variant="onInk" href="/" />
             <p className="vshanuy-site-footer__motto">
-              Пам'ятай про полеглих
+              Памʼятай про полеглих
               <br />
               допомагай живим
             </p>
@@ -37,43 +37,45 @@ export function SiteFooter({
         >
           <ul className="vshanuy-site-footer__links">
             <li>
-              <a href="pro-nas.html">Хто ми.</a>
+              <a href="pro-nas.html">Місія та цінності.</a>
             </li>
             <li>Звіт про діяльність.</li>
             <li>
-              <a href="merch.html">Мерч.</a>
+              <a href="spivpratsya.html">Співпраця.</a>
             </li>
             <li>
-              <a href="spivpratsya.html">Співпраця.</a>
+              <a href="index.html#partners">Партнери.</a>
+            </li>
+            <li>
+              <a href="kontakty.html">Контакти.</a>
             </li>
           </ul>
           <p className="vshanuy-site-footer__column-foot">
-            © 2026 ВШАНУЙ <span aria-hidden="true">·</span> Київ{' '}
-            <span aria-hidden="true">·</span> Україна
+            © 2026 ВШАНУЙ
           </p>
         </nav>
 
         <nav
           className="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-secondary"
-          aria-label="Діяльність і матеріали"
+          aria-label="Діяльність і публікації"
         >
           <ul className="vshanuy-site-footer__links">
             <li>
-              <a href="diyalnist.html">Напрямки роботи.</a>
+              <a href="diyalnist.html">Напрями роботи.</a>
             </li>
             <li>
               <a href="proekty.html">Проєкти.</a>
             </li>
             <li>
-              <a href="posibnyky/">Посібники.</a>
+              <a href="posibnyky/">Гайди.</a>
             </li>
             <li>
-              <a href="materialy.html">Матеріали.</a>
+              <a href="materialy.html">Публікації.</a>
             </li>
           </ul>
-          <span className="vshanuy-site-footer__column-foot">
+          <a className="vshanuy-site-footer__column-foot" href="polityka-konfidentsiynosti.html">
             Політика конфіденційності
-          </span>
+          </a>
         </nav>
 
         <section

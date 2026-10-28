@@ -24,7 +24,7 @@
       buttons.forEach((button) => {
         button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
       });
-      if (announce && status) status.textContent = `Показано матеріалів: ${shown}`;
+      if (announce && status) status.textContent = `Показано публікацій: ${shown}`;
     };
 
     buttons.forEach((button) => {

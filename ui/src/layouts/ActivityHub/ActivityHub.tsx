@@ -40,7 +40,7 @@ const defaultAudiences: AudienceBlock[] = [
     title: 'Для бізнесів',
     lead:
       'Бізнес є важливою частиною суспільства — і маленькі команди теж громади. Культура памʼяті формується природно, без формальності та примусу.',
-    href: 'napryamky/spivpratsya-z-biznesom.html',
+    href: '#',
   },
 ]
 
@@ -54,7 +54,7 @@ const defaultTools: GuideItem[] = [
   {
     title: 'Гайд «Не нашкодити»',
     description: 'Опора для етичної роботи з темою памʼяті — щоб не травмувати і не знеособлювати.',
-    href: 'napryamky/spivpratsya-z-biznesom.html#gayd',
+    href: '#',
   },
   {
     title: 'Дорожня карта громад',
@@ -64,17 +64,17 @@ const defaultTools: GuideItem[] = [
   {
     title: 'Дорожня карта бізнесу',
     description: 'Як впроваджувати культуру памʼяті в команді — без пафосу, з чіткими діями.',
-    href: 'napryamky/spivpratsya-z-biznesom.html#dorozhnya',
+    href: '#',
   },
 ]
 
 export function ActivityHub({
-  title = 'Наша діяльність',
+  title = 'Діяльність',
   intro = 'Для кого ми працюємо, які проєкти ведемо і які інструменти можна взяти вже зараз.',
   audiences = defaultAudiences,
   project = defaultProject,
   tools = defaultTools,
-  bridgeLabel = 'Напрямки діяльності →',
+  bridgeLabel = 'Напрями діяльності →',
   bridgeHref = '#',
 }: ActivityHubProps) {
   return (
@@ -143,7 +143,7 @@ export function ActivityHub({
         <Hairline />
 
         <aside className="vshanuy-activity-hub__bridge" aria-label={bridgeLabel}>
-          <SectionLabel index="04" trailing="НАПРЯМКИ →">
+          <SectionLabel index="04" trailing="НАПРЯМИ →">
             ДАЛІ
           </SectionLabel>
           <a className="vshanuy-activity-hub__bridge-link" href={bridgeHref}>

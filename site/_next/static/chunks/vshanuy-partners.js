@@ -1,7 +1,7 @@
 (() => {
   const partners = [
     {
-      name: "Український інститут національної пам’яті",
+      name: "Український інститут національної памʼяті",
       logo: "_next/static/media/partners/uinp.png",
       href: "https://uinp.gov.ua/",
     },
@@ -16,7 +16,7 @@
       href: "https://corp.suspilne.media/",
     },
     {
-      name: "Платформа пам’яті Меморіал",
+      name: "Платформа памʼяті Меморіал",
       logo: "_next/static/media/partners/memorial.svg",
       href: "https://memorial.ua/",
     },
@@ -85,6 +85,7 @@
   const mount = () => {
     const existingSection = document.querySelector(".vshanuy-partners");
     if (existingSection) {
+      existingSection.id = "partners";
       fillList(existingSection);
       setupReveal(existingSection);
       return true;
@@ -97,6 +98,7 @@
 
     const section = document.createElement("section");
     section.className = "vshanuy-partners";
+    section.id = "partners";
     section.setAttribute("aria-labelledby", "vshanuy-partners-title");
     section.innerHTML = `
       <div class="vshanuy-partners__guides" aria-hidden="true">
@@ -120,6 +122,7 @@
 
     articleSection.insertAdjacentElement("afterend", section);
     setupReveal(section);
+    [0, 800].forEach((ms) => window.setTimeout(scrollToProjects, ms));
 
     return true;
   };
@@ -141,16 +144,55 @@
     window.addEventListener("load", schedule, { once: true });
   }
 
-  const revealFixScript = document.createElement("script");
-  revealFixScript.src = "_next/static/chunks/vshanuy-reveal-fix.js?v=20261026about2";
-  document.head.append(revealFixScript);
+  const findProjectsHeadline = () =>
+    [...document.querySelectorAll('section[data-block-type="blockHeadline"]')].find(
+      (section) => /Наші проєкти/i.test(section.textContent || ""),
+    );
+
+  const markProjectsAnchor = () => {
+    const section = findProjectsHeadline();
+    if (section && section.id !== "proekty") section.id = "proekty";
+    return section;
+  };
+
+  /* Hydration drops the static id, and the directions block mounts above it later,
+     so the browser's own hash jump lands in the wrong place. */
+  let userScrolled = false;
+  const stopAutoScroll = () => {
+    userScrolled = true;
+  };
+  ["wheel", "touchstart", "keydown"].forEach((type) =>
+    window.addEventListener(type, stopAutoScroll, { once: true, passive: true }),
+  );
+
+  const anchorTargets = {
+    "#proekty": markProjectsAnchor,
+    "#partners": () => document.getElementById("partners"),
+  };
+
+  const scrollToProjects = (event) => {
+    const findTarget = anchorTargets[window.location.hash];
+    if (!findTarget) return;
+    if (userScrolled && event?.type !== "hashchange") return;
+    const section = findTarget();
+    if (!section) return;
+    const top = section.getBoundingClientRect().top + window.scrollY - 40;
+    if (window.vshanuyLenis?.scrollTo) window.vshanuyLenis.scrollTo(top, { immediate: true });
+    else window.scrollTo(0, top);
+  };
+
+  const anchorObserver = new MutationObserver(markProjectsAnchor);
+  anchorObserver.observe(document.documentElement, { childList: true, subtree: true });
+  window.setTimeout(() => anchorObserver.disconnect(), 10000);
+  [0, 1800, 2800].forEach((ms) => window.setTimeout(scrollToProjects, ms));
+  window.addEventListener("hashchange", scrollToProjects);
 
   const footerScript = document.createElement("script");
-  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261027e";
+  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261028g";
   document.head.append(footerScript);
 
   const menuScript = document.createElement("script");
-  menuScript.src = "_next/static/chunks/vshanuy-menu.js?v=20261027actmenu";
+  menuScript.src = "_next/static/chunks/vshanuy-menu.js?v=20261028j";
   document.head.append(menuScript);
 
   const heroScript = document.createElement("script");
@@ -161,7 +203,7 @@
   if (![...document.scripts].some((s) => s.src.includes("vshanuy-articles.js"))) {
     const articlesScript = document.createElement("script");
     articlesScript.src =
-      "_next/static/chunks/vshanuy-articles.js?v=20261028materials-bind1";
+      "_next/static/chunks/vshanuy-articles.js?v=20261028a";
     document.head.append(articlesScript);
   }
 })();

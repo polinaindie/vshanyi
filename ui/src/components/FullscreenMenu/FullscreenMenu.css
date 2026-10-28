@@ -162,6 +162,11 @@
   padding-inline: var(--space-2);
 }
 
+.vshanuy-menu__section .vshanuy-menu__cta {
+  margin-top: var(--space-3);
+  padding-inline: 0;
+}
+
 .vshanuy-menu__support-btn {
   display: inline-flex;
   overflow: hidden;

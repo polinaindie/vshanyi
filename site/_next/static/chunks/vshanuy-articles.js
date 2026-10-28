@@ -1,4 +1,10 @@
 (() => {
+  const replacements = {
+    "7974a72876383dbc854755d31ec0653d6353dff9": "vshanuy-blog-dnipro.jpg",
+    "9d0904fa69d33e2132c2a9b01218b2e81ceecb0f": "vshanuy-blog-pamyat.jpg",
+    "63ae489882bfa558c9ff8677257bca254bcd7508": "vshanuy-blog-tablichky.jpg",
+  };
+
   const mediaUrl = (filename) => {
     const css = document.querySelector('link[href*="font-overrides.css"]');
     if (css?.href) {
@@ -11,6 +17,10 @@
     return `_next/static/media/${filename}`;
   };
 
+  const urls = Object.fromEntries(
+    Object.entries(replacements).map(([hash, file]) => [hash, mediaUrl(file)]),
+  );
+
   const siteRoot = () => {
     if (typeof window.__VSHANUY_SITE_ROOT__ === "string") {
       return window.__VSHANUY_SITE_ROOT__;
@@ -18,63 +28,34 @@
     return "";
   };
 
-  /* Canonical homepage cards = first 3 columns from materialy.html */
-  const materials = [
+  const articlePhotos = [
     {
       hrefPart: "istoriya-khvylyny-movchannya",
-      href: "materialy/istoriya-khvylyny-movchannya.html",
-      tag: "Колонка Катерини Даценко",
-      title: "Історія Хвилини мовчання",
-      excerpt:
-        "Яка ще країна проводила Хвилину мовчання щодня і від кого ми успадкували цю практику.",
       file: "vshanuy-material-istoriya.jpg",
       alt: "",
     },
     {
       hrefPart: "yak-vshanuvaty-u-den-pamyati",
-      href: "materialy/yak-vshanuvaty-u-den-pamyati.html",
-      tag: "Колонка Катерини Даценко",
-      title: "Як вшанувати полеглих захисників та захисниць у День памʼяті",
-      excerpt:
-        "Чому нам так важливо обʼєднуватись і як памʼять може це зробити.",
       file: "vshanuy-material-den-pamyati.jpg",
       alt: "",
     },
     {
       hrefPart: "dlya-choho-pamyatayesh-ty",
-      href: "materialy/dlya-choho-pamyatayesh-ty.html",
-      tag: "Колонка Катерини Даценко",
-      title: "А для чого памʼятаєш ти?",
-      excerpt:
-        "Про що фестиваль памʼяті ЧекаFest і як це продовжує життя.",
-      file: "vshanuy-material-dlya-choho.jpg",
+      file: "vshanuy-material-dlya-choho.jpg?v=20261027a",
       alt: "",
     },
   ];
 
-  const buildCard = (item) => {
-    const card = document.createElement("a");
-    card.className =
-      "vshanuy-articles__card flex flex-col gap-y-24 p-8 lg:p-24 border border-base-stone-20 lg:border-none h-full";
-    card.href = `${siteRoot()}${item.href}`;
-    card.setAttribute("data-vshanuy-no-nav", "");
-
-    const tag = document.createElement("p");
-    tag.className =
-      "order-3 text-caption-30 uppercase lg:order-1 transition-colors duration-500 ease-out";
-    tag.textContent = item.tag;
-
-    const title = document.createElement("h3");
-    title.className = "order-2 font-serif text-title-10";
-    title.textContent = item.title;
-
-    const excerpt = document.createElement("p");
-    excerpt.className =
-      "order-1 text-body-20 lg:order-3 transition-colors duration-500 ease-out";
-    excerpt.textContent = item.excerpt;
-
-    card.append(tag, title, excerpt);
-    return card;
+  const applyPhotos = (section) => {
+    section.querySelectorAll("img").forEach((img) => {
+      const src = img.currentSrc || img.getAttribute("src") || "";
+      const hash = Object.keys(urls).find((h) => src.includes(h));
+      if (!hash) return;
+      const next = urls[hash];
+      if (!next || src.includes(replacements[hash])) return;
+      img.removeAttribute("srcset");
+      img.src = next;
+    });
   };
 
   const ensureMediaPhoto = (section, cards) => {
@@ -87,7 +68,7 @@
       stage.className = "vshanuy-articles__photo";
       carousel.replaceChildren(stage);
 
-      materials.forEach((photo, index) => {
+      articlePhotos.forEach((photo, index) => {
         const img = document.createElement("img");
         img.src = mediaUrl(photo.file);
         img.alt = photo.alt;
@@ -117,12 +98,41 @@
       if (card.dataset.vshanuyPhotoBound === "1") return;
       card.dataset.vshanuyPhotoBound = "1";
       const href = card.getAttribute("href") || "";
-      const match = materials.find((p) => href.includes(p.hrefPart));
+      const match = articlePhotos.find((p) => href.includes(p.hrefPart));
       if (!match) return;
       const show = () => activate(match.hrefPart, card);
       card.addEventListener("mouseenter", show);
       card.addEventListener("focusin", show);
     });
+  };
+
+  const normalizeCard = (card) => {
+    card.className =
+      "vshanuy-articles__card flex flex-col gap-y-24 p-8 lg:p-24 border border-base-stone-20 lg:border-none h-full";
+    card.querySelectorAll("p, h3").forEach((el) => {
+      el.classList.remove(
+        "text-base-brown",
+        "text-base-stone-100",
+        "lg:text-base-brown",
+        "lg:text-base-stone-100",
+        "text-base-black",
+        "text-base-white",
+      );
+    });
+    card.querySelectorAll("picture, img").forEach((el) => el.remove());
+    return card;
+  };
+
+  const uniqueArticleLinks = (root) => {
+    const seen = new Set();
+    const out = [];
+    root.querySelectorAll('a[href*="materialy/"]').forEach((a) => {
+      const href = a.getAttribute("href") || "";
+      if (!href || seen.has(href)) return;
+      seen.add(href);
+      out.push(normalizeCard(a.cloneNode(true)));
+    });
+    return out;
   };
 
   const layoutSection = (section) => {
@@ -139,7 +149,8 @@
     const carousel = mediaCol.querySelector("#article-overview-carousel");
     if (!introSpans.length || !carousel) return;
 
-    const cards = materials.map(buildCard);
+    const cards = uniqueArticleLinks(listCol);
+    if (!cards.length) return;
 
     const intro = document.createElement("div");
     intro.className = "vshanuy-articles__intro";
@@ -150,15 +161,15 @@
     if (label) {
       label.classList.add("vshanuy-articles__label");
       const labelRaw = (label.textContent || "").replace(/\s+/g, " ").trim();
-      if (/^блог$/i.test(labelRaw)) label.textContent = "Матеріали";
+      if (/^блог$/i.test(labelRaw)) label.textContent = "Публікації";
     }
     if (title) {
       title.classList.add("vshanuy-articles__title");
       title.id = title.id || "vshanuy-articles-title";
       section.setAttribute("aria-labelledby", title.id);
       const raw = (title.textContent || "").replace(/\s+/g, " ").trim();
-      if (raw === "Як пам'ять живе у практиках, діях, місцях") {
-        title.textContent = "Як пам'ять живе\nу практиках, діях, місцях";
+      if (raw.replace(/['’]/g, "ʼ") === "Як памʼять живе у практиках, діях, місцях") {
+        title.textContent = "Як памʼять живе\nу практиках, діях, місцях";
       }
     }
 
@@ -172,7 +183,7 @@
     const cta = document.createElement("a");
     cta.className = "vshanuy-articles__all";
     cta.href = `${siteRoot()}materialy.html`;
-    cta.textContent = "Усі матеріали";
+    cta.textContent = "Усі публікації";
     cta.setAttribute("data-vshanuy-no-nav", "");
 
     listCol.replaceChildren(stack, cta);
@@ -189,6 +200,7 @@
       document.querySelector('section[data-block-type="blockArticleOverview"]');
     if (!section) return;
     layoutSection(section);
+    applyPhotos(section);
     const stack = section.querySelectorAll(".vshanuy-articles__stack > a");
     if (stack.length) ensureMediaPhoto(section, [...stack]);
   };
