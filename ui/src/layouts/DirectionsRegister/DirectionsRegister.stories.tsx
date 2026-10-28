@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Вертикальний реєстр 7 напрямків: index · title · short · expand. Як FaqAccordion — усі згорнуті за замовчуванням, один відкритий. Жовтий-бюджет 0.',
+          'Вертикальний реєстр 7 напрямів: index · title · short · expand. Як FaqAccordion — усі згорнуті за замовчуванням, один відкритий. Жовтий-бюджет 0.',
       },
     },
   },
@@ -23,13 +23,13 @@ export const Default: Story = {
   args: {},
 }
 
-/** Слот фото в expand «Регіони» — layout не ламається без фото. */
+/** Слот фото в expand «Громади» — layout не ламається без фото. */
 export const RegionsWithPhoto: Story = {
   args: {
     items: [
       {
         index: '01',
-        title: 'Регіони',
+        title: 'Громади',
         short:
           'Працюємо з громадами та координаторами осередків, допомагаємо створювати й впроваджувати локальні практики памʼяті.',
         detail: (
@@ -42,7 +42,7 @@ export const RegionsWithPhoto: Story = {
         photo: {
           src: portrait,
           alt: '',
-          caption: { place: 'Регіони', year: '2024', tag: 'Поїздка' },
+          caption: { place: 'Громади', year: '2024', tag: 'Поїздка' },
         },
       },
       {

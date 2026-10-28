@@ -23,7 +23,7 @@
   background: transparent;
 }
 
-/* «Наша діяльність» — активний шар як на hover, підменю лише при hover */
+/* «Діяльність» — активний шар як на hover, підменю лише при hover */
 .vshanuy-business-page .vshanuy-desktop-menu__item--activity.vshanuy-desktop-menu__item--nav-active
   > .vshanuy-desktop-menu__label
   .vshanuy-desktop-menu__slide {
@@ -263,7 +263,7 @@
 .vshanuy-business-page__figure img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
   background: var(--beige);
 }

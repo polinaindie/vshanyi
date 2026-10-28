@@ -29,13 +29,13 @@ export default function App() {
           href="#directions"
           aria-current={view === 'directions' ? 'page' : undefined}
         >
-          Напрямки діяльності
+          Напрями діяльності
         </a>
         <a
           href="#activity"
           aria-current={view === 'activity' ? 'page' : undefined}
         >
-          Наша діяльність
+          Діяльність
         </a>
       </nav>
       {view === 'directions' ? (

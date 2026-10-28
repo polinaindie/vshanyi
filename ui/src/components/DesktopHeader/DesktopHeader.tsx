@@ -3,24 +3,36 @@ import { useState } from 'react'
 export type DesktopNavItem = {
   label: string
   links?: string[]
+  href?: string
   support?: boolean
   isMenu?: boolean
+  activity?: boolean
 }
 
 export type DesktopHeaderProps = {
   items?: DesktopNavItem[]
   onOpenMenu?: () => void
   scrolled?: boolean
+  /** Індекс пункту primary-меню з постійним активним шаром (без відкритого підменю). */
+  navActiveIndex?: number
 }
+
+const activityLinks = [
+  'Напрями роботи',
+  'Проєкти',
+  'Посібники',
+  'Публікації',
+]
 
 const defaultItems: DesktopNavItem[] = [
   {
-    label: 'Наша діяльність.',
-    links: ['Для громад', 'Для бізнесів', 'Наші проєкти', 'Посібники', 'Як підтримати'],
+    label: 'Діяльність.',
+    links: activityLinks,
+    activity: true,
   },
   {
     label: 'Підтримати.',
-    links: ['Донати', 'Реквізити', 'Мерч'],
+    href: 'pidtrymaty.html',
     support: true,
   },
   {
@@ -29,17 +41,28 @@ const defaultItems: DesktopNavItem[] = [
   },
 ]
 
+function hrefForLabel(label: string): string | null {
+  if (label === 'Напрями роботи') return 'diyalnist.html'
+  if (label === 'Проєкти') return 'proekty.html'
+  if (label === 'Посібники') return 'posibnyky/'
+  if (label === 'Публікації') return 'materialy.html'
+  return null
+}
+
 function SlideLabel({
   label,
   isButton,
   support,
+  href,
   onClick,
 }: {
   label: string
   isButton?: boolean
   support?: boolean
+  href?: string
   onClick?: () => void
 }) {
+  const className = `vshanuy-desktop-menu__label${support ? ' vshanuy-desktop-menu__label--support' : ''}${isButton ? ' vshanuy-desktop-menu__trigger' : ''}`
   const inner = (
     <span className="vshanuy-desktop-menu__slide">
       <span className="vshanuy-desktop-menu__layer">
@@ -62,7 +85,7 @@ function SlideLabel({
   if (isButton) {
     return (
       <button
-        className="vshanuy-desktop-menu__label vshanuy-desktop-menu__trigger"
+        className={className}
         type="button"
         aria-haspopup="dialog"
         onClick={onClick}
@@ -72,17 +95,22 @@ function SlideLabel({
     )
   }
 
-  return (
-    <span className={`vshanuy-desktop-menu__label${support ? ' vshanuy-desktop-menu__label--support' : ''}`}>
-      {inner}
-    </span>
-  )
+  if (href) {
+    return (
+      <a className={className} href={href}>
+        {inner}
+      </a>
+    )
+  }
+
+  return <span className={className}>{inner}</span>
 }
 
 export function DesktopHeader({
   items = defaultItems,
   onOpenMenu,
   scrolled = false,
+  navActiveIndex,
 }: DesktopHeaderProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
@@ -109,8 +137,10 @@ export function DesktopHeader({
               key={item.label}
               className={[
                 'vshanuy-desktop-menu__item',
+                item.activity ? 'vshanuy-desktop-menu__item--activity' : '',
                 item.support ? 'vshanuy-desktop-menu__item--support' : '',
                 item.isMenu ? 'vshanuy-desktop-menu__item--menu' : '',
+                navActiveIndex === index ? 'vshanuy-desktop-menu__item--nav-active' : '',
                 openIndex === index ? 'is-open' : '',
               ]
                 .filter(Boolean)
@@ -122,36 +152,17 @@ export function DesktopHeader({
                 label={item.label}
                 isButton={item.isMenu}
                 support={item.support}
+                href={item.href}
                 onClick={item.isMenu ? onOpenMenu : undefined}
               />
               {item.links ? (
                 <ul className="vshanuy-desktop-menu__submenu" role="list">
                   {item.links.map((link) => {
-                    const external =
-                      link === 'Донати'
-                        ? 'https://send.monobank.ua/jar/7rme78odM9'
-                        : null
-                    const internal =
-                      link === 'Пошта' || link === 'Соцмережі'
-                        ? 'kontakty.html'
-                        : link === 'Як підтримати'
-                          ? 'pidtrymaty.html'
-                          : link === 'Мерч'
-                            ? 'merch.html'
-                            : link === 'Реквізити'
-                            ? 'pidtrymaty.html#rekvizyty'
-                            : null
-                    const href = external ?? internal
+                    const href = hrefForLabel(link)
                     return (
                       <li key={link}>
                         {href ? (
-                          <a
-                            className="vshanuy-desktop-menu__submenu-item"
-                            href={href}
-                            {...(external
-                              ? { target: '_blank', rel: 'noopener noreferrer' }
-                              : {})}
-                          >
+                          <a className="vshanuy-desktop-menu__submenu-item" href={href}>
                             {link}
                           </a>
                         ) : (

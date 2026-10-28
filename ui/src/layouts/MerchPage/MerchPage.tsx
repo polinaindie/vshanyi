@@ -22,7 +22,7 @@ export type MerchPageProps = {
 }
 
 const defaultItems: MerchItem[] = [
-  { title: 'Шильди на телефон', photoSrc: phonePhoto, photoAlt: 'Чорні об’ємні шильди «Вшануй 09:00» з жовтим написом', width: 768, height: 1024 },
+  { title: 'Шильди на телефон', photoSrc: phonePhoto, photoAlt: 'Чорні обʼємні шильди «Вшануй 09:00» з жовтим написом', width: 768, height: 1024 },
   { title: 'Наліпки на двері', photoSrc: doorPhoto, photoAlt: 'Біла наліпка «Щодня 09:00 Вшануй» на скляних дверях', width: 768, height: 1024 },
   { title: 'Наліпки на авто', photoSrc: carPhoto, photoAlt: 'Біла наліпка «Щодня зупинись 09:00 Вшануй» на задньому склі авто', width: 768, height: 1024 },
 ]
@@ -55,7 +55,7 @@ export function MerchPage({
           <figure className="vshanuy-merch-page__figure vshanuy-merch-page__hero">
             <img
               src={heroPhoto}
-              alt="Аркуш наліпок «Вшануй» у руці: «Пам’ятай про полеглих — допомагай живим», «Зупинись», годинник 09:00"
+              alt="Аркуш наліпок «Вшануй» у руці: «Памʼятай про полеглих — допомагай живим», «Зупинись», годинник 09:00"
               width={1024}
               height={682}
               decoding="async"

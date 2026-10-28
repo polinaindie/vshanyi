@@ -69,12 +69,12 @@ const defaultTools: GuideItem[] = [
 ]
 
 export function ActivityHub({
-  title = 'Наша діяльність',
+  title = 'Діяльність',
   intro = 'Для кого ми працюємо, які проєкти ведемо і які інструменти можна взяти вже зараз.',
   audiences = defaultAudiences,
   project = defaultProject,
   tools = defaultTools,
-  bridgeLabel = 'Напрямки діяльності →',
+  bridgeLabel = 'Напрями діяльності →',
   bridgeHref = '#',
 }: ActivityHubProps) {
   return (
@@ -143,7 +143,7 @@ export function ActivityHub({
         <Hairline />
 
         <aside className="vshanuy-activity-hub__bridge" aria-label={bridgeLabel}>
-          <SectionLabel index="04" trailing="НАПРЯМКИ →">
+          <SectionLabel index="04" trailing="НАПРЯМИ →">
             ДАЛІ
           </SectionLabel>
           <a className="vshanuy-activity-hub__bridge-link" href={bridgeHref}>

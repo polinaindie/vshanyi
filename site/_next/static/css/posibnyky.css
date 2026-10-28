@@ -1,0 +1,112 @@
+/* Сторінка «Посібники»: нумерований список, розділений лінійками; кожен посібник завантажується як PDF */
+
+.vshanuy-guides-page__list {
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: var(--line-muted);
+}
+
+.vshanuy-guides-page__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-2);
+  border-top: var(--line-muted);
+}
+
+.vshanuy-guides-page__num {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: clamp(12px, calc(12px + 4 * (100vw - 375px) / 1225), 16px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.vshanuy-guides-page__copy {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.vshanuy-guides-page__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 22px + 1.2vw, 40px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.vshanuy-guides-page__text {
+  max-width: 40ch;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: clamp(16px, 14.8px + 0.32vw, 18px);
+  line-height: 1.55;
+}
+
+.vshanuy-guides-page__download {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-self: start;
+  gap: 12px;
+  padding: 0 14px;
+  border: var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 300ms ease-out, color 300ms ease-out;
+}
+
+.vshanuy-guides-page__size {
+  font-weight: 400;
+}
+
+.vshanuy-guides-page__download:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.vshanuy-guides-page__download:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-guides-page__item {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: first baseline;
+    gap: 0;
+    padding: var(--space-4) 0;
+  }
+
+  .vshanuy-guides-page__num,
+  .vshanuy-guides-page__copy,
+  .vshanuy-guides-page__download {
+    margin-inline: var(--space-2);
+  }
+
+  .vshanuy-guides-page__copy {
+    grid-column: 2 / span 2;
+  }
+
+  .vshanuy-guides-page__download {
+    grid-column: 4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vshanuy-guides-page__download {
+    transition: none;
+  }
+}

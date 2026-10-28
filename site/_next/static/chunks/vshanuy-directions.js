@@ -2,9 +2,9 @@
   const directions = [
     {
       index: "01",
-      title: "Громада",
+      title: "Громади",
       href: "napryamky/gromada.html",
-      image: "_next/static/media/vshanuy-spivpratsya.jpg",
+      image: "_next/static/media/vshanuy-napryam-gromady-1600.webp",
       description:
         "Працюємо з громадами та координаторами осередків, допомагаємо створювати й впроваджувати локальні практики памʼяті. Поширюємо ініціативи в громадах, розробляємо ритуали памʼяті та прощання.",
     },
@@ -12,7 +12,7 @@
       index: "02",
       title: "Бізнес",
       href: "napryamky/spivpratsya-z-biznesom.html",
-      image: "_next/static/media/vshanuy-business-intro.jpg",
+      image: "_next/static/media/vshanuy-napryam-biznes-1600.webp",
       description:
         "Допомагаємо бізнесу інтегрувати культуру памʼяті у свої комунікації. Проводимо консультації, аудити, лекції та сесії, щоб компанії могли говорити про війну, втрати й памʼять.",
     },
@@ -20,7 +20,7 @@
       index: "03",
       title: "Держава",
       href: "napryamky/derzhava.html",
-      image: "_next/static/media/vshanuy-ceremonial-dorozhnya-karta.jpg",
+      image: "_next/static/media/vshanuy-napryam-derzhava-1600.webp",
       description:
         "Передаємо державним інституціям напрацьовані практики, рекомендації та інструкції й працюємо над їхнім системним впровадженням.",
     },
@@ -28,7 +28,7 @@
       index: "04",
       title: "Суспільство",
       href: "napryamky/suspilstvo.html",
-      image: "_next/static/media/vshanuy-memory-chair.jpg",
+      image: "_next/static/media/vshanuy-napryam-suspilstvo-1600.webp",
       description:
         "Говоримо про складні й важливі теми, повʼязані з памʼяттю про війну: як прощатися, як говорити про загиблих, як уникати знеособлення втрат.",
     },
@@ -36,7 +36,7 @@
       index: "05",
       title: "Освіта",
       href: "napryamky/osvita.html",
-      image: "_next/static/media/vshanuy-osvitni-programy.jpg",
+      image: "_next/static/media/vshanuy-napryam-osvita-1600.webp",
       description:
         "Досліджуємо, як діти, підлітки та вчителі сприймають тему памʼяті й якою хочуть бачити розмову про неї в школі. Розробляємо практичні матеріали для освітян, проводимо лекції та зустрічі, створюємо документи-опори для роботи з темою памʼяті.",
     },
@@ -44,7 +44,7 @@
       index: "06",
       title: "Військо",
       href: "napryamky/viysko.html",
-      image: "_next/static/media/vshanuy-tryzna.jpg",
+      image: "_next/static/media/vshanuy-napryam-viysko-1600.webp",
       description:
         "Досліджуємо військові ритуали й традиції та шукаємо способи зберігати їхню тяглість у сучасному українському війську. Працюємо над створенням церемоній прощання з військовослужбовцями, які можуть бути адаптовані та впроваджені в громадах по всій Україні.",
     },
@@ -52,7 +52,7 @@
       index: "07",
       title: "Мистецтво",
       href: "napryamky/mystetstvo.html",
-      image: "_next/static/media/vshanuy-chekafest.jpg",
+      image: "_next/static/media/vshanuy-napryam-mystetstvo-1600.webp",
       description:
         "Використовуємо мистецтво як спосіб говорити про памʼять, людей і наш досвід.",
     },
@@ -107,7 +107,7 @@
               <div class="vshanuy-home-directions__header-guides" aria-hidden="true">
                 <span></span><span></span><span></span><span></span>
               </div>
-              <p class="vshanuy-home-directions__label text-caption-30 uppercase">НАШІ НАПРЯМКИ</p>
+              <p class="vshanuy-home-directions__label text-caption-30 uppercase">НАШІ НАПРЯМИ</p>
               <h2 id="vshanuy-home-directions-title" class="font-serif">
                 Для кого ми говоримо про памʼять
               </h2>
@@ -220,7 +220,7 @@
   };
 
   const setupSticky = (section) => {
-    const chrome = 40;
+    const chrome = 80;
     section.style.setProperty("--directions-sticky-chrome", `${chrome}px`);
 
     let runwayH = 0;

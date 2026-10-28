@@ -12,7 +12,7 @@ export type HeroProps = {
 }
 
 export function Hero({
-  title = "Пам'ятай про полеглих — допомагай живим.",
+  title = "Памʼятай про полеглих — допомагай живим.",
   ctaLabel = 'Підтримати',
   ctaAccent = true,
   caption = { place: 'Дніпро', year: '2024', tag: 'Хвилина мовчання' },

@@ -1,11 +1,11 @@
 import bannerPhoto from '../../assets/about/vshanuy-banner.jpg'
-import gromadaPhoto from '../../assets/about/directions/spivpratsya.jpg'
-import businessPhoto from '../../assets/about/directions/business-intro.jpg'
-import derzhavaPhoto from '../../assets/about/directions/ceremonial-dorozhnya-karta.jpg'
-import suspilstvoPhoto from '../../assets/about/vshanuy-memory-chair.jpg'
-import osvitaPhoto from '../../assets/about/directions/osvitni-programy.jpg'
-import viyskoPhoto from '../../assets/about/directions/tryzna.jpg'
-import mystetstvoPhoto from '../../assets/about/directions/chekafest.jpg'
+import gromadaPhoto from '../../assets/about/directions/napryam-gromady.webp'
+import businessPhoto from '../../assets/about/directions/napryam-biznes.webp'
+import derzhavaPhoto from '../../assets/about/directions/napryam-derzhava.webp'
+import suspilstvoPhoto from '../../assets/about/directions/napryam-suspilstvo.webp'
+import osvitaPhoto from '../../assets/about/directions/napryam-osvita.webp'
+import viyskoPhoto from '../../assets/about/directions/napryam-viysko.webp'
+import mystetstvoPhoto from '../../assets/about/directions/napryam-mystetstvo.webp'
 import portraitPhoto from '../../assets/about/iryna-cheka-tsybukh.png'
 import { DesktopHeader } from '../../components/DesktopHeader/DesktopHeader'
 import { SiteFooter } from '../../components/SiteFooter/SiteFooter'
@@ -26,16 +26,16 @@ export type AboutPageProps = {
 
 export const aboutDirections: AboutDirection[] = [
   {
-    title: 'Регіони',
+    title: 'Громади',
     href: 'napryamky/gromada.html',
     image: gromadaPhoto,
-    text: 'Працюємо з громадами та координаторами осередків, допомагаємо створювати й впроваджувати локальні практики пам’яті. Поширюємо ініціативи в громадах, розробляємо ритуали пам’яті та прощання.',
+    text: 'Працюємо з громадами та координаторами осередків, допомагаємо створювати й впроваджувати локальні практики памʼяті. Поширюємо ініціативи в громадах, розробляємо ритуали памʼяті та прощання.',
   },
   {
     title: 'Бізнес',
     href: 'napryamky/spivpratsya-z-biznesom.html',
     image: businessPhoto,
-    text: 'Допомагаємо бізнесу інтегрувати культуру пам’яті у свої комунікації. Проводимо консультації, аудити, лекції та сесії, щоб компанії могли говорити про війну, втрати й пам’ять.',
+    text: 'Допомагаємо бізнесу інтегрувати культуру памʼяті у свої комунікації. Проводимо консультації, аудити, лекції та сесії, щоб компанії могли говорити про війну, втрати й памʼять.',
   },
   {
     title: 'Держава',
@@ -47,13 +47,13 @@ export const aboutDirections: AboutDirection[] = [
     title: 'Суспільство',
     href: 'napryamky/suspilstvo.html',
     image: suspilstvoPhoto,
-    text: 'Говоримо про складні й важливі теми, пов’язані з пам’яттю про війну: як прощатися, як говорити про загиблих, як уникати знеособлення втрат.',
+    text: 'Говоримо про складні й важливі теми, повʼязані з памʼяттю про війну: як прощатися, як говорити про загиблих, як уникати знеособлення втрат.',
   },
   {
     title: 'Освіта',
     href: 'napryamky/osvita.html',
     image: osvitaPhoto,
-    text: 'Досліджуємо, як діти, підлітки та вчителі сприймають тему пам’яті й якою хочуть бачити розмову про неї в школі. Розробляємо практичні матеріали для освітян, проводимо лекції та зустрічі, створюємо документи-опори для роботи з темою пам’яті.',
+    text: 'Досліджуємо, як діти, підлітки та вчителі сприймають тему памʼяті й якою хочуть бачити розмову про неї в школі. Розробляємо практичні матеріали для освітян, проводимо лекції та зустрічі, створюємо документи-опори для роботи з темою памʼяті.',
   },
   {
     title: 'Військо',
@@ -65,7 +65,7 @@ export const aboutDirections: AboutDirection[] = [
     title: 'Мистецтво',
     href: 'napryamky/mystetstvo.html',
     image: mystetstvoPhoto,
-    text: 'Використовуємо мистецтво як спосіб говорити про пам’ять, людей і наш досвід.',
+    text: 'Використовуємо мистецтво як спосіб говорити про памʼять, людей і наш досвід.',
   },
 ]
 
@@ -83,9 +83,9 @@ export function AboutPage({ showHeader = true, directions = aboutDirections }: A
 
       <main className="vshanuy-about-page__main">
         <header className="vshanuy-about-page__intro">
-          <h1 className="vshanuy-about-page__title">Про нас.</h1>
+          <h1 className="vshanuy-about-page__title">Місія та цінності.</h1>
           <p className="vshanuy-about-page__lead">
-            Жодна країна не народжується з готовою культурою пам’яті — її формують роками. Україна
+            Жодна країна не народжується з готовою культурою памʼяті — її формують роками. Україна
             проходить цей шлях зараз, і ми його частина.
           </p>
         </header>
@@ -109,24 +109,24 @@ export function AboutPage({ showHeader = true, directions = aboutDirections }: A
             </figure>
             <div className="vshanuy-about-page__prose">
               <p className="vshanuy-about-page__accent">
-                В основі «Вшануй» — переконання Ірини (Чеки) Цибух: пам’ять не завершується датою в
+                В основі «Вшануй» — переконання Ірини (Чеки) Цибух: памʼять не завершується датою в
                 календарі. Вона живе в повсякденні — у вдячності, що триває, в людях, які несуть
                 спогади, і в ритуалах.
               </p>
               <p>
                 Після загибелі Ірини у травні 2024 року її справу продовжила команда однодумців. Сьогодні
-                ГО «Вшануй» розвиває ідею сучасної української культури пам’яті — відкритої, людяної та
+                ГО «Вшануй» розвиває ідею сучасної української культури памʼяті — відкритої, людяної та
                 зрозумілої кожному.
               </p>
               <p>
                 ГО «Вшануй» — організація, яка працює над формуванням та впровадженням нових меморіальних
                 практик в Україні. Зокрема, активно адвокує Хвилину мовчання на національному рівні та
-                інші практики пам’яті. А також працює над розвитком активної спільноти у містах по
+                інші практики памʼяті. А також працює над розвитком активної спільноти у містах по
                 Україні.
               </p>
               <p>
                 Співзасновницею громадської організації була загибла госпітальєрка, журналістка та Герой
-                України посмертно Ірина (Чека) Цибух, яка привертала увагу до питань пам’ятання людей, які
+                України посмертно Ірина (Чека) Цибух, яка привертала увагу до питань памʼятання людей, які
                 загинули під час російсько-української війни.
               </p>
             </div>
@@ -138,10 +138,10 @@ export function AboutPage({ showHeader = true, directions = aboutDirections }: A
             Місія
           </h2>
           <blockquote className="vshanuy-about-page__quote">
-            <p>Пам’ятай про полеглих — допомагай живим.</p>
+            <p>Памʼятай про полеглих — допомагай живим.</p>
           </blockquote>
           <div className="vshanuy-about-page__aside">
-            <p>Ми прагнемо, щоб пам’ять стала природною частиною повсякденного життя України.</p>
+            <p>Ми прагнемо, щоб памʼять стала природною частиною повсякденного життя України.</p>
             <p>Це наше гасло. Ним визначаємо все, що робимо.</p>
           </div>
         </section>
@@ -163,13 +163,13 @@ export function AboutPage({ showHeader = true, directions = aboutDirections }: A
               <h3>Створюємо</h3>
               <p>
                 Ми <strong>створюємо</strong> практики, які допомагають державі, громадам, бізнесу та
-                кожній людині зробити пам’ять частиною життя.
+                кожній людині зробити памʼять частиною життя.
               </p>
             </li>
             <li>
               <h3>Підтримуємо</h3>
               <p>
-                Ми <strong>підтримуємо</strong> та <strong>допомагаємо</strong> зберігати пам’ять про
+                Ми <strong>підтримуємо</strong> та <strong>допомагаємо</strong> зберігати памʼять про
                 наших людей.
               </p>
             </li>
@@ -208,9 +208,9 @@ export function AboutPage({ showHeader = true, directions = aboutDirections }: A
           </blockquote>
           <div className="vshanuy-about-page__aside">
             <p>
-              Ми працюємо над тим, щоб в Україні сформувалася культура пам’яті, яка житиме незалежно від
+              Ми працюємо над тим, щоб в Україні сформувалася культура памʼяті, яка житиме незалежно від
               нас. Культура, у якій Хвилина мовчання стане природною звичкою, громади самі створюватимуть
-              простори пам’яті, бізнес братиме участь у спільних практиках вдячності, а діти зростатимуть
+              простори памʼяті, бізнес братиме участь у спільних практиках вдячності, а діти зростатимуть
               із розумінням того, що свобода має свою ціну.
             </p>
             <p>

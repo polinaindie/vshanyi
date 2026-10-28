@@ -57,7 +57,8 @@
 .vshanuy-desktop-menu__brand:focus-visible .vshanuy-desktop-menu__slide,
 .vshanuy-desktop-header[data-scrolled] .vshanuy-desktop-menu__brand .vshanuy-desktop-menu__slide,
 .vshanuy-desktop-menu__item:hover > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__slide,
-.vshanuy-desktop-menu__item:focus-within > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__slide {
+.vshanuy-desktop-menu__item:focus-within > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__slide,
+.vshanuy-desktop-menu__item--nav-active > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__slide {
   transform: translateY(-32px);
 }
 
@@ -177,7 +178,7 @@
   display: block;
   padding: var(--space-1) var(--space-2);
   font-family: var(--font-text);
-  font-size: var(--step--1);
+  font-size: 14px;
   border-top: 1px solid var(--grid-line);
 }
 

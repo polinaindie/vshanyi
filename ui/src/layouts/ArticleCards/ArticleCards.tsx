@@ -37,17 +37,17 @@ const defaultItems: Article[] = [
 ]
 
 export function ArticleCards({
-  title = "Як пам'ять живе у практиках, діях, місцях",
+  title = "Як памʼять живе у практиках, діях, місцях",
   items = defaultItems,
   allHref = 'materialy.html',
 }: ArticleCardsProps) {
   return (
     <section className="vshanuy-articles" aria-labelledby="articles-title">
       <header className="vshanuy-articles__header">
-        <SectionLabel>МАТЕРІАЛИ</SectionLabel>
+        <SectionLabel>ПУБЛІКАЦІЇ</SectionLabel>
         <h2 id="articles-title">{title}</h2>
         <a className="vshanuy-articles__all" href={allHref}>
-          Усі матеріали <span aria-hidden="true">→</span>
+          Усі публікації <span aria-hidden="true">→</span>
         </a>
       </header>
       <ul className="vshanuy-articles__list">

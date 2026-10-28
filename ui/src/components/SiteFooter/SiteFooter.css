@@ -31,22 +31,6 @@
   gap: var(--space-4);
 }
 
-@media (min-width: 960px) {
-  .vshanuy-site-footer__grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0;
-  }
-
-  .vshanuy-site-footer__column {
-    padding-inline: var(--space-2);
-    border-right: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
-  }
-
-  .vshanuy-site-footer__column:last-child {
-    border-right: 0;
-  }
-}
-
 .vshanuy-site-footer__motto {
   margin: var(--space-3) 0 0;
   font-family: var(--font-display);
@@ -56,7 +40,7 @@
 
 .vshanuy-site-footer__cta {
   display: inline-block;
-  margin-top: var(--space-3);
+  margin-top: var(--space-4);
   padding: var(--space-1) var(--space-2);
   background: var(--accent);
   color: var(--ink);
@@ -66,52 +50,133 @@
   font-weight: 600;
 }
 
-.vshanuy-site-footer__label {
-  margin: 0 0 var(--space-2);
-  font-size: var(--step--1);
-  letter-spacing: var(--tracking-label);
-  font-weight: 500;
-  color: var(--grey);
-}
-
 .vshanuy-site-footer__inline-list,
 .vshanuy-site-footer__links {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.vshanuy-site-footer__inline-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1) var(--space-2);
+  flex-direction: column;
 }
 
-.vshanuy-site-footer__links li,
-.vshanuy-site-footer__inline-list li {
-  padding: 0.25rem 0;
+.vshanuy-site-footer__links li + li,
+.vshanuy-site-footer__inline-list li + li {
+  margin-top: 0.5rem;
 }
 
 .vshanuy-site-footer__email {
   display: inline-block;
-  margin-top: var(--space-2);
+  margin-top: 0.5rem;
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 0.2em;
+  text-transform: uppercase;
 }
 
-.vshanuy-site-footer__meta {
+.vshanuy-site-footer__column--sections {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  color: var(--grey);
-  font-size: var(--step--1);
 }
 
-.vshanuy-site-footer__meta p {
-  margin: 0;
+.vshanuy-site-footer__column-foot {
+  display: flex;
+  align-items: flex-end;
+  min-height: 44px;
+  margin: var(--space-4) 0 0;
+  color: var(--grey);
+  font-size: var(--step--1);
+  text-transform: uppercase;
+}
+
+.vshanuy-site-footer__column--support {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
 .vshanuy-site-footer .vshanuy-logo {
   width: min(100%, 14rem);
+}
+
+@media (min-width: 960px) {
+  .vshanuy-site-footer__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+    column-gap: 0;
+    row-gap: 100px;
+    padding-block: var(--space-3) var(--space-4);
+  }
+
+  .vshanuy-site-footer__column--brand,
+  .vshanuy-site-footer__column--sections,
+  .vshanuy-site-footer__column--support {
+    display: contents;
+  }
+
+  .vshanuy-site-footer__brand-lockup {
+    grid-column: 1;
+    grid-row: 1;
+    padding-inline: var(--space-2);
+  }
+
+  .vshanuy-site-footer__column--brand > .vshanuy-site-footer__cta {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: end;
+    margin-top: 0;
+    margin-inline: var(--space-2);
+  }
+
+  .vshanuy-site-footer__column--sections-primary > .vshanuy-site-footer__links {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .vshanuy-site-footer__column--sections-primary > .vshanuy-site-footer__column-foot {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .vshanuy-site-footer__column--sections-secondary > .vshanuy-site-footer__links {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .vshanuy-site-footer__column--sections-secondary > .vshanuy-site-footer__column-foot {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .vshanuy-site-footer__column--support > .vshanuy-site-footer__contacts {
+    grid-column: 4;
+    grid-row: 1;
+  }
+
+  .vshanuy-site-footer__column--sections .vshanuy-site-footer__links,
+  .vshanuy-site-footer__column--support .vshanuy-site-footer__contacts,
+  .vshanuy-site-footer__column--support .vshanuy-site-footer__inline-list {
+    align-self: stretch;
+    min-height: 100%;
+    padding-inline: var(--space-2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .vshanuy-site-footer__column-foot {
+    align-self: end;
+    margin: 0;
+    padding-inline: var(--space-2);
+  }
+
+  .vshanuy-site-footer__links li + li,
+  .vshanuy-site-footer__inline-list li + li,
+  .vshanuy-site-footer__email {
+    margin-top: 0;
+  }
+
+  .vshanuy-site-footer__column--support {
+    gap: 0;
+  }
 }

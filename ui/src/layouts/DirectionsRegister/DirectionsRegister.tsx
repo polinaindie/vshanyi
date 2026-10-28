@@ -45,7 +45,7 @@ function hasPanelContent(item: DirectionRegisterItem): boolean {
 const defaultItems: DirectionRegisterItem[] = [
   {
     index: '01',
-    title: 'Регіони',
+    title: 'Громади',
     short:
       'Працюємо з громадами та координаторами осередків, допомагаємо створювати й впроваджувати локальні практики памʼяті. Поширюємо ініціативи в громадах, розробляємо ритуали памʼяті та прощання.',
     detail: (
@@ -151,12 +151,12 @@ const defaultBridgeLinks: DirectionsBridgeLink[] = [
 
 export function DirectionsRegister({
   labelIndex = '01',
-  label = 'НАПРЯМКИ ДІЯЛЬНОСТІ',
+  label = 'НАПРЯМИ ДІЯЛЬНОСТІ',
   labelTrailing = 'РЕЄСТР →',
-  title = 'Напрямки діяльності',
-  intro = 'Сім напрямків роботи — від громад і бізнесу до освіти, війська та мистецтва.',
+  title = 'Напрями діяльності',
+  intro = 'Сім напрямів роботи — від громад і бізнесу до освіти, війська та мистецтва.',
   items = defaultItems,
-  bridgeTitle = 'Наша діяльність →',
+  bridgeTitle = 'Діяльність →',
   bridgeLinks = defaultBridgeLinks,
 }: DirectionsRegisterProps) {
   const baseId = useId()

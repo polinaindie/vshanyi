@@ -1,31 +1,64 @@
 import { useEffect, useRef } from 'react'
+import { Logo } from '../Logo/Logo'
+import '../Logo/Logo.css'
 
-export type MenuSection = {
-  title: string
-  items: string[]
-  modifier?: string
+export type MenuItem = {
+  label: string
+  href?: string | null
 }
+
+export type MenuColumn =
+  | { kind: 'group'; title: string; items: MenuItem[]; support?: boolean }
+  | { kind: 'link'; title: string; href: string }
 
 export type FullscreenMenuProps = {
   open: boolean
   onClose: () => void
-  sections?: MenuSection[]
+  sections?: MenuColumn[]
+  supportHref?: string
 }
 
-const defaultSections: MenuSection[] = [
-  { title: 'Про нас', items: ['Історія створення', 'Місія і цінності', 'Команда', 'Звіти про діяльність'] },
-  { title: 'Наша діяльність', items: ['Для громад', 'Для бізнесів', 'Наші проєкти', 'Посібники', 'Як підтримати'] },
-  { title: 'Матеріали', items: ['Колонка автора', 'Дослідження'] },
-  { title: 'Співпраця', items: ['Актуальні опитування', 'Стати волонтером', 'Стати партнером'] },
-  { title: 'Партнери', items: ['Донори', 'Організації', 'Бізнеси'] },
-  { title: 'Контакти', items: ['Пошта', 'Соцмережі'] },
-  { title: 'Підтримати', items: ['Донати', 'Реквізити', 'Мерч'], modifier: 'support' },
+const defaultSections: MenuColumn[] = [
+  {
+    kind: 'group',
+    title: 'Про нас',
+    items: [
+      { label: 'Місія та цінності', href: 'pro-nas.html' },
+      { label: 'Звіт про діяльність', href: null },
+      { label: 'Контакти', href: 'kontakty.html' },
+    ],
+  },
+  {
+    kind: 'group',
+    title: 'Діяльність',
+    items: [
+      { label: 'Напрями роботи', href: 'diyalnist.html' },
+      { label: 'Проєкти', href: 'proekty.html' },
+      { label: 'Посібники', href: 'posibnyky/' },
+      { label: 'Публікації', href: 'materialy.html' },
+    ],
+  },
+  {
+    kind: 'group',
+    title: 'Спільнота',
+    items: [
+      { label: 'Співпраця', href: 'spivpratsya.html' },
+      { label: 'Партнери', href: 'index.html#partners' },
+    ],
+  },
+  {
+    kind: 'group',
+    title: 'Долучитися',
+    items: [{ label: 'Мерч', href: 'merch.html' }],
+    support: true,
+  },
 ]
 
 export function FullscreenMenu({
   open,
   onClose,
   sections = defaultSections,
+  supportHref = 'pidtrymaty.html',
 }: FullscreenMenuProps) {
   const closeRef = useRef<HTMLButtonElement>(null)
 
@@ -56,9 +89,8 @@ export function FullscreenMenu({
         <span />
       </div>
       <div className="vshanuy-menu__topline">
-        <h2 id="vshanuy-menu-title">
-          <span className="vshanuy-menu__wordmark">ВШАНУЙ.</span>
-          <span className="vshanuy-menu__time">09:00</span>
+        <h2 id="vshanuy-menu-title" className="vshanuy-menu__brand" aria-label="Вшануй. 09:00">
+          <Logo variant="onPaper" className="vshanuy-menu__logo" />
         </h2>
         <button className="vshanuy-menu__close" type="button" onClick={onClose} ref={closeRef}>
           <span>Закрити.</span>
@@ -67,58 +99,55 @@ export function FullscreenMenu({
       </div>
       <nav className="vshanuy-menu__nav" aria-labelledby="vshanuy-menu-title">
         <div className="vshanuy-menu__grid">
-          {sections.map((section) => (
-            <section
-              key={section.title}
-              className={`vshanuy-menu__section${section.modifier ? ` vshanuy-menu__section--${section.modifier}` : ''}`}
-            >
-              <h3>{section.title}</h3>
-              <ul>
-                {section.items.map((item) => {
-                  const external =
-                    item === 'Донати'
-                      ? 'https://send.monobank.ua/jar/7rme78odM9'
-                      : null
-                  const internal =
-                    item === 'Пошта' || item === 'Соцмережі'
-                        ? 'kontakty.html'
-                        : item === 'Як підтримати'
-                          ? 'pidtrymaty.html'
-                          : item === 'Колонка автора'
-                            ? 'materialy.html#kolonka-avtora'
-                            : item === 'Дослідження'
-                              ? 'materialy.html#doslidzhennya'
-                              : item === 'Мерч'
-                            ? 'merch.html'
-                            : item === 'Реквізити'
-                            ? 'pidtrymaty.html#rekvizyty'
-                            : item === 'Історія створення'
-                              ? 'pro-nas.html#istoriya'
-                              : item === 'Місія і цінності'
-                                ? 'pro-nas.html#misiya'
-                                : null
-                  const href = external ?? internal
-                  return (
-                    <li key={item}>
-                      {href ? (
-                        <a
-                          className="vshanuy-menu__item"
-                          href={href}
-                          {...(external
-                            ? { target: '_blank', rel: 'noopener noreferrer' }
-                            : {})}
-                        >
-                          {item}
-                        </a>
-                      ) : (
-                        <span className="vshanuy-menu__item">{item}</span>
-                      )}
-                    </li>
-                  )
-                })}
-              </ul>
-            </section>
-          ))}
+          {sections.map((section, index) => {
+            const titleId = `menu-section-${index}`
+            if (section.kind === 'link') {
+              return (
+                <section
+                  key={section.title}
+                  className="vshanuy-menu__section vshanuy-menu__section--link"
+                  aria-labelledby={titleId}
+                >
+                  <a className="vshanuy-menu__section-title" id={titleId} href={section.href}>
+                    <span>{section.title}</span>
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </section>
+              )
+            }
+            return (
+              <section
+                key={titleId}
+                className="vshanuy-menu__section"
+                aria-labelledby={titleId}
+              >
+                <h3 id={titleId}>{section.title}</h3>
+                {section.items.length > 0 ? (
+                  <ul>
+                    {section.items.map((item) => (
+                      <li key={item.label}>
+                        {item.href ? (
+                          <a className="vshanuy-menu__item" href={item.href}>
+                            {item.label}
+                          </a>
+                        ) : (
+                          <span className="vshanuy-menu__item">{item.label}</span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+                {section.support ? (
+                  <div className="vshanuy-menu__cta">
+                    <a className="vshanuy-menu__support-btn" href={supportHref}>
+                      <span>Підтримати</span>
+                      <span aria-hidden="true">→</span>
+                    </a>
+                  </div>
+                ) : null}
+              </section>
+            )
+          })}
         </div>
       </nav>
     </div>

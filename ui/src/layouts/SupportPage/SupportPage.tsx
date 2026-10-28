@@ -95,7 +95,7 @@ function CopyButton({
 export function SupportPage({
   showHeader = true,
   title = 'Підтримати.',
-  lead = 'Ваша підтримка допомагає масштабувати Хвилину мовчання на національному рівні та розвивати культуру пам’яті в українських містах.',
+  lead = 'Ваша підтримка допомагає масштабувати Хвилину мовчання на національному рівні та розвивати культуру памʼяті в українських містах.',
   donateHref = 'https://send.monobank.ua/jar/7rme78odM9',
   bankFields = defaultBankFields,
   photoSrc = placeholderPhoto,
@@ -132,7 +132,7 @@ export function SupportPage({
                 Онлайн-донат
               </h2>
               <p className="vshanuy-support-page__text">
-                Підтримайте команду ГО «Вшануй» — допоможіть поширювати культуру пам’яті щодня.
+                Підтримайте команду ГО «Вшануй» — допоможіть поширювати культуру памʼяті щодня.
               </p>
               <a
                 className="vshanuy-support-page__cta"

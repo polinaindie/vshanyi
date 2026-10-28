@@ -13,3 +13,4 @@ ui/node_modules/
 ui/storybook-static/
 ui/dist/
 ui/debug-storybook.log
+scripts/generators/projects.json

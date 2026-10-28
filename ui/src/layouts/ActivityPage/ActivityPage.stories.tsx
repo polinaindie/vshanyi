@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import '../AboutPage/AboutPage.css'
 import { ActivityPage } from './ActivityPage'
 
 const meta = {
@@ -10,7 +9,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Сторінка «Діяльність»: заголовок і 7 напрямків, як на головній. Картки 4 в ряд, при наведенні — беж і збільшення фото.',
+          'Сторінка «Напрями роботи»: 7 напрямів одна під одною, як на головній (непарні з другої колонки, парні з першої). При наведенні — беж і збільшення фото. Проєкти — окрема сторінка Pages/Projects.',
       },
     },
   },

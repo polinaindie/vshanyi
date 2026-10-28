@@ -8,7 +8,7 @@ export type DirectionsPageProps = {
   showHeader?: boolean
 }
 
-/** Page composition: header (опційно) + реєстр напрямків + міст «Наша діяльність». */
+/** Page composition: header (опційно) + реєстр напрямів + міст «Діяльність». */
 export function DirectionsPage({ showHeader = true }: DirectionsPageProps) {
   return (
     <div className="vshanuy-directions-page">

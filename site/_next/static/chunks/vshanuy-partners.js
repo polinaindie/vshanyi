@@ -1,7 +1,7 @@
 (() => {
   const partners = [
     {
-      name: "Український інститут національної пам’яті",
+      name: "Український інститут національної памʼяті",
       logo: "_next/static/media/partners/uinp.png",
       href: "https://uinp.gov.ua/",
     },
@@ -16,7 +16,7 @@
       href: "https://corp.suspilne.media/",
     },
     {
-      name: "Платформа пам’яті Меморіал",
+      name: "Платформа памʼяті Меморіал",
       logo: "_next/static/media/partners/memorial.svg",
       href: "https://memorial.ua/",
     },
@@ -85,6 +85,7 @@
   const mount = () => {
     const existingSection = document.querySelector(".vshanuy-partners");
     if (existingSection) {
+      existingSection.id = "partners";
       fillList(existingSection);
       setupReveal(existingSection);
       return true;
@@ -97,6 +98,7 @@
 
     const section = document.createElement("section");
     section.className = "vshanuy-partners";
+    section.id = "partners";
     section.setAttribute("aria-labelledby", "vshanuy-partners-title");
     section.innerHTML = `
       <div class="vshanuy-partners__guides" aria-hidden="true">
@@ -120,6 +122,7 @@
 
     articleSection.insertAdjacentElement("afterend", section);
     setupReveal(section);
+    [0, 800].forEach((ms) => window.setTimeout(scrollToProjects, ms));
 
     return true;
   };
@@ -162,10 +165,16 @@
     window.addEventListener(type, stopAutoScroll, { once: true, passive: true }),
   );
 
+  const anchorTargets = {
+    "#proekty": markProjectsAnchor,
+    "#partners": () => document.getElementById("partners"),
+  };
+
   const scrollToProjects = (event) => {
-    if (window.location.hash !== "#proekty") return;
+    const findTarget = anchorTargets[window.location.hash];
+    if (!findTarget) return;
     if (userScrolled && event?.type !== "hashchange") return;
-    const section = markProjectsAnchor();
+    const section = findTarget();
     if (!section) return;
     const top = section.getBoundingClientRect().top + window.scrollY - 40;
     if (window.vshanuyLenis?.scrollTo) window.vshanuyLenis.scrollTo(top, { immediate: true });
@@ -179,22 +188,22 @@
   window.addEventListener("hashchange", scrollToProjects);
 
   const footerScript = document.createElement("script");
-  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261027e";
+  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261028f";
   document.head.append(footerScript);
 
   const menuScript = document.createElement("script");
-  menuScript.src = "_next/static/chunks/vshanuy-menu.js?v=20261027e";
+  menuScript.src = "_next/static/chunks/vshanuy-menu.js?v=20261028i";
   document.head.append(menuScript);
 
   const heroScript = document.createElement("script");
   heroScript.src = "_next/static/chunks/vshanuy-hero.js";
   document.head.append(heroScript);
 
-  const articlesScript = document.createElement("script");
-  articlesScript.src = "_next/static/chunks/vshanuy-articles.js?v=20261027a";
-  document.head.append(articlesScript);
-
-  const revealScript = document.createElement("script");
-  revealScript.src = "_next/static/chunks/vshanuy-reveal-fix.js?v=20261026about2";
-  document.head.append(revealScript);
+  // articles.js is loaded from index.html; keep a fallback if missing
+  if (![...document.scripts].some((s) => s.src.includes("vshanuy-articles.js"))) {
+    const articlesScript = document.createElement("script");
+    articlesScript.src =
+      "_next/static/chunks/vshanuy-articles.js?v=20261028a";
+    document.head.append(articlesScript);
+  }
 })();

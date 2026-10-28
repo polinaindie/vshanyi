@@ -60,10 +60,10 @@ export function MaterialKharkivPage({ showHeader = true }: MaterialKharkivPagePr
       <main className="vshanuy-article">
         <article>
           <header className="vshanuy-article__intro">
-            <a className="vshanuy-article__back" href="materialy.html"><span aria-hidden="true">←</span> Матеріали</a>
+            <a className="vshanuy-article__back" href="materialy.html"><span aria-hidden="true">←</span> Публікації</a>
             <p className="vshanuy-article__tag">Дослідження <span aria-hidden="true">·</span> м. Харків</p>
             <h1 className="vshanuy-article__title">Дослідження міських практик памʼяті, прощання та меморіалізації в Харкові</h1>
-            <p className="vshanuy-article__standfirst">Як Харків пам’ятає своїх? Що ми побачили, дізналися та зафіксували під час поїздки до Харкова.</p>
+            <p className="vshanuy-article__standfirst">Як Харків памʼятає своїх? Що ми побачили, дізналися та зафіксували під час поїздки до Харкова.</p>
           </header>
 
           <figure className="vshanuy-article__cover">
@@ -76,9 +76,9 @@ export function MaterialKharkivPage({ showHeader = true }: MaterialKharkivPagePr
                 <nav className="vshanuy-article__toc" aria-labelledby="vshanuy-article-toc">
                   <p className="vshanuy-article__label" id="vshanuy-article-toc">Зміст</p>
                   <ol>
-                    <li><a href="#miskyi-prostir" aria-current={current === 'miskyi-prostir' ? 'true' : undefined}>Пам’ять у міському просторі</a></li>
+                    <li><a href="#miskyi-prostir" aria-current={current === 'miskyi-prostir' ? 'true' : undefined}>Памʼять у міському просторі</a></li>
                     <li><a href="#suchasna-viyna" aria-current={current === 'suchasna-viyna' ? 'true' : undefined}>Памʼять про сучасну війну</a></li>
-                    <li><a href="#ne-lyshe-pamyatnykamy" aria-current={current === 'ne-lyshe-pamyatnykamy' ? 'true' : undefined}>Не лише пам’ятниками</a></li>
+                    <li><a href="#ne-lyshe-pamyatnykamy" aria-current={current === 'ne-lyshe-pamyatnykamy' ? 'true' : undefined}>Не лише памʼятниками</a></li>
                     <li><a href="#tseremoniya-proshchannya" aria-current={current === 'tseremoniya-proshchannya' ? 'true' : undefined}>Церемонія прощання</a></li>
                     <li><a href="#prapory" aria-current={current === 'prapory' ? 'true' : undefined}>Прапори, які відслужили</a></li>
                     <li><a href="#povtoryty" aria-current={current === 'povtoryty' ? 'true' : undefined}>А що, якщо повторити?</a></li>
@@ -89,19 +89,19 @@ export function MaterialKharkivPage({ showHeader = true }: MaterialKharkivPagePr
 
             <div className="vshanuy-article__body">
               <section className="vshanuy-article__section" id="miskyi-prostir" aria-labelledby="miskyi-prostir-title">
-                <h2 className="vshanuy-article__heading" id="miskyi-prostir-title">Пам’ять у міському просторі</h2>
-                <p>Подорожуючи українськими містами, ми звертаємо увагу не лише на нові меморіали, а й на те, яка пам’ять уже займає міський простір.</p>
-                <p>У багатьох містах центральні площі та вулиці досі займають радянські пам’ятники й місця пам’яті про «Вєлікую Отєчєственную» – Другу світову війну. Відбувається нашарування пам’яті, і якщо вдуматися, то це абсурдно і несумісно.</p>
+                <h2 className="vshanuy-article__heading" id="miskyi-prostir-title">Памʼять у міському просторі</h2>
+                <p>Подорожуючи українськими містами, ми звертаємо увагу не лише на нові меморіали, а й на те, яка памʼять уже займає міський простір.</p>
+                <p>У багатьох містах центральні площі та вулиці досі займають радянські памʼятники й місця памʼяті про «Вєлікую Отєчєственную» – Другу світову війну. Відбувається нашарування памʼяті, і якщо вдуматися, то це абсурдно і несумісно.</p>
                 <p>У Харкові радянські меморіали не домінують у центральному просторі. Частина з них розташована окремо — зокрема, у парку Слави.</p>
                 <p>Іще один достатньо відомий меморіал солдату – раніше був на початку міста, а тепер він серед великої магістральної розвʼязки, будинків і магазинів. У 2022 році цей «солдат» отримав поранення від російських снарядів.</p>
-                <p>За ним барельєф завісили синьо-жовтими прапорами. Цей простір добре показує, як змінюється міський контекст навколо старих меморіалів: об’єкт залишається на своєму місці, але змінюється місто, яке його оточує, і значення, яке він має для цього простору.</p>
+                <p>За ним барельєф завісили синьо-жовтими прапорами. Цей простір добре показує, як змінюється міський контекст навколо старих меморіалів: обʼєкт залишається на своєму місці, але змінюється місто, яке його оточує, і значення, яке він має для цього простору.</p>
               </section>
 
               <section className="vshanuy-article__section" id="suchasna-viyna" aria-labelledby="suchasna-viyna-title">
                 <h2 className="vshanuy-article__heading" id="suchasna-viyna-title">Памʼять про сучасну війну</h2>
-                <p>У Харкові вже формується окремий шар пам’яті про російсько-українську війну – у різних форматах і в різних частинах міста.</p>
-                <p>У 2023 році біля Палацу дитячої та юнацької творчості встановили пам’ятник дітям, яких вбили росіяни. Біля нього містяни залишають квіти та м’які іграшки.</p>
-                <p>На центральній алеї біля Харківської обласної військової адміністрації з’явилися прапорці з іменами загиблих харків’ян – практика стихійних меморіалів, яка поширилася в українських містах після початку повномасштабної війни.</p>
+                <p>У Харкові вже формується окремий шар памʼяті про російсько-українську війну – у різних форматах і в різних частинах міста.</p>
+                <p>У 2023 році біля Палацу дитячої та юнацької творчості встановили памʼятник дітям, яких вбили росіяни. Біля нього містяни залишають квіти та мʼякі іграшки.</p>
+                <p>На центральній алеї біля Харківської обласної військової адміністрації зʼявилися прапорці з іменами загиблих харківʼян – практика стихійних меморіалів, яка поширилася в українських містах після початку повномасштабної війни.</p>
                 <p>У сквері біля флагштока побачите нативне нагадування у міському просторі – лавочки з табличками про загиблих, полонених та зниклих безвісти, з проєкту «Поміж нас». Поруч розташований цифровий екран із фотографіями загиблих.</p>
                 <figure className="vshanuy-article__figure">
                   <img src={benchPhoto} alt="Лавочка в сквері з латунною табличкою «Тут могла б сидіти та, яка загинула у російському полоні»" width="1024" height="768" loading="lazy" decoding="async"/>
@@ -110,18 +110,18 @@ export function MaterialKharkivPage({ showHeader = true }: MaterialKharkivPagePr
               </section>
 
               <section className="vshanuy-article__section" id="ne-lyshe-pamyatnykamy" aria-labelledby="ne-lyshe-pamyatnykamy-title">
-                <h2 className="vshanuy-article__heading" id="ne-lyshe-pamyatnykamy-title">Не лише пам’ятниками</h2>
-                <p>Кав’ярня «Паломник» виникла з мрії Андрія Авілова. Після його загибелі мама Олена відкрила цей простір і перетворила його на безпечний простір для своїх. На стінах висять фотографії Андрія та його загиблих побратимів.</p>
-                <p>У кав’ярні «ЛяТюШо» віднедавна є «Дзеркало пам’яті» – дзеркало з іменами загиблих. Додати ім’я своєї людини можна через працівників закладу.</p>
+                <h2 className="vshanuy-article__heading" id="ne-lyshe-pamyatnykamy-title">Не лише памʼятниками</h2>
+                <p>Кавʼярня «Паломник» виникла з мрії Андрія Авілова. Після його загибелі мама Олена відкрила цей простір і перетворила його на безпечний простір для своїх. На стінах висять фотографії Андрія та його загиблих побратимів.</p>
+                <p>У кавʼярні «ЛяТюШо» віднедавна є «Дзеркало памʼяті» – дзеркало з іменами загиблих. Додати імʼя своєї людини можна через працівників закладу.</p>
               </section>
 
               <section className="vshanuy-article__section" id="tseremoniya-proshchannya" aria-labelledby="tseremoniya-proshchannya-title">
                 <h2 className="vshanuy-article__heading" id="tseremoniya-proshchannya-title">Церемонія прощання</h2>
                 <p>У Харкові немає єдиного сценарію прощання з усіма загиблими, наразі місто не пропонує цього, якщо стається щось відмінне від стандарту – це результат ініціативи та зусилля родини.</p>
-                <p>Місто може долучатися до церемонії, коли йдеться про Героя України, але загалом намагається не нав’язувати сім’ї власний сценарій.</p>
+                <p>Місто може долучатися до церемонії, коли йдеться про Героя України, але загалом намагається не навʼязувати сімʼї власний сценарій.</p>
                 <p>На кладовищі №18 уже понад три тисячі поховань. Щодня тут відбуваються нові – по 3-5 поховань.</p>
-                <p>Є почесний караул, майоріють прапори України та військових бригад, встановлені пам’ятники. На одному із секторів сформувалася Алея слави – поховання тут відбуваються з 2014 року.</p>
-                <p>Водночас Харків шукає відповідь на питання: «Яким ж має бути місце для поховання та пам’яті захисників?».</p>
+                <p>Є почесний караул, майоріють прапори України та військових бригад, встановлені памʼятники. На одному із секторів сформувалася Алея слави – поховання тут відбуваються з 2014 року.</p>
+                <p>Водночас Харків шукає відповідь на питання: «Яким ж має бути місце для поховання та памʼяті захисників?».</p>
               </section>
 
               <section className="vshanuy-article__section" id="prapory" aria-labelledby="prapory-title">
@@ -129,7 +129,7 @@ export function MaterialKharkivPage({ showHeader = true }: MaterialKharkivPagePr
                 <p>Коли в місті постало питання: «А що робити з прапорами, які вже віджили своє?» – влада звернулась до Міністерства оборони задля вирішення питання, на що отримали відповідь, що наразі варто розбиратись із цим питанням на локальному рівні.</p>
                 <p>25 серпня понад 800 прапорів, які були встановлені в місті та на кладовищах, склали та передали на зберігання до ТЦК. Це була окрема офіційна церемонія, на момент нашого дослідження вона відбулася один раз – на День державного прапору.</p>
                 <p>Що відбувається з прапорами після передачі на зберігання – наразі невідомо. Практика також не закріплена окремим локальним положенням чи нормативним актом.</p>
-                <p>Під час війни міста часто змушені самостійно знаходити відповіді на нові питання меморіалізації, ще до того, як для них з’являється єдиний загальнодержавний порядок.</p>
+                <p>Під час війни міста часто змушені самостійно знаходити відповіді на нові питання меморіалізації, ще до того, як для них зʼявляється єдиний загальнодержавний порядок.</p>
               </section>
 
               <section className="vshanuy-article__section" id="povtoryty" aria-labelledby="povtoryty-title">
@@ -139,7 +139,7 @@ export function MaterialKharkivPage({ showHeader = true }: MaterialKharkivPagePr
                 <p>От наприклад у місті є кілька моргів, тож немає єдиного маршруту, яким можна було б проводжати загиблих через місто. Різність районів, родин, обставин не дає спроможності зробити ритуал єдиним.</p>
                 <p>Те, що легко організувати в одному місці, в іншому може бути фізично неможливим або просто не відповідати досвіду людей для яких ця практика твориться.</p>
                 <blockquote className="vshanuy-article__pullquote">
-                  <p>Пам’ять не можна просто привезти ззовні. От такому нас навчив Харків.</p>
+                  <p>Памʼять не можна просто привезти ззовні. От такому нас навчив Харків.</p>
                 </blockquote>
               </section>
             </div>
@@ -148,9 +148,9 @@ export function MaterialKharkivPage({ showHeader = true }: MaterialKharkivPagePr
 
         <section className="vshanuy-article__related" aria-labelledby="vshanuy-article-related">
           <div className="vshanuy-article__related-head">
-            <h2 className="vshanuy-article__label" id="vshanuy-article-related">Інші матеріали</h2>
+            <h2 className="vshanuy-article__label" id="vshanuy-article-related">Інші публікації</h2>
             <a className="vshanuy-article__link" href="materialy.html">
-              Усі матеріали <span aria-hidden="true">→</span>
+              Усі публікації <span aria-hidden="true">→</span>
             </a>
           </div>
           <ul className="vshanuy-materials-page__list">

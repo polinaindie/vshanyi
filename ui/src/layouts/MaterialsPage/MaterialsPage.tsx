@@ -70,7 +70,7 @@ export const defaultMaterials: Material[] = [
   {
     type: 'doslidzhennya',
     tag: 'Дослідження',
-    title: 'Дослідження міських практик пам’яті, прощання та меморіалізації в Харкові',
+    title: 'Дослідження міських практик памʼяті, прощання та меморіалізації в Харкові',
     href: 'materialy/doslidzhennya-kharkiv.html',
     cover: researchPhoto,
     coverWidth: 1024,
@@ -86,7 +86,7 @@ export function MaterialsPage({ showHeader = true, materials = defaultMaterials 
   const select = (id: 'all' | MaterialType) => {
     setFilter(id)
     const shown = materials.filter((material) => id === 'all' || material.type === id).length
-    setStatus(`Показано матеріалів: ${shown}`)
+    setStatus(`Показано публікацій: ${shown}`)
   }
 
   return (
@@ -101,8 +101,8 @@ export function MaterialsPage({ showHeader = true, materials = defaultMaterials 
 
       <main className="vshanuy-materials-page__main">
         <header className="vshanuy-materials-page__intro">
-          <h1 className="vshanuy-materials-page__title">Матеріали.</h1>
-          <ul className="vshanuy-materials-page__filters" aria-label="Тип матеріалу">
+          <h1 className="vshanuy-materials-page__title">Публікації.</h1>
+          <ul className="vshanuy-materials-page__filters" aria-label="Тип публікації">
             {filters.map((item) => (
               <li key={item.id}>
                 <button type="button" aria-pressed={filter === item.id} onClick={() => select(item.id)}>

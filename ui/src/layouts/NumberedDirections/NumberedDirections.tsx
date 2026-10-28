@@ -76,7 +76,7 @@ const defaultItems: Direction[] = [
 ]
 
 export function NumberedDirections({
-  label = 'НАПРЯМКИ РОБОТИ',
+  label = 'НАПРЯМИ РОБОТИ',
   title = 'Що ми робимо, щоб поширювати культуру памʼяті',
   items = defaultItems,
 }: NumberedDirectionsProps) {

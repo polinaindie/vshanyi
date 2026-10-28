@@ -1,54 +1,51 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Посібники — Вшануй</title>
-  <link rel="stylesheet" href="../brand/tokens.css">
-  <style>
-    body { margin: 0; background: var(--paper); color: var(--ink); }
-    main { max-width: 960px; margin: 0 auto; padding: 48px 24px 96px; }
-    header { padding-bottom: 48px; border-bottom: var(--line); }
-    .label { font-size: 13px; letter-spacing: var(--tracking-label); text-transform: uppercase; }
-    h1 { max-width: 12ch; margin: 24px 0 0; font-family: var(--font-display); font-size: var(--step-4); line-height: var(--leading-display); }
-    ol { margin: 64px 0 0; padding: 0; list-style: none; }
-    li { display: grid; grid-template-columns: 48px 1fr auto; gap: 24px; align-items: start; padding: 24px 0; border-top: var(--line-muted); }
-    li:last-child { border-bottom: var(--line-muted); }
-    h2 { margin: 0; font-family: var(--font-display); font-size: var(--step-2); }
-    p { max-width: 46rem; margin: 12px 0 0; color: var(--graphite); }
-    a { min-height: 44px; padding: 12px 0; color: var(--ink); font-weight: 600; text-underline-offset: 4px; }
-    a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-    .back { display: inline-flex; margin-top: 48px; }
-    @media (max-width: 640px) {
-      li { grid-template-columns: 40px 1fr; }
-      li > a { grid-column: 2; }
-    }
-  </style>
+  <link rel="stylesheet" href="../_next/static/css/font-overrides.css?v=20261028d"/>
+  <link rel="stylesheet" href="../_next/static/css/materialy.css?v=20261026b"/>
+  <link rel="stylesheet" href="../_next/static/css/posibnyky.css?v=20261028a"/>
 </head>
-<body>
-  <main>
-    <header>
-      <p class="label">03 — ПОСІБНИКИ</p>
-      <h1>Практики культури пам’яті</h1>
+<body class="vshanuy-materials-page vshanuy-guides-page">
+  <div class="vshanuy-page-guides" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  <header class="sticky"></header>
+
+  <main class="vshanuy-materials-page__main">
+    <header class="vshanuy-materials-page__intro">
+      <h1 class="vshanuy-materials-page__title">Посібники.</h1>
     </header>
-    <ol>
-      <li>
-        <span aria-hidden="true">01</span>
-        <div><h2>Дорожня карта Хвилини мовчання</h2><p>Покрокова інструкція для міста, як запровадити Хвилину мовчання.</p></div>
-        <a href="hvylyna-movchannya.pdf" download>Завантажити PDF ↓</a>
+
+    <ol class="vshanuy-guides-page__list">
+      <li class="vshanuy-guides-page__item">
+        <p class="vshanuy-guides-page__num" aria-hidden="true">01</p>
+        <div class="vshanuy-guides-page__copy">
+          <h2 class="vshanuy-guides-page__title" id="guide-1">Дорожня карта Хвилини мовчання</h2>
+          <p class="vshanuy-guides-page__text">Покрокова інструкція для міста, як запровадити Хвилину мовчання.</p>
+        </div>
       </li>
-      <li>
-        <span aria-hidden="true">02</span>
-        <div><h2>Як впровадити Хвилину мовчання у бізнесі</h2><p>Як комунікувати з працівниками і пояснити аудиторії ритуал.</p></div>
-        <a href="haid-dlya-biznesu.pdf" download>Завантажити PDF ↓</a>
+      <li class="vshanuy-guides-page__item">
+        <p class="vshanuy-guides-page__num" aria-hidden="true">02</p>
+        <div class="vshanuy-guides-page__copy">
+          <h2 class="vshanuy-guides-page__title" id="guide-2">Як впровадити Хвилину мовчання у бізнесі</h2>
+          <p class="vshanuy-guides-page__text">Як комунікувати з працівниками і пояснити аудиторії ритуал.</p>
+        </div>
       </li>
-      <li>
-        <span aria-hidden="true">03</span>
-        <div><h2>Практичний комунікаційний гайд «Не нашкодити»</h2><p>Що говорити після обстрілів або у дні памʼяті.</p></div>
-        <a href="dorozhnya-karta-dlya-hromad.pdf" download>Завантажити PDF ↓</a>
+      <li class="vshanuy-guides-page__item">
+        <p class="vshanuy-guides-page__num" aria-hidden="true">03</p>
+        <div class="vshanuy-guides-page__copy">
+          <h2 class="vshanuy-guides-page__title" id="guide-3">Практичний комунікаційний гайд «Не нашкодити»</h2>
+          <p class="vshanuy-guides-page__text">Що говорити після обстрілів або у дні памʼяті.</p>
+        </div>
       </li>
     </ol>
-    <a class="back" href="../index.html">← На головну</a>
   </main>
+
+  <footer></footer>
+
+  <script src="../_next/static/chunks/vshanuy-smooth-scroll.js?v=20261023a"></script>
+  <script src="../_next/static/chunks/vshanuy-menu.js?v=20261028i"></script>
+  <script src="../_next/static/chunks/vshanuy-footer.js?v=20261028f"></script>
 </body>
 </html>
