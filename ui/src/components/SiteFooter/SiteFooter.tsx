@@ -122,7 +122,9 @@ export function SiteFooter(_props: SiteFooterProps = {}) {
               <li>
                 <a href="merch.html">Купити мерч.</a>
               </li>
-              <li>Партнери.</li>
+              <li>
+                <a href="partnery.html">Партнери.</a>
+              </li>
             </ul>
           </div>
         </section>

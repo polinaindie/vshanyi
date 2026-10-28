@@ -62,6 +62,7 @@
     if (key === "Співпраця") return `${siteRoot}spivpratsya.html`;
     if (key === "Підтримати") return supportPageHref;
     if (key === "Купити мерч" || key === "Мерч") return `${siteRoot}merch.html`;
+    if (key === "Партнери") return `${siteRoot}partnery.html`;
     return null;
   }
 
@@ -281,6 +282,7 @@
       href === "polityka-konfidentsiynosti.html" ||
       href === "spivpratsya.html" ||
       href.startsWith("spivpratsya.html") ||
+      href.startsWith("partnery.html") ||
       href.startsWith("diyalnist.html") ||
       href.startsWith("proekty.html") ||
       href === "posibnyky/" ||

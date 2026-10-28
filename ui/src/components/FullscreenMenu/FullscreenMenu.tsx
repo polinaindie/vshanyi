@@ -45,7 +45,7 @@ const defaultSections: MenuColumn[] = [
       { label: 'Підтримати', href: 'pidtrymaty.html' },
       { label: 'Співпраця', href: 'spivpratsya.html' },
       { label: 'Купити мерч', href: 'merch.html' },
-      { label: 'Партнери', href: null },
+      { label: 'Партнери', href: 'partnery.html' },
     ],
   },
 ]

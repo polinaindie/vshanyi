@@ -56,6 +56,7 @@ function hrefForLabel(label: string): string | null {
   if (key === 'Співпраця') return 'spivpratsya.html'
   if (key === 'Підтримати') return 'pidtrymaty.html'
   if (key === 'Купити мерч' || key === 'Мерч') return 'merch.html'
+  if (key === 'Партнери') return 'partnery.html'
   return null
 }
 

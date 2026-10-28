@@ -56,7 +56,7 @@
               <li><a href="${rootPrefix}pidtrymaty.html">Підтримати.</a></li>
               <li><a href="${rootPrefix}spivpratsya.html">Співпраця.</a></li>
               <li><a href="${rootPrefix}merch.html">Купити мерч.</a></li>
-              <li><span class="vshanuy-dead-link">Партнери.</span></li>
+              <li><a href="${rootPrefix}partnery.html">Партнери.</a></li>
             </ul>
           </div>
           <div class="vshanuy-site-footer__support-foot">
