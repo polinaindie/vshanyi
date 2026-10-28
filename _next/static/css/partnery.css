@@ -188,10 +188,10 @@
 }
 
 .vshanuy-partners-page__row-logo {
-  display: inline-flex;
-  width: fit-content;
+  display: flex;
   min-height: 44px;
   align-items: center;
+  justify-content: center;
   text-decoration: none;
   border-radius: var(--radius);
 }
@@ -199,7 +199,9 @@
 .vshanuy-partners-page__row-logo img {
   display: block;
   width: auto;
-  height: 26px;
+  max-width: min(176px, 100%);
+  height: auto;
+  max-height: 64px;
   filter: grayscale(1) brightness(0);
   opacity: 0.68;
   transition: opacity 300ms ease-out;
@@ -246,26 +248,30 @@
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.vshanuy-partners-page__row-link-text {
   text-decoration: underline;
   text-decoration-color: transparent;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
-  text-transform: uppercase;
   transition: text-decoration-color 300ms ease-out;
 }
 
-.vshanuy-partners-page__row-link > span {
+.vshanuy-partners-page__row-link-arrow {
   font-size: 20px;
   transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.vshanuy-partners-page__row-link:hover,
-.vshanuy-partners-page__row-link:focus-visible {
+.vshanuy-partners-page__row-link:hover .vshanuy-partners-page__row-link-text,
+.vshanuy-partners-page__row-link:focus-visible .vshanuy-partners-page__row-link-text {
   text-decoration-color: currentColor;
 }
 
-.vshanuy-partners-page__row-link:hover > span,
-.vshanuy-partners-page__row-link:focus-visible > span {
+.vshanuy-partners-page__row-link:hover .vshanuy-partners-page__row-link-arrow,
+.vshanuy-partners-page__row-link:focus-visible .vshanuy-partners-page__row-link-arrow {
   transform: translateX(4px);
 }
 
@@ -277,8 +283,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .vshanuy-partners-page__row-logo img,
-  .vshanuy-partners-page__row-link,
-  .vshanuy-partners-page__row-link > span {
+  .vshanuy-partners-page__row-link-text,
+  .vshanuy-partners-page__row-link-arrow {
     transition: none;
   }
 }
@@ -321,7 +327,7 @@
   .vshanuy-partners-page__row {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0;
-    align-items: start;
+    align-items: center;
     padding-inline: 0;
   }
 
