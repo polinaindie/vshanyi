@@ -67,7 +67,7 @@ export function SiteFooter({
               <a href="proekty.html">Проєкти.</a>
             </li>
             <li>
-              <a href="posibnyky/">Посібники.</a>
+              <a href="posibnyky/">Гайди.</a>
             </li>
             <li>
               <a href="materialy.html">Публікації.</a>

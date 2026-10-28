@@ -20,7 +20,7 @@ export type DesktopHeaderProps = {
 const activityLinks = [
   'Напрями роботи',
   'Проєкти',
-  'Посібники',
+  'Гайди',
   'Публікації',
 ]
 
@@ -44,7 +44,7 @@ const defaultItems: DesktopNavItem[] = [
 function hrefForLabel(label: string): string | null {
   if (label === 'Напрями роботи') return 'diyalnist.html'
   if (label === 'Проєкти') return 'proekty.html'
-  if (label === 'Посібники') return 'posibnyky/'
+  if (label === 'Гайди') return 'posibnyky/'
   if (label === 'Публікації') return 'materialy.html'
   return null
 }

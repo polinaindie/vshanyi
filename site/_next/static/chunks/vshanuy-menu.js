@@ -2,7 +2,7 @@
   const activityLinks = [
     "Напрями роботи",
     "Проєкти",
-    "Посібники",
+    "Гайди",
     "Публікації",
   ];
 
@@ -58,7 +58,7 @@
     if (label === "Проєкти" || label === "Проєкти.") {
       return `${siteRoot}proekty.html`;
     }
-    if (label === "Посібники" || label === "Посібники.") {
+    if (label === "Гайди" || label === "Гайди.") {
       return `${siteRoot}posibnyky/`;
     }
     if (label === "Публікації" || label === "Публікації.") {

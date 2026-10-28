@@ -31,7 +31,7 @@ export type GuidesPageProps = {
   items?: Guide[]
 }
 
-/** Page composition: H1 «Посібники.» → нумерований список, розділений лінійками: номер (кол. 1), назва й опис (кол. 2–3), «Завантажити PDF» з розміром файлу (кол. 4), лише якщо є файл. Жовтий-бюджет 0. */
+/** Page composition: H1 «Гайди.» → нумерований список, розділений лінійками: номер (кол. 1), назва й опис (кол. 2–3), «Завантажити PDF» з розміром файлу (кол. 4), лише якщо є файл. Жовтий-бюджет 0. */
 export function GuidesPage({ showHeader = true, items = guides }: GuidesPageProps) {
   return (
     <div className="vshanuy-materials-page vshanuy-guides-page">
@@ -45,7 +45,7 @@ export function GuidesPage({ showHeader = true, items = guides }: GuidesPageProp
 
       <main className="vshanuy-materials-page__main">
         <header className="vshanuy-materials-page__intro">
-          <h1 className="vshanuy-materials-page__title">Посібники.</h1>
+          <h1 className="vshanuy-materials-page__title">Гайди.</h1>
         </header>
 
         <ol className="vshanuy-guides-page__list">

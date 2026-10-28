@@ -27,7 +27,7 @@ const defaultItems: GuideItem[] = [
 
 export function GuideCta({ items = defaultItems, as: Tag = 'section' }: GuideCtaProps) {
   return (
-    <Tag className="vshanuy-guides" aria-label="Посібники">
+    <Tag className="vshanuy-guides" aria-label="Гайди">
       <div className="vshanuy-guides__list">
         {items.map((item) => (
           <a key={item.title} className="vshanuy-guide-download" href={item.href || '#'}>

@@ -34,7 +34,7 @@ const defaultSections: MenuColumn[] = [
     items: [
       { label: 'Напрями роботи', href: 'diyalnist.html' },
       { label: 'Проєкти', href: 'proekty.html' },
-      { label: 'Посібники', href: 'posibnyky/' },
+      { label: 'Гайди', href: 'posibnyky/' },
       { label: 'Публікації', href: 'materialy.html' },
     ],
   },

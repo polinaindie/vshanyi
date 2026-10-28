@@ -11,8 +11,8 @@ SITE = HERE.parent.parent / "site"
 PROJECTS_JSON = HERE / "projects.json"
 
 CSS_V = {"fo": "20261028e", "mats": "20261026b", "mat": "20261027j", "dir": "20261027m", "diyal": "20261028b"}
-MENU_V = "20261028i"
-FOOTER_V = "20261028f"
+MENU_V = "20261028j"
+FOOTER_V = "20261028g"
 
 FORM = "https://forms.gle/hz4xq3g1Hz4ccVAz8"
 LAW = "https://zakon.rada.gov.ua/laws/show/4783-20"

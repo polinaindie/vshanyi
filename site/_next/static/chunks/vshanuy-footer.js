@@ -39,7 +39,7 @@
           <ul class="vshanuy-site-footer__links">
             <li><a href="${rootPrefix}diyalnist.html">Напрями роботи.</a></li>
             <li><a href="${rootPrefix}proekty.html">Проєкти.</a></li>
-            <li><a href="${rootPrefix}posibnyky/">Посібники.</a></li>
+            <li><a href="${rootPrefix}posibnyky/">Гайди.</a></li>
             <li><a href="${rootPrefix}materialy.html">Публікації.</a></li>
           </ul>
           <a class="vshanuy-site-footer__column-foot" href="${rootPrefix}polityka-konfidentsiynosti.html">Політика конфіденційності</a>
