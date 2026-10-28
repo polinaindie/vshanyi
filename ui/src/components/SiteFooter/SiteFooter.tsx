@@ -117,10 +117,10 @@ export function SiteFooter(_props: SiteFooterProps = {}) {
                 <a href="pidtrymaty.html">Підтримати.</a>
               </li>
               <li>
-                <a href="spivpratsya.html">Співпраця.</a>
+                <a href="merch.html">Купити мерч.</a>
               </li>
               <li>
-                <a href="merch.html">Купити мерч.</a>
+                <a href="spivpratsya.html">Співпраця.</a>
               </li>
               <li>
                 <a href="partnery.html">Партнери.</a>

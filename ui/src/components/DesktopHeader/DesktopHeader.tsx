@@ -26,7 +26,7 @@ const activityLinks = [
   'Публікації',
 ]
 
-const joinLinks = ['Підтримати', 'Співпраця', 'Купити мерч', 'Партнери']
+const joinLinks = ['Підтримати', 'Купити мерч', 'Співпраця', 'Партнери']
 
 const defaultItems: DesktopNavItem[] = [
   {

@@ -54,8 +54,8 @@
           <div class="vshanuy-site-footer__contacts">
             <ul class="vshanuy-site-footer__links" aria-label="Долучитися">
               <li><a href="${rootPrefix}pidtrymaty.html">Підтримати.</a></li>
-              <li><a href="${rootPrefix}spivpratsya.html">Співпраця.</a></li>
               <li><a href="${rootPrefix}merch.html">Купити мерч.</a></li>
+              <li><a href="${rootPrefix}spivpratsya.html">Співпраця.</a></li>
               <li><a href="${rootPrefix}partnery.html">Партнери.</a></li>
             </ul>
           </div>

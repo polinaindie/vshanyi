@@ -11,8 +11,8 @@ SITE = HERE.parent.parent / "site"
 PROJECTS_JSON = HERE / "projects.json"
 
 CSS_V = {"fo": "20261028navf", "mats": "20261026b", "mat": "20261028a", "slider": "20261028b", "dir": "20261027m"}
-MENU_V = "20261028p"
-FOOTER_V = "20261028p"
+MENU_V = "20261028q"
+FOOTER_V = "20261028q"
 LAW = "https://zakon.rada.gov.ua/laws/show/4783-20"
 EMAIL = "momentofhonorukraine@gmail.com"
 GROMADA_FORM = "https://forms.gle/YCupf54quWyLLyfT8"
