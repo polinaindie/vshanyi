@@ -1,61 +1,68 @@
 (() => {
   const activityLinks = [
-    "Напрямки роботи",
+    "Напрями роботи",
     "Проєкти",
-    "Посібники",
+    "Гайди",
+    "Публікації",
   ];
 
-  const siteRoot = typeof window !== "undefined" && window.__VSHANUY_SITE_ROOT__
-    ? window.__VSHANUY_SITE_ROOT__
-    : "";
+  const siteRoot = (() => {
+    if (typeof window.__VSHANUY_SITE_ROOT__ === "string") return window.__VSHANUY_SITE_ROOT__;
+    const src = document.currentScript?.src;
+    if (!src) return "";
+    const root = new URL("../../../", src).pathname;
+    const path = window.location.pathname;
+    if (!path.startsWith(root)) return "";
+    return "../".repeat(path.slice(root.length).split("/").length - 1);
+  })();
   const supportPageHref = `${siteRoot}pidtrymaty.html`;
 
-  // Порядок: Про нас → Наша діяльність → Матеріали → Співпраця → Контакти
-  // kind: 'group' = inert h3 + items; 'link' = title-лінк на рівні заголовка
   const sections = [
     {
       kind: "group",
       title: "Про нас",
       items: [
-        { label: "Хто ми", href: `${siteRoot}pro-nas.html` },
+        { label: "Місія та цінності", href: `${siteRoot}pro-nas.html` },
         { label: "Звіт про діяльність", href: null },
-        { label: "Мерч", href: `${siteRoot}merch.html` },
+        { label: "Контакти", href: `${siteRoot}kontakty.html` },
       ],
     },
     {
       kind: "group",
-      title: "Наша діяльність",
+      title: "Діяльність",
       items: activityLinks.map((label) => ({
         label,
         href: linkHrefForActivity(label),
       })),
     },
     {
-      kind: "link",
-      title: "Матеріали",
-      href: `${siteRoot}materialy.html`,
+      kind: "group",
+      title: "Спільнота",
+      items: [
+        { label: "Співпраця", href: `${siteRoot}spivpratsya.html` },
+        { label: "Партнери", href: `${siteRoot}index.html#partners` },
+      ],
     },
     {
-      kind: "link",
-      title: "Співпраця",
-      href: `${siteRoot}spivpratsya.html`,
-    },
-    {
-      kind: "link",
-      title: "Контакти",
-      href: `${siteRoot}kontakty.html`,
+      kind: "group",
+      title: "Долучитися",
+      items: [{ label: "Мерч", href: `${siteRoot}merch.html` }],
+      support: true,
     },
   ];
 
   function linkHrefForActivity(label) {
-    if (label === "Напрямки роботи" || label === "Напрямки роботи.") {
+    if (label === "Напрями роботи" || label === "Напрями роботи.") {
       return `${siteRoot}diyalnist.html`;
     }
     if (label === "Проєкти" || label === "Проєкти.") {
       return `${siteRoot}proekty.html`;
     }
-    if (label === "Посібники" || label === "Посібники.") {
+    if (label === "Гайди" || label === "Гайди.") {
       return `${siteRoot}posibnyky/`;
+    }
+    if (label === "Публікації" || label === "Публікації.") {
+      return `${siteRoot}materialy.html`;
     }
     return null;
   }
@@ -63,13 +70,13 @@
   const linkForLabel = (label) => {
     const href = linkHrefForActivity(label);
     if (href) return { href, external: false };
-    if (label === "Хто ми") {
+    if (label === "Місія та цінності") {
       return { href: `${siteRoot}pro-nas.html`, external: false };
     }
     if (label === "Мерч") {
       return { href: `${siteRoot}merch.html`, external: false };
     }
-    if (label === "Матеріали") {
+    if (label === "Публікації") {
       return { href: `${siteRoot}materialy.html`, external: false };
     }
     if (label === "Співпраця") {
@@ -178,6 +185,15 @@
     return `<span class="vshanuy-menu__item">${item.label}</span>`;
   };
 
+  const supportCtaMarkup = `
+    <div class="vshanuy-menu__cta">
+      <a class="vshanuy-menu__support-btn" href="${supportPageHref}">
+        <span>Підтримати</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  `;
+
   const sectionMarkup = sections
     .map((section, index) => {
       const titleId = `menu-section-${index}`;
@@ -203,19 +219,11 @@
       <section class="vshanuy-menu__section" aria-labelledby="${titleId}">
         <h3 id="${titleId}">${section.title}</h3>
         ${list}
+        ${section.support ? supportCtaMarkup : ""}
       </section>
     `;
     })
     .join("");
-
-  const supportCtaMarkup = `
-    <div class="vshanuy-menu__cta">
-      <a class="vshanuy-menu__support-btn" href="${supportPageHref}">
-        <span>Підтримати</span>
-        <span aria-hidden="true">→</span>
-      </a>
-    </div>
-  `;
 
   const desktopMarkup = `
     <nav class="vshanuy-desktop-menu" aria-label="Головна навігація">
@@ -232,7 +240,7 @@
       </a>
       <ul class="vshanuy-desktop-menu__primary">
         ${desktopItem({
-          label: "Наша діяльність.",
+          label: "Діяльність.",
           links: activityLinks,
           modifier: "vshanuy-desktop-menu__item--activity",
         })}
@@ -268,7 +276,6 @@
       </div>
       <nav class="vshanuy-menu__nav" aria-labelledby="vshanuy-menu-title">
         <div class="vshanuy-menu__grid">${sectionMarkup}</div>
-        ${supportCtaMarkup}
       </nav>
     </div>
   `;
@@ -283,15 +290,17 @@
       href === "./" ||
       href === "/" ||
       href === "index.html" ||
+      href.startsWith("index.html#") ||
       href === "kontakty.html" ||
       href.startsWith("pidtrymaty.html") ||
       href.startsWith("pro-nas.html") ||
       href.startsWith("materialy") ||
       href === "merch.html" ||
+      href === "polityka-konfidentsiynosti.html" ||
       href === "spivpratsya.html" ||
       href.startsWith("spivpratsya.html") ||
-      href === "proekty.html" ||
-      href === "diyalnist.html" ||
+      href.startsWith("diyalnist.html") ||
+      href.startsWith("proekty.html") ||
       href === "posibnyky/" ||
       href === "posibnyky/index.html" ||
       href === "napryamky/spivpratsya-z-biznesom.html" ||

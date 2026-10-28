@@ -1,4 +1,130 @@
-/* Сторінка напрямку — доповнення до material.css */
+/* Сторінка напряму — доповнення до material.css */
+
+/* Перший екран: розділ із змістом */
+.vshanuy-direction__kicker {
+  margin: var(--space-3) 0 0;
+  padding-bottom: var(--space-1);
+  border-bottom: var(--line-muted);
+}
+
+.vshanuy-direction__intro .vshanuy-article__title {
+  max-width: none;
+  margin-top: var(--space-3);
+}
+
+.vshanuy-direction__lead {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: var(--line-muted);
+}
+
+.vshanuy-direction__lead .vshanuy-article__standfirst {
+  margin: 0;
+}
+
+.vshanuy-direction__band img {
+  aspect-ratio: 3 / 2;
+}
+
+.vshanuy-direction__resources li:has(> .vshanuy-direction__chats) {
+  padding: 0;
+}
+
+.vshanuy-direction__chats {
+  scroll-margin-top: calc(33px + var(--space-4));
+}
+
+.vshanuy-direction__chats > summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: var(--space-2);
+  padding: var(--space-2);
+  cursor: pointer;
+  list-style: none;
+}
+
+.vshanuy-direction__chats > summary::-webkit-details-marker {
+  display: none;
+}
+
+.vshanuy-direction__chats > summary::after {
+  content: "+";
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-size: var(--step-1);
+  line-height: 1;
+}
+
+.vshanuy-direction__chats[open] > summary::after {
+  content: "−";
+}
+
+.vshanuy-direction__chats > summary > span {
+  margin-top: var(--space-1);
+  color: var(--text-secondary);
+}
+
+.vshanuy-direction__chats > summary:hover > strong {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.vshanuy-direction__chats > summary:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+}
+
+.vshanuy-direction__chat-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-1) var(--space-2);
+  margin: 0;
+  padding: 0 var(--space-2) var(--space-2);
+  list-style: none;
+}
+
+.vshanuy-direction__resources .vshanuy-direction__chat-list li,
+.vshanuy-direction__resources .vshanuy-direction__chat-list li:last-child {
+  padding: 0;
+  border: 0;
+}
+
+.vshanuy-direction__chat-list a {
+  display: inline-block;
+  padding-block: 2px;
+}
+
+.vshanuy-direction__chats > p {
+  max-width: none;
+  margin: 0;
+  padding: var(--space-2);
+  border-top: var(--line-muted);
+}
+
+.vshanuy-direction__toolkit strong {
+  display: block;
+  font-weight: 600;
+}
+
+.vshanuy-direction__toolkit .vshanuy-article__inline-link {
+  text-decoration-thickness: 1px;
+}
+
+.vshanuy-article__section .vshanuy-direction__toolkit p {
+  max-width: none;
+  margin: var(--space-1) 0 0;
+  color: var(--text-secondary);
+}
+
+.vshanuy-article__section .vshanuy-direction__toolkit p.vshanuy-direction__toolkit-links {
+  color: var(--text);
+}
+
+.vshanuy-direction__projects {
+  scroll-margin-top: calc(33px + var(--space-4));
+}
 
 .vshanuy-direction__resources {
   max-width: 65ch;
@@ -8,7 +134,7 @@
 }
 
 .vshanuy-direction__resources li {
-  padding-block: var(--space-2);
+  padding: var(--space-2);
   border-top: var(--line-muted);
   font-size: var(--step-0);
   line-height: var(--leading-text);
@@ -36,7 +162,7 @@
   margin-top: 0;
 }
 
-/* «Інші напрямки» — як ряд карток на сторінці «Діяльність» */
+/* «Інші напрями» — як ряд карток на сторінці «Діяльність» */
 .vshanuy-direction__related {
   margin-top: var(--space-silence);
 }
@@ -141,5 +267,41 @@
 @media (min-width: 1024px) {
   .vshanuy-direction__cards {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .vshanuy-direction__lead {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: start;
+    margin-inline: calc(-1 * var(--space-2));
+  }
+
+  .vshanuy-direction__lead > * {
+    padding-inline: var(--space-2);
+  }
+
+  .vshanuy-direction__lead .vshanuy-article__standfirst {
+    grid-column: 1 / span 2;
+    max-width: none;
+  }
+
+  .vshanuy-direction__resources,
+  .vshanuy-article__steps.vshanuy-direction__toolkit {
+    width: 100%;
+    max-width: none;
+  }
+
+  .vshanuy-direction__resources > li:not(:has(> .vshanuy-direction__chats)),
+  .vshanuy-article__steps.vshanuy-direction__toolkit li {
+    padding-right: max(var(--space-2), calc(100% - 65ch + var(--space-2)));
+  }
+
+  .vshanuy-direction__chat-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .vshanuy-direction__band img {
+    grid-column: 1 / -1;
+    aspect-ratio: 21 / 9;
   }
 }

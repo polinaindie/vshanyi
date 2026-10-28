@@ -19,29 +19,30 @@
             <a class="vshanuy-site-footer__wordmark" href="${rootPrefix || "./"}" aria-label="Вшануй. 09:00 — на головну">
               <img src="${rootPrefix}_next/static/media/vshanuy-original-logo.svg" alt="">
             </a>
-            <p class="vshanuy-site-footer__motto">Пам'ятай про полеглих<br>допомагай живим</p>
+            <p class="vshanuy-site-footer__motto">Памʼятай про полеглих<br>допомагай живим</p>
           </div>
           <a class="vshanuy-site-footer__cta" href="${rootPrefix}pidtrymaty.html">Підтримати <span aria-hidden="true">→</span></a>
         </section>
 
         <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-primary" aria-label="Про організацію">
           <ul class="vshanuy-site-footer__links">
-            <li><a href="${rootPrefix}pro-nas.html">Хто ми.</a></li>
+            <li><a href="${rootPrefix}pro-nas.html">Місія та цінності.</a></li>
             <li><span class="vshanuy-dead-link">Звіт про діяльність.</span></li>
-            <li><a href="${rootPrefix}merch.html">Мерч.</a></li>
             <li><a href="${rootPrefix}spivpratsya.html">Співпраця.</a></li>
+            <li><a href="${rootPrefix}index.html#partners">Партнери.</a></li>
+            <li><a href="${rootPrefix}kontakty.html">Контакти.</a></li>
           </ul>
-          <p class="vshanuy-site-footer__column-foot">© 2026 ВШАНУЙ <span aria-hidden="true">·</span> Київ <span aria-hidden="true">·</span> Україна</p>
+          <p class="vshanuy-site-footer__column-foot">© 2026 ВШАНУЙ</p>
         </nav>
 
-        <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-secondary" aria-label="Діяльність і матеріали">
+        <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-secondary" aria-label="Діяльність і публікації">
           <ul class="vshanuy-site-footer__links">
-            <li><a href="${rootPrefix}diyalnist.html">Напрямки роботи.</a></li>
+            <li><a href="${rootPrefix}diyalnist.html">Напрями роботи.</a></li>
             <li><a href="${rootPrefix}proekty.html">Проєкти.</a></li>
-            <li><a href="${rootPrefix}posibnyky/">Посібники.</a></li>
-            <li><a href="${rootPrefix}materialy.html">Матеріали.</a></li>
+            <li><a href="${rootPrefix}posibnyky/">Гайди.</a></li>
+            <li><a href="${rootPrefix}materialy.html">Публікації.</a></li>
           </ul>
-          <span class="vshanuy-site-footer__column-foot vshanuy-dead-link">Політика конфіденційності</span>
+          <a class="vshanuy-site-footer__column-foot" href="${rootPrefix}polityka-konfidentsiynosti.html">Політика конфіденційності</a>
         </nav>
 
         <section class="vshanuy-site-footer__column vshanuy-site-footer__column--support" aria-label="Контакти та службова інформація">

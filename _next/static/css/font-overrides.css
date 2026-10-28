@@ -484,7 +484,13 @@ section[data-block-type="blockSelectedProjects"] a.group\/link > .flex.flex-col 
   transform: none !important;
 }
 
-/* Archive numbers removed — title + description only */
+/* Картки проєктів — 3:2, як усі картки на сайті */
+section[data-block-type="blockSelectedProjects"] a.group\/link .aspect-\[0\.95\] {
+  aspect-ratio: 3 / 2 !important;
+}
+
+/* Номери проєктів у картках не показуємо */
+section[data-block-type="blockSelectedProjects"] a.group\/link p.text-caption-30,
 section[data-block-type="blockSelectedProjects"] a.group\/link .flex.flex-col.gap-x-24 > span:first-child {
   display: none !important;
 }
@@ -657,7 +663,7 @@ section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls > div
 
 /* 01 — Хвилина мовчання */
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="hvylyna-movchannya"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-hvylyna-movchannya.jpg");
+  background: center / cover no-repeat url("../media/vshanuy-proekt-hvylyna-movchannya-1600.webp");
 }
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="hvylyna-movchannya"] img {
   opacity: 0;
@@ -668,7 +674,7 @@ section[data-block-type="blockSelectedProjects"] a.group\/link[href*="hvylyna-mo
 
 /* 02 — ЧЕКАFEST */
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="chekafest"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-chekafest.jpg");
+  background: center / cover no-repeat url("../media/vshanuy-proekt-chekafest-1600.webp");
 }
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="chekafest"] img {
   opacity: 0;
@@ -679,7 +685,7 @@ section[data-block-type="blockSelectedProjects"] a.group\/link[href*="chekafest"
 
 /* 03 — Прощання з прапором */
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="proshchannya-z-praporom"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-proshchannya-z-praporom.jpg");
+  background: center / cover no-repeat url("../media/vshanuy-proekt-proshchannya-z-praporom-1600.webp");
 }
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="proshchannya-z-praporom"] img {
   opacity: 0;
@@ -690,7 +696,7 @@ section[data-block-type="blockSelectedProjects"] a.group\/link[href*="proshchann
 
 /* 04 — Тризна */
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tryzna"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-tryzna.jpg");
+  background: center / cover no-repeat url("../media/vshanuy-proekt-tryzna-1600.webp");
 }
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tryzna"] img {
   opacity: 0;
@@ -701,7 +707,7 @@ section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tryzna"] h
 
 /* 05 — Поміж нас */
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pomizh-nas"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-pomizh-nas.jpg");
+  background: center / cover no-repeat url("../media/vshanuy-proekt-pomizh-nas-1600.webp");
 }
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pomizh-nas"] img {
   opacity: 0;
@@ -712,7 +718,7 @@ section[data-block-type="blockSelectedProjects"] a.group\/link[href*="pomizh-nas
 
 /* 06 — Дзеркало памʼяті */
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="dzerkalo-pamyati"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-dzerkalo-pamyati.jpg");
+  background: center / cover no-repeat url("../media/vshanuy-proekt-dzerkalo-pamyati-1600.webp");
 }
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="dzerkalo-pamyati"] img {
   opacity: 0;
@@ -723,13 +729,23 @@ section[data-block-type="blockSelectedProjects"] a.group\/link[href*="dzerkalo-p
 
 /* 07 — Вінкування */
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vinkuvannya"] .absolute.inset-0 {
-  background: center / cover no-repeat url("../media/vshanuy-vinkuvannya.jpg");
+  background: center / cover no-repeat url("../media/vshanuy-proekt-vinkuvannya-1600.webp");
 }
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vinkuvannya"] img {
   opacity: 0;
 }
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vinkuvannya"] h3.font-serif::after {
   content: "29 серпня 2026-го, у День памʼяті загиблих, ми відновлювали традицію вінкування. Родини та друзі плели вінки з живих квітів під розповіді про найщасливіші моменти полеглих.";
+}
+/* 08 — Це може бути тиша */
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tse-mozhe-buty-tysha"] .absolute.inset-0 {
+  background: center / cover no-repeat url("../media/vshanuy-proekt-tse-mozhe-buty-tysha-1600.webp");
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tse-mozhe-buty-tysha"] img {
+  opacity: 0;
+}
+section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tse-mozhe-buty-tysha"] h3.font-serif::after {
+  content: "Це виставка про мить, коли щодня о 9:00 ми зупиняємося, щоб згадати тих, кого вже немає поруч.";
 }
 
 section[data-block-type="blockBanner"] .overflow-hidden.absolute.inset-0.z-behind {
@@ -739,6 +755,25 @@ section[data-block-type="blockBanner"] .overflow-hidden.absolute.inset-0.z-behin
   background-repeat: no-repeat;
   background-size: auto calc(100% + 120px);
   will-change: background-position;
+}
+
+section[data-block-type="blockBanner"] .overflow-hidden.absolute.inset-0.z-behind > .absolute.inset-0 {
+  background-image: none !important;
+}
+
+/* Банер — широка смуга: 3:2 на мобільному, 21:9 на десктопі */
+section[data-block-type="blockBanner"] .relative.isolate.aspect-\[0\.6\] {
+  aspect-ratio: 3 / 2 !important;
+}
+
+@media (min-width: 1024px) {
+  section[data-block-type="blockBanner"] .relative.isolate.aspect-\[0\.6\] {
+    aspect-ratio: 21 / 9 !important;
+  }
+
+  section[data-block-type="blockBanner"] .overflow-hidden.absolute.inset-0.z-behind {
+    background-size: 100% auto;
+  }
 }
 
 section[data-block-type="blockBanner"] .overflow-hidden.absolute.inset-0.z-behind > .absolute.inset-0 {
@@ -883,7 +918,7 @@ section[data-block-type="blockBenefits"] .vshanuy-guide-download:focus-visible {
   outline-offset: 4px;
 }
 
-/* Primary archive CTAs — solid ink (ПРО НАС, ВСІ ПОСІБНИКИ) */
+/* Primary archive CTAs — solid ink (ПРО НАС, ВСІ ГАЙДИ) */
 .about-vshanuy__link,
 section[data-block-type="blockBenefits"]
   .grid.grid-cols-1.py-96
@@ -1334,24 +1369,23 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     container-name: articles-list;
   }
 
-  /* Exact photo height (16:9 after media’s 16px inset); cards share it */
+  /* At least the photo height (16:9 after media’s 16px inset); cards share it.
+     Grows when the lead text needs more room, so cards never overlap. */
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__stack {
     width: 100%;
     max-width: none;
-    height: calc((100cqw - 16px) * 9 / 16);
+    min-height: calc((100cqw - 16px) * 9 / 16);
     display: flex;
     flex-direction: column;
   }
 
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__card {
-    flex: 1 1 0;
-    min-height: 0;
+    flex: 1 1 auto;
     justify-content: center;
     gap: 8px;
     padding: 16px;
-    overflow: hidden;
   }
 
   /* Tag/lead: readable measure. Title: fuller width as the column narrows */
@@ -1369,13 +1403,6 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     width: 100%;
   }
 
-  /* Lead under title — hide on desktop to keep stack near photo height */
-  section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
-    .vshanuy-articles__card
-    > h3
-    + p {
-    display: none;
-  }
 
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     #article-overview-carousel {
@@ -1480,7 +1507,7 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
 /* Blog / articles hover carousel — local documentary photos */
 section[data-block-type="blockArticleOverview"]
   .absolute.inset-0:has(img[src*="7974a72876383dbc854755d31ec0653d6353dff9"]) {
-  background: center / cover no-repeat url("../media/vshanuy-blog-dnipro.jpg");
+  background: center / cover no-repeat url("../media/vshanuy-material-istoriya.jpg");
 }
 
 section[data-block-type="blockArticleOverview"]
@@ -1491,7 +1518,7 @@ section[data-block-type="blockArticleOverview"]
 
 section[data-block-type="blockArticleOverview"]
   .absolute.inset-0:has(img[src*="9d0904fa69d33e2132c2a9b01218b2e81ceecb0f"]) {
-  background: center / cover no-repeat url("../media/vshanuy-blog-pamyat.jpg");
+  background: center / cover no-repeat url("../media/vshanuy-material-den-pamyati.jpg");
 }
 
 section[data-block-type="blockArticleOverview"]
@@ -1502,7 +1529,7 @@ section[data-block-type="blockArticleOverview"]
 
 section[data-block-type="blockArticleOverview"]
   .absolute.inset-0:has(img[src*="63ae489882bfa558c9ff8677257bca254bcd7508"]) {
-  background: center / cover no-repeat url("../media/vshanuy-blog-tablichky.jpg");
+  background: center / cover no-repeat url("../media/vshanuy-material-dlya-choho.jpg?v=20261027a");
 }
 
 section[data-block-type="blockArticleOverview"]
@@ -1567,7 +1594,7 @@ html.vshanuy-home
   div.fixed.inset-0.z-5.bg-base-white:not(.translate-x-full)::before {
   left: 50%;
   color: var(--graphite);
-  content: "Пам'ятай про полеглих\A допомагай живим.";
+  content: "Памʼятай про полеглих\A допомагай живим.";
   font-family: "Piazzolla", Georgia, serif;
   font-size: clamp(24px, 3.5vw, 40px);
   font-weight: 400;
@@ -2157,6 +2184,11 @@ header.sticky.vshanuy-desktop-header {
 .vshanuy-menu__cta {
   margin-top: 48px;
   padding: 0 16px;
+}
+
+.vshanuy-menu__section .vshanuy-menu__cta {
+  margin-top: 32px;
+  padding: 0;
 }
 
 /* Як footer CTA: ink → yellow hover, Fixel, стрілка */
@@ -3443,7 +3475,8 @@ main
     padding-inline: 16px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 12px;
   }
 
   .vshanuy-site-footer__column--support .vshanuy-site-footer__inline-list {
@@ -3454,7 +3487,8 @@ main
     padding-inline: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 12px;
   }
 
   .vshanuy-site-footer__column .vshanuy-site-footer__column-foot,
@@ -3532,7 +3566,7 @@ main
   z-index: 1;
 }
 
-/* —— Наші напрямки: sticky-стек карток —— */
+/* —— Наші напрями: sticky-стек карток —— */
 .vshanuy-home-directions {
   --vshanuy-directions-line: var(
     --vshanuy-page-grid-line,
@@ -3867,7 +3901,7 @@ main
   display: block;
   width: 100%;
   height: 100%;
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
   object-position: center;
   transform: scale(1);
@@ -4076,4 +4110,55 @@ main
 
 .vshanuy-home-directions--static .vshanuy-home-directions__runway {
   display: none;
+}
+
+/* Lenis smooth scroll (standalone pages) */
+html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}.lenis [data-lenis-prevent],.lenis [data-lenis-prevent-wheel],.lenis [data-lenis-prevent-touch]{overscroll-behavior:contain}.lenis.lenis-smooth iframe{pointer-events:none}.lenis.lenis-autoToggle{transition-property:overflow;transition-duration:1ms;transition-behavior:allow-discrete}
+
+/* Homepage «Публікації» — link to all publications */
+.vshanuy-articles-all {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  color: var(--ink);
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 300ms ease-out;
+}
+
+.vshanuy-articles-all > span {
+  font-size: 20px;
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.vshanuy-articles-all:hover,
+.vshanuy-articles-all:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.vshanuy-articles-all:hover > span,
+.vshanuy-articles-all:focus-visible > span {
+  transform: translateX(4px);
+}
+
+.vshanuy-articles-all:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vshanuy-articles-all,
+  .vshanuy-articles-all > span {
+    transition: none;
+  }
 }
