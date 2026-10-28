@@ -46,7 +46,6 @@
             <li><a href="${rootPrefix}proekty.html">Проєкти.</a></li>
             <li><a href="${rootPrefix}posibnyky/">Гайди.</a></li>
             <li><a href="${rootPrefix}materialy.html">Публікації.</a></li>
-            <li><span class="vshanuy-dead-link">Партнери.</span></li>
           </ul>
           <a class="vshanuy-site-footer__column-foot" href="${rootPrefix}polityka-konfidentsiynosti.html">Політика конфіденційності</a>
         </nav>
@@ -57,6 +56,7 @@
               <li><a href="${rootPrefix}pidtrymaty.html">Підтримати.</a></li>
               <li><a href="${rootPrefix}spivpratsya.html">Співпраця.</a></li>
               <li><a href="${rootPrefix}merch.html">Купити мерч.</a></li>
+              <li><span class="vshanuy-dead-link">Партнери.</span></li>
             </ul>
           </div>
           <div class="vshanuy-site-footer__support-foot">

@@ -36,7 +36,6 @@ const defaultSections: MenuColumn[] = [
       { label: 'Проєкти', href: 'proekty.html' },
       { label: 'Гайди', href: 'posibnyky/' },
       { label: 'Публікації', href: 'materialy.html' },
-      { label: 'Партнери', href: null },
     ],
   },
   {
@@ -46,6 +45,7 @@ const defaultSections: MenuColumn[] = [
       { label: 'Підтримати', href: 'pidtrymaty.html' },
       { label: 'Співпраця', href: 'spivpratsya.html' },
       { label: 'Купити мерч', href: 'merch.html' },
+      { label: 'Партнери', href: null },
     ],
   },
 ]

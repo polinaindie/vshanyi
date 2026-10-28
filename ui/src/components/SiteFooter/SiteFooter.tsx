@@ -99,7 +99,6 @@ export function SiteFooter(_props: SiteFooterProps = {}) {
             <li>
               <a href="materialy.html">Публікації.</a>
             </li>
-            <li>Партнери.</li>
           </ul>
           <a
             className="vshanuy-site-footer__column-foot"
@@ -124,6 +123,7 @@ export function SiteFooter(_props: SiteFooterProps = {}) {
               <li>
                 <a href="merch.html">Купити мерч.</a>
               </li>
+              <li>Партнери.</li>
             </ul>
           </div>
         </section>
