@@ -1,10 +1,14 @@
 (() => {
+  const aboutLinks = ["Хто ми", "Звіт про діяльність", "Контакти"];
   const activityLinks = [
     "Напрями роботи",
     "Проєкти",
     "Гайди",
     "Публікації",
+    "Співпраця",
+    "Партнери",
   ];
+  const joinLinks = ["Підтримати", "Купити мерч"];
 
   const siteRoot = (() => {
     if (typeof window.__VSHANUY_SITE_ROOT__ === "string") return window.__VSHANUY_SITE_ROOT__;
@@ -17,74 +21,55 @@
   })();
   const supportPageHref = `${siteRoot}pidtrymaty.html`;
 
+  // Порядок: Про нас → Діяльність → Долучитися
   const sections = [
     {
       kind: "group",
       title: "Про нас",
-      items: [
-        { label: "Місія та цінності", href: `${siteRoot}pro-nas.html` },
-        { label: "Звіт про діяльність", href: null },
-        { label: "Контакти", href: `${siteRoot}kontakty.html` },
-      ],
+      items: aboutLinks.map((label) => ({
+        label,
+        href: hrefForLabel(label),
+      })),
     },
     {
       kind: "group",
       title: "Діяльність",
       items: activityLinks.map((label) => ({
         label,
-        href: linkHrefForActivity(label),
+        href: hrefForLabel(label),
       })),
     },
     {
       kind: "group",
-      title: "Спільнота",
-      items: [
-        { label: "Співпраця", href: `${siteRoot}spivpratsya.html` },
-        { label: "Партнери", href: `${siteRoot}index.html#partners` },
-      ],
-    },
-    {
-      kind: "group",
       title: "Долучитися",
-      items: [{ label: "Мерч", href: `${siteRoot}merch.html` }],
-      support: true,
+      items: joinLinks.map((label) => ({
+        label,
+        href: hrefForLabel(label),
+      })),
     },
   ];
 
-  function linkHrefForActivity(label) {
-    if (label === "Напрями роботи" || label === "Напрями роботи.") {
+  function hrefForLabel(label) {
+    const key = String(label || "").replace(/\.$/, "");
+    if (key === "Хто ми" || key === "Місія та цінності") return `${siteRoot}pro-nas.html`;
+    if (key === "Контакти") return `${siteRoot}kontakty.html`;
+    if (key === "Напрями роботи" || key === "Напрямки роботи") {
       return `${siteRoot}diyalnist.html`;
     }
-    if (label === "Проєкти" || label === "Проєкти.") {
-      return `${siteRoot}proekty.html`;
-    }
-    if (label === "Гайди" || label === "Гайди.") {
-      return `${siteRoot}posibnyky/`;
-    }
-    if (label === "Публікації" || label === "Публікації.") {
+    if (key === "Проєкти") return `${siteRoot}proekty.html`;
+    if (key === "Гайди" || key === "Посібники") return `${siteRoot}posibnyky/`;
+    if (key === "Публікації" || key === "Матеріали") {
       return `${siteRoot}materialy.html`;
     }
+    if (key === "Співпраця") return `${siteRoot}spivpratsya.html`;
+    if (key === "Підтримати") return supportPageHref;
+    if (key === "Купити мерч" || key === "Мерч") return `${siteRoot}merch.html`;
     return null;
   }
 
   const linkForLabel = (label) => {
-    const href = linkHrefForActivity(label);
+    const href = hrefForLabel(label);
     if (href) return { href, external: false };
-    if (label === "Місія та цінності") {
-      return { href: `${siteRoot}pro-nas.html`, external: false };
-    }
-    if (label === "Мерч") {
-      return { href: `${siteRoot}merch.html`, external: false };
-    }
-    if (label === "Публікації") {
-      return { href: `${siteRoot}materialy.html`, external: false };
-    }
-    if (label === "Співпраця") {
-      return { href: `${siteRoot}spivpratsya.html`, external: false };
-    }
-    if (label === "Контакти" || label === "Контакти.") {
-      return { href: `${siteRoot}kontakty.html`, external: false };
-    }
     return null;
   };
 
@@ -240,19 +225,18 @@
       </a>
       <ul class="vshanuy-desktop-menu__primary">
         ${desktopItem({
+          label: "Про нас.",
+          links: aboutLinks,
+        })}
+        ${desktopItem({
           label: "Діяльність.",
           links: activityLinks,
           modifier: "vshanuy-desktop-menu__item--activity",
         })}
         ${desktopItem({
-          label: "Підтримати.",
-          href: supportPageHref,
+          label: "Долучитися.",
+          links: joinLinks,
           modifier: "vshanuy-desktop-menu__item--support",
-        })}
-        ${desktopItem({
-          label: "Усі розділи",
-          isButton: true,
-          modifier: "vshanuy-desktop-menu__item--menu",
         })}
       </ul>
     </nav>

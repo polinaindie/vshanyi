@@ -5,9 +5,7 @@ export type SiteFooterProps = {
   email?: string
 }
 
-export function SiteFooter({
-  email = 'momentofhonorukraine@gmail.com',
-}: SiteFooterProps) {
+export function SiteFooter(_props: SiteFooterProps = {}) {
   return (
     <footer className="vshanuy-site-footer" aria-label="Нижня навігація та контакти">
       <div className="vshanuy-site-footer__guides" aria-hidden="true">
@@ -33,57 +31,22 @@ export function SiteFooter({
 
         <nav
           className="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-primary"
-          aria-label="Про організацію"
+          aria-label="Про нас"
         >
-          <ul className="vshanuy-site-footer__links">
-            <li>
-              <a href="pro-nas.html">Місія та цінності.</a>
-            </li>
-            <li>Звіт про діяльність.</li>
-            <li>
-              <a href="spivpratsya.html">Співпраця.</a>
-            </li>
-            <li>
-              <a href="index.html#partners">Партнери.</a>
-            </li>
-            <li>
-              <a href="kontakty.html">Контакти.</a>
-            </li>
-          </ul>
-          <p className="vshanuy-site-footer__column-foot">
-            © 2026 ВШАНУЙ
-          </p>
-        </nav>
-
-        <nav
-          className="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-secondary"
-          aria-label="Діяльність і публікації"
-        >
-          <ul className="vshanuy-site-footer__links">
-            <li>
-              <a href="diyalnist.html">Напрями роботи.</a>
-            </li>
-            <li>
-              <a href="proekty.html">Проєкти.</a>
-            </li>
-            <li>
-              <a href="posibnyky/">Гайди.</a>
-            </li>
-            <li>
-              <a href="materialy.html">Публікації.</a>
-            </li>
-          </ul>
-          <a className="vshanuy-site-footer__column-foot" href="polityka-konfidentsiynosti.html">
-            Політика конфіденційності
-          </a>
-        </nav>
-
-        <section
-          className="vshanuy-site-footer__column vshanuy-site-footer__column--support"
-          aria-label="Контакти та службова інформація"
-        >
-          <div className="vshanuy-site-footer__contacts">
-            <ul className="vshanuy-site-footer__inline-list" aria-label="Контакти">
+          <div className="vshanuy-site-footer__stack">
+            <ul className="vshanuy-site-footer__links">
+              <li>
+                <a href="pro-nas.html">Хто ми.</a>
+              </li>
+              <li>Звіт про діяльність.</li>
+              <li>
+                <a href="kontakty.html">Контакти.</a>
+              </li>
+            </ul>
+            <ul
+              className="vshanuy-site-footer__links vshanuy-site-footer__links--social"
+              aria-label="Соцмережі"
+            >
               <li>
                 <a
                   href="https://www.instagram.com/moment_of_honor/"
@@ -111,13 +74,55 @@ export function SiteFooter({
                   Facebook.
                 </a>
               </li>
+            </ul>
+          </div>
+          <p className="vshanuy-site-footer__column-foot">
+            © 2026 ВШАНУЙ <span aria-hidden="true">·</span> Київ{' '}
+            <span aria-hidden="true">·</span> Україна
+          </p>
+        </nav>
+
+        <nav
+          className="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-secondary"
+          aria-label="Діяльність"
+        >
+          <ul className="vshanuy-site-footer__links">
+            <li>
+              <a href="diyalnist.html">Напрями роботи.</a>
+            </li>
+            <li>
+              <a href="proekty.html">Проєкти.</a>
+            </li>
+            <li>
+              <a href="posibnyky/">Гайди.</a>
+            </li>
+            <li>
+              <a href="materialy.html">Публікації.</a>
+            </li>
+            <li>
+              <a href="spivpratsya.html">Співпраця.</a>
+            </li>
+            <li>Партнери.</li>
+          </ul>
+          <a
+            className="vshanuy-site-footer__column-foot"
+            href="polityka-konfidentsiynosti.html"
+          >
+            Політика конфіденційності
+          </a>
+        </nav>
+
+        <section
+          className="vshanuy-site-footer__column vshanuy-site-footer__column--support"
+          aria-label="Долучитися"
+        >
+          <div className="vshanuy-site-footer__contacts">
+            <ul className="vshanuy-site-footer__links" aria-label="Долучитися">
               <li>
-                <a
-                  className="vshanuy-site-footer__email"
-                  href={`mailto:${email}`}
-                >
-                  написати нам
-                </a>
+                <a href="pidtrymaty.html">Підтримати.</a>
+              </li>
+              <li>
+                <a href="merch.html">Купити мерч.</a>
               </li>
             </ul>
           </div>

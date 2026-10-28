@@ -8,7 +8,7 @@ export type MenuItem = {
 }
 
 export type MenuColumn =
-  | { kind: 'group'; title: string; items: MenuItem[]; support?: boolean }
+  | { kind: 'group'; title: string; items: MenuItem[] }
   | { kind: 'link'; title: string; href: string }
 
 export type FullscreenMenuProps = {
@@ -23,7 +23,7 @@ const defaultSections: MenuColumn[] = [
     kind: 'group',
     title: 'Про нас',
     items: [
-      { label: 'Місія та цінності', href: 'pro-nas.html' },
+      { label: 'Хто ми', href: 'pro-nas.html' },
       { label: 'Звіт про діяльність', href: null },
       { label: 'Контакти', href: 'kontakty.html' },
     ],
@@ -36,21 +36,17 @@ const defaultSections: MenuColumn[] = [
       { label: 'Проєкти', href: 'proekty.html' },
       { label: 'Гайди', href: 'posibnyky/' },
       { label: 'Публікації', href: 'materialy.html' },
-    ],
-  },
-  {
-    kind: 'group',
-    title: 'Спільнота',
-    items: [
       { label: 'Співпраця', href: 'spivpratsya.html' },
-      { label: 'Партнери', href: 'index.html#partners' },
+      { label: 'Партнери', href: null },
     ],
   },
   {
     kind: 'group',
     title: 'Долучитися',
-    items: [{ label: 'Мерч', href: 'merch.html' }],
-    support: true,
+    items: [
+      { label: 'Підтримати', href: 'pidtrymaty.html' },
+      { label: 'Купити мерч', href: 'merch.html' },
+    ],
   },
 ]
 
@@ -116,11 +112,7 @@ export function FullscreenMenu({
               )
             }
             return (
-              <section
-                key={titleId}
-                className="vshanuy-menu__section"
-                aria-labelledby={titleId}
-              >
+              <section key={section.title} className="vshanuy-menu__section" aria-labelledby={titleId}>
                 <h3 id={titleId}>{section.title}</h3>
                 {section.items.length > 0 ? (
                   <ul>
@@ -137,17 +129,15 @@ export function FullscreenMenu({
                     ))}
                   </ul>
                 ) : null}
-                {section.support ? (
-                  <div className="vshanuy-menu__cta">
-                    <a className="vshanuy-menu__support-btn" href={supportHref}>
-                      <span>Підтримати</span>
-                      <span aria-hidden="true">→</span>
-                    </a>
-                  </div>
-                ) : null}
               </section>
             )
           })}
+        </div>
+        <div className="vshanuy-menu__cta">
+          <a className="vshanuy-menu__support-btn" href={supportHref}>
+            <span>Підтримати</span>
+            <span aria-hidden="true">→</span>
+          </a>
         </div>
       </nav>
     </div>

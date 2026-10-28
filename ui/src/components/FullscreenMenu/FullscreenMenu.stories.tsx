@@ -39,7 +39,7 @@ export const WithHeader: Story = {
       <div style={{ minHeight: '100vh' }}>
         <DesktopHeader onOpenMenu={() => setOpen(true)} />
         <FullscreenMenu open={open} onClose={() => setOpen(false)} />
-        <p style={{ padding: 'var(--space-3)' }}>Натисніть «Усі розділи».</p>
+        <p style={{ padding: 'var(--space-3)' }}>На мобільному відкрийте «Меню».</p>
       </div>
     )
   },

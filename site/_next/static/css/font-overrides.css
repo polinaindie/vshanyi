@@ -2826,6 +2826,19 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   gap: 16px;
 }
 
+.vshanuy-site-footer__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%;
+}
+
+.vshanuy-site-footer__stack > .vshanuy-site-footer__links {
+  width: 100%;
+  margin: 0;
+}
+
 .vshanuy-site-footer__motto {
   color: var(--paper);
   font-family: "Piazzolla", Georgia, serif;
@@ -3317,7 +3330,7 @@ main
 
 .vshanuy-site-footer__column .vshanuy-site-footer__column-foot {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   min-height: 44px;
   margin: auto 0 0;
   color: var(--graphite);
@@ -3336,7 +3349,7 @@ main
 .vshanuy-site-footer__column--support .vshanuy-site-footer__support-foot {
   display: flex;
   width: 100%;
-  align-items: flex-start;
+  align-items: center;
   min-height: 44px;
   margin-top: auto;
 }
@@ -3406,7 +3419,7 @@ main
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-template-rows: auto auto;
     column-gap: 0;
-    row-gap: 100px;
+    row-gap: 84px;
     padding-block: 32px 48px;
   }
 
@@ -3426,15 +3439,24 @@ main
   .vshanuy-site-footer__column--brand > .vshanuy-site-footer__cta {
     grid-column: 1;
     grid-row: 2;
-    align-self: end;
+    align-self: center;
     margin-top: 0;
     margin-inline: 16px;
   }
 
   .vshanuy-site-footer__column--sections-primary
-    > .vshanuy-site-footer__links {
+    > .vshanuy-site-footer__stack {
     grid-column: 2;
     grid-row: 1;
+    align-self: start;
+    box-sizing: border-box;
+    padding-inline: 16px;
+  }
+
+  .vshanuy-site-footer__column--sections-primary
+    .vshanuy-site-footer__stack
+    > .vshanuy-site-footer__links {
+    padding-inline: 0;
   }
 
   .vshanuy-site-footer__column--sections-primary
@@ -3493,7 +3515,7 @@ main
 
   .vshanuy-site-footer__column .vshanuy-site-footer__column-foot,
   .vshanuy-site-footer__column--support .vshanuy-site-footer__support-foot {
-    align-self: end;
+    align-self: center;
     margin-top: 0;
     padding-inline: 16px;
   }

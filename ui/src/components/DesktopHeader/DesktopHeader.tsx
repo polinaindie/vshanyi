@@ -17,35 +17,47 @@ export type DesktopHeaderProps = {
   navActiveIndex?: number
 }
 
+const aboutLinks = ['Хто ми', 'Звіт про діяльність', 'Контакти']
+
 const activityLinks = [
   'Напрями роботи',
   'Проєкти',
   'Гайди',
   'Публікації',
+  'Співпраця',
+  'Партнери',
 ]
 
+const joinLinks = ['Підтримати', 'Купити мерч']
+
 const defaultItems: DesktopNavItem[] = [
+  {
+    label: 'Про нас.',
+    links: aboutLinks,
+  },
   {
     label: 'Діяльність.',
     links: activityLinks,
     activity: true,
   },
   {
-    label: 'Підтримати.',
-    href: 'pidtrymaty.html',
+    label: 'Долучитися.',
+    links: joinLinks,
     support: true,
-  },
-  {
-    label: 'Усі розділи',
-    isMenu: true,
   },
 ]
 
 function hrefForLabel(label: string): string | null {
-  if (label === 'Напрями роботи') return 'diyalnist.html'
-  if (label === 'Проєкти') return 'proekty.html'
-  if (label === 'Гайди') return 'posibnyky/'
-  if (label === 'Публікації') return 'materialy.html'
+  const key = label.replace(/\.$/, '')
+  if (key === 'Хто ми') return 'pro-nas.html'
+  if (key === 'Контакти') return 'kontakty.html'
+  if (key === 'Напрями роботи' || key === 'Напрямки роботи') return 'diyalnist.html'
+  if (key === 'Проєкти') return 'proekty.html'
+  if (key === 'Гайди' || key === 'Посібники') return 'posibnyky/'
+  if (key === 'Публікації' || key === 'Матеріали') return 'materialy.html'
+  if (key === 'Співпраця') return 'spivpratsya.html'
+  if (key === 'Підтримати') return 'pidtrymaty.html'
+  if (key === 'Купити мерч' || key === 'Мерч') return 'merch.html'
   return null
 }
 
