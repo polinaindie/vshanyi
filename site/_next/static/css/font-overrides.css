@@ -1354,13 +1354,10 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     overflow: hidden;
   }
 
-  /* Text ≤ 1.5 page columns (list spans 2 → 75cqw) */
+  /* Tag/lead: readable measure. Title: fuller width as the column narrows */
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__card
-    > p,
-  section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
-    .vshanuy-articles__card
-    > h3 {
+    > p {
     max-width: 75cqw;
   }
 
@@ -1368,6 +1365,8 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__card
     > h3 {
     margin: 0;
+    max-width: 100%;
+    width: 100%;
   }
 
   /* Lead under title — hide on desktop to keep stack near photo height */
