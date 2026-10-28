@@ -294,33 +294,23 @@
   min-height: 44px;
   align-items: center;
   gap: 12px;
+  padding: 0 14px;
+  border: var(--line);
+  border-radius: var(--radius);
   color: var(--ink);
   font-family: "Fixel", system-ui, sans-serif;
   font-size: 12px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.08em;
+  text-decoration: none;
   text-transform: uppercase;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
-  transition: text-decoration-color 300ms ease-out;
+  transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
-.vshanuy-support-page__link > span {
-  font-size: 20px;
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.vshanuy-support-page__link:hover,
-.vshanuy-support-page__link:focus-visible {
-  text-decoration-color: currentColor;
-}
-
-.vshanuy-support-page__link:hover > span,
-.vshanuy-support-page__link:focus-visible > span {
-  transform: translateX(4px);
+.vshanuy-support-page__link:hover {
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .vshanuy-support-page__link:focus-visible {
@@ -329,8 +319,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vshanuy-support-page__link,
-  .vshanuy-support-page__link > span {
+  .vshanuy-support-page__link {
     transition: none;
   }
 }

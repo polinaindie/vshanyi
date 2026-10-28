@@ -175,7 +175,7 @@ export function SupportPage({
                 Щоб підтримати ГО «Вшануй», ви також можете придбати мерч.
               </p>
               <a className="vshanuy-support-page__link" href="merch.html">
-                Переглянути мерч <span aria-hidden="true">→</span>
+                Купити мерч <span aria-hidden="true">→</span>
               </a>
             </section>
           </div>
