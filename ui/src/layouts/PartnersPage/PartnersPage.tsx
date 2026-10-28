@@ -14,6 +14,9 @@ export type Partner = {
   href: string
   /** Широкий локап (НВМК): інші межі розміру лого. */
   wide?: boolean
+  /** Партнер з описом отримує окремий рядок під сіткою логотипів. */
+  description?: string
+  project?: { title: string; href: string }
 }
 
 export type PartnersPageProps = {
@@ -31,6 +34,9 @@ export const partners: Partner[] = [
     name: 'Starlight Media',
     logo: starlightLogo,
     href: 'https://starlight.media/',
+    description:
+      'Starlight Media — одна з найбільших українських медіагруп і партнер ГО «Вшануй» у поширенні культури памʼяті на широку аудиторію.',
+    project: { title: 'Вінкування', href: 'napryamky/vinkuvannya.html' },
   },
   {
     name: 'Суспільне Мовлення',
@@ -50,8 +56,10 @@ export const partners: Partner[] = [
   },
 ]
 
-/** Page composition: H1 → текст у кол. 2–3 (акцент + абзац) → сітка логотипів 2 → 4 колонки. Жовтий-бюджет 0. */
+/** Page composition: H1 → текст у кол. 2–3 (акцент + абзац) → сітка логотипів 2 → 4 колонки → рядки партнерів з описом (лого | опис | проєкт). Жовтий-бюджет 0. */
 export function PartnersPage({ showHeader = true, partners: items = partners }: PartnersPageProps) {
+  const described = items.filter((partner) => partner.description)
+
   return (
     <div className="vshanuy-partners-page">
       <div className="vshanuy-page-guides" aria-hidden="true">
@@ -107,6 +115,37 @@ export function PartnersPage({ showHeader = true, partners: items = partners }: 
                       {partner.name} (відкриється в новій вкладці)
                     </span>
                   </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {described.length > 0 ? (
+          <section className="vshanuy-partners-page__projects" aria-label="Партнери в проєктах">
+            <ul className="vshanuy-partners-page__rows">
+              {described.map((partner) => (
+                <li key={partner.href} className="vshanuy-partners-page__row">
+                  <a
+                    className="vshanuy-partners-page__row-logo"
+                    href={partner.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={partner.logo} alt="" loading="lazy" decoding="async" />
+                    <span className="vshanuy-visually-hidden">
+                      {partner.name} (відкриється в новій вкладці)
+                    </span>
+                  </a>
+                  <p className="vshanuy-partners-page__row-text">{partner.description}</p>
+                  {partner.project ? (
+                    <p className="vshanuy-partners-page__row-project">
+                      <span className="vshanuy-partners-page__row-label">Проєкт:</span>
+                      <a className="vshanuy-partners-page__row-link" href={partner.project.href}>
+                        {partner.project.title} <span aria-hidden="true">→</span>
+                      </a>
+                    </p>
+                  ) : null}
                 </li>
               ))}
             </ul>
