@@ -306,6 +306,9 @@
   min-height: 44px;
   align-items: center;
   gap: 12px;
+  padding: 0 14px;
+  border: var(--line);
+  border-radius: var(--radius);
   color: var(--ink);
   font-family: "Fixel", system-ui, sans-serif;
   font-size: 12px;
@@ -314,24 +317,20 @@
   letter-spacing: 0.08em;
   text-decoration: none;
   text-transform: uppercase;
-}
-
-.vshanuy-collab-page__more-text {
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
-  transition: text-decoration-color 300ms ease-out;
+  transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
 .vshanuy-collab-page__more-arrow {
   font-size: 20px;
+  line-height: 1;
+  transform: translateX(-4px);
   transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.vshanuy-collab-page__more:hover .vshanuy-collab-page__more-text,
-.vshanuy-collab-page__more:focus-visible .vshanuy-collab-page__more-text {
-  text-decoration-color: currentColor;
+.vshanuy-collab-page__more:hover,
+.vshanuy-collab-page__more:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .vshanuy-collab-page__more:hover .vshanuy-collab-page__more-arrow,
@@ -345,7 +344,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vshanuy-collab-page__more-text,
+  .vshanuy-collab-page__more,
   .vshanuy-collab-page__more-arrow {
     transition: none;
   }
