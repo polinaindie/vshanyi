@@ -260,7 +260,7 @@ export function ProjectPage({ slug, showHeader = true }: ProjectPageProps) {
             <h1 className="vshanuy-article__title">{project.title}</h1>
             <dl className="vshanuy-project__passport">
               <div>
-                <dt className="vshanuy-article__label">Напрями</dt>
+                <dt className="vshanuy-article__label">Напрями:</dt>
                 <dd>
                   {(projectDirections[project.slug] ?? []).map((id, index) => (
                     <Fragment key={id}>

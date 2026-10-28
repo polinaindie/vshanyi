@@ -254,7 +254,7 @@ def page(p):
   <link rel="stylesheet" href="../_next/static/css/materialy.css?v={CSS_V['mats']}"/>
   <link rel="stylesheet" href="../_next/static/css/material.css?v={CSS_V['mat']}"/>
   <link rel="stylesheet" href="../_next/static/css/napryamok.css?v={CSS_V['dir']}"/>
-  <link rel="stylesheet" href="../_next/static/css/project-slider.css?v=20261027h"/>
+  <link rel="stylesheet" href="../_next/static/css/project-slider.css?v=20261028a"/>
 </head>
 <body class="vshanuy-article-page vshanuy-project-page">
   <div class="vshanuy-page-guides" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
@@ -270,7 +270,7 @@ def page(p):
         <h1 class="vshanuy-article__title">{p['title']}</h1>
         <dl class="vshanuy-project__passport">
           <div>
-            <dt class="vshanuy-article__label">Напрями</dt>
+            <dt class="vshanuy-article__label">Напрями:</dt>
             <dd>{directions_links(p['slug'])}</dd>
           </div>
         </dl>
@@ -405,7 +405,7 @@ def list_shell(title, body_class, body, extra_scripts):
   <title>{title} — Вшануй</title>
   <link rel="stylesheet" href="_next/static/css/font-overrides.css?v={CSS_V['fo']}"/>
   <link rel="stylesheet" href="_next/static/css/materialy.css?v={CSS_V['mats']}"/>
-  <link rel="stylesheet" href="_next/static/css/project-slider.css?v=20261027h"/>
+  <link rel="stylesheet" href="_next/static/css/project-slider.css?v=20261028a"/>
   <link rel="stylesheet" href="_next/static/css/diyalnist.css?v={CSS_V['diyal']}"/>
 </head>
 <body class="vshanuy-materials-page {body_class}">
