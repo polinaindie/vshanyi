@@ -188,7 +188,7 @@
   window.addEventListener("hashchange", scrollToProjects);
 
   const footerScript = document.createElement("script");
-  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261028k";
+  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261028l";
   document.head.append(footerScript);
 
   const menuScript = document.createElement("script");

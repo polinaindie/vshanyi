@@ -77,8 +77,7 @@ export function SiteFooter(_props: SiteFooterProps = {}) {
             </ul>
           </div>
           <p className="vshanuy-site-footer__column-foot">
-            © 2026 ВШАНУЙ <span aria-hidden="true">·</span> Київ{' '}
-            <span aria-hidden="true">·</span> Україна
+            © 2026 ВШАНУЙ
           </p>
         </nav>
 
