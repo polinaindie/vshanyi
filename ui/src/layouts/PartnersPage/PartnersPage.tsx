@@ -14,7 +14,7 @@ export type Partner = {
   href: string
   /** Широкий локап (НВМК): інші межі розміру лого. */
   wide?: boolean
-  /** Партнер з описом отримує окремий рядок під сіткою логотипів. */
+  /** Партнер з описом показується окремим рядком під сіткою, а не в ній. */
   description?: string
   project?: { title: string; href: string }
 }
@@ -59,6 +59,7 @@ export const partners: Partner[] = [
 /** Page composition: H1 → текст у кол. 2–3 (акцент + абзац) → сітка логотипів 2 → 4 колонки → рядки партнерів з описом (лого | опис | проєкт). Жовтий-бюджет 0. */
 export function PartnersPage({ showHeader = true, partners: items = partners }: PartnersPageProps) {
   const described = items.filter((partner) => partner.description)
+  const gridItems = items.filter((partner) => !partner.description)
 
   return (
     <div className="vshanuy-partners-page">
@@ -94,10 +95,10 @@ export function PartnersPage({ showHeader = true, partners: items = partners }: 
           </div>
         </div>
 
-        {items.length > 0 ? (
+        {gridItems.length > 0 ? (
           <section className="vshanuy-partners-page__logos" aria-labelledby="partners-title">
             <ul className="vshanuy-partners-page__list">
-              {items.map((partner) => (
+              {gridItems.map((partner) => (
                 <li
                   key={partner.href}
                   className={`vshanuy-partners-page__item${
@@ -140,9 +141,10 @@ export function PartnersPage({ showHeader = true, partners: items = partners }: 
                   <p className="vshanuy-partners-page__row-text">{partner.description}</p>
                   {partner.project ? (
                     <p className="vshanuy-partners-page__row-project">
-                      <span className="vshanuy-partners-page__row-label">Проєкт:</span>
+                      <span className="vshanuy-partners-page__row-label">Спільний проєкт:</span>
                       <a className="vshanuy-partners-page__row-link" href={partner.project.href}>
-                        {partner.project.title} <span aria-hidden="true">→</span>
+                        <span className="vshanuy-partners-page__row-link-text">{partner.project.title}</span>{' '}
+                        <span className="vshanuy-partners-page__row-link-arrow" aria-hidden="true">→</span>
                       </a>
                     </p>
                   ) : null}
