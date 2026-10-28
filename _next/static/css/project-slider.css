@@ -184,6 +184,56 @@
   text-decoration-color: currentColor;
 }
 
+.vshanuy-project__passport > .vshanuy-project__partners {
+  align-items: center;
+  padding-block: var(--space-1);
+}
+
+.vshanuy-project__partner {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+}
+
+.vshanuy-project__passport a.vshanuy-project__partner {
+  text-decoration: none;
+}
+
+.vshanuy-project__partner img {
+  display: block;
+  width: auto;
+  height: 22px;
+  filter: grayscale(1) brightness(0);
+  opacity: 0.68;
+  transition: opacity 300ms ease-out;
+}
+
+.vshanuy-project__partner:hover img,
+.vshanuy-project__partner:focus-visible img {
+  opacity: 1;
+}
+
+.vshanuy-project__partner:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.vshanuy-project__hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vshanuy-project__partner img {
+    transition: none;
+  }
+}
+
 .vshanuy-project__intro .vshanuy-article__standfirst {
   margin-top: var(--space-3);
 }
