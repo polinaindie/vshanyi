@@ -1,7 +1,7 @@
 import { DesktopHeader } from '../../components/DesktopHeader/DesktopHeader'
 import { SectionLabel } from '../../components/SectionLabel/SectionLabel'
 import { SiteFooter } from '../../components/SiteFooter/SiteFooter'
-import { ContactForm } from '../ContactForm/ContactForm'
+import { ContactForm, type ContactTopicValue } from '../ContactForm/ContactForm'
 import '../../components/DesktopHeader/DesktopHeader.css'
 import '../../components/SectionLabel/SectionLabel.css'
 import '../../components/SiteFooter/SiteFooter.css'
@@ -24,6 +24,8 @@ export type ContactsPageProps = {
   lead?: string
   channels?: ContactChannel[]
   formId?: string
+  /** Попередньо обрана тема форми. */
+  defaultTopic?: ContactTopicValue
   email?: string
 }
 
@@ -61,6 +63,7 @@ export function ContactsPage({
   lead = 'Готові долучитися до змін? Залиште повідомлення або звʼяжіться з нами у соцмережах.',
   channels = defaultChannels,
   formId = 'contact-form',
+  defaultTopic,
   email = 'momentofhonorukraine@gmail.com',
 }: ContactsPageProps) {
   return (
@@ -117,6 +120,7 @@ export function ContactsPage({
             <ContactForm
               id={formId}
               showTopic
+              defaultTopic={defaultTopic}
               embedded
               label="ФОРМА ЗВОРОТНЬОГО ЗВʼЯЗКУ"
               title="Форма звернення"

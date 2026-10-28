@@ -14,6 +14,8 @@ export type ContactFormProps = {
   id?: string
   /** Обовʼязковий вибір теми звернення. */
   showTopic?: boolean
+  /** Попередньо обрана тема (напр. з `?tema=volunteer`). */
+  defaultTopic?: ContactTopicValue
   index?: string
   label?: string
   title?: string
@@ -27,6 +29,7 @@ export type ContactFormProps = {
 export function ContactForm({
   id,
   showTopic = false,
+  defaultTopic,
   index,
   label = 'КОНТАКТИ',
   title = 'Напишіть нам',
@@ -56,7 +59,13 @@ export function ContactForm({
             <div className="vshanuy-contact__topic-options">
               {CONTACT_TOPICS.map((topic) => (
                 <label key={topic.value} className="vshanuy-contact__choice">
-                  <input type="radio" name="topic" value={topic.value} required />
+                  <input
+                    type="radio"
+                    name="topic"
+                    value={topic.value}
+                    defaultChecked={topic.value === defaultTopic}
+                    required
+                  />
                   <span>{topic.label}</span>
                 </label>
               ))}

@@ -1,18 +1,53 @@
 import collabPhoto from '../../assets/spivpratsya.jpg'
+import volunteerPhoto from '../../assets/spivpratsya-volonter.jpg'
 import { DesktopHeader } from '../../components/DesktopHeader/DesktopHeader'
 import { SiteFooter } from '../../components/SiteFooter/SiteFooter'
 import '../../components/DesktopHeader/DesktopHeader.css'
 import '../../components/SiteFooter/SiteFooter.css'
 
+export type CollaborationFormat = {
+  /** Якір секції: `volonter` → `#volonter`. */
+  id: string
+  title: string
+  image: string
+  alt: string
+  paragraphs: string[]
+  cta: {
+    label: string
+    href: string
+  }
+}
+
 export type CollaborationPageProps = {
   showHeader?: boolean
   email?: string
+  formats?: CollaborationFormat[]
 }
 
-/** Page composition: H1 → фото (кол. 1–2) | проза + пошта (кол. 3–4). Жовтий-бюджет 0. */
+export const collaborationFormats: CollaborationFormat[] = [
+  {
+    id: 'volonter',
+    title: 'Стати волонтером',
+    image: volunteerPhoto,
+    alt: 'Жінка в чорному й темних окулярах тримає над головою картонну табличку «Стою за всіх» на тлі трамвая',
+    paragraphs: [
+      'Проєкти «Вшануй» відбуваються в різних містах України, і часто для їх реалізації нам потрібні люди, готові допомогти на місці.',
+      'Волонтерство може бути різним: допомога під час подій і меморіальних практик, комунікація з громадами, організаційні завдання, фото й відео, робота з матеріалами, дослідження або інша професійна підтримка.',
+      'Не обовʼязково мати спеціальний досвід. Для нас важливі уважність до людей, повага до памʼяті загиблих та готовність відповідально робити свою частину роботи.',
+      'Якщо ви хочете долучитися до команди «Вшануй», залиште свої контакти у формі зворотного звʼязку — ми напишемо, коли зʼявиться проєкт або завдання, у якому ваша допомога буде потрібна.',
+    ],
+    cta: {
+      label: 'Залишити контакти',
+      href: 'kontakty.html?tema=volunteer#contact-form',
+    },
+  },
+]
+
+/** Page composition: H1 → вступ (фото кол. 1–2 | акцент кол. 3–4) → нумеровані формати → пошта. Жовтий-бюджет 0 (лише hover CTA). */
 export function CollaborationPage({
   showHeader = true,
   email = 'momentofhonorukraine@gmail.com',
+  formats = collaborationFormats,
 }: CollaborationPageProps) {
   const [mailbox, domain] = email.split('@')
 
@@ -51,31 +86,74 @@ export function CollaborationPage({
                 Захисниць залишалася живою — не лише в датах і церемоніях, а й у щоденній культурі
                 вдячності та взаємної турботи.
               </p>
-              <p>
-                Якщо серед запропонованих форматів ви не знайшли того, що відгукується саме вам, або
-                маєте власну ідею, напишіть нам:
-              </p>
-              <ul className="vshanuy-collab-page__list">
-                <li>
-                  <a
-                    className="vshanuy-collab-page__link vshanuy-collab-page__link--primary"
-                    href={`mailto:${email}`}
-                  >
-                    <span className="vshanuy-collab-page__service">Пошта</span>
-                    <span className="vshanuy-collab-page__value">
-                      {domain ? (
-                        <>
-                          {mailbox}
-                          <wbr />@{domain}
-                        </>
-                      ) : (
-                        email
-                      )}
-                    </span>
-                  </a>
-                </li>
-              </ul>
             </div>
+          </div>
+        </section>
+
+        {formats.length > 0 ? (
+          <div className="vshanuy-collab-page__formats">
+            {formats.map((format, index) => (
+              <section
+                key={format.id}
+                className="vshanuy-collab-page__format"
+                id={format.id}
+                aria-labelledby={`${format.id}-title`}
+              >
+                <p className="vshanuy-collab-page__format-label" aria-hidden="true">
+                  {String(index + 1).padStart(2, '0')} —
+                </p>
+                <h2 className="vshanuy-collab-page__format-title" id={`${format.id}-title`}>
+                  {format.title}
+                </h2>
+                <figure className="vshanuy-collab-page__figure">
+                  <img
+                    src={format.image}
+                    alt={format.alt}
+                    width={1024}
+                    height={682}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+                <div className="vshanuy-collab-page__prose">
+                  {format.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                  <a className="vshanuy-collab-page__cta" href={format.cta.href}>
+                    {format.cta.label} <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </section>
+            ))}
+          </div>
+        ) : null}
+
+        <section className="vshanuy-collab-page__closing" aria-label="Звʼязок">
+          <div className="vshanuy-collab-page__prose">
+            <p>
+              Якщо серед запропонованих форматів ви не знайшли того, що відгукується саме вам, або
+              маєте власну ідею, напишіть нам:
+            </p>
+            <ul className="vshanuy-collab-page__list">
+              <li>
+                <a
+                  className="vshanuy-collab-page__link vshanuy-collab-page__link--primary"
+                  href={`mailto:${email}`}
+                >
+                  <span className="vshanuy-collab-page__service">Пошта</span>
+                  <span className="vshanuy-collab-page__value">
+                    {domain ? (
+                      <>
+                        {mailbox}
+                        <wbr />@{domain}
+                      </>
+                    ) : (
+                      email
+                    )}
+                  </span>
+                </a>
+              </li>
+            </ul>
           </div>
         </section>
       </main>
