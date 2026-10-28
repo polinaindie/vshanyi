@@ -36,14 +36,14 @@ export function SiteFooter(_props: SiteFooterProps = {}) {
           <div className="vshanuy-site-footer__stack">
             <ul className="vshanuy-site-footer__links">
               <li>
-                <a href="pro-nas.html">Хто ми.</a>
+                <a href="pro-nas.html">Місія та цінності.</a>
               </li>
-              <li>Звіт про діяльність.</li>
-              <li>
-                <a href="kontakty.html">Контакти.</a>
-              </li>
-            </ul>
-            <ul
+            <li>Звіт про діяльність.</li>
+            <li>
+              <a href="kontakty.html">Контакти.</a>
+            </li>
+          </ul>
+          <ul
               className="vshanuy-site-footer__links vshanuy-site-footer__links--social"
               aria-label="Соцмережі"
             >
@@ -99,9 +99,6 @@ export function SiteFooter(_props: SiteFooterProps = {}) {
             <li>
               <a href="materialy.html">Публікації.</a>
             </li>
-            <li>
-              <a href="spivpratsya.html">Співпраця.</a>
-            </li>
             <li>Партнери.</li>
           </ul>
           <a
@@ -120,6 +117,9 @@ export function SiteFooter(_props: SiteFooterProps = {}) {
             <ul className="vshanuy-site-footer__links" aria-label="Долучитися">
               <li>
                 <a href="pidtrymaty.html">Підтримати.</a>
+              </li>
+              <li>
+                <a href="spivpratsya.html">Співпраця.</a>
               </li>
               <li>
                 <a href="merch.html">Купити мерч.</a>

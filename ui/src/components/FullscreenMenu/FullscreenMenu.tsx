@@ -23,7 +23,7 @@ const defaultSections: MenuColumn[] = [
     kind: 'group',
     title: 'Про нас',
     items: [
-      { label: 'Хто ми', href: 'pro-nas.html' },
+      { label: 'Місія та цінності', href: 'pro-nas.html' },
       { label: 'Звіт про діяльність', href: null },
       { label: 'Контакти', href: 'kontakty.html' },
     ],
@@ -36,7 +36,6 @@ const defaultSections: MenuColumn[] = [
       { label: 'Проєкти', href: 'proekty.html' },
       { label: 'Гайди', href: 'posibnyky/' },
       { label: 'Публікації', href: 'materialy.html' },
-      { label: 'Співпраця', href: 'spivpratsya.html' },
       { label: 'Партнери', href: null },
     ],
   },
@@ -45,6 +44,7 @@ const defaultSections: MenuColumn[] = [
     title: 'Долучитися',
     items: [
       { label: 'Підтримати', href: 'pidtrymaty.html' },
+      { label: 'Співпраця', href: 'spivpratsya.html' },
       { label: 'Купити мерч', href: 'merch.html' },
     ],
   },

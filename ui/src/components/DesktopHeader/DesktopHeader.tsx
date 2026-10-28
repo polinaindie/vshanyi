@@ -17,18 +17,17 @@ export type DesktopHeaderProps = {
   navActiveIndex?: number
 }
 
-const aboutLinks = ['Хто ми', 'Звіт про діяльність', 'Контакти']
+const aboutLinks = ['Місія та цінності', 'Звіт про діяльність', 'Контакти']
 
 const activityLinks = [
   'Напрями роботи',
   'Проєкти',
   'Гайди',
   'Публікації',
-  'Співпраця',
   'Партнери',
 ]
 
-const joinLinks = ['Підтримати', 'Купити мерч']
+const joinLinks = ['Підтримати', 'Співпраця', 'Купити мерч']
 
 const defaultItems: DesktopNavItem[] = [
   {
@@ -49,7 +48,7 @@ const defaultItems: DesktopNavItem[] = [
 
 function hrefForLabel(label: string): string | null {
   const key = label.replace(/\.$/, '')
-  if (key === 'Хто ми') return 'pro-nas.html'
+  if (key === 'Хто ми' || key === 'Місія та цінності') return 'pro-nas.html'
   if (key === 'Контакти') return 'kontakty.html'
   if (key === 'Напрями роботи' || key === 'Напрямки роботи') return 'diyalnist.html'
   if (key === 'Проєкти') return 'proekty.html'
