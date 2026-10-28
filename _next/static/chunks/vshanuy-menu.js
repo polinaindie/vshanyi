@@ -273,7 +273,7 @@
       href === "/" ||
       href === "index.html" ||
       href.startsWith("index.html#") ||
-      href === "kontakty.html" ||
+      href.startsWith("kontakty.html") ||
       href.startsWith("pidtrymaty.html") ||
       href.startsWith("pro-nas.html") ||
       href.startsWith("materialy") ||
