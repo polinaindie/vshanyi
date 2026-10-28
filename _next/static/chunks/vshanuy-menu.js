@@ -6,7 +6,7 @@
     "Гайди",
     "Публікації",
   ];
-  const joinLinks = ["Підтримати", "Співпраця", "Купити мерч", "Партнери"];
+  const joinLinks = ["Підтримати", "Купити мерч", "Співпраця", "Партнери"];
 
   const siteRoot = (() => {
     if (typeof window.__VSHANUY_SITE_ROOT__ === "string") return window.__VSHANUY_SITE_ROOT__;
