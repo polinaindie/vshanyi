@@ -50,7 +50,7 @@ export const partners: Partner[] = [
   },
 ]
 
-/** Page composition: H1 → текст у кол. 3–4 (акцент + абзац) → сітка логотипів 2 → 4 колонки. Жовтий-бюджет 0. */
+/** Page composition: H1 → текст у кол. 2–3 (акцент + абзац) → сітка логотипів 2 → 4 колонки. Жовтий-бюджет 0. */
 export function PartnersPage({ showHeader = true, partners: items = partners }: PartnersPageProps) {
   return (
     <div className="vshanuy-partners-page">
