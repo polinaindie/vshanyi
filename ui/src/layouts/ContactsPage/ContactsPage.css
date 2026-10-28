@@ -76,6 +76,7 @@
   scroll-margin-top: calc(33px + var(--space-3));
 }
 
+.vshanuy-contacts-page__channels,
 .vshanuy-contacts-page__form {
   min-width: 0;
   padding-inline: var(--space-2);
