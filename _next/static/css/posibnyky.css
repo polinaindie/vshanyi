@@ -1,4 +1,4 @@
-/* Сторінка «Гайди»: нумерований список, розділений лінійками; кожен гайд завантажується як PDF */
+/* Сторінка «Гайди»: нумерований список, розділений лінійками; гайд із файлом має посилання в 4-й колонці */
 
 .vshanuy-guides-page__list {
   margin: var(--space-5) 0 0;
@@ -48,7 +48,7 @@
   line-height: 1.55;
 }
 
-.vshanuy-guides-page__download {
+.vshanuy-guides-page__link {
   display: inline-flex;
   min-height: 44px;
   align-items: center;
@@ -68,16 +68,12 @@
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
-.vshanuy-guides-page__size {
-  font-weight: 400;
-}
-
-.vshanuy-guides-page__download:hover {
+.vshanuy-guides-page__link:hover {
   background: var(--ink);
   color: var(--paper);
 }
 
-.vshanuy-guides-page__download:focus-visible {
+.vshanuy-guides-page__link:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
@@ -92,7 +88,7 @@
 
   .vshanuy-guides-page__num,
   .vshanuy-guides-page__copy,
-  .vshanuy-guides-page__download {
+  .vshanuy-guides-page__link {
     margin-inline: var(--space-2);
   }
 
@@ -100,13 +96,13 @@
     grid-column: 2 / span 2;
   }
 
-  .vshanuy-guides-page__download {
+  .vshanuy-guides-page__link {
     grid-column: 4;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vshanuy-guides-page__download {
+  .vshanuy-guides-page__link {
     transition: none;
   }
 }
