@@ -48,7 +48,7 @@
 .vshanuy-section-label {
   margin: 0;
   font-family: var(--font-text);
-  font-size: var(--step--1);
+  font-size: 12px;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--text-secondary);

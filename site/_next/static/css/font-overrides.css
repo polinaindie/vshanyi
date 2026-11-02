@@ -1,5 +1,12 @@
 @import url("../../../brand/tokens.css");
 
+/* На самостійних сторінках текстова роль — Fixel, як на головній.
+   У tokens.css --font-text ще Geologica. */
+:root {
+  --font-text: "Fixel", system-ui, sans-serif;
+  --font-display: "Piazzolla", Georgia, serif;
+}
+
 /* Standalone pages (biznes, kontakty…) load this without Tailwind preflight.
    Without border-box, menu layers are width:100% + padding and clip the Krapka dots. */
 *,
@@ -1926,6 +1933,14 @@ html.vshanuy-home
 }
 
 /* Desktop navigation inside the original 33px sticky header */
+/* Головна ховає цей хедер класом Tailwind `hidden lg:block`.
+   Самостійні сторінки Tailwind не вантажать — той самий поріг 1024px. */
+@media (max-width: 1023px) {
+  header.sticky.vshanuy-desktop-header:not(.hidden) {
+    display: none;
+  }
+}
+
 header.sticky.vshanuy-desktop-header {
   --vshanuy-grid-line: color-mix(
     in srgb,

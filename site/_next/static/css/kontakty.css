@@ -24,7 +24,7 @@
 .vshanuy-section-label {
   margin: 0;
   font-family: var(--font-text);
-  font-size: var(--step--1);
+  font-size: 12px;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--text-secondary);
@@ -194,7 +194,7 @@ a.vshanuy-section-label__trail:focus-visible {
 
 .vshanuy-contacts-page__link--primary .vshanuy-contacts-page__value {
   font-size: clamp(var(--step-1), 5vw, var(--step-2));
-  font-weight: 700;
+  font-weight: 300;
 }
 
 .vshanuy-contacts-page__arrow {
