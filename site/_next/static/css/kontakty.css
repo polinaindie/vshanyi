@@ -1,6 +1,8 @@
-/* Contacts page — mirrors ui/ ContactsPage + ContactForm + SectionLabel + BlockButton */
+/* Contacts — col-1 OK; continuous mid V + H T-joins (no orphan lines) */
 
 .vshanuy-contacts-page {
+  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
+
   margin: 0;
   background: var(--paper);
   color: var(--text);
@@ -38,7 +40,7 @@
 
 a.vshanuy-section-label__trail:hover {
   text-decoration: underline;
-  text-underline-offset: 0.2em;
+  text-underline-offset: 0.25em;
 }
 
 a.vshanuy-section-label__trail:focus-visible {
@@ -48,137 +50,187 @@ a.vshanuy-section-label__trail:focus-visible {
 
 /* Page */
 
-.vshanuy-contacts-page {
-  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
-
-  position: relative;
-}
-
-.vshanuy-page-guides {
-  position: absolute;
-  z-index: 0;
-  inset: 0 8px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  pointer-events: none;
-}
-
-.vshanuy-page-guides > span {
-  border-right: 1px solid var(--vshanuy-page-grid-line);
-}
-
-.vshanuy-page-guides > span:nth-child(n + 2) {
-  display: none;
-}
-
-.vshanuy-contacts-page > main,
-.vshanuy-contacts-page > .vshanuy-site-footer {
-  position: relative;
-  z-index: 1;
-}
-
 .vshanuy-contacts-page__main {
-  padding: var(--space-4) 8px var(--space-silence);
+  position: relative;
+  padding: 48px 8px var(--space-silence);
 }
 
 .vshanuy-contacts-page__intro {
-  padding: 0 var(--space-2) var(--space-3);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  padding-bottom: 64px;
+}
+
+.vshanuy-contacts-page__intro-inner {
+  grid-column: 1 / -1;
+  min-width: 0;
+  padding-inline: 8px;
+}
+
+@keyframes vshanuy-contacts-page-title-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .vshanuy-contacts-page__title {
   margin: 0;
   font-family: var(--font-display);
+  /* text-title-40 — як h2 / page title на живій головній */
   font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   line-height: 1;
+  letter-spacing: -0.02em;
   font-weight: 300;
+  text-wrap: balance;
+  color: var(--ink);
+  animation: vshanuy-contacts-page-title-in 1s ease-out both;
 }
 
 .vshanuy-contacts-page__lead {
-  margin: var(--space-3) 0 0;
+  margin: 32px 0 0;
+  max-width: 36ch;
   color: var(--text-secondary);
-  font-size: var(--step-1);
-  line-height: 1.4;
+  font-family: var(--font-text);
+  /* text-body-30 */
+  font-size: clamp(16px, 15.39px + 0.163vw, 18px);
+  line-height: 1.55;
 }
 
 .vshanuy-contacts-page__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-4);
-  padding-top: var(--space-4);
+  gap: 64px;
 }
 
 .vshanuy-contacts-page__channels,
 .vshanuy-contacts-page__form .vshanuy-contact {
-  scroll-margin-top: calc(33px + var(--space-3));
+  scroll-margin-top: calc(33px + 32px);
 }
 
 .vshanuy-contacts-page__channels,
 .vshanuy-contacts-page__form {
   min-width: 0;
-  padding-inline: var(--space-2);
+  padding-inline: 8px;
 }
 
 @media (min-width: 1024px) {
-  .vshanuy-page-guides {
+  .vshanuy-contacts-page__main {
+    padding-top: 96px;
+  }
+
+  /* Continuous mid V: стик з mid меню → intro → тиша → сітка → футер */
+  .vshanuy-contacts-page__main::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 0.5px);
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+
+  .vshanuy-contacts-page__intro,
+  .vshanuy-contacts-page__grid {
+    position: relative;
+    z-index: 1;
+  }
+
+  .vshanuy-contacts-page__intro {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding-bottom: 96px;
   }
 
-  .vshanuy-page-guides > span:nth-child(n + 2) {
-    display: block;
-  }
-
-  .vshanuy-page-guides > span:last-child {
-    border-right: 0;
+  /* Блок з кол. 1; лишається ліворуч mid V — лінія не рветься */
+  .vshanuy-contacts-page__intro-inner {
+    grid-column: 1 / 3;
+    padding-inline: 16px;
   }
 
   .vshanuy-contacts-page__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0;
+  }
+
+  .vshanuy-contacts-page__channels {
+    grid-column: 1 / 3;
+    padding-inline: 16px;
+  }
+
+  .vshanuy-contacts-page__form {
+    grid-column: 3 / 5;
+    padding-inline: 16px;
   }
 }
 
 .vshanuy-contacts-page__form .vshanuy-contact__header {
-  margin-bottom: var(--space-3);
-  padding-bottom: var(--space-3);
-  border-bottom: var(--line);
+  margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-contacts-page__list {
   list-style: none;
-  margin: var(--space-3) 0 0;
+  margin: 32px 0 0;
   padding: 0;
-  border-top: var(--line);
+  border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-contacts-page__list li {
-  border-bottom: var(--line-muted);
+  border-bottom: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-contacts-page__list li:last-child {
   border-bottom: 0;
 }
 
+@media (min-width: 1024px) {
+  /* Після base margin — H до краю комірки → T з mid V */
+  .vshanuy-contacts-page__form .vshanuy-contact__header {
+    margin-inline: -16px;
+    padding-inline: 16px;
+  }
+
+  .vshanuy-contacts-page__list {
+    margin: 32px -16px 0;
+    padding-inline: 16px;
+  }
+
+  .vshanuy-contacts-page__list li {
+    margin-inline: -16px;
+    padding-inline: 16px;
+  }
+}
+
 .vshanuy-contacts-page__link {
   display: grid;
   grid-template-columns: 7.5rem 1fr auto;
   align-items: baseline;
-  gap: var(--space-2);
-  min-height: 3rem;
-  padding: var(--space-2) 0;
+  gap: 16px;
+  min-height: 48px;
+  padding: 16px 0;
   color: var(--ink);
   text-decoration: none;
-  border-radius: var(--radius);
+  border-radius: 0;
 }
 
 .vshanuy-contacts-page__link--primary {
   grid-template-columns: 1fr;
-  gap: var(--space-1);
-  padding: var(--space-3) 0;
+  gap: 8px;
+  padding: 32px 0;
 }
 
 .vshanuy-contacts-page__service {
   font-family: var(--font-text);
-  font-size: var(--step--1);
+  font-size: 12px;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--text-secondary);
@@ -187,24 +239,29 @@ a.vshanuy-section-label__trail:focus-visible {
 .vshanuy-contacts-page__value {
   min-width: 0;
   font-family: var(--font-display);
-  font-size: var(--step-1);
+  font-size: clamp(16px, 14.78px + 0.327vw, 20px);
   line-height: 1.2;
+  font-weight: 300;
   overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 250ms ease-out;
 }
 
 .vshanuy-contacts-page__link--primary .vshanuy-contacts-page__value {
-  font-size: clamp(var(--step-1), 5vw, var(--step-2));
-  font-weight: 300;
+  font-size: clamp(20px, 16.9px + 0.816vw, 28px);
 }
 
 .vshanuy-contacts-page__arrow {
-  font-size: var(--step-1);
+  font-size: 20px;
+  line-height: 1;
 }
 
-.vshanuy-contacts-page__link:hover .vshanuy-contacts-page__value {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
+.vshanuy-contacts-page__link:hover .vshanuy-contacts-page__value,
+.vshanuy-contacts-page__link:focus-visible .vshanuy-contacts-page__value {
+  text-decoration-color: currentColor;
 }
 
 .vshanuy-contacts-page__link:focus-visible {
@@ -215,13 +272,13 @@ a.vshanuy-section-label__trail:focus-visible {
 /* Form */
 
 .vshanuy-contact__header {
-  margin-bottom: var(--space-3);
+  margin-bottom: 32px;
 }
 
 .vshanuy-contact__form {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-3);
+  gap: 32px;
 }
 
 @media (min-width: 720px) {
@@ -237,9 +294,9 @@ a.vshanuy-section-label__trail:focus-visible {
 .vshanuy-contact__field {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: 8px;
   font-family: var(--font-text);
-  font-size: var(--step--1);
+  font-size: 12px;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--text-secondary);
@@ -249,14 +306,14 @@ a.vshanuy-section-label__trail:focus-visible {
 .vshanuy-contact__field textarea {
   border: 0;
   border-bottom: var(--line);
-  border-radius: var(--radius);
+  border-radius: 0;
   background: transparent;
-  padding: var(--space-1) 0;
+  padding: 8px 0;
   color: var(--ink);
   text-transform: none;
   letter-spacing: normal;
   font: inherit;
-  font-size: var(--step-0);
+  font-size: 16px;
   resize: vertical;
 }
 
@@ -275,9 +332,9 @@ a.vshanuy-section-label__trail:focus-visible {
 
 .vshanuy-contact__topic legend {
   padding: 0;
-  margin: 0 0 var(--space-1);
+  margin: 0 0 8px;
   font-family: var(--font-text);
-  font-size: var(--step--1);
+  font-size: 12px;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--text-secondary);
@@ -297,15 +354,15 @@ a.vshanuy-section-label__trail:focus-visible {
 .vshanuy-contact__choice {
   position: relative;
   display: flex;
-  align-items: flex-end;
-  min-height: 4.5rem;
+  align-items: flex-start;
+  min-height: 72px;
   margin: 0 0 -1px;
-  padding: var(--space-2);
+  padding: 16px;
   border: var(--line);
-  border-radius: var(--radius);
+  border-radius: 0;
   color: var(--ink);
   font-family: var(--font-text);
-  font-size: var(--step-0);
+  font-size: 16px;
   line-height: 1.25;
   cursor: pointer;
 }
@@ -342,9 +399,7 @@ a.vshanuy-section-label__trail:focus-visible {
   outline-offset: 2px;
 }
 
-/* Block button */
-
-/* CTA — same behaviour as the footer «Підтримати» */
+/* Primary CTA — ink → yellow, як на головній */
 
 .vshanuy-contact__submit {
   box-sizing: border-box;
@@ -357,7 +412,7 @@ a.vshanuy-section-label__trail:focus-visible {
   gap: 16px;
   padding: 10px 12px;
   border: 0;
-  border-radius: var(--radius);
+  border-radius: 0;
   background: var(--ink);
   color: var(--paper);
   font-family: "Fixel", system-ui, sans-serif;
@@ -395,8 +450,14 @@ a.vshanuy-section-label__trail:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .vshanuy-contacts-page__title {
+    animation: none;
+    transform: none;
+  }
+
   .vshanuy-contact__submit,
-  .vshanuy-contact__submit > span[aria-hidden="true"] {
+  .vshanuy-contact__submit > span[aria-hidden="true"],
+  .vshanuy-contacts-page__value {
     transition: none;
   }
 

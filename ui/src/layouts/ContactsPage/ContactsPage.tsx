@@ -68,18 +68,14 @@ export function ContactsPage({
 }: ContactsPageProps) {
   return (
     <div className="vshanuy-contacts-page">
-      <div className="vshanuy-page-guides" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-        <span />
-      </div>
       {showHeader ? <DesktopHeader /> : null}
 
       <main className="vshanuy-contacts-page__main">
         <header className="vshanuy-contacts-page__intro">
-          <h1 className="vshanuy-contacts-page__title">{title}</h1>
-          {lead ? <p className="vshanuy-contacts-page__lead">{lead}</p> : null}
+          <div className="vshanuy-contacts-page__intro-inner">
+            <h1 className="vshanuy-contacts-page__title">{title}</h1>
+            {lead ? <p className="vshanuy-contacts-page__lead">{lead}</p> : null}
+          </div>
         </header>
 
         <div className="vshanuy-contacts-page__grid">

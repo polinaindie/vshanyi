@@ -34,18 +34,20 @@
 Формула: `clamp(MIN, MIN + (MAX−MIN)·(100vw−375px)/1225, MAX)`.  
 Еквівалент h2 для site-сторінок: `font-size: clamp(36px, 22.53px + 3.592vw, 80px)`.
 
-### Текст на 3 колонки (layout)
+### Сітка колонок (layout)
 
-Сітка: **4 кол.** від 1024px. Текстовий зміст секції — завжди **кол. 2–4 (span 3)**.
+Сітка: **4 кол.** від 1024px. Блоки **можуть** починатися з **кол. 1** (не лише з кол. 2).
 
-| Контент | Grid |
+| Контент | Типовий grid |
 |---|---|
-| Мітка, h1/h2, лід, проза, primary CTA | `grid-column: 2 / span 3` |
+| Intro / page title | кол. 1–2 або ширше за макетом |
 | Службове (портрет, вузьке фото) | кол. 1 |
+| Текст поруч із портретом (about) | часто кол. 2–4 — зразок головної, не закон |
+| Split 2\|2 | кол. 1–2 \| 3–4 |
 | Full-bleed медіа / hero-знак | `1 / -1` |
 | Mobile &lt;1024 | full width смуги |
 
-Не CSS `column-count: 3`. Проза може мати `max-width: 36ch`–`620px` всередині span-3. Зразок на головній: about — портрет кол. 1, h2+copy+CTA кол. 2–4; partners label+h2 кол. 2–4.
+Не CSS `column-count: 3`. Проза може мати `max-width: 36ch`–`620px` у своїй смузі. Зразок about: портрет кол. 1, copy кол. 2–4; kontakty: intro + канали з кол. 1, mid V безперервна.
 
 ### Роль → computed (скорочено)
 
@@ -204,13 +206,15 @@ color: color-mix(in srgb, var(--grey) 20%, transparent);
 /* aliases: --vshanuy-page-grid-line, --vshanuy-page-guide, --vshanuy-grid-line, --grid-line */
 only where columns partition content (list, panel row);
 outer rails NOT required (absence is OK);
-interrupt across span headings (2+ cols) — no line through title block;
+ALL visible V/H must join (T or cross) — no orphan segments, no padding gaps;
+prefer shifting content to one side of V over breaking the line;
 ```
 
 | Правило | Поведінка |
 |---|---|
 | Під full-bleed | якщо локальна V поруч — під фото, не поверх |
-| Span-заголовок | обрив лінії під/над блоком (як D0b) |
+| З’єднання | H доходить до V; mid V крізь тишу і pad-bottom; без розривів |
+| Текст vs V | контент з кол. 1 ок; тримай текст з одного боку лінії |
 | Outer rails | не вимагати; не fail якщо відсутні |
 | Shell guides | не ставити «за звичкою» без silence map |
 
@@ -223,15 +227,16 @@ interrupt across span headings (2+ cols) — no line through title block;
 | Article list | pseudo lines grey 20%, full to right edge | між картками |
 | Footer / submenu | ink 16–18% або grey 20% | між пунктами |
 | Між секціями | silence (`pt-96` / `lg:pt-240`) **або** одна H — не обидва густо | за silence map |
+| T-стик | H на повну ширину комірки/смуги до V | завжди, коли є V |
 
 Не: bordered cards як розділювачі секцій. Secondary PDF — повноцінна кнопка з ink border (C2), не hairline-розріз.
 
 ### D3. Чеклист на цільовій
 
-- [ ] Текстовий зміст секцій (мітка/h2/проза/CTA) — **span 3**, кол. 2–4 (≥1024)
+- [ ] Placement колонок за макетом; **кол. 1 дозволена** (≥1024)
 - [ ] Немає обов’язкового global shell guides без map / локальної потреби
 - [ ] Локальні V лише між колонками змісту; outer rails **не** обов’язок
-- [ ] Span-заголовок (2+ кол.) — лінія не крізь текст
+- [ ] Усі видимі V/H **з’єднані** (T/хрест); немає orphan / розриву в padding чи тиші
 - [ ] Під documentary full-bleed — лінії під зображенням, не поверх
 - [ ] Списки/секції діляться hairline + повітрям, не рамкою-карткою
 - [ ] Breakpoint сітки колонок **1024px** (збіг з хедером)
@@ -251,10 +256,10 @@ interrupt across span headings (2+ cols) — no line through title block;
 |---|---|
 | **H або silence** | Між великими секціями — відступ зі шкали (96/240) *або* одна hairline; не обидва густо |
 | **V лише де колонки** | Вертикаль видима там, де зміст реально в 2+ кол. одного ряду |
-| **Span-обрив** | Мітка+h2 на 2+ кол. → mid V off / `top` під заголовком / paper-маска над сіткою |
-| **T-стик** | H і V зустрічаються в T (не «лінія в повітрі»); H на повну ширину сітки |
-| **Continuous mid** | Одна локальна mid V може йти крізь кілька секцій: `bottom: calc(-1 * silence)` на попередній + `::before` на наступній |
-| **Paper-маска** | Повна смуга `background: var(--paper)` (мітка/тиша) криє внутрішні page-guides 25/75; mid V з вищим `z-index` лишається |
+| **З’єднання без розривів** | Усі видимі V/H стикуються; немає orphan. Текст зсувай у кол. з одного боку V (кол. 1 ок), а не рви лінію |
+| **T-стик** | H і V зустрічаються в T (не «лінія в повітрі»); H до краю комірки / смуги (компенсуй cell-padding) |
+| **Continuous mid** | Mid V крізь кілька секцій і тишу: `bottom: calc(-1 * silence)` / один `::before` на `main` від intro до pad-bottom |
+| **Paper-маска** | Лише щоб криті **зайві** внутрішні guides (25/75); **не** щоб розірвати потрібну mid V |
 | **Під фото** | Full-bleed: V/H структурно під img (`z-index` фото вище) |
 | **Inset карток** | 16px з усіх боків (як L/R); hover — фон комірки beige, фото `scale(1.05)` 1000ms |
 | **Стик з футером** | Mid V крізь `main` pad-bottom silence; футер `margin-top: 0` якщо pad уже є; guides футера підхоплюють mid |
