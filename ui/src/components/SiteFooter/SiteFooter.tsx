@@ -38,41 +38,9 @@ export function SiteFooter(_props: SiteFooterProps = {}) {
               <li>
                 <a href="pro-nas.html">Місія та цінності.</a>
               </li>
-            <li>Звіт про діяльність.</li>
-            <li>
-              <a href="kontakty.html">Контакти.</a>
-            </li>
-          </ul>
-          <ul
-              className="vshanuy-site-footer__links vshanuy-site-footer__links--social"
-              aria-label="Соцмережі"
-            >
+              <li>Звіт про діяльність.</li>
               <li>
-                <a
-                  href="https://www.instagram.com/moment_of_honor/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Instagram.
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.threads.com/@moment_of_honor"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Threads.
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.facebook.com/momentofhonor"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Facebook.
-                </a>
+                <a href="kontakty.html">Контакти.</a>
               </li>
             </ul>
           </div>
