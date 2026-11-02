@@ -34,18 +34,6 @@
   padding-inline: 8px;
 }
 
-@keyframes vshanuy-contacts-page-title-in {
-  from {
-    opacity: 0;
-    transform: translateY(1.25rem);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .vshanuy-contacts-page__title {
   margin: 0;
   font-family: var(--font-display);
@@ -55,7 +43,6 @@
   font-weight: 300;
   text-wrap: balance;
   color: var(--ink);
-  animation: vshanuy-contacts-page-title-in 1s ease-out both;
 }
 
 .vshanuy-contacts-page__lead {
@@ -231,11 +218,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vshanuy-contacts-page__title {
-    animation: none;
-    transform: none;
-  }
-
   .vshanuy-contacts-page__value {
     transition: none;
   }
