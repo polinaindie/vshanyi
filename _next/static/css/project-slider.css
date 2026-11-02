@@ -124,7 +124,7 @@
 
 /* Сторінка проєкту, перший екран: фото першим, під ним назва й паспорт */
 .vshanuy-project__hero {
-  margin: var(--space-2) 0 0;
+  margin: var(--space-2) calc(-1 * var(--space-2)) 0;
 }
 
 .vshanuy-project__hero img {
@@ -151,7 +151,7 @@
 .vshanuy-project__passport {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  margin: var(--space-4) 0 0;
+  margin: var(--space-4) calc(-1 * var(--space-2)) 0;
   border-top: var(--line-muted);
   border-bottom: var(--line-muted);
 }
@@ -161,7 +161,7 @@
   flex-wrap: wrap;
   align-items: baseline;
   gap: var(--space-1);
-  padding-block: var(--space-2);
+  padding: var(--space-2);
 }
 
 .vshanuy-project__passport dd {
@@ -238,14 +238,15 @@
   margin-top: var(--space-3);
 }
 
-/* Сторінка «Проєкти»: ті самі картки сіткою */
+/* Сторінка «Проєкти»: усі картки одразу, 2 в ряд до 1024 і 4 далі. Не слайдер. */
 .vshanuy-projects-page__list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  row-gap: var(--space-4);
+  row-gap: 64px;
   margin: var(--space-5) 0 0;
   padding: 0;
   list-style: none;
+  overflow: visible;
 }
 
 .vshanuy-projects-page__item {
@@ -330,7 +331,7 @@
 
   .vshanuy-projects-page__list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    row-gap: var(--space-5);
+    row-gap: 96px;
   }
 
   .vshanuy-project-slider__meta {
@@ -359,7 +360,6 @@
 
   .vshanuy-project__passport {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-inline: calc(-1 * var(--space-2));
   }
 
   .vshanuy-project__passport > div {
