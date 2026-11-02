@@ -4308,7 +4308,8 @@ main
     align-content: start;
     gap: 16px;
     align-items: stretch;
-    padding: 0 16px;
+    /* top = inline (16) — фото не ближче до краю, ніж copy по боках */
+    padding: 16px 16px 0;
   }
 
   .vshanuy-directions-carousel__copy {
@@ -4317,7 +4318,7 @@ main
   }
 
   .vshanuy-directions-carousel__media {
-    margin-top: 32px;
+    margin-top: 0;
     padding: 0;
   }
 

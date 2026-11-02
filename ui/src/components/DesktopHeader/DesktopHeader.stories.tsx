@@ -31,6 +31,7 @@ export const Default: Story = {
       <div style={{ minHeight: 200 }}>
         <Story />
         <p style={{ padding: 'var(--space-3)', color: 'var(--text-secondary)' }}>
+          Як на внутрішніх сторінках: активний lockup ВШАНУЙ. 09:00 без скролу.
           Наведіть на пункти — slide + submenu.
         </p>
       </div>
@@ -38,6 +39,13 @@ export const Default: Story = {
   ],
 }
 
-export const Scrolled: Story = {
-  args: { scrolled: true },
+export const HomeAtTop: Story = {
+  args: { scrolled: false },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Стан головної до скролу: лише 09:00. Після скролу — як Default.',
+      },
+    },
+  },
 }

@@ -120,7 +120,7 @@ function SlideLabel({
 export function DesktopHeader({
   items = defaultItems,
   onOpenMenu,
-  scrolled = false,
+  scrolled = true,
   navActiveIndex,
 }: DesktopHeaderProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)

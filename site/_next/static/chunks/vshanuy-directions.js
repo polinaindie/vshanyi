@@ -90,13 +90,16 @@
       )
       .join("");
 
-  const sectionMarkup = () => `
+  const sectionMarkup = ({
+    title = "Для кого ми говоримо про памʼять",
+    titleId = "vshanuy-home-directions-title",
+  } = {}) => `
       <div class="vshanuy-directions-carousel__shell">
         <div class="vshanuy-directions-carousel__pin">
           <header class="vshanuy-directions-carousel__header">
             <p class="vshanuy-directions-carousel__label text-caption-30 uppercase">НАШІ НАПРЯМИ</p>
-            <h2 id="vshanuy-home-directions-title" class="vshanuy-directions-carousel__title font-serif">
-              Для кого ми говоримо про памʼять
+            <h2 id="${titleId}" class="vshanuy-directions-carousel__title font-serif">
+              ${title}
             </h2>
           </header>
           <div
@@ -408,33 +411,65 @@
     syncLayout();
   };
 
+  const sectionNeedsMarkup = (section) =>
+    !section ||
+    !section.querySelector(".vshanuy-directions-carousel__shell") ||
+    !section.querySelector(".vshanuy-directions-carousel__pin") ||
+    !section.querySelector(".vshanuy-directions-carousel__runway") ||
+    !section.querySelector(
+      ".vshanuy-directions-carousel__pin > .vshanuy-directions-carousel__header",
+    ) ||
+    section.querySelector(
+      ".vshanuy-directions-carousel__shell > .vshanuy-directions-carousel__header",
+    ) ||
+    !section.querySelector(".vshanuy-directions-carousel__viewport") ||
+    !section.querySelector(".vshanuy-directions-carousel__scroller") ||
+    !section.querySelector(".vshanuy-directions-carousel__track") ||
+    !section.querySelector(".vshanuy-directions-carousel__card") ||
+    section.querySelector(".vshanuy-directions-carousel__controls") ||
+    section.querySelector(".vshanuy-directions-carousel__bar") ||
+    section.querySelector(".vshanuy-directions-carousel__index") ||
+    !section.querySelector(
+      ".vshanuy-directions-carousel__card > .vshanuy-directions-carousel__media:first-child",
+    ) ||
+    section.querySelector(".vshanuy-directions-carousel__more");
+
+  const hydrateSection = (section, markupOptions) => {
+    if (sectionNeedsMarkup(section)) {
+      section.dataset.revealReady = "";
+      section.dataset.carouselReady = "";
+      section.classList.remove(
+        "is-visible",
+        "vshanuy-home-directions--static",
+        "vshanuy-directions-carousel--static",
+        "vshanuy-directions-carousel--pinned",
+        "vshanuy-directions-carousel--complete",
+      );
+      section.classList.add("vshanuy-directions-carousel");
+      const titleId = markupOptions?.titleId || "vshanuy-home-directions-title";
+      section.setAttribute("aria-labelledby", titleId);
+      section.innerHTML = sectionMarkup(markupOptions);
+    }
+    setupReveal(section);
+    setupCarousel(section);
+  };
+
+  /** About page (`pro-nas`): replace #napryamy slot with the homepage carousel. */
+  const mountAbout = () => {
+    const slot = document.querySelector("body.vshanuy-about-page #napryamy");
+    if (!slot || !slot.isConnected) return false;
+    hydrateSection(slot, {
+      title: "Серед наших основних напрямів роботи",
+      titleId: "about-directions-title",
+    });
+    return true;
+  };
+
   const mount = () => {
     const anchor = findProjectsAnchor();
     if (!anchor || !anchor.isConnected) return false;
 
     let section = document.querySelector(".vshanuy-home-directions");
-    const needsMarkup =
-      !section ||
-      !section.querySelector(".vshanuy-directions-carousel__shell") ||
-      !section.querySelector(".vshanuy-directions-carousel__pin") ||
-      !section.querySelector(".vshanuy-directions-carousel__runway") ||
-      !section.querySelector(
-        ".vshanuy-directions-carousel__pin > .vshanuy-directions-carousel__header",
-      ) ||
-      section.querySelector(
-        ".vshanuy-directions-carousel__shell > .vshanuy-directions-carousel__header",
-      ) ||
-      !section.querySelector(".vshanuy-directions-carousel__viewport") ||
-      !section.querySelector(".vshanuy-directions-carousel__scroller") ||
-      !section.querySelector(".vshanuy-directions-carousel__track") ||
-      !section.querySelector(".vshanuy-directions-carousel__card") ||
-      section.querySelector(".vshanuy-directions-carousel__controls") ||
-      section.querySelector(".vshanuy-directions-carousel__bar") ||
-      section.querySelector(".vshanuy-directions-carousel__index") ||
-      !section.querySelector(
-        ".vshanuy-directions-carousel__card > .vshanuy-directions-carousel__media:first-child",
-      ) ||
-      section.querySelector(".vshanuy-directions-carousel__more");
 
     if (!section) {
       section = document.createElement("section");
@@ -448,7 +483,7 @@
         anchor.insertAdjacentElement("beforebegin", section);
       }
       section.classList.add("vshanuy-directions-carousel");
-      if (needsMarkup) {
+      if (sectionNeedsMarkup(section)) {
         section.dataset.revealReady = "";
         section.dataset.carouselReady = "";
         section.classList.remove(
@@ -470,11 +505,18 @@
 
   const start = () => {
     mount();
-    const observer = new MutationObserver(mount);
+    mountAbout();
+    const observer = new MutationObserver(() => {
+      mount();
+      mountAbout();
+    });
     observer.observe(document.body, { childList: true, subtree: true });
     window.setTimeout(() => observer.disconnect(), 10000);
     [300, 800, 1600, 3000].forEach((ms) => {
-      window.setTimeout(mount, ms);
+      window.setTimeout(() => {
+        mount();
+        mountAbout();
+      }, ms);
     });
   };
 

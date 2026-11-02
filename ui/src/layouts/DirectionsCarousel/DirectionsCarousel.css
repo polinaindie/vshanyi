@@ -303,7 +303,7 @@
     align-content: start;
     gap: 16px;
     align-items: stretch;
-    padding: 24px 16px;
+    padding: 16px 16px 0;
   }
 
   .vshanuy-directions-carousel__copy {
@@ -312,7 +312,7 @@
   }
 
   .vshanuy-directions-carousel__media {
-    margin-top: 32px;
+    margin-top: 0;
     padding: 0;
   }
 

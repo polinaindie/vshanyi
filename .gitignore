@@ -1,9 +1,11 @@
 .DS_Store
 **/.DS_Store
-# Share Cursor project rules with the team; ignore the rest of .cursor/
+# Share Cursor project rules + skills with the team; ignore the rest of .cursor/
 .cursor/*
 !.cursor/rules/
 !.cursor/rules/**
+!.cursor/skills/
+!.cursor/skills/**
 *.log
 **/wget.log
 tmp/

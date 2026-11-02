@@ -112,6 +112,7 @@ export function DirectionsCarousel({
     const runway = runwayRef.current
     const viewport = viewportRef.current
     if (!section || !pin || !runway || !viewport) return
+
     const scroller =
       (viewport.querySelector('.vshanuy-directions-carousel__scroller') as HTMLElement | null) ||
       viewport
