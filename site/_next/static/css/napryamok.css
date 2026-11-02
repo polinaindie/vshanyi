@@ -2,8 +2,8 @@
 
 /* Перший екран: розділ із змістом */
 .vshanuy-direction__kicker {
-  margin: var(--space-3) 0 0;
-  padding-bottom: var(--space-1);
+  margin: var(--space-3) calc(-1 * var(--space-2)) 0;
+  padding: 0 var(--space-2) var(--space-1);
   border-bottom: var(--line-muted);
 }
 
@@ -13,8 +13,8 @@
 }
 
 .vshanuy-direction__lead {
-  margin-top: var(--space-4);
-  padding-top: var(--space-3);
+  margin: var(--space-4) calc(-1 * var(--space-2)) 0;
+  padding: var(--space-3) var(--space-2) 0;
   border-top: var(--line-muted);
 }
 
@@ -22,7 +22,13 @@
   margin: 0;
 }
 
+.vshanuy-direction__band {
+  padding-inline: 0;
+}
+
 .vshanuy-direction__band img {
+  width: 100%;
+  margin-inline: 0;
   aspect-ratio: 3 / 2;
 }
 
@@ -274,6 +280,7 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: start;
     margin-inline: calc(-1 * var(--space-2));
+    padding-inline: 0;
   }
 
   .vshanuy-direction__lead > * {
@@ -302,6 +309,8 @@
 
   .vshanuy-direction__band img {
     grid-column: 1 / -1;
+    width: 100%;
+    margin-inline: 0;
     aspect-ratio: 21 / 9;
   }
 }
