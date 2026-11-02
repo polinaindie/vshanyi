@@ -76,7 +76,7 @@ alwaysApply: false
 
 - **Колонки:** 2 на мобільному, **4 від 1024px**. Між колонками gap 0.
 - **Поля сторінки:** 8px з кожного боку (`inset: 0 8px`, `padding-inline: 8px`). Внутрішній відступ клітинки — 8px (mobile) / 16px (desktop).
-- **Видимі лінії:** не обов’язок «4 гайди скрізь». Ділення тиші — за `.cursor/rules/silence-division.mdc` і silence map (`page-silence.mdc`): горизонтальні hairlines, локальні вертикалі між колонками змісту, обрив лінії на span-заголовках (2+ кол.). Колір ліній — grey 20% / `--hairline`; без крайніх зовнішніх рейок, якщо локальна V є.
+- **Видимі лінії:** не обов’язок «4 гайди скрізь». Ділення тиші — за `.cursor/rules/silence-division.mdc` і silence map (`page-silence.mdc`): горизонтальні hairlines, локальні вертикалі між колонками змісту, обрив лінії на span-заголовках (2+ кол.). Колір ліній — grey 20% / `--hairline`. На **живій головній** є continuous outer rails (`main::before/after` на 8px) + локальні internal V; для **нових** сторінок outer rails і shell guides **не** обов’язок — дивись silence map. Жива карта обривів (about mid V off, projects `top:96px`, directions 25%/75%) — у `.cursor/skills/homepage-parity/reference.md` §D.
 - **Хедер:** sticky, 33px, нижня лінія 1px grey 20%. Сітка `1fr 3fr`: колонка 1 — знак `ВШАНУЙ. 09:00`, колонки 2–4 — «Наша діяльність» / «Підтримати» / «Усі розділи». Колонки хедера задають сітку сторінки; видимі вертикалі в контенті — локально, не обов’язковий continuous shell.
 - **Композиція:** колонка 1 — службове (портрет з підписом, мітка, фото-акцент); **колонки 2–4 — зміст**. h2 і мітка секції стартують з колонки 2. Текст чіпляється до лівого краю колонки, нічого не центруємо (виняток — логотипи партнерів у клітинках).
 - **Панелі** (beige) займають рівно 1 колонку або кратну кількість; можуть стояти сходинками зі зсувом по вертикалі (блок гайдів). Усередині: опис зверху, заголовок знизу, дія — найнижчим рядком.
@@ -110,7 +110,7 @@ alwaysApply: false
 - ink фон, paper текст. Hover/focus: фон `--yellow`, текст ink (300ms ease-out); стрілка `translateX(-4px → 4px)` за 450ms.
 - Focus: `outline: 2px solid var(--ink); outline-offset: 3px`.
 
-**Secondary** (`ЗАВАНТАЖИТИ PDF ↓`): прозора, `border-top: 1px`, Fixel 12px 500 UPPERCASE, іконка праворуч; hover — beige фон.
+**Secondary** (`ЗАВАНТАЖИТИ PDF ↓`, живий `.vshanuy-guide-button`): прозора, `border: 1px solid var(--ink)`, Fixel 12px **600** UPPERCASE `0.08em`, pad 10×12, min-height 44, стрілка `↓` праворуч; hover/focus — фон і border `--yellow`, текст ink (300ms); стрілка `translateY(-2px → 2px)` 450ms.
 
 **Текстове посилання:** підкреслення з’являється: `text-decoration-color: transparent → currentColor` (250ms), `text-underline-offset: 0.25em`, товщина 1px.
 
@@ -186,16 +186,19 @@ alwaysApply: false
 - `__VSHANUY_SITE_ROOT__` — відносний шлях до кореня `site/` (`""` для кореня, `"../"` для `napryamky/`). Шляхи тільки відносні (GitHub Pages у підпапці).
 - Після змін CSS/JS онови `?v=` у підключеннях.
 - Класи — БЕМ з префіксом: `vshanuy-<page>__<element>--<mod>`. Секція = `__band` (сітка `repeat(2 → 4, minmax(0, 1fr))`), клітинка = `__cell`.
+- `.vshanuy-page-shell__guides` у шаблоні вище — **опційно**, лише якщо silence map цього вимагає; не став «за звичкою» (див. `silence-division.mdc`).
 - Спільні класи (`vshanuy-section-label`, `vshanuy-photo-caption`, `vshanuy-block-button`, `vshanuy-visually-hidden`) зараз дублюються у `kontakty.css` і `biznes.css` — копіюй як там, не вигадуй інших імен.
 - `site/index.html` правимо тільки за `anuchome-mirror.mdc` (не вимикати JS, текст — і в HTML, і в RSC-payload).
 
 ## 9. Швидкий тест «як на головній»
 
-- [ ] Видно 4 (desktop) / 2 (mobile) безперервні вертикальні лінії, і зміст стоїть по них
+- [ ] Сітка 2 (mobile) / 4 (desktop ≥1024), inset 8px; текст секцій — кол. 2–4 (span 3); зміст стоїть по колонках
+- [ ] Видимі лінії за `silence-division.mdc` / silence map: локальні V і/або H-hairline, **не** обов’язкові continuous 4 гайди й **не** обов’язкові outer rails (на головній outer rails є — для нових сторінок не копіювати «скрізь»)
+- [ ] Span-заголовок (2+ кол.) — вертикаль не ріже текст (обрив / mid V off / top під заголовком)
 - [ ] Заголовки — Piazzolla 300, текст і кнопки — Fixel (computed style, не Geologica)
 - [ ] h2 секції в діапазоні 36–80px, мітки 11–12px UPPERCASE 0.12em
-- [ ] Між секціями 96 / 240px, порожні колонки не заповнені
+- [ ] Між секціями 96 / 240px (або одна hairline), порожні колонки не заповнені
 - [ ] Тло paper, панелі beige, жовтий тільки на hover CTA або один свідомий акцент
-- [ ] Кнопки гострі, ink → yellow на hover, стрілка зсувається
+- [ ] Primary: ink → yellow на hover, стрілка `→` зсувається; Secondary PDF: ink border → yellow, `↓`
 - [ ] Анімації ≤ 1000ms, `cubic-bezier(0.22, 1, 0.36, 1)`, є `prefers-reduced-motion`
 - [ ] Хедер/футер змонтовані скриптами, focus видно, підписи фото `місце · рік · тег`

@@ -3502,22 +3502,17 @@ main .border-x {
 }
 
 /*
-  Hero lockup (ВШАНУЙ.): без внутрішніх V крізь лого.
-  Гайди стартують під lockup = aspect лого + mb-4 (4px при root 10px).
+  Hero: без внутрішніх V на lockup і на фото.
+  Крайні рейки лишаються через main::before/after.
 */
 main
   > .relative.flex.min-h-\[calc\(100svh-var\(--header-height\)-8px\)\].w-full.flex-col.px-8
-  > .pointer-events-none.absolute.inset-x-8.inset-y-0.z-1 {
-  top: calc((100vw - 16px) * 266.892 / 977.942 + 4px);
-}
-
-@media (max-width: 1023px) {
-  /* Mobile lockup: .my-8 (8px + 8px) замість mb-4. */
-  main
-    > .relative.flex.min-h-\[calc\(100svh-var\(--header-height\)-8px\)\].w-full.flex-col.px-8
-    > .pointer-events-none.absolute.inset-x-8.inset-y-0.z-1 {
-    top: calc((100vw - 16px) * 266.892 / 977.942 + 16px);
-  }
+  > .pointer-events-none.absolute.inset-x-8.inset-y-0.z-1,
+main
+  > .relative.flex.min-h-\[calc\(100svh-var\(--header-height\)-8px\)\].w-full.flex-col.px-8
+  > .relative.isolate.flex.flex-1.flex-col
+  > .pointer-events-none.absolute.inset-0.hidden.lg\:block {
+  display: none !important;
 }
 
 main .after\:bg-accent-metal\/20::after {
