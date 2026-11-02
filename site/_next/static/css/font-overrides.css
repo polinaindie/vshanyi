@@ -61,6 +61,12 @@ html.__variable_315a98.__variable_e986a4 {
   --font-instrument-sans: "Fixel", system-ui, sans-serif;
 }
 
+/* text-title-40 — h2 секцій: трохи менший max, щоб міра на 2 кол. читалась спокійніше */
+.text-title-40 {
+  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
+  line-height: 1;
+}
+
 html,
 body,
 .__className_e986a4,
@@ -171,6 +177,41 @@ span.block[data-vshanuy-revealed] {
   row-gap: 32px;
 }
 
+/* Half silence before directions — verticals T-join mid-gap H; трохи щільніше до стику. */
+section[data-block-type="blockHeadline"]:has(.about-vshanuy)
+  > .overflow-x-clip.px-8
+  > .relative.isolate {
+  padding-bottom: 32px;
+}
+
+@media (min-width: 1024px) {
+  section[data-block-type="blockHeadline"]:has(.about-vshanuy)
+    > .overflow-x-clip.px-8
+    > .relative.isolate {
+    padding-bottom: 96px;
+  }
+}
+
+/*
+  About desktop: копія в кол. 2–3.
+  V кол. 1|2 (портрет | зміст) + V кол. 3|4 (зліва від «ДОЛУЧИТИСЯ»).
+  Гайд 2|3 — геть (інакше ріже span-заголовок).
+*/
+@media (min-width: 1024px) {
+  main
+    section[data-block-type="blockHeadline"]:has(.about-vshanuy)
+    > .overflow-x-clip.px-8
+    > .relative.isolate
+    > .pointer-events-none.absolute.inset-0
+    > .hidden.size-full.grid-cols-4.gap-4.lg\:grid
+    > div:nth-child(2)::after {
+    display: none;
+    content: none;
+    width: 0;
+    background: none;
+  }
+}
+
 .about-vshanuy__portrait {
   grid-column: 1 / -1;
   margin: 0;
@@ -214,7 +255,7 @@ span.block[data-vshanuy-revealed] {
 }
 
 .about-vshanuy__copy {
-  max-width: 620px;
+  max-width: none;
   margin: 24px 0 0;
   color: var(--text-secondary);
   line-height: 1.55;
@@ -431,8 +472,19 @@ main
     padding-inline: 16px;
   }
 
+  /* Копія + CTA — кол. 2–3; h2 поверх V «ДОЛУЧИТИСЯ» на 2.5 кол. */
   .about-vshanuy__content {
-    grid-column: 2 / 5;
+    grid-column: 2 / 4;
+    overflow: visible;
+  }
+
+  /*
+    Обгортка reveal → 2.5 кол. сітки.
+    125% від content-box (2 кол.) + 12px — правий край на середину кол. 4.
+  */
+  .about-vshanuy__content > span.block:has(> h2.text-title-40) {
+    width: calc(125% + 12px);
+    max-width: none;
   }
 
   h1.whitespace-pre-line.font-serif.text-title-20.text-base-white {
@@ -456,7 +508,7 @@ section[data-block-type="blockHeadline"] .flex.flex-col.gap-y-96 {
   row-gap: 32px;
 }
 
-/* Tighten section top so the row sits closer to the headline */
+/* Tighten section top so the row sits closer to the headline. */
 section[data-block-type="blockSelectedProjects"] > .overflow-x-clip > .relative.isolate.size-full {
   padding-top: 48px;
 }
@@ -465,12 +517,70 @@ section[data-block-type="blockSelectedProjects"] > .overflow-x-clip > .relative.
   section[data-block-type="blockSelectedProjects"] > .overflow-x-clip > .relative.isolate.size-full {
     padding-top: 96px;
   }
+
+  /*
+    Silence map — проєкти:
+    • #proekty (span кол. 2–4): V 2|3 геть (не ріже текст).
+      V 1|2 і V 3|4 на всю висоту заголовка — безперервно стикуються з #projects.
+    • #projects відступ до карток (96px): без центральної V 2|3;
+      V 1|2 і V 3|4 на всю висоту.
+    • У ряді карток V 2|3 з’являється з top: 96px.
+  */
+  main
+    .vshanuy-home-directions
+    + section[data-block-type="blockHeadline"]
+    > .overflow-x-clip.px-8
+    > .relative.isolate
+    > .pointer-events-none.absolute.inset-0
+    > .hidden.size-full.grid-cols-4.gap-4.lg\:grid
+    > div:nth-child(2)::after,
+  main
+    #proekty
+    > .overflow-x-clip.px-8
+    > .relative.isolate
+    > .pointer-events-none.absolute.inset-0
+    > .hidden.size-full.grid-cols-4.gap-4.lg\:grid
+    > div:nth-child(2)::after {
+    display: none;
+    content: none;
+    width: 0;
+    background: none;
+  }
+
+  main
+    #projects
+    > .overflow-x-clip.px-8
+    > .relative.isolate
+    > .pointer-events-none.absolute.inset-0
+    > .hidden.size-full.grid-cols-4.gap-4.lg\:grid
+    > div:nth-child(2)::after,
+  main
+    section[data-block-type="blockSelectedProjects"]
+    > .overflow-x-clip.px-8
+    > .relative.isolate
+    > .pointer-events-none.absolute.inset-0
+    > .hidden.size-full.grid-cols-4.gap-4.lg\:grid
+    > div:nth-child(2)::after {
+    top: 96px;
+  }
 }
 
-/* 16px from card to vertical guides on both sides (undo first/last pl-0/pr-0) */
+/* 16px inset з усіх боків — hover-beige рівний до контенту (як L/R). */
 section[data-block-type="blockSelectedProjects"] .group\/slide > .p-4,
 section[data-block-type="blockSelectedProjects"] .group\/slide.p-4 {
-  padding: 8px 16px !important;
+  padding: 16px !important;
+  border-radius: 0;
+  background-color: transparent;
+  transition: background-color 300ms ease-out;
+  box-sizing: border-box;
+}
+
+/* Hover як у DirectionsCarousel: комірка → beige */
+section[data-block-type="blockSelectedProjects"] .group\/slide > .p-4:hover,
+section[data-block-type="blockSelectedProjects"] .group\/slide > .p-4:focus-within,
+section[data-block-type="blockSelectedProjects"] .group\/slide.p-4:hover,
+section[data-block-type="blockSelectedProjects"] .group\/slide.p-4:focus-within {
+  background-color: var(--beige);
 }
 
 section[data-block-type="blockSelectedProjects"] a.group\/link {
@@ -501,19 +611,48 @@ section[data-block-type="blockSelectedProjects"] a.group\/link h3.font-serif.tex
   letter-spacing: inherit;
 }
 
-section[data-block-type="blockSelectedProjects"] a.group\/link .absolute.inset-0::before {
+/* Фото карток: ніжний зум.
+   Видиме фото = background на .absolute.inset-0 (img opacity:0).
+   Параллакс JS тримає inline transform на цьому шарі — тому зумимо ::after. */
+section[data-block-type="blockSelectedProjects"] a[class*="group/link"] .relative.aspect-\[0\.95\],
+section[data-block-type="blockSelectedProjects"] a[class*="group/link"] .relative.overflow-hidden {
+  overflow: hidden;
+}
+
+section[data-block-type="blockSelectedProjects"] a[class*="group/link"] .absolute.inset-0 {
+  /* URL лишається для inherit; сам шар не малює фото */
+  background-size: 0 0 !important;
+}
+
+section[data-block-type="blockSelectedProjects"] a[class*="group/link"] .absolute.inset-0::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: inherit;
+  background-image: inherit;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   transform: scale(1);
   transform-origin: center;
-  transition: transform 1s ease-out;
+  transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  pointer-events: none;
 }
 
-section[data-block-type="blockSelectedProjects"] a.group\/link:hover .absolute.inset-0::before,
-section[data-block-type="blockSelectedProjects"] a.group\/link:focus-visible .absolute.inset-0::before {
-  transform: scale(1.1);
+section[data-block-type="blockSelectedProjects"] .group\/slide > .p-4:hover a[class*="group/link"] .absolute.inset-0::after,
+section[data-block-type="blockSelectedProjects"] .group\/slide > .p-4:focus-within a[class*="group/link"] .absolute.inset-0::after,
+section[data-block-type="blockSelectedProjects"] .group\/slide.p-4:hover a[class*="group/link"] .absolute.inset-0::after,
+section[data-block-type="blockSelectedProjects"] .group\/slide.p-4:focus-within a[class*="group/link"] .absolute.inset-0::after,
+section[data-block-type="blockSelectedProjects"] a[class*="group/link"]:hover .absolute.inset-0::after,
+section[data-block-type="blockSelectedProjects"] a[class*="group/link"]:focus-visible .absolute.inset-0::after,
+section[data-block-type="blockSelectedProjects"] a[class*="group/link"]:focus-within .absolute.inset-0::after {
+  transform: scale(1.05) !important;
+}
+
+/* Гасимо Tailwind scale на прихованому img */
+section[data-block-type="blockSelectedProjects"] a[class*="group/link"] img {
+  transform: none !important;
+  transition: none !important;
 }
 
 /* Reserve room for the always-visible description so cards stay equal height.
@@ -564,11 +703,22 @@ section[data-block-type="blockSelectedProjects"] a.group\/link h3.font-serif::af
 }
 
 @media (prefers-reduced-motion: reduce) {
-  section[data-block-type="blockSelectedProjects"] a.group\/link .absolute.inset-0::before,
-  section[data-block-type="blockSelectedProjects"] a.group\/link:hover .absolute.inset-0::before,
-  section[data-block-type="blockSelectedProjects"] a.group\/link:focus-visible .absolute.inset-0::before {
+  section[data-block-type="blockSelectedProjects"] .group\/slide > .p-4,
+  section[data-block-type="blockSelectedProjects"] .group\/slide.p-4 {
     transition: none;
-    transform: none;
+  }
+
+  section[data-block-type="blockSelectedProjects"] a[class*="group/link"] .absolute.inset-0::after,
+  section[data-block-type="blockSelectedProjects"] .group\/slide > .p-4:hover a[class*="group/link"] .absolute.inset-0::after,
+  section[data-block-type="blockSelectedProjects"] .group\/slide > .p-4:focus-within a[class*="group/link"] .absolute.inset-0::after,
+  section[data-block-type="blockSelectedProjects"] .group\/slide.p-4:hover a[class*="group/link"] .absolute.inset-0::after,
+  section[data-block-type="blockSelectedProjects"] .group\/slide.p-4:focus-within a[class*="group/link"] .absolute.inset-0::after,
+  section[data-block-type="blockSelectedProjects"] a[class*="group/link"]:hover .absolute.inset-0::after,
+  section[data-block-type="blockSelectedProjects"] a[class*="group/link"]:focus-visible .absolute.inset-0::after,
+  section[data-block-type="blockSelectedProjects"] a[class*="group/link"]:focus-within .absolute.inset-0::after {
+    transition: none !important;
+    transform: none !important;
+    will-change: auto;
   }
 }
 
@@ -581,9 +731,15 @@ section[data-block-type="blockSelectedProjects"] a.group\/link[data-vshanuy-no-n
   cursor: pointer;
 }
 
-/* Keep slides in one horizontal track — no vertical stretch */
+/* Keep slides in one horizontal track — no vertical stretch.
+   H на рівні верху карток (= верх hover-beige), не посередині тиші. */
 section[data-block-type="blockSelectedProjects"] .group\/slider {
   position: relative;
+  border-top: 1px solid
+    var(
+      --vshanuy-page-grid-line,
+      color-mix(in srgb, var(--grey) 20%, transparent)
+    );
 }
 
 section[data-block-type="blockSelectedProjects"] .will-change-transform {
@@ -594,6 +750,8 @@ section[data-block-type="blockSelectedProjects"] .will-change-transform {
 section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls button[data-projects-prev],
 section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls button[data-projects-next] {
   color: var(--ink);
+  background: var(--paper);
+  transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
 section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls button[data-projects-prev] svg,
@@ -601,6 +759,14 @@ section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls butto
   width: 12px;
   height: 12px;
   display: block;
+}
+
+section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls button[data-projects-prev]:hover:not(:disabled),
+section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls button[data-projects-next]:hover:not(:disabled),
+section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls button[data-projects-prev]:focus-visible:not(:disabled),
+section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls button[data-projects-next]:focus-visible:not(:disabled) {
+  background: var(--ink);
+  color: var(--paper);
 }
 
 section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls button:disabled {
@@ -861,61 +1027,9 @@ section[data-block-type="blockBenefits"] .vshanuy-guide-title {
   line-height: 1.05;
 }
 
-section[data-block-type="blockBenefits"] .vshanuy-guide-button {
-  position: relative;
-  width: calc(100% + 48px);
-  min-width: 0;
-  margin: 0 -24px;
-  font-family: "Fixel", system-ui, sans-serif;
-  font-weight: 400;
-  border-radius: 0;
-}
-
-section[data-block-type="blockBenefits"] .vshanuy-guide-button > span.bg-base-stone-20 {
-  transform-origin: top center !important;
-  transform: scale3d(1, 0, 1) !important;
-  transition: transform 1000ms ease-out !important;
-}
-
-section[data-block-type="blockBenefits"] .vshanuy-guide-download:hover .vshanuy-guide-button > span.bg-base-stone-20,
-section[data-block-type="blockBenefits"] .vshanuy-guide-download:focus-visible .vshanuy-guide-button > span.bg-base-stone-20,
-section[data-block-type="blockBenefits"] .vshanuy-guide-button:hover > span.bg-base-stone-20,
-section[data-block-type="blockBenefits"] .vshanuy-guide-button:focus-visible > span.bg-base-stone-20 {
-  transform: scale3d(1, 1, 1) !important;
-}
-
-section[data-block-type="blockBenefits"] .vshanuy-guide-button > span:last-child {
-  flex-direction: column;
-  border-radius: 0;
-}
-
-section[data-block-type="blockBenefits"] .vshanuy-guide-button > span:last-child [data-icon] {
-  transform: translate3d(0, -100%, 0) !important;
-  transition: transform 1000ms ease-out !important;
-}
-
-section[data-block-type="blockBenefits"] .vshanuy-guide-download:hover .vshanuy-guide-button > span:last-child [data-icon],
-section[data-block-type="blockBenefits"] .vshanuy-guide-download:focus-visible .vshanuy-guide-button > span:last-child [data-icon],
-section[data-block-type="blockBenefits"] .vshanuy-guide-button:hover > span:last-child [data-icon],
-section[data-block-type="blockBenefits"] .vshanuy-guide-button:focus-visible > span:last-child [data-icon] {
-  transform: translate3d(0, 0, 0) !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  section[data-block-type="blockBenefits"] .vshanuy-guide-button > span.bg-base-stone-20 {
-    transform: none !important;
-    transition: none !important;
-  }
-
-  section[data-block-type="blockBenefits"] .vshanuy-guide-button > span:last-child [data-icon] {
-    transform: none !important;
-    transition: none !important;
-  }
-}
-
 section[data-block-type="blockBenefits"] .vshanuy-guide-download:focus-visible {
   outline: 2px solid var(--ink);
-  outline-offset: 4px;
+  outline-offset: 3px;
 }
 
 /* Primary archive CTAs — solid ink (ПРО НАС, ВСІ ГАЙДИ) */
@@ -1034,41 +1148,51 @@ section[data-block-type="blockBenefits"]
   }
 }
 
-/* Secondary — ЗАВАНТАЖИТИ PDF: quiet archive line, not primary */
+/*
+  Secondary outline — ЗАВАНТАЖИТИ PDF:
+  той самий формат, що ВСІ ГАЙДИ / ПРО НАС, лише контур (без суцільної заливки).
+*/
 section[data-block-type="blockBenefits"] .vshanuy-guide-button {
+  position: relative;
   display: inline-flex;
+  overflow: hidden;
+  box-sizing: border-box;
   width: 100%;
+  min-width: 0;
   min-height: 44px;
   margin: 0;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 8px;
-  border: 0;
-  border-top: 1px solid var(--paper);
+  padding: 10px 12px;
+  border: 1px solid var(--ink);
   border-radius: 0;
   background: transparent;
   color: var(--ink);
   font-family: "Fixel", system-ui, sans-serif;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1;
   letter-spacing: 0.08em;
   text-decoration: none;
   text-transform: uppercase;
-  transition: background-color 300ms ease-out;
+  transition:
+    background-color 300ms ease-out,
+    color 300ms ease-out,
+    border-color 300ms ease-out;
 }
 
-section[data-block-type="blockBenefits"]
-  .vshanuy-guide-button
-  > span.bg-base-stone-20 {
-  display: none;
+/* Прибираємо source wipe / SVG-іконку — стрілка як у primary CTA */
+section[data-block-type="blockBenefits"] .vshanuy-guide-button > span {
+  display: none !important;
 }
 
-section[data-block-type="blockBenefits"]
-  .vshanuy-guide-button
-  > span:last-child {
-  background: transparent !important;
+section[data-block-type="blockBenefits"] .vshanuy-guide-button::after {
+  font-size: 20px;
+  line-height: 1;
+  content: "↓";
+  transform: translateY(-2px);
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 section[data-block-type="blockBenefits"]
@@ -1077,13 +1201,35 @@ section[data-block-type="blockBenefits"]
 section[data-block-type="blockBenefits"]
   .vshanuy-guide-download:focus-visible
   .vshanuy-guide-button {
-  background-color: var(--beige);
+  background-color: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--ink);
+}
+
+section[data-block-type="blockBenefits"]
+  .vshanuy-guide-download:hover
+  .vshanuy-guide-button::after,
+section[data-block-type="blockBenefits"]
+  .vshanuy-guide-download:focus-visible
+  .vshanuy-guide-button::after {
+  transform: translateY(2px);
 }
 
 section[data-block-type="blockBenefits"]
   .vshanuy-guide-download:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  section[data-block-type="blockBenefits"] .vshanuy-guide-button,
+  section[data-block-type="blockBenefits"] .vshanuy-guide-button::after {
+    transition: none;
+  }
+
+  section[data-block-type="blockBenefits"] .vshanuy-guide-button::after {
+    transform: none;
+  }
 }
 
 
@@ -1160,12 +1306,13 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
   max-width: none;
   width: 100%;
   font-family: "Piazzolla", "Times New Roman", serif;
-  font-size: clamp(40px, 8vw, 88px);
+  /* Як #proekty h2 / text-title-40 */
+  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   font-weight: 300;
-  line-height: 0.92;
-  letter-spacing: -0.03em;
+  line-height: 1;
+  letter-spacing: -0.02em;
   white-space: pre-line;
-  text-wrap: unset;
+  text-wrap: balance;
 }
 
 section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
@@ -1334,24 +1481,112 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
 
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__intro {
-    grid-column: 1 / -1;
+    /* Ліворуч над фото — лише кол. 1–2 */
+    grid-column: 1 / span 2;
     grid-row: 1;
     gap: 32px;
-    padding: 0 16px 102px;
+    padding: 0 16px 96px;
+  }
+
+  section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+    .vshanuy-articles__title {
+    width: 100%;
+    max-width: 100%;
   }
 
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__media {
     grid-column: 1 / span 2;
     grid-row: 2;
-    align-self: start;
+    align-self: stretch;
     display: flex;
     flex-direction: column;
     min-height: 0;
     margin: 0;
-    /* Cell inset from center guide (desktop 16px), like other homepage bands */
-    padding: 0 16px 0 0;
+    /* Cell inset 16px з усіх боків */
+    padding: 16px;
     overflow: hidden;
+    position: relative;
+    z-index: 1;
+    /* Paper криє V 1|2 у паддінгах — лінія крізь фото не потрібна */
+    background-color: var(--paper);
+    /* Hairline над і під фото — як ряд карток */
+    border-top: 1px solid color-mix(in srgb, var(--grey) 20%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--grey) 20%, transparent);
+    /* Локальна V між фото | картки (підсилює гайд 2|3) */
+    border-right: 1px solid color-mix(in srgb, var(--grey) 20%, transparent);
+  }
+
+  /*
+    Silence: фото+інтро = кол. 1–2; картки = кол. 3–4.
+    V 2|3 — на всю висоту (крізь CTA → партнери).
+    V 1|2 і V 3|4 — лише під H у ряді CTA (не ріжуть фото/картки).
+    Крайні L/R — теж лише в CTA (зверху над картками не потрібні).
+  */
+  main
+    section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+    > .overflow-x-clip.px-8
+    > .relative.isolate {
+    border-left-width: 0;
+    border-left-style: none;
+    border-right-width: 0;
+    border-right-style: none;
+  }
+
+  /* Крайні рейки тільки в поясі CTA — дотягують до H і далі до партнерів */
+  main
+    section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+    > .overflow-x-clip.px-8
+    > .relative.isolate::before,
+  main
+    section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+    > .overflow-x-clip.px-8
+    > .relative.isolate::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    z-index: 0;
+    width: 1px;
+    height: calc(32px + 44px);
+    background: color-mix(in srgb, var(--grey) 20%, transparent);
+    pointer-events: none;
+  }
+
+  main
+    section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+    > .overflow-x-clip.px-8
+    > .relative.isolate::before {
+    left: 0;
+  }
+
+  main
+    section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+    > .overflow-x-clip.px-8
+    > .relative.isolate::after {
+    right: 0;
+  }
+
+  /* V 1|2 і V 3|4 — тільки CTA (під нижньою H), без розриву до партнерів */
+  main
+    section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+    > .overflow-x-clip.px-8
+    > .relative.isolate
+    > .pointer-events-none.absolute.inset-0
+    > .hidden.size-full.grid-cols-4.gap-4.lg\:grid
+    > div:nth-child(1)::after,
+  main
+    section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+    > .overflow-x-clip.px-8
+    > .relative.isolate
+    > .pointer-events-none.absolute.inset-0
+    > .hidden.size-full.grid-cols-4.gap-4.lg\:grid
+    > div:nth-child(3)::after {
+    top: auto;
+    bottom: 0;
+    height: calc(32px + 44px);
+    display: block;
+    width: 1px;
+    background: color-mix(in srgb, var(--grey) 20%, transparent);
   }
 
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
@@ -1362,22 +1597,30 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    align-self: start;
+    align-self: stretch;
     min-width: 0;
     padding-left: 0;
     container-type: inline-size;
     container-name: articles-list;
+    border-top: 1px solid color-mix(in srgb, var(--grey) 20%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--grey) 20%, transparent);
   }
 
-  /* At least the photo height (16:9 after media’s 16px inset); cards share it.
-     Grows when the lead text needs more room, so cards never overlap. */
+  /* Нижня hairline вже на media+list — не дублювати на останній картці */
+  section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+    .vshanuy-articles__card:last-child::after {
+    content: none;
+  }
+
+  /* Картки задають висоту ряду; фото розтягується під них */
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     .vshanuy-articles__stack {
     width: 100%;
     max-width: none;
-    min-height: calc((100cqw - 16px) * 9 / 16);
+    min-height: 0;
     display: flex;
     flex-direction: column;
+    flex: 1 1 auto;
   }
 
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
@@ -1386,6 +1629,12 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     justify-content: center;
     gap: 8px;
     padding: 16px;
+  }
+
+  /* Верхня лінія вже на media+list — не дублювати на першій картці */
+  section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+    .vshanuy-articles__card:first-child::before {
+    content: none;
   }
 
   /* Tag/lead: readable measure. Title: fuller width as the column narrows */
@@ -1407,13 +1656,13 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
     #article-overview-carousel {
     position: relative;
-    flex: 0 0 auto;
+    flex: 1 1 auto;
     width: 100%;
-    height: auto;
+    height: 100%;
     min-height: 0;
     max-width: none;
     margin: 0;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: auto;
     overflow: hidden;
   }
 
@@ -1456,10 +1705,15 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
   }
 
   section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
-    .vshanuy-articles__all {
+    .vshanuy-articles__all,
+  section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+    .vshanuy-articles__all--grid {
+    grid-column: 3 / span 2;
+    grid-row: 3;
     margin-top: 32px;
     margin-left: 8px;
-    align-self: flex-start;
+    justify-self: start;
+    align-self: start;
   }
 }
 
@@ -1695,6 +1949,8 @@ header.sticky.vshanuy-desktop-header {
   width: 100%;
   height: 32px;
   grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  border-left: 1px solid var(--vshanuy-grid-line, var(--vshanuy-page-grid-line));
+  border-right: 1px solid var(--vshanuy-grid-line, var(--vshanuy-page-grid-line));
   color: var(--ink);
 }
 
@@ -1733,15 +1989,16 @@ header.sticky.vshanuy-desktop-header {
 
 .vshanuy-desktop-menu__slide {
   display: block;
+}
+
+.vshanuy-desktop-menu__brand .vshanuy-desktop-menu__slide {
   transform: translateY(0);
   transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .vshanuy-desktop-menu__brand:hover .vshanuy-desktop-menu__slide,
 .vshanuy-desktop-menu__brand:focus-visible .vshanuy-desktop-menu__slide,
-.vshanuy-desktop-header[data-scrolled] .vshanuy-desktop-menu__brand .vshanuy-desktop-menu__slide,
-.vshanuy-desktop-menu__item:hover > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__slide,
-.vshanuy-desktop-menu__item:focus-within > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__slide {
+.vshanuy-desktop-header[data-scrolled] .vshanuy-desktop-menu__brand .vshanuy-desktop-menu__slide {
   transform: translateY(-32px);
 }
 
@@ -1755,18 +2012,28 @@ header.sticky.vshanuy-desktop-header {
   padding: 0 8px;
 }
 
+.vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer {
+  transition: background-color 300ms ease-out, color 300ms ease-out;
+}
+
 .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer > span:first-child {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.vshanuy-desktop-menu__layer--active {
+.vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer--active {
+  display: none;
+}
+
+.vshanuy-desktop-menu__item:hover > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer,
+.vshanuy-desktop-menu__item:focus-within > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer {
   background: var(--graphite);
   color: var(--paper);
 }
 
-.vshanuy-desktop-menu__item--support .vshanuy-desktop-menu__layer--active {
+.vshanuy-desktop-menu__item--support:hover > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer,
+.vshanuy-desktop-menu__item--support:focus-within > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer {
   background: var(--yellow);
   color: var(--ink);
 }
@@ -2399,10 +2666,12 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
 
 .vshanuy-partners__header h2 {
   max-width: 12ch;
-  font-size: clamp(40px, 8vw, 88px);
+  /* Як #directions / text-title-40 */
+  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   font-weight: 300;
-  line-height: 0.92;
-  letter-spacing: -0.03em;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .vshanuy-partners__viewport {
@@ -3179,18 +3448,61 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   }
 }
 
-/* Keep every section on one four-column register without outer rails. */
+/* Four-column register: internal V stay local; outer rails are continuous. */
 main {
   --vshanuy-page-grid-line: color-mix(
     in srgb,
     var(--grey) 20%,
     transparent
   );
+
+  position: relative;
 }
 
+/* Крайні V зліва/справа на 8px — через увесь main (хедер має свої, футер — свої). */
+main::before,
+main::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 1px;
+  background: var(--vshanuy-page-grid-line);
+  pointer-events: none;
+}
+
+main::before {
+  left: 8px;
+}
+
+main::after {
+  right: 8px;
+}
+
+/* Section border-x would double the outer rails — keep them off. */
 main .border-x {
   border-right-width: 0;
   border-left-width: 0;
+}
+
+/*
+  Hero lockup (ВШАНУЙ.): без внутрішніх V крізь лого.
+  Гайди стартують під lockup = aspect лого + mb-4 (4px при root 10px).
+*/
+main
+  > .relative.flex.min-h-\[calc\(100svh-var\(--header-height\)-8px\)\].w-full.flex-col.px-8
+  > .pointer-events-none.absolute.inset-x-8.inset-y-0.z-1 {
+  top: calc((100vw - 16px) * 266.892 / 977.942 + 4px);
+}
+
+@media (max-width: 1023px) {
+  /* Mobile lockup: .my-8 (8px + 8px) замість mb-4. */
+  main
+    > .relative.flex.min-h-\[calc\(100svh-var\(--header-height\)-8px\)\].w-full.flex-col.px-8
+    > .pointer-events-none.absolute.inset-x-8.inset-y-0.z-1 {
+    top: calc((100vw - 16px) * 266.892 / 977.942 + 16px);
+  }
 }
 
 main .after\:bg-accent-metal\/20::after {
@@ -3291,8 +3603,16 @@ main
   border-right: 1px solid var(--vshanuy-footer-line);
 }
 
+.vshanuy-site-footer__guides > span:first-child {
+  border-left: 1px solid var(--vshanuy-footer-line);
+}
+
 .vshanuy-site-footer__guides > span:nth-child(2) {
   border-right: 0;
+}
+
+.vshanuy-site-footer__guides > span:last-child {
+  border-right: 1px solid var(--vshanuy-footer-line);
 }
 
 .vshanuy-site-footer__guides > span:nth-child(n + 3) {
@@ -3387,8 +3707,9 @@ main
     display: block;
   }
 
+  /* Крайня права рейка — на останній колонці */
   .vshanuy-site-footer__guides > span:last-child {
-    border-right: 0;
+    border-right: 1px solid var(--vshanuy-footer-line);
   }
 }
 
@@ -3553,6 +3874,7 @@ main
   border-right: 1px solid var(--vshanuy-page-guide);
 }
 
+/* Крайні V — через main::before/after; тут лише внутрішні. */
 .vshanuy-page-shell__guides > span:first-child {
   border-left: 0;
 }
@@ -3588,263 +3910,274 @@ main
   z-index: 1;
 }
 
-/* —— Наші напрями: sticky-стек карток —— */
-.vshanuy-home-directions {
-  --vshanuy-directions-line: var(
+/* —— Наші напрями: горизонтальний карусель (DirectionsCarousel) —— */
+.vshanuy-home-directions,
+.vshanuy-directions-carousel {
+  /* Match page column guides so about verticals T-join the header rules. */
+  --vshanuy-directions-hairline: var(
     --vshanuy-page-grid-line,
     color-mix(in srgb, var(--grey) 20%, transparent)
   );
-  --vshanuy-directions-hairline: color-mix(in srgb, var(--ink) 16%, transparent);
-  --directions-sticky-chrome: 80px;
-  --directions-stage-h: min(64vh, 28rem);
 
   position: relative;
   z-index: 0;
-  /* Як відступ hero → «ГО Вшануй»: pt-96 / lg:pt-240 */
-  padding: 96px 0 0;
+  padding: 0;
   background: transparent;
   color: var(--ink);
 }
 
-.vshanuy-home-directions__guides {
-  position: absolute;
-  z-index: 0;
-  inset: 0 8px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  pointer-events: none;
-}
-
-.vshanuy-home-directions__guides > span {
-  border-right: 1px solid var(--vshanuy-directions-line);
-}
-
-.vshanuy-home-directions__guides > span:last-child {
-  border-right: 0;
-}
-
-.vshanuy-home-directions__guides > span:nth-child(n + 3) {
-  display: none;
-}
-
-.vshanuy-home-directions__inner {
-  position: relative;
-  z-index: 1;
-  margin-inline: 8px;
-}
-
-/* Track дає висоту скролу; pin тримає заголовок + активну картку разом */
-.vshanuy-home-directions__track {
+.vshanuy-directions-carousel__shell {
   position: relative;
 }
 
-.vshanuy-home-directions__pin {
+.vshanuy-directions-carousel__pin {
   position: sticky;
-  top: var(--directions-sticky-chrome);
+  top: var(--header-height, 33px);
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  /* Заголовок + повна картка (фото + текст) в одному viewport — далі скрол гортає.
+     Без padding-bottom: нижня H viewport стикується з вертикалями #proekty. */
+  height: calc(100dvh - var(--header-height, 33px) - 8px);
+  max-height: calc(100dvh - var(--header-height, 33px) - 8px);
+  padding-bottom: 0;
   background: var(--paper);
+  box-sizing: border-box;
 }
 
-.vshanuy-home-directions__runway {
+.vshanuy-directions-carousel__runway {
   pointer-events: none;
 }
 
-.vshanuy-home-directions__header {
+.vshanuy-directions-carousel--static .vshanuy-directions-carousel__pin {
+  position: relative;
+  top: auto !important;
+  bottom: auto;
+}
+
+.vshanuy-directions-carousel__header {
   position: relative;
   z-index: 2;
+  flex: 0 0 auto;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
-  /* Як «Що ми робимо…» → картки проєктів: pt 48 / lg:pt 96 */
-  padding: 0 0 48px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* Як about: мітка → h2 = 32px */
+  row-gap: 24px;
+  /* Inset 8px = той самий регістр, що border-x about: крайні V йдуть
+     від верхньої H до нижньої H (горизонталь перед слайдами).
+     Горизонтальний padding = 0, щоб сітка 4 кол. сіла на ті самі V, що хедер/about;
+     8px — на мітці/h2, як about-vshanuy__content px-8. */
+  margin-inline: 8px;
+  /* Щільніше всередині pin, щоб label + h2 + картка влазили у viewport. */
+  padding: 32px 0 24px;
+  /* Без верхньої H — лише L/R + нижня (перед слайдами). */
+  border: 1px solid var(--vshanuy-directions-hairline);
+  border-top: 0;
+  box-sizing: border-box;
+  overflow: visible;
   background: var(--paper);
 }
 
-.vshanuy-home-directions__header-guides {
-  position: absolute;
-  z-index: 0;
-  inset: 0 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  pointer-events: none;
+/*
+  Desktop: фіксовані V кол. 1|2 («ПРО НАС») + кол. 3|4 («ДОЛУЧИТИСЯ»).
+  Header і viewport — продовження однієї сітки; контент карток їде крізь неї.
+*/
+@media (min-width: 1024px) {
+  .vshanuy-directions-carousel__header::before,
+  .vshanuy-directions-carousel__header::after,
+  .vshanuy-directions-carousel__viewport::before,
+  .vshanuy-directions-carousel__viewport::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    margin-left: -0.5px;
+    background: var(--vshanuy-directions-hairline);
+    pointer-events: none;
+  }
+
+  .vshanuy-directions-carousel__header::before,
+  .vshanuy-directions-carousel__viewport::before {
+    left: 25%;
+  }
+
+  .vshanuy-directions-carousel__header::after,
+  .vshanuy-directions-carousel__viewport::after {
+    left: 75%;
+  }
+
+  /* Гайди поверх карток (scroller нижче), кліки проходять крізь. */
+  .vshanuy-directions-carousel__viewport::before,
+  .vshanuy-directions-carousel__viewport::after {
+    z-index: 2;
+  }
+
+  .vshanuy-directions-carousel__scroller {
+    position: relative;
+    z-index: 0;
+  }
 }
 
-.vshanuy-home-directions__header-guides > span {
-  border-right: 1px solid var(--vshanuy-directions-line);
-}
-
-.vshanuy-home-directions__header-guides > span:last-child {
-  border-right: 0;
-}
-
-.vshanuy-home-directions__header-guides > span:nth-child(n + 3) {
-  display: none;
-}
-
-.vshanuy-home-directions__header > :not(.vshanuy-home-directions__header-guides) {
-  position: relative;
-  z-index: 1;
-}
-
-.vshanuy-home-directions__label,
-.vshanuy-home-directions__header h2 {
+.vshanuy-directions-carousel__label,
+.vshanuy-directions-carousel__title {
+  grid-column: 1 / -1;
   margin: 0;
   padding-inline: 8px;
+  box-sizing: border-box;
 }
 
-/* Як «ГО «ВШАНУЙ»» / «НАШІ ПРОЄКТИ»: text-caption-30 + uppercase (Fixel) */
-.vshanuy-home-directions__label {
-  margin: 0;
+/* Як «ГО «ВШАНУЙ»»: text-caption-30 + uppercase + ink */
+.vshanuy-directions-carousel__label {
   color: var(--ink);
   font-family: "Fixel", system-ui, sans-serif;
+  font-size: clamp(12px, 10.775px + 0.3265vw, 16px);
   font-weight: 400;
+  line-height: 1.2;
   letter-spacing: normal;
+  text-transform: uppercase;
 }
 
-.vshanuy-home-directions__header h2 {
-  max-width: 18ch;
-  font-size: clamp(36px, 22.53px + 3.592vw, 80px);
+.vshanuy-directions-carousel__title {
+  font-family: "Piazzolla", Georgia, serif;
+  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   font-weight: 300;
   line-height: 1;
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
-.vshanuy-home-directions__stage {
+.vshanuy-directions-carousel__viewport {
   position: relative;
-  z-index: 1;
-  height: var(--directions-stage-h);
-  overflow: hidden;
-  background: var(--paper);
-}
-
-.vshanuy-home-directions__list {
-  position: absolute;
-  inset: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.vshanuy-home-directions__item {
-  --stack-i: 0;
-  position: absolute;
-  inset: 0;
-  z-index: calc(10 + var(--stack-i));
-  margin: 0;
-  list-style: none;
-  will-change: transform;
-  transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.vshanuy-home-directions__card {
-  --directions-card-inset: 8px;
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-areas:
-    "copy"
-    "media";
-  gap: 16px 0;
-  align-items: stretch;
+  z-index: 0;
+  container-type: inline-size;
+  flex: 1 1 auto;
+  min-height: 0;
+  /* Overflow на scroller — щоб ::before/::after гайди лишались поверх карток. */
+  overflow: visible;
+  /* Той самий inset, що header — нижня H закриває слайди. */
+  margin-inline: 8px;
+  border-bottom: 1px solid var(--vshanuy-directions-hairline);
   box-sizing: border-box;
+  isolation: isolate;
+}
+
+.vshanuy-directions-carousel__scroller {
   height: 100%;
-  min-height: min(64vh, 28rem);
-  padding: 0;
-  border-top: 0;
-  background: var(--paper);
-  color: var(--ink);
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 300ms ease-out;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: none;
+  /* 20px = half of mobile peek so a card can sit centered. */
+  scroll-padding-inline: 20px;
+  scrollbar-width: none;
 }
 
-.vshanuy-home-directions__card:hover,
-.vshanuy-home-directions__card:focus-visible {
-  background-color: var(--beige);
+.vshanuy-directions-carousel--static .vshanuy-directions-carousel__scroller {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  cursor: grab;
 }
 
-.vshanuy-home-directions__card:focus-visible {
+.vshanuy-directions-carousel__scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.vshanuy-directions-carousel__viewport:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
 
-/* Hairline на всю ширину екрана (виходить за margin 8px у __inner) */
-.vshanuy-home-directions__card::before {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  left: -8px;
-  right: -8px;
-  height: 1px;
-  background: var(--vshanuy-directions-hairline);
-  pointer-events: none;
-}
-
-/* Візуальні колонки на кожній картці (папір інакше ховає секційні гайди) */
-.vshanuy-home-directions__card-guides {
-  position: absolute;
-  z-index: 0;
-  inset: 0 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  pointer-events: none;
-}
-
-.vshanuy-home-directions__card-guides > span {
-  border-right: 1px solid var(--vshanuy-directions-line);
-}
-
-.vshanuy-home-directions__card-guides > span:last-child {
-  border-right: 0;
-}
-
-.vshanuy-home-directions__card-guides > span:nth-child(n + 3) {
-  display: none;
-}
-
-.vshanuy-home-directions__card > :not(.vshanuy-home-directions__card-guides) {
-  position: relative;
-  z-index: 1;
-}
-
-/* Текст + CTA — одна візуальна колонка; фото справа */
-.vshanuy-home-directions__copy {
-  grid-area: copy;
+.vshanuy-directions-carousel__track {
   display: flex;
-  flex-direction: column;
-  gap: 24px;
+  /* max-content + content-box: pad L/R входять у scrollWidth,
+     інакше border-box на 100% з’їдає padding-right і останні картки
+     не доїжджають до кол. 2. */
+  width: max-content;
+  box-sizing: content-box;
+  height: 100%;
+  margin: 0;
+  /* Mobile: 20px side pad so scroll-snap center fits one card. */
+  padding: 0 20px;
+  list-style: none;
+}
+
+.vshanuy-directions-carousel__slide {
+  /* Size against the viewport so each card fully fits (peek of next on mobile). */
+  flex: 0 0 calc(100cqw - 40px);
+  width: calc(100cqw - 40px);
+  height: 100%;
   min-width: 0;
   min-height: 0;
-  padding: var(--directions-card-inset);
+  padding-inline: 0;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  box-sizing: border-box;
+  /* Бордери слайда не малюємо: сітка фіксована на pin (25%/75%),
+     контент (фото + назва + текст) просто їде з комірки в комірку. */
+  border: 0;
+}
+
+.vshanuy-directions-carousel__slide + .vshanuy-directions-carousel__slide {
+  margin-left: 0;
+}
+
+.vshanuy-directions-carousel__card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  /* Контент блока: фото + копія. Сітка навколо — не розтягуємо фото на всю висоту. */
+  grid-template-rows: auto auto;
+  align-content: start;
+  gap: 16px;
+  height: 100%;
+  min-height: 0;
+  /* Cell inset 8 → 16: текст і фото не впираються в V-гайди. */
+  padding: 0 8px;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color 300ms ease-out;
   box-sizing: border-box;
 }
 
-.vshanuy-home-directions__title {
+.vshanuy-directions-carousel__card:hover,
+.vshanuy-directions-carousel__card:focus-visible {
+  background-color: var(--beige);
+}
+
+.vshanuy-directions-carousel__card:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.vshanuy-directions-carousel__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  padding: 0 0 8px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.vshanuy-directions-carousel__name {
   margin: 0;
   font-family: "Piazzolla", Georgia, serif;
   font-size: clamp(28px, 22px + 1.2vw, 40px);
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.02em;
+  text-transform: none;
   color: var(--ink);
+  text-wrap: balance;
 }
 
-.vshanuy-home-directions__body {
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 16px;
-  min-width: 0;
-  min-height: 0;
-}
-
-/* Як text-body-30 на головній */
-.vshanuy-home-directions__text {
-  display: block;
+.vshanuy-directions-carousel__text {
   margin: 0;
+  max-width: none;
+  width: 100%;
   font-family: "Fixel", system-ui, sans-serif;
   font-size: clamp(16px, 14.8px + 0.32vw, 18px);
   font-weight: 400;
@@ -3852,101 +4185,44 @@ main
   color: var(--graphite);
 }
 
-/* Secondary CTA — на всю ширину колонки; низ = низ фото */
-.vshanuy-home-directions__more {
-  display: flex;
-  width: 100%;
-  max-width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  align-self: stretch;
-  min-height: 44px;
-  margin-top: auto;
-  padding: 8px;
-  border: 0;
-  border-top: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
-  border-radius: 0;
-  background: transparent;
-  color: var(--ink);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: background-color 300ms ease-out;
-  box-sizing: border-box;
-}
-
-.vshanuy-home-directions__more-icon {
-  flex: none;
-  font-size: 16px;
-  line-height: 1;
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.vshanuy-home-directions__card:hover .vshanuy-home-directions__more,
-.vshanuy-home-directions__card:focus-visible .vshanuy-home-directions__more {
-  background-color: color-mix(in srgb, var(--ink) 6%, var(--beige));
-}
-
-.vshanuy-home-directions__card:hover .vshanuy-home-directions__more-icon,
-.vshanuy-home-directions__card:focus-visible .vshanuy-home-directions__more-icon {
-  transform: translateX(4px);
-}
-
-/* Фото: inset через border; на hover border = beige як тло картки */
-.vshanuy-home-directions__media {
-  grid-area: media;
-  position: relative;
+.vshanuy-directions-carousel__media {
   display: block;
-  width: 100%;
-  height: 100%;
-  margin: 0;
+  /* Повітря над фото — окремо від заголовка секції.
+     Без бокового inset — фото між лініями сітки, не всередині «картки». */
+  margin: 24px 0 0;
   padding: 0;
-  border: var(--directions-card-inset) solid var(--paper);
-  align-self: stretch;
+  min-width: 0;
+  min-height: 0;
+  height: auto;
   overflow: hidden;
-  background: transparent;
   box-sizing: border-box;
-  transition: border-color 300ms ease-out;
+  align-self: stretch;
 }
 
-.vshanuy-home-directions__card:hover .vshanuy-home-directions__media,
-.vshanuy-home-directions__card:focus-visible .vshanuy-home-directions__media {
-  border-color: var(--beige);
-}
-
-.vshanuy-home-directions__media img {
+.vshanuy-directions-carousel__media img {
   display: block;
   width: 100%;
-  height: 100%;
-  aspect-ratio: 3 / 2;
+  height: auto;
+  max-height: none;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   object-position: center;
+  background: var(--beige);
+  border-radius: 0;
+  -webkit-user-drag: none;
   transform: scale(1);
+  transform-origin: center;
   transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
-.vshanuy-home-directions__card:hover .vshanuy-home-directions__media img,
-.vshanuy-home-directions__card:focus-within .vshanuy-home-directions__media img {
-  transform: scale(1.1);
+.vshanuy-directions-carousel__card:hover .vshanuy-directions-carousel__media img,
+.vshanuy-directions-carousel__card:focus-visible .vshanuy-directions-carousel__media img {
+  transform: scale(1.04);
 }
 
-/* Не анімуємо list через transform — ламає sticky */
-.vshanuy-home-directions--animated .vshanuy-home-directions__guides > span {
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.vshanuy-home-directions--animated
-  :is(
-    .vshanuy-home-directions__label,
-    .vshanuy-home-directions__header h2
-  ) {
+.vshanuy-home-directions--animated .vshanuy-directions-carousel__label,
+.vshanuy-home-directions--animated .vshanuy-directions-carousel__title {
   opacity: 0;
   transform: translateY(12px);
   transition:
@@ -3954,184 +4230,111 @@ main
     transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.vshanuy-home-directions--animated .vshanuy-home-directions__header h2 {
+.vshanuy-home-directions--animated .vshanuy-directions-carousel__title {
   transition-delay: 80ms;
 }
 
-.vshanuy-home-directions--animated.is-visible
-  .vshanuy-home-directions__guides
-  > span {
-  transform: scaleY(1);
-}
-
-.vshanuy-home-directions--animated.is-visible
-  :is(
-    .vshanuy-home-directions__label,
-    .vshanuy-home-directions__header h2
-  ) {
+.vshanuy-home-directions--animated.is-visible .vshanuy-directions-carousel__label,
+.vshanuy-home-directions--animated.is-visible .vshanuy-directions-carousel__title {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Keep projects headline visible if MotionReveal stalls after insert */
 .vshanuy-home-directions + section[data-block-type="blockHeadline"] span[style] {
   opacity: 1 !important;
   transform: none !important;
 }
 
 @media (min-width: 1024px) {
-  .vshanuy-home-directions {
-    padding: 240px 0 0;
-  }
-
-  .vshanuy-home-directions__guides {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .vshanuy-home-directions__guides > span:nth-child(n + 3) {
-    display: block;
-  }
-
-  .vshanuy-home-directions__header {
+  .vshanuy-directions-carousel__header {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     row-gap: 32px;
-    padding: 0 0 96px;
+    /* У pin: менше повітря, щоб label + h2 + картка з текстом були в одному кадрі. */
+    padding: 48px 0 32px;
   }
 
-  .vshanuy-home-directions__header-guides {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  /* Кол. 2–3, як about-vshanuy__content */
+  .vshanuy-directions-carousel__label,
+  .vshanuy-directions-carousel__title {
+    grid-column: 2 / 4;
   }
 
-  .vshanuy-home-directions__header-guides > span:nth-child(n + 3) {
-    display: block;
+  /*
+    h2 поверх V «ДОЛУЧИТИСЯ» на 2.5 кол.
+    125% від content-box (2 кол.) + 12px — як раніше в about.
+  */
+  .vshanuy-directions-carousel__title {
+    width: calc(125% + 12px);
+    max-width: none;
   }
 
-  .vshanuy-home-directions__label,
-  .vshanuy-home-directions__header h2 {
-    grid-column: 2 / 5;
+  /*
+    Картки з кол. 2 (лінія «ПРО НАС»), як about-зміст.
+    Viewport у тому ж inset 8px, що header; pad 25% = 1 кол.
+    Слайд 50cqw = кол. 2–3; наступний починається на кол. 4.
+    Фіксовані V 25%/75% на viewport — продовження хедера поверх карток.
+  */
+  .vshanuy-directions-carousel__viewport {
+    border-inline: 1px solid var(--vshanuy-directions-hairline);
   }
 
-  /* кол. 2 — текст; кол. 3–4 — фото (трохи менше); CTA по низу */
-  .vshanuy-home-directions__card {
-    --directions-card-inset: 24px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-template-areas: ". copy media media";
-    column-gap: 0;
-    row-gap: 0;
+  .vshanuy-directions-carousel__scroller {
+    scroll-padding-inline: 25%;
+  }
+
+  .vshanuy-directions-carousel__track {
+    padding-left: 25%;
+    padding-right: 25%;
+  }
+
+  .vshanuy-directions-carousel__slide {
+    flex-basis: 50cqw;
+    width: 50cqw;
+  }
+
+  .vshanuy-directions-carousel__card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-content: start;
+    gap: 16px;
     align-items: stretch;
-    min-height: min(58vh, 30rem);
+    padding: 0 16px;
   }
 
-  .vshanuy-home-directions__card-guides {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .vshanuy-directions-carousel__copy {
+    gap: 16px;
+    padding: 0 0 16px;
   }
 
-  .vshanuy-home-directions__card-guides > span:nth-child(n + 3) {
-    display: block;
+  .vshanuy-directions-carousel__media {
+    margin-top: 32px;
+    padding: 0;
   }
 
-  .vshanuy-home-directions__copy {
-    gap: 32px;
-  }
-
-  .vshanuy-home-directions__copy,
-  .vshanuy-home-directions__media {
-    align-self: stretch;
-    min-height: 0;
-  }
-
-  .vshanuy-home-directions__media img {
-    min-height: 10rem;
-    aspect-ratio: auto;
+  .vshanuy-directions-carousel__media img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vshanuy-home-directions--animated .vshanuy-home-directions__guides > span,
-  .vshanuy-home-directions--animated
-    :is(
-      .vshanuy-home-directions__label,
-      .vshanuy-home-directions__header h2
-    ) {
+  .vshanuy-home-directions--animated .vshanuy-directions-carousel__label,
+  .vshanuy-home-directions--animated .vshanuy-directions-carousel__title,
+  .vshanuy-directions-carousel__card {
     opacity: 1;
     transform: none;
     transition: none;
   }
 
-  .vshanuy-home-directions__pin {
-    position: relative;
-    top: auto;
-  }
-
-  .vshanuy-home-directions__stage {
-    height: auto;
-    overflow: visible;
-  }
-
-  .vshanuy-home-directions__list {
-    position: relative;
-    inset: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .vshanuy-home-directions__item {
-    position: relative;
-    inset: auto;
-    transform: none !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-    will-change: auto;
+  .vshanuy-directions-carousel__media img,
+  .vshanuy-directions-carousel__card:hover .vshanuy-directions-carousel__media img,
+  .vshanuy-directions-carousel__card:focus-visible .vshanuy-directions-carousel__media img {
     transition: none;
-  }
-
-  .vshanuy-home-directions__runway {
-    display: none;
-  }
-
-  .vshanuy-home-directions__card,
-  .vshanuy-home-directions__media,
-  .vshanuy-home-directions__media img,
-  .vshanuy-home-directions__more,
-  .vshanuy-home-directions__more-icon {
-    transition: none;
-  }
-
-  .vshanuy-home-directions__media img,
-  .vshanuy-home-directions__more-icon {
     transform: none;
+    will-change: auto;
   }
-}
-
-/* JS-клас для reduced motion / фолбек без стеку */
-.vshanuy-home-directions--static .vshanuy-home-directions__pin {
-  position: relative;
-  top: auto;
-}
-
-.vshanuy-home-directions--static .vshanuy-home-directions__stage {
-  height: auto;
-  overflow: visible;
-}
-
-.vshanuy-home-directions--static .vshanuy-home-directions__list {
-  position: relative;
-  inset: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.vshanuy-home-directions--static .vshanuy-home-directions__item {
-  position: relative;
-  inset: auto;
-  transform: none !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-}
-
-.vshanuy-home-directions--static .vshanuy-home-directions__runway {
-  display: none;
 }
 
 /* Lenis smooth scroll (standalone pages) */

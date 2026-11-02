@@ -1,0 +1,339 @@
+/* DirectionsCarousel — text-led archive cards, horizontal native scroll */
+
+.vshanuy-directions-carousel {
+  --directions-carousel-hairline: color-mix(in srgb, var(--grey) 20%, transparent);
+
+  position: relative;
+  z-index: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--ink);
+}
+
+.vshanuy-directions-carousel__shell {
+  position: relative;
+}
+
+.vshanuy-directions-carousel__pin {
+  position: sticky;
+  top: var(--header-height, 33px);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  /* Без padding-bottom: нижня H viewport стикується з вертикалями наступної секції. */
+  height: calc(100dvh - var(--header-height, 33px) - 8px);
+  max-height: calc(100dvh - var(--header-height, 33px) - 8px);
+  padding-bottom: 0;
+  background: var(--paper);
+  box-sizing: border-box;
+}
+
+.vshanuy-directions-carousel__runway {
+  pointer-events: none;
+}
+
+.vshanuy-directions-carousel--static .vshanuy-directions-carousel__pin {
+  position: relative;
+  top: auto !important;
+  bottom: auto;
+}
+
+.vshanuy-directions-carousel__header {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  row-gap: 24px;
+  /* Inset 8px — крайні V продовжують about до нижньої H перед слайдами. */
+  margin-inline: 8px;
+  padding: calc(var(--space-silence) / 2) 8px 48px;
+  /* Без верхньої H — лише L/R + нижня (перед слайдами). */
+  border: 1px solid var(--directions-carousel-hairline);
+  border-top: 0;
+  box-sizing: border-box;
+}
+
+.vshanuy-directions-carousel__label,
+.vshanuy-directions-carousel__title {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-inline: 0;
+}
+
+.vshanuy-directions-carousel__label .vshanuy-section-label {
+  margin: 0;
+  color: var(--graphite);
+}
+
+.vshanuy-directions-carousel__title {
+  max-width: 18ch;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
+  font-weight: var(--weight-display);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.vshanuy-directions-carousel__viewport {
+  position: relative;
+  container-type: inline-size;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: visible;
+  /* Той самий inset, що header — нижня H закриває слайди. */
+  margin-inline: 8px;
+  border-bottom: 1px solid var(--directions-carousel-hairline);
+  box-sizing: border-box;
+  isolation: isolate;
+}
+
+.vshanuy-directions-carousel__scroller {
+  position: relative;
+  z-index: 0;
+  height: 100%;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: none;
+  /* 20px = half of mobile peek so a card can sit centered. */
+  scroll-padding-inline: 20px;
+  scrollbar-width: none;
+}
+
+.vshanuy-directions-carousel--static .vshanuy-directions-carousel__scroller {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  cursor: grab;
+}
+
+.vshanuy-directions-carousel__scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.vshanuy-directions-carousel__viewport:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.vshanuy-directions-carousel__track {
+  display: flex;
+  width: max-content;
+  box-sizing: content-box;
+  height: 100%;
+  margin: 0;
+  /* Mobile: 20px side pad so scroll-snap center fits one card. */
+  padding: 0 20px;
+  list-style: none;
+}
+
+.vshanuy-directions-carousel__slide {
+  flex: 0 0 calc(100cqw - 40px);
+  width: calc(100cqw - 40px);
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding-inline: 0;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  box-sizing: border-box;
+  border: 0;
+}
+
+.vshanuy-directions-carousel__slide + .vshanuy-directions-carousel__slide {
+  margin-left: 0;
+}
+
+.vshanuy-directions-carousel__card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-content: start;
+  gap: 16px;
+  height: 100%;
+  min-height: 0;
+  /* Cell inset 8 → 16: текст і фото не впираються в V-гайди. */
+  padding: 16px 8px;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color 300ms ease-out;
+  box-sizing: border-box;
+}
+
+.vshanuy-directions-carousel__card:hover,
+.vshanuy-directions-carousel__card:focus-visible {
+  background-color: var(--beige);
+}
+
+.vshanuy-directions-carousel__card:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.vshanuy-directions-carousel__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  padding: 0 0 8px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.vshanuy-directions-carousel__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 22px + 1.2vw, 40px);
+  font-weight: var(--weight-display);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.vshanuy-directions-carousel__text {
+  margin: 0;
+  max-width: 36ch;
+  font-family: var(--font-text);
+  font-size: clamp(16px, 14.8px + 0.32vw, 18px);
+  font-weight: var(--weight-text);
+  line-height: var(--leading-text);
+  color: var(--graphite);
+}
+
+.vshanuy-directions-carousel__media {
+  display: block;
+  margin: 24px 0 0;
+  padding: 0;
+  min-width: 0;
+  min-height: 0;
+  height: auto;
+  overflow: hidden;
+  box-sizing: border-box;
+  align-self: stretch;
+}
+
+.vshanuy-directions-carousel__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  background: var(--beige);
+  border-radius: 0;
+  -webkit-user-drag: none;
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.vshanuy-directions-carousel__card:hover .vshanuy-directions-carousel__media img,
+.vshanuy-directions-carousel__card:focus-visible .vshanuy-directions-carousel__media img {
+  transform: scale(1.04);
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-directions-carousel__header {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    row-gap: 64px;
+    padding: 96px 8px 96px;
+  }
+
+  .vshanuy-directions-carousel__header::before,
+  .vshanuy-directions-carousel__header::after,
+  .vshanuy-directions-carousel__viewport::before,
+  .vshanuy-directions-carousel__viewport::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    margin-left: -0.5px;
+    background: var(--directions-carousel-hairline);
+    pointer-events: none;
+  }
+
+  .vshanuy-directions-carousel__header::before,
+  .vshanuy-directions-carousel__viewport::before {
+    left: 25%;
+  }
+
+  .vshanuy-directions-carousel__header::after,
+  .vshanuy-directions-carousel__viewport::after {
+    left: 75%;
+  }
+
+  .vshanuy-directions-carousel__viewport::before,
+  .vshanuy-directions-carousel__viewport::after {
+    z-index: 2;
+  }
+
+  .vshanuy-directions-carousel__label,
+  .vshanuy-directions-carousel__title {
+    grid-column: 2 / 5;
+  }
+
+  .vshanuy-directions-carousel__viewport {
+    border-inline: 1px solid var(--directions-carousel-hairline);
+  }
+
+  .vshanuy-directions-carousel__scroller {
+    scroll-padding-inline: 25%;
+  }
+
+  .vshanuy-directions-carousel__track {
+    padding-left: 25%;
+    padding-right: 25%;
+  }
+
+  .vshanuy-directions-carousel__slide {
+    flex-basis: 50cqw;
+    width: 50cqw;
+  }
+
+  .vshanuy-directions-carousel__card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-content: start;
+    gap: 16px;
+    align-items: stretch;
+    padding: 24px 16px;
+  }
+
+  .vshanuy-directions-carousel__copy {
+    gap: 16px;
+    padding: 0 0 16px;
+  }
+
+  .vshanuy-directions-carousel__media {
+    margin-top: 32px;
+    padding: 0;
+  }
+
+  .vshanuy-directions-carousel__media img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vshanuy-directions-carousel__card {
+    transition: none;
+  }
+
+  .vshanuy-directions-carousel__media img,
+  .vshanuy-directions-carousel__card:hover .vshanuy-directions-carousel__media img,
+  .vshanuy-directions-carousel__card:focus-visible .vshanuy-directions-carousel__media img {
+    transition: none;
+    transform: none;
+    will-change: auto;
+  }
+}

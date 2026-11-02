@@ -49,16 +49,16 @@
 
 .vshanuy-desktop-menu__slide {
   display: block;
+}
+
+.vshanuy-desktop-menu__brand .vshanuy-desktop-menu__slide {
   transform: translateY(0);
   transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .vshanuy-desktop-menu__brand:hover .vshanuy-desktop-menu__slide,
 .vshanuy-desktop-menu__brand:focus-visible .vshanuy-desktop-menu__slide,
-.vshanuy-desktop-header[data-scrolled] .vshanuy-desktop-menu__brand .vshanuy-desktop-menu__slide,
-.vshanuy-desktop-menu__item:hover > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__slide,
-.vshanuy-desktop-menu__item:focus-within > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__slide,
-.vshanuy-desktop-menu__item--nav-active > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__slide {
+.vshanuy-desktop-header[data-scrolled] .vshanuy-desktop-menu__brand .vshanuy-desktop-menu__slide {
   transform: translateY(-32px);
 }
 
@@ -72,12 +72,26 @@
   padding: 0 var(--space-1);
 }
 
-.vshanuy-desktop-menu__layer--active {
+.vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer {
+  transition: background-color 300ms ease-out, color 300ms ease-out;
+}
+
+.vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer--active {
+  display: none;
+}
+
+.vshanuy-desktop-menu__item:hover > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer,
+.vshanuy-desktop-menu__item:focus-within > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer,
+.vshanuy-desktop-menu__item--nav-active > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer {
   background: var(--graphite);
   color: var(--paper);
 }
 
-.vshanuy-desktop-menu__item--support .vshanuy-desktop-menu__layer--active {
+.vshanuy-desktop-menu__item--support:hover > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer,
+.vshanuy-desktop-menu__item--support:focus-within > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer,
+.vshanuy-desktop-menu__item--support.vshanuy-desktop-menu__item--nav-active
+  > .vshanuy-desktop-menu__label
+  .vshanuy-desktop-menu__layer {
   background: var(--accent);
   color: var(--ink);
 }

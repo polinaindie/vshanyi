@@ -115,7 +115,7 @@
   max-width: 18ch;
   margin: var(--space-2) 0 0;
   font-family: var(--font-display);
-  font-size: clamp(36px, 22.5306px + 3.59184vw, 80px);
+  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   font-weight: 300;
   line-height: 1.05;
 }

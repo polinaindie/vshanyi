@@ -164,7 +164,8 @@
       if (/^блог$/i.test(labelRaw)) label.textContent = "Публікації";
     }
     if (title) {
-      title.classList.add("vshanuy-articles__title");
+      title.classList.add("vshanuy-articles__title", "text-title-40", "text-balance");
+      title.classList.remove("lg:text-title-20", "text-title-20");
       title.id = title.id || "vshanuy-articles-title";
       section.setAttribute("aria-labelledby", title.id);
       const raw = (title.textContent || "").replace(/\s+/g, " ").trim();
@@ -186,8 +187,11 @@
     cta.textContent = "Усі публікації";
     cta.setAttribute("data-vshanuy-no-nav", "");
 
-    listCol.replaceChildren(stack, cta);
+    listCol.replaceChildren(stack);
+    /* CTA — окремий рядок сітки, щоб фото = висота лише карток */
+    cta.classList.add("vshanuy-articles__all--grid");
     grid.prepend(intro);
+    listCol.after(cta);
     ensureMediaPhoto(section, cards);
 
     section.dataset.vshanuyArticlesLayout = "1";

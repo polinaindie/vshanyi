@@ -23,11 +23,12 @@
   background: transparent;
 }
 
-/* «Діяльність» — активний шар як на hover, підменю лише при hover */
+/* «Діяльність» — активна заливка як на hover, підменю лише при hover */
 .vshanuy-business-page .vshanuy-desktop-menu__item--activity.vshanuy-desktop-menu__item--nav-active
   > .vshanuy-desktop-menu__label
-  .vshanuy-desktop-menu__slide {
-  transform: translateY(-32px);
+  .vshanuy-desktop-menu__layer {
+  background: var(--graphite);
+  color: var(--paper);
 }
 
 .vshanuy-visually-hidden {
@@ -161,7 +162,7 @@
   margin: 0;
   font-family: var(--font-display);
   /* text-title-40 — як h2 секцій на головній */
-  font-size: clamp(36px, 22.53px + 3.592vw, 80px);
+  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   line-height: 1;
   letter-spacing: -0.02em;
   font-weight: 300;
