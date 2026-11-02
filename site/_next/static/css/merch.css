@@ -98,9 +98,9 @@
 }
 
 .vshanuy-merch-page__figure figcaption {
-  margin-top: var(--space-1);
+  margin-top: 8px;
   font-family: var(--font-text);
-  font-size: var(--step--1);
+  font-size: 12px;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--text-secondary);
@@ -218,14 +218,7 @@
   }
 }
 
-/* Layout */
-
-@media (min-width: 640px) {
-  .vshanuy-merch-page__items {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    row-gap: 0;
-  }
-}
+/* Layout — сітка товарів збігається з 4 колонками сторінки від 1024px. */
 
 @media (min-width: 1024px) {
   .vshanuy-page-guides {

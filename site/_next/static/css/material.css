@@ -37,9 +37,10 @@
 .vshanuy-article__tag {
   margin: 0;
   font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(12px, calc(12px + 4 * (100vw - 375px) / 1225), 16px);
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 500;
   line-height: 1.2;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -153,9 +154,9 @@
 }
 
 .vshanuy-article__cover figcaption {
-  margin-top: var(--space-1);
+  margin-top: 8px;
   font-family: var(--font-text);
-  font-size: var(--step--1);
+  font-size: 12px;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--text-secondary);
