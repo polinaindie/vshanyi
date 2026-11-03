@@ -273,3 +273,145 @@
     padding-top: 0;
   }
 }
+
+/* Silence map: no global rails. H/V meet at cell edges. Gap between title and grid is silence, V starts at the grid. */
+
+body:not(.vshanuy-direction-page--gromada) .vshanuy-page-guides {
+  display: none;
+}
+
+body:not(.vshanuy-direction-page--gromada) {
+  --vshanuy-block-gap: 96px;
+}
+
+.vshanuy-materials-page__main {
+  padding: 48px 8px 0;
+}
+
+.vshanuy-materials-page__list {
+  position: relative;
+  row-gap: 0;
+  margin-top: var(--vshanuy-block-gap, 96px);
+}
+
+.vshanuy-materials-page__item {
+  position: relative;
+  padding: 16px;
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+}
+
+.vshanuy-materials-page__item::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+  pointer-events: none;
+}
+
+.vshanuy-materials-page__card {
+  background: transparent;
+  transition: background-color 300ms ease-out;
+}
+
+.vshanuy-materials-page__card:hover,
+.vshanuy-materials-page__card:focus-visible {
+  background: var(--beige);
+}
+
+.vshanuy-materials-page__card img {
+  width: 100%;
+  margin-inline: 0;
+}
+
+.vshanuy-materials-page__body {
+  padding: 16px 0 0;
+}
+
+.vshanuy-article__related .vshanuy-materials-page__list {
+  margin-top: 64px;
+}
+
+@media (min-width: 640px) {
+  .vshanuy-materials-page__list {
+    row-gap: 0;
+  }
+
+  .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured)::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+
+  .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(odd)::before {
+    display: none;
+  }
+
+  /* Featured на всю ширину зсуває першу комірку ряду на парний індекс */
+  .vshanuy-materials-page__list:has(.vshanuy-materials-page__item--featured)
+    .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(odd)::before {
+    display: block;
+  }
+
+  .vshanuy-materials-page__list:has(.vshanuy-materials-page__item--featured)
+    .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(even)::before {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  body:not(.vshanuy-direction-page--gromada) {
+    --vshanuy-block-gap: 240px;
+  }
+
+  .vshanuy-materials-page__main {
+    padding-top: 96px;
+  }
+
+  .vshanuy-materials-page__list {
+    row-gap: 0;
+  }
+
+  .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(odd)::before,
+  .vshanuy-materials-page__list:has(.vshanuy-materials-page__item--featured)
+    .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(even)::before {
+    display: block;
+  }
+
+  .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(4n + 1)::before {
+    display: none;
+  }
+
+  .vshanuy-materials-page__list:has(.vshanuy-materials-page__item--featured)
+    .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(4n + 1)::before {
+    display: block;
+  }
+
+  .vshanuy-materials-page__list:has(.vshanuy-materials-page__item--featured)
+    .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(4n + 2)::before {
+    display: none;
+  }
+
+  .vshanuy-materials-page__item--featured::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 0.5px);
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+
+  .vshanuy-article__related .vshanuy-materials-page__list {
+    margin-top: 96px;
+  }
+}

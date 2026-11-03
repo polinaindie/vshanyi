@@ -17,12 +17,7 @@
 }
 
 .vshanuy-page-guides {
-  position: absolute;
-  z-index: 0;
-  inset: 0 8px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  pointer-events: none;
+  display: none;
 }
 
 .vshanuy-page-guides > span {
@@ -42,7 +37,7 @@
 /* Page */
 
 .vshanuy-collab-page__main {
-  padding: var(--space-4) 8px var(--space-silence);
+  padding: 48px 8px 0;
 }
 
 .vshanuy-collab-page__intro {
@@ -58,7 +53,9 @@
 }
 
 .vshanuy-collab-page__section {
-  margin-top: var(--space-4);
+  position: relative;
+  margin-top: 0;
+  padding-top: 96px;
 }
 
 /* Photo */
@@ -180,13 +177,14 @@
 .vshanuy-collab-page__formats,
 .vshanuy-collab-page__format + .vshanuy-collab-page__format,
 .vshanuy-collab-page__closing {
-  margin-top: var(--space-silence);
+  margin-top: 96px;
 }
 
 .vshanuy-collab-page__format,
 .vshanuy-collab-page__closing {
-  padding-top: var(--space-3);
-  border-top: var(--line);
+  position: relative;
+  padding-top: 0;
+  border-top: 0;
 }
 
 .vshanuy-collab-page__format {
@@ -352,16 +350,38 @@
 /* Layout */
 
 @media (min-width: 1024px) {
-  .vshanuy-page-guides {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .vshanuy-collab-page__main {
+    padding-top: 96px;
   }
 
-  .vshanuy-page-guides > span:nth-child(n + 2) {
-    display: block;
+  .vshanuy-collab-page__section {
+    padding-top: 240px;
   }
 
-  .vshanuy-page-guides > span:last-child {
-    border-right: 0;
+  .vshanuy-collab-page__formats,
+  .vshanuy-collab-page__format + .vshanuy-collab-page__format,
+  .vshanuy-collab-page__closing {
+    margin-top: 240px;
+  }
+
+  /* Mid V крізь тишу над сплітом і між фото та текстом */
+  .vshanuy-collab-page__section::before,
+  .vshanuy-collab-page__format:not(:last-child)::before,
+  .vshanuy-collab-page__format:last-child::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 0.5px);
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+
+  .vshanuy-collab-page__section::before,
+  .vshanuy-collab-page__format:not(:last-child)::before {
+    bottom: -240px;
   }
 
   .vshanuy-collab-page__split {
@@ -387,6 +407,7 @@
 
   .vshanuy-collab-page__format-title {
     grid-column: 1 / span 2;
+    min-width: 0;
   }
 
   .vshanuy-collab-page__format > .vshanuy-collab-page__figure {
