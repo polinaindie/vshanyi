@@ -25,7 +25,7 @@ export function SiteFooter(_props: SiteFooterProps = {}) {
             </p>
           </div>
           <a className="vshanuy-site-footer__cta" href="pidtrymaty.html">
-            Підтримати <span aria-hidden="true" />
+            Підтримати <span aria-hidden="true">→</span>
           </a>
         </section>
 
