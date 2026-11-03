@@ -29,7 +29,13 @@ export function MaterialDenPamyatiPage({ showHeader = true }: MaterialDenPamyati
       <main className="vshanuy-article">
         <article>
           <header className="vshanuy-article__intro">
-            <a className="vshanuy-article__back" href="materialy.html"><span aria-hidden="true">←</span> Публікації</a>
+            <nav className="vshanuy-crumbs" aria-label="Навігаційний шлях">
+              <ol>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="materialy.html">Публікації</a></li>
+                <li><span aria-current="page">Як вшанувати полеглих захисників та захисниць у День памʼяті</span></li>
+              </ol>
+            </nav>
             <p className="vshanuy-article__tag">Колонка Катерини Даценко</p>
             <h1 className="vshanuy-article__title">Як вшанувати полеглих захисників та захисниць у День памʼяті</h1>
             <p className="vshanuy-article__date"><time dateTime="2026-08-28">28 серпня 2026</time></p>

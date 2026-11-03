@@ -61,7 +61,9 @@
   font-family: var(--font-display);
   font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   line-height: 1;
+  letter-spacing: -0.02em;
   font-weight: 300;
+  text-wrap: balance;
 }
 
 .vshanuy-partners-page__section {
@@ -81,21 +83,29 @@
 }
 
 .vshanuy-partners-page__prose p {
-  margin: 0 0 var(--space-2);
+  margin: 0 0 16px;
   color: var(--ink);
-  font-size: var(--step-0);
-  line-height: var(--leading-text);
+  font-family: var(--font-text);
+  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
+  line-height: 1.55;
 }
 
 .vshanuy-partners-page__prose p:last-of-type {
   margin-bottom: 0;
 }
 
-.vshanuy-partners-page__prose .vshanuy-partners-page__accent {
+.vshanuy-partners-page__prose p.vshanuy-partners-page__accent {
+  color: var(--text);
   font-family: var(--font-display);
-  font-size: var(--step-2);
+  font-size: clamp(28px, 18px + 1.6vw, 44px);
   font-weight: 300;
-  line-height: 1.25;
+  line-height: 1.08;
+  letter-spacing: normal;
+  text-wrap: balance;
+}
+
+.vshanuy-partners-page__prose p.vshanuy-partners-page__accent:not(:last-of-type) {
+  margin-bottom: 32px;
 }
 
 /* Logos — same cell metrics as .vshanuy-partners on the homepage */
@@ -241,8 +251,9 @@
   max-width: 60ch;
   margin: 0;
   color: var(--ink);
-  font-size: var(--step-0);
-  line-height: var(--leading-text);
+  font-family: var(--font-text);
+  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
+  line-height: 1.55;
 }
 
 .vshanuy-partners-page__row-project {

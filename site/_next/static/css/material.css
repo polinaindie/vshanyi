@@ -644,6 +644,146 @@
   }
 }
 
+/* Хлібні крихти — на місці стрілки «назад». Службова навігація, як посилання футера. */
+
+.vshanuy-crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vshanuy-crumbs li {
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--text-secondary);
+  font-family: "Piazzolla", Georgia, serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.45;
+}
+
+.vshanuy-crumbs li:not(:last-child)::after {
+  content: "·";
+  margin-inline: 8px;
+  color: var(--grey);
+}
+
+.vshanuy-crumbs a,
+.vshanuy-crumbs [aria-current="page"] {
+  display: inline-flex;
+  min-height: 24px;
+  align-items: center;
+}
+
+.vshanuy-crumbs a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color 250ms ease-out;
+}
+
+.vshanuy-crumbs a:hover,
+.vshanuy-crumbs a:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.vshanuy-crumbs a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.vshanuy-crumbs [aria-current="page"] {
+  color: var(--ink);
+}
+
+.vshanuy-article__tag + .vshanuy-article__title,
+.vshanuy-crumbs + .vshanuy-article__title {
+  margin-top: 32px;
+}
+
+/* Проєкти й публікації. Сторінка напряму (включно з «Громадами») лишає свій кегль. */
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__title {
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__standfirst {
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: clamp(16px, 15.39px + 0.163vw, 18px);
+  line-height: 1.55;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__section p:not(.vshanuy-article__stamp):not(.vshanuy-article__label):not(.vshanuy-article__accent),
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__epilogue p:not(.vshanuy-article__accent) {
+  font-family: var(--font-text);
+  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
+  line-height: 1.55;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__section p.vshanuy-article__accent {
+  margin: 16px 0 32px;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: clamp(28px, 18px + 1.6vw, 44px);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: normal;
+  text-wrap: balance;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__section p.vshanuy-article__accent:last-child {
+  margin-bottom: 0;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__heading {
+  margin: 32px 0 24px;
+  font-size: clamp(24px, calc(24px + 32 * (100vw - 375px) / 1225), 56px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__part > .vshanuy-article__heading--part {
+  margin-top: 0;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__heading--sub {
+  font-size: clamp(20px, calc(20px + 8 * (100vw - 375px) / 1225), 28px);
+  line-height: 1.15;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__figure figcaption {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-label);
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__author-role {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__citation p {
+  font-size: clamp(20px, calc(20px + 8 * (100vw - 375px) / 1225), 28px);
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vshanuy-crumbs a {
+    transition: none;
+  }
+}
+
 /* Тиша між блоками статті. Громади лишаються на старому ритмі. */
 .vshanuy-article-page:not(.vshanuy-direction-page--gromada) .vshanuy-article {
   padding: 48px 8px 0;

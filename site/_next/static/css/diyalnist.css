@@ -69,7 +69,7 @@
 .vshanuy-activity__copy {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: 24px;
   min-width: 0;
 }
 
@@ -85,8 +85,9 @@
 .vshanuy-activity__text {
   max-width: 40ch;
   margin: 0;
-  font-size: var(--step-0);
-  line-height: var(--leading-text);
+  font-family: var(--font-text);
+  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
+  line-height: 1.55;
   color: var(--graphite);
 }
 
@@ -132,10 +133,11 @@
   max-width: 24ch;
   margin: 0;
   font-family: var(--font-display);
-  font-size: var(--step-2);
+  font-size: clamp(24px, calc(24px + 16 * (100vw - 375px) / 1225), 40px);
   font-weight: 300;
-  line-height: 1.2;
-  color: var(--text-secondary);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
   text-wrap: balance;
 }
 

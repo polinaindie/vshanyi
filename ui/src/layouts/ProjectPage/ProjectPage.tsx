@@ -265,9 +265,13 @@ export function ProjectPage({ slug, showHeader = true }: ProjectPageProps) {
       <main className="vshanuy-article">
         <article>
           <header className="vshanuy-article__intro vshanuy-project__intro">
-            <a className="vshanuy-article__back" href="proekty.html">
-              <span aria-hidden="true">←</span> Проєкти
-            </a>
+            <nav className="vshanuy-crumbs" aria-label="Навігаційний шлях">
+              <ol>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="proekty.html">Проєкти</a></li>
+                <li><span aria-current="page">{project.title}</span></li>
+              </ol>
+            </nav>
             <figure className="vshanuy-project__hero">
               <img
                 src={project.image}
