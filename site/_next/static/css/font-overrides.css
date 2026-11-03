@@ -20,12 +20,23 @@
   text-transform: none !important;
 }
 
-/* Service section labels — ALL CAPS (01 — ПРО НАС register); not CTAs/buttons/links. */
+/* Service section labels — ALL CAPS (01 — ПРО НАС register); not CTAs/buttons/links.
+   Канон: ui Foundations/SectionLabel; аліаси — page-BEM мітки на всіх сторінках. */
 h2.text-caption-30.uppercase,
 h3.text-caption-30.uppercase,
 p.vshanuy-partners__label,
 p.vshanuy-directions-carousel__label,
-.vshanuy-section-label {
+.vshanuy-section-label,
+.vshanuy-about-page__label,
+.vshanuy-article__label,
+.vshanuy-merch-page__label,
+.vshanuy-partners__label {
+  font-family: var(--font-text);
+  font-size: var(--step--1);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-muted);
   text-transform: uppercase !important;
 }
 

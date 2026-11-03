@@ -1,10 +1,21 @@
-.vshanuy-section-label {
+/*
+ * Foundations/SectionLabel — канон службової мітки секції.
+ * Архівний регістр: Fixel, 500, ALL CAPS, tracking-label, muted.
+ * Аліаси нижче тримають page-BEM мітки на тому ж рецепті без дубльованої типографіки.
+ */
+
+.vshanuy-section-label,
+.vshanuy-about-page__label,
+.vshanuy-article__label,
+.vshanuy-merch-page__label,
+.vshanuy-partners__label {
   margin: 0;
   font-family: var(--font-text);
   font-size: var(--step--1);
+  font-weight: 500;
+  line-height: 1.2;
   letter-spacing: var(--tracking-label);
   color: var(--text-muted);
-  font-weight: 500;
   text-transform: uppercase;
 }
 

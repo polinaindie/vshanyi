@@ -1,3 +1,7 @@
+import { SectionLabel } from '../SectionLabel/SectionLabel'
+import './PartnersGrid.css'
+import '../SectionLabel/SectionLabel.css'
+
 export type Partner = {
   name: string
   href?: string
@@ -38,7 +42,7 @@ export function PartnersGrid({
       </div>
       <div className="vshanuy-partners__inner">
         <header className="vshanuy-partners__header">
-          <p className="vshanuy-partners__label">{label}</p>
+          <SectionLabel className="vshanuy-partners__label">{label}</SectionLabel>
           <h2 id="vshanuy-partners-title">{title}</h2>
         </header>
         <ul className="vshanuy-partners__list">

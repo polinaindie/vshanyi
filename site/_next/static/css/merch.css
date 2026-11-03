@@ -125,13 +125,9 @@
   margin-top: var(--space-5);
 }
 
+/* Layout only — типографіка ALL CAPS з Foundations/SectionLabel (font-overrides) */
 .vshanuy-merch-page__label {
   margin: 0 var(--space-2);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(12px, calc(12px + 4 * (100vw - 375px) / 1225), 16px);
-  font-weight: 400;
-  line-height: 1.2;
-  color: var(--text);
 }
 
 .vshanuy-merch-page__items {

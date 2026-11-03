@@ -25,11 +25,9 @@
   z-index: 1;
 }
 
+/* Layout only — типографіка ALL CAPS з Foundations/SectionLabel */
 .vshanuy-partners__label {
   margin: 0 0 var(--space-1);
-  font-size: var(--step--1);
-  letter-spacing: var(--tracking-label);
-  color: var(--text-muted);
 }
 
 .vshanuy-partners__header h2 {

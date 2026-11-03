@@ -32,24 +32,21 @@
 
 /* Service text */
 
-.vshanuy-article__label,
+/* Label typography — Foundations/SectionLabel via font-overrides (ALL CAPS). */
 .vshanuy-article__stamp,
 .vshanuy-article__tag {
   margin: 0;
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
+  font-family: var(--font-text);
+  font-size: var(--step--1);
   font-weight: 500;
   line-height: 1.2;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-secondary);
+  text-transform: uppercase;
 }
 
 .vshanuy-article__label {
-  color: var(--text);
-}
-
-.vshanuy-article__stamp,
-.vshanuy-article__tag {
-  color: var(--text-secondary);
+  margin: 0;
 }
 
 .vshanuy-article__back,

@@ -18,10 +18,12 @@ import verbResearchPhoto from '../../assets/about/directions/napryam-osvita.webp
 import verbCreatePhoto from '../../assets/about/directions/tryzna.jpg'
 import verbSupportPhoto from '../../assets/about/directions/napryam-suspilstvo.webp'
 import { DesktopHeader } from '../../components/DesktopHeader/DesktopHeader'
+import { SectionLabel } from '../../components/SectionLabel/SectionLabel'
 import { SiteFooter } from '../../components/SiteFooter/SiteFooter'
 import { DirectionsCarousel } from '../DirectionsCarousel/DirectionsCarousel'
 import { ProjectSlider, type ProjectSliderCard } from '../ProjectPage/ProjectSlider'
 import '../../components/DesktopHeader/DesktopHeader.css'
+import '../../components/SectionLabel/SectionLabel.css'
 import '../../components/SiteFooter/SiteFooter.css'
 import '../DirectionsCarousel/DirectionsCarousel.css'
 import '../ProjectPage/ProjectSlider.css'
@@ -182,9 +184,13 @@ export function AboutPage({
           <section className="vshanuy-about-page__section" id="istoriya" aria-labelledby="about-history-label">
             <div className="vshanuy-about-page__split">
               <div className="vshanuy-about-page__prose">
-                <h2 className="vshanuy-about-page__label vshanuy-about-page__label--plain" id="about-history-label">
+                <SectionLabel
+                  as="h2"
+                  id="about-history-label"
+                  className="vshanuy-about-page__label vshanuy-about-page__label--plain"
+                >
                   Історія
-                </h2>
+                </SectionLabel>
                 <h3 className="vshanuy-about-page__accent">
                   В основі «Вшануй» — переконання Ірини (Чеки) Цибух: памʼять не завершується датою в
                   календарі. Вона живе в повсякденні — у вдячності, що триває, в людях, які несуть
@@ -230,12 +236,13 @@ export function AboutPage({
           <div className="vshanuy-about-page__headline-frame">
             <div className="vshanuy-about-page__headline-grid">
               <div className="vshanuy-about-page__mission">
-                <h2
-                  className="vshanuy-about-page__label vshanuy-about-page__label--plain"
+                <SectionLabel
+                  as="h2"
                   id="about-mission-label"
+                  className="vshanuy-about-page__label vshanuy-about-page__label--plain"
                 >
                   Місія
-                </h2>
+                </SectionLabel>
                 <blockquote className="vshanuy-about-page__quote">
                   <p>Памʼятай про полеглих допомагай живим.</p>
                 </blockquote>
@@ -312,9 +319,12 @@ export function AboutPage({
 
         <section className="vshanuy-about-page__section" id="proekty" aria-labelledby="about-projects-title">
           <div className="vshanuy-about-page__projects-head">
-            <p className="vshanuy-about-page__label vshanuy-about-page__label--plain" aria-hidden="true">
+            <SectionLabel
+              className="vshanuy-about-page__label vshanuy-about-page__label--plain"
+              aria-hidden="true"
+            >
               Наші проєкти
-            </p>
+            </SectionLabel>
             <h2 className="vshanuy-about-page__display" id="about-projects-title">
               Що ми робимо,
               <br />
@@ -340,9 +350,13 @@ export function AboutPage({
               <figcaption>Україна · 2024 · Памʼять</figcaption>
             </figure>
             <div className="vshanuy-about-page__vision-copy">
-              <h2 className="vshanuy-about-page__label vshanuy-about-page__label--plain" id="about-vision-label">
+              <SectionLabel
+                as="h2"
+                id="about-vision-label"
+                className="vshanuy-about-page__label vshanuy-about-page__label--plain"
+              >
                 Наше бачення
-              </h2>
+              </SectionLabel>
               <blockquote className="vshanuy-about-page__quote">
                 <p>Від культури монументів — до культури відповідальності.</p>
               </blockquote>
@@ -366,9 +380,13 @@ export function AboutPage({
         </section>
 
         <section className="vshanuy-about-page__section" id="komanda" aria-labelledby="about-team-title">
-          <h2 className="vshanuy-about-page__label vshanuy-about-page__label--plain" id="about-team-title">
+          <SectionLabel
+            as="h2"
+            id="about-team-title"
+            className="vshanuy-about-page__label vshanuy-about-page__label--plain"
+          >
             Наша команда
-          </h2>
+          </SectionLabel>
           <ul className="vshanuy-about-page__team">
             {team.map((member) => (
               <li key={member.name}>

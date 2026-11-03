@@ -24,3 +24,17 @@ export const Default: Story = {
     ),
   ],
 }
+
+export const Plain: Story = {
+  args: {
+    as: 'h2',
+    children: 'Місія',
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ padding: 'var(--space-3)' }}>
+        <Story />
+      </div>
+    ),
+  ],
+}

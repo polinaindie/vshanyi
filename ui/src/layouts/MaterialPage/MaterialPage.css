@@ -1,3 +1,5 @@
+@import '../../components/SectionLabel/SectionLabel.css';
+
 /* Material (article) page — mirrored in site/_next/static/css/material.css */
 
 .vshanuy-article-page {
@@ -32,23 +34,22 @@
 
 /* Service text */
 
-.vshanuy-article__label,
+/* Label typography — Foundations/SectionLabel (ALL CAPS register). */
 .vshanuy-article__stamp,
 .vshanuy-article__tag {
   margin: 0;
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(12px, calc(12px + 4 * (100vw - 375px) / 1225), 16px);
-  font-weight: 400;
+  font-family: var(--font-text);
+  font-size: var(--step--1);
+  font-weight: 500;
   line-height: 1.2;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-secondary);
+  text-transform: uppercase;
 }
 
 .vshanuy-article__label {
-  color: var(--text);
-}
-
-.vshanuy-article__stamp,
-.vshanuy-article__tag {
-  color: var(--text-secondary);
+  /* layout hooks may set margin; type from SectionLabel.css / font-overrides */
+  margin: 0;
 }
 
 .vshanuy-article__back,

@@ -30,6 +30,7 @@
   letter-spacing: var(--tracking-label);
   color: var(--text-secondary);
   font-weight: 500;
+  text-transform: uppercase;
 }
 
 .vshanuy-section-label__trail {

@@ -161,16 +161,11 @@
   margin-top: 0;
 }
 
+/* Layout only — типографіка ALL CAPS з Foundations/SectionLabel (font-overrides) */
 .vshanuy-about-page__label {
   margin: 0 var(--space-2);
   padding-bottom: var(--space-2);
   border-bottom: var(--line);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(12px, calc(12px + 4 * (100vw - 375px) / 1225), 16px);
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: 0.12em;
-  color: var(--text);
 }
 
 .vshanuy-about-page__label--plain {

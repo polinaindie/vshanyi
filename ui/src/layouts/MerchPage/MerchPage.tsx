@@ -3,8 +3,10 @@ import phonePhoto from '../../assets/merch/vshanuy-merch-phone.jpg'
 import doorPhoto from '../../assets/merch/vshanuy-merch-door.jpg'
 import carPhoto from '../../assets/merch/vshanuy-merch-car.jpg'
 import { DesktopHeader } from '../../components/DesktopHeader/DesktopHeader'
+import { SectionLabel } from '../../components/SectionLabel/SectionLabel'
 import { SiteFooter } from '../../components/SiteFooter/SiteFooter'
 import '../../components/DesktopHeader/DesktopHeader.css'
+import '../../components/SectionLabel/SectionLabel.css'
 import '../../components/SiteFooter/SiteFooter.css'
 
 export type MerchItem = {
@@ -74,9 +76,9 @@ export function MerchPage({
         </div>
 
         <section className="vshanuy-merch-page__section" aria-labelledby="merch-items-label">
-          <h2 className="vshanuy-merch-page__label" id="merch-items-label">
+          <SectionLabel as="h2" id="merch-items-label" className="vshanuy-merch-page__label">
             Що є в доступі
-          </h2>
+          </SectionLabel>
           <ul className="vshanuy-merch-page__items">
             {items.map((item) => (
               <li key={item.title}>
