@@ -41,7 +41,6 @@
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 .vshanuy-article__label {
@@ -70,7 +69,6 @@
   text-decoration-color: transparent;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
-  text-transform: uppercase;
   transition: text-decoration-color 300ms ease-out;
 }
 
@@ -158,8 +156,8 @@
   font-family: var(--font-text);
   font-size: 12px;
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--text-secondary);
+  text-transform: uppercase;
 }
 
 /* Aside: author + contents */
@@ -414,6 +412,7 @@
   color: var(--text-secondary);
   font-size: var(--step--1);
   line-height: 1.45;
+  text-transform: uppercase;
 }
 
 /* Quotes */

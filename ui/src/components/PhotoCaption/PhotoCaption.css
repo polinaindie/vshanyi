@@ -2,6 +2,6 @@
   margin: var(--space-1) 0 0;
   font-size: var(--step--1);
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--text-secondary);
+  text-transform: uppercase;
 }

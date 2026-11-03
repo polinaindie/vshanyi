@@ -27,6 +27,6 @@ export const WithTopic: Story = {
     id: 'contact-form',
     showTopic: true,
     index: '02',
-    label: 'ФОРМА',
+    label: 'Форма',
   },
 }

@@ -21,7 +21,7 @@
   justify-content: space-between;
   gap: var(--space-3);
   min-height: 16rem;
-  padding: var(--space-3);
+  padding: var(--space-2);
   text-decoration: none;
   color: inherit;
   border-bottom: var(--line-muted);
@@ -64,7 +64,6 @@
   justify-content: space-between;
   padding: var(--space-1) 0;
   border-top: var(--line);
-  text-transform: uppercase;
   letter-spacing: var(--tracking-label);
   font-size: var(--step--1);
   font-weight: 600;

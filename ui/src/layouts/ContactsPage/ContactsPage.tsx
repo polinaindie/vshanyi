@@ -80,7 +80,7 @@ export function ContactsPage({
 
         <div className="vshanuy-contacts-page__grid">
           <section className="vshanuy-contacts-page__channels" aria-labelledby="contacts-channels-title">
-            <SectionLabel>КАНАЛИ ЗВʼЯЗКУ</SectionLabel>
+            <SectionLabel>Канали звʼязку</SectionLabel>
             <h2 id="contacts-channels-title" className="vshanuy-visually-hidden">
               Канали звʼязку
             </h2>
@@ -118,7 +118,7 @@ export function ContactsPage({
               showTopic
               defaultTopic={defaultTopic}
               embedded
-              label="ФОРМА ЗВОРОТНЬОГО ЗВʼЯЗКУ"
+              label="Форма зворотнього звʼязку"
               title="Форма звернення"
               titleHidden
               lead=""

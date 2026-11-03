@@ -44,7 +44,6 @@
   padding: var(--space-1) var(--space-2);
   background: var(--accent);
   color: var(--ink);
-  text-transform: uppercase;
   letter-spacing: var(--tracking-label);
   font-size: var(--step--1);
   font-weight: 600;
@@ -83,7 +82,6 @@
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 0.2em;
-  text-transform: uppercase;
 }
 
 .vshanuy-site-footer__column--sections {
@@ -98,7 +96,6 @@
   margin: var(--space-4) 0 0;
   color: var(--grey);
   font-size: var(--step--1);
-  text-transform: uppercase;
 }
 
 .vshanuy-site-footer__column--support {

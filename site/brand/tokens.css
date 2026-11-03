@@ -1,16 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&family=Inter:wght@600&family=Piazzolla:opsz,wght@8..30,100..900&display=swap");
-
-/* Вшануй — бренд-токени. Джерело правил: BRAND.md */
-
-/* Volja Black допустима виключно в логотипі */
-@font-face {
-  font-family: "Volja";
-  src: url("../fonts/Volja-Black.woff2") format("woff2"),
-       url("../fonts/Volja-Black.woff") format("woff");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
+/* Вшануй — бренд-токени для статичного site/.
+   Шрифти (Fixel / Piazzolla / Volja) підключає font-overrides.css з _next/static/media/.
+   Не імпортувати Google Fonts і не вказувати ../fonts/ — на Pages цієї папки немає. */
 
 :root {
   /* Колір */
@@ -30,10 +20,10 @@
   --text-inverse: var(--paper);
   --accent: var(--yellow);
 
-  /* Типографіка. Текстовий шрифт сайту ще на підтвердженні */
+  /* Типографіка — ролі як на головній (див. font-overrides) */
   --font-logo: "Volja", sans-serif;
   --font-display: "Piazzolla", Georgia, serif;
-  --font-text: "Geologica", system-ui, sans-serif;
+  --font-text: "Fixel", system-ui, sans-serif;
 
   --step--1: 0.8125rem;
   --step-0: 1rem;
@@ -78,7 +68,6 @@ body {
 .section-label {
   font-size: var(--step--1);
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--text-muted);
 }
 

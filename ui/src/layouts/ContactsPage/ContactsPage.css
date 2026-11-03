@@ -180,7 +180,6 @@
   font-family: var(--font-text);
   font-size: 12px;
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--text-secondary);
 }
 

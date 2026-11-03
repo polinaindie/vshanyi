@@ -30,7 +30,7 @@ export function PracticeCarousel({
   return (
     <section className="vshanuy-practices" aria-labelledby="practices-title">
       <header className="vshanuy-practices__header">
-        <SectionLabel>ПРАКТИКИ</SectionLabel>
+        <SectionLabel>Практики</SectionLabel>
         <div className="vshanuy-practices__topline">
           <h2 id="practices-title">{title}</h2>
           <div className="vshanuy-practices__controls">

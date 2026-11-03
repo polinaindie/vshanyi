@@ -44,7 +44,7 @@ export function ArticleCards({
   return (
     <section className="vshanuy-articles" aria-labelledby="articles-title">
       <header className="vshanuy-articles__header">
-        <SectionLabel>ПУБЛІКАЦІЇ</SectionLabel>
+        <SectionLabel>Публікації</SectionLabel>
         <h2 id="articles-title">{title}</h2>
         <a className="vshanuy-articles__all" href={allHref}>
           Усі публікації <span aria-hidden="true">→</span>

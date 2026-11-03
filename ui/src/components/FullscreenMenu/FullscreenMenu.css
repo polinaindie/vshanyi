@@ -60,7 +60,6 @@
   font-family: var(--font-display);
   font-size: 0.875rem;
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: var(--tracking-label);
   cursor: pointer;
 }
@@ -187,7 +186,6 @@
   letter-spacing: var(--tracking-label);
   line-height: 1;
   text-decoration: none;
-  text-transform: uppercase;
   cursor: pointer;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }

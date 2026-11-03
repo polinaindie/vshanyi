@@ -103,23 +103,18 @@
     return `<a class="${className}" href="${link.href}"${externalAttrs}>${label}</a>`;
   };
 
-  const slideLayers = (label, largeDot = false) => {
-    const dotClass = largeDot
-      ? "vshanuy-desktop-menu__dot vshanuy-desktop-menu__dot--large"
-      : "vshanuy-desktop-menu__dot";
-    return `
+  const slideLayers = (label) => `
       <span class="vshanuy-desktop-menu__slide">
         <span class="vshanuy-desktop-menu__layer">
           <span>${label}</span>
-          <span class="${dotClass}" aria-hidden="true"></span>
+          <span class="vshanuy-desktop-menu__dot" aria-hidden="true"></span>
         </span>
         <span class="vshanuy-desktop-menu__layer vshanuy-desktop-menu__layer--active" aria-hidden="true">
           <span>${label}</span>
-          <span class="${dotClass}" aria-hidden="true"></span>
+          <span class="vshanuy-desktop-menu__dot" aria-hidden="true"></span>
         </span>
       </span>
     `;
-  };
 
   const submenuMarkup = (labels) => `
     <ul class="vshanuy-desktop-menu__submenu" role="list">
@@ -142,7 +137,7 @@
     let control;
     if (isButton) {
       control = `<button class="vshanuy-desktop-menu__label vshanuy-desktop-menu__trigger" type="button" aria-expanded="false" aria-controls="vshanuy-menu" aria-haspopup="dialog">
-            ${slideLayers(label, true)}
+            ${slideLayers(label)}
           </button>`;
     } else if (href) {
       control = `<a class="vshanuy-desktop-menu__label" href="${href}">
@@ -224,16 +219,16 @@
       </a>
       <ul class="vshanuy-desktop-menu__primary">
         ${desktopItem({
-          label: "Про нас.",
+          label: "Про нас",
           links: aboutLinks,
         })}
         ${desktopItem({
-          label: "Діяльність.",
+          label: "Діяльність",
           links: activityLinks,
           modifier: "vshanuy-desktop-menu__item--activity",
         })}
         ${desktopItem({
-          label: "Долучитися.",
+          label: "Долучитися",
           links: joinLinks,
           modifier: "vshanuy-desktop-menu__item--support",
         })}

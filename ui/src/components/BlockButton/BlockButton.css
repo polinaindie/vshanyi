@@ -11,10 +11,10 @@
   border: 0;
   border-radius: var(--radius);
   text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-label);
-  font-size: var(--step--1);
-  font-weight: 600;
+  letter-spacing: normal;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 400;
   cursor: pointer;
   overflow: hidden;
 }
@@ -65,6 +65,14 @@
 }
 
 .vshanuy-block-button__arrow {
-  font-size: 1rem;
-  line-height: 1;
+  flex: none;
+  width: 7px;
+  height: 5px;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
+  background: currentColor;
+  -webkit-mask: url("../../assets/Krapka.png") center / contain no-repeat;
+  mask: url("../../assets/Krapka.png") center / contain no-repeat;
 }

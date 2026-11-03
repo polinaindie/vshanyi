@@ -47,7 +47,6 @@
   margin: 0 0 var(--space-1);
   font-size: var(--step--1);
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--text-muted);
 }
 
@@ -77,7 +76,6 @@
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   text-decoration: underline;
   text-decoration-color: transparent;
   text-decoration-thickness: 1px;

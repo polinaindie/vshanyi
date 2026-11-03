@@ -28,7 +28,6 @@
   font-family: var(--font-text);
   font-size: 12px;
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--text-secondary);
   font-weight: 500;
 }
@@ -219,7 +218,6 @@ a.vshanuy-section-label__trail:focus-visible {
   font-family: var(--font-text);
   font-size: 12px;
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--text-secondary);
 }
 
@@ -285,7 +283,6 @@ a.vshanuy-section-label__trail:focus-visible {
   font-family: var(--font-text);
   font-size: 12px;
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--text-secondary);
 }
 
@@ -323,7 +320,6 @@ a.vshanuy-section-label__trail:focus-visible {
   font-family: var(--font-text);
   font-size: 12px;
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--text-secondary);
 }
 
@@ -408,7 +404,6 @@ a.vshanuy-section-label__trail:focus-visible {
   line-height: 1;
   letter-spacing: 0.08em;
   text-decoration: none;
-  text-transform: uppercase;
   cursor: pointer;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }

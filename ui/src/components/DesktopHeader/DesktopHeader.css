@@ -1,6 +1,6 @@
 .vshanuy-desktop-header {
   z-index: 1000;
-  height: 33px;
+  height: 41px;
   padding: 0 var(--space-1);
   background: var(--paper);
   border-bottom: 1px solid var(--grid-line);
@@ -8,9 +8,10 @@
 
 .vshanuy-desktop-menu {
   display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   width: 100%;
-  height: 32px;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  height: 40px;
+  align-items: stretch;
   color: var(--ink);
 }
 
@@ -20,29 +21,41 @@
   list-style: none;
 }
 
-.vshanuy-desktop-menu__brand,
-.vshanuy-desktop-menu__label {
+.vshanuy-desktop-menu__brand {
   display: block;
   min-width: 0;
-  height: 32px;
+  height: 40px;
   overflow: hidden;
   color: var(--ink);
-  font-family: var(--font-display);
+  font-family: var(--font-logo);
   font-size: 0.6875rem;
-  font-weight: 400;
+  font-weight: 900;
   line-height: 1;
   text-decoration: none;
-  text-transform: uppercase;
   white-space: nowrap;
 }
 
 .vshanuy-desktop-menu__label {
-  font-size: 0.875rem;
-  font-weight: 600;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  text-transform: none;
 }
 
 .vshanuy-desktop-menu__brand {
-  border-right: 1px solid var(--grid-line);
+  grid-column: 1;
+  width: 100%;
+  min-width: 0;
+  border-right: 0;
   font-family: var(--font-logo);
   font-weight: 900;
 }
@@ -59,13 +72,13 @@
 .vshanuy-desktop-menu__brand:hover .vshanuy-desktop-menu__slide,
 .vshanuy-desktop-menu__brand:focus-visible .vshanuy-desktop-menu__slide,
 .vshanuy-desktop-header[data-scrolled] .vshanuy-desktop-menu__brand .vshanuy-desktop-menu__slide {
-  transform: translateY(-32px);
+  transform: translateY(-40px);
 }
 
 .vshanuy-desktop-menu__layer {
   display: flex;
   width: 100%;
-  height: 32px;
+  height: 40px;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-1);
@@ -73,7 +86,16 @@
 }
 
 .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer {
+  justify-content: space-between;
+  gap: 6px;
+  padding-inline: 20px;
   transition: background-color 300ms ease-out, color 300ms ease-out;
+}
+
+
+.vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer > span {
+  overflow: visible;
+  line-height: 1.25;
 }
 
 .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer--active {
@@ -87,6 +109,7 @@
   color: var(--paper);
 }
 
+.vshanuy-desktop-menu__item--support > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer,
 .vshanuy-desktop-menu__item--support:hover > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer,
 .vshanuy-desktop-menu__item--support:focus-within > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer,
 .vshanuy-desktop-menu__item--support.vshanuy-desktop-menu__item--nav-active
@@ -110,17 +133,15 @@
 }
 
 .vshanuy-desktop-menu__wordmark {
-  font-size: 1.125rem;
+  font-size: 1.375rem;
   line-height: 1;
+  letter-spacing: -0.01em;
 }
 
 .vshanuy-desktop-menu__time {
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 1;
-  color: var(--accent);
-}
-
-.vshanuy-desktop-menu__brand-active .vshanuy-desktop-menu__time {
+  letter-spacing: -0.01em;
   color: var(--ink);
 }
 
@@ -129,6 +150,8 @@
   height: 5px;
   flex: none;
   background: currentColor;
+  -webkit-mask: url("../../assets/Krapka.png") center / contain no-repeat;
+  mask: url("../../assets/Krapka.png") center / contain no-repeat;
 }
 
 .vshanuy-desktop-menu__dot--large {
@@ -136,19 +159,27 @@
   height: 13px;
 }
 
-.vshanuy-desktop-menu__primary {
+/* Three equal items (= half page-col each), flush right across cols 3–4. */
+.vshanuy-desktop-menu ul.vshanuy-desktop-menu__primary {
+  grid-column: 3 / 5;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 75%;
+  min-width: 0;
+  margin: 0;
+  justify-self: end;
+  align-items: stretch;
+  gap: 0;
+  padding-inline-end: 0;
 }
 
 .vshanuy-desktop-menu__item {
   position: relative;
   min-width: 0;
-  border-right: 1px solid var(--grid-line);
 }
 
-.vshanuy-desktop-menu__item:last-child {
-  border-right: 0;
+.vshanuy-desktop-menu__item + .vshanuy-desktop-menu__item {
+  border-left: 1px solid var(--grid-line);
 }
 
 .vshanuy-desktop-menu__trigger {
@@ -162,8 +193,8 @@
 
 .vshanuy-desktop-menu__submenu {
   position: absolute;
-  top: 32px;
-  left: -1px;
+  top: 40px;
+  left: 0;
   z-index: 2;
   width: max(100%, 240px);
   border: 1px solid var(--grid-line);
@@ -176,6 +207,11 @@
     transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
     visibility 0s linear 500ms;
   pointer-events: none;
+}
+
+.vshanuy-desktop-menu__item:nth-last-child(-n + 2) .vshanuy-desktop-menu__submenu {
+  right: 0;
+  left: auto;
 }
 
 .vshanuy-desktop-menu__item:hover > .vshanuy-desktop-menu__submenu,

@@ -236,7 +236,6 @@
   font-size: clamp(16px, 14.5px + 0.4vw, 20px);
   font-weight: 300;
   line-height: 1.15;
-  text-transform: uppercase;
 }
 
 .vshanuy-direction__cards p {

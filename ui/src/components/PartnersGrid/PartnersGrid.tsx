@@ -25,7 +25,7 @@ const defaultPartners: Partner[] = [
 
 export function PartnersGrid({
   title = 'Працюємо разом',
-  label = 'ПАРТНЕРИ',
+  label = 'Партнери',
   partners = defaultPartners,
 }: PartnersGridProps) {
   return (

@@ -151,8 +151,8 @@ const defaultBridgeLinks: DirectionsBridgeLink[] = [
 
 export function DirectionsRegister({
   labelIndex = '01',
-  label = 'НАПРЯМИ ДІЯЛЬНОСТІ',
-  labelTrailing = 'РЕЄСТР →',
+  label = 'Напрями діяльності',
+  labelTrailing = 'Реєстр →',
   title = 'Напрями діяльності',
   intro = 'Сім напрямів роботи — від громад і бізнесу до освіти, війська та мистецтва.',
   items = defaultItems,

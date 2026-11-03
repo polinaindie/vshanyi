@@ -86,8 +86,8 @@ export function ActivityHub({
         </header>
 
         <section className="vshanuy-activity-hub__section" aria-labelledby="activity-audience-title">
-          <SectionLabel index="01" trailing="ГРОМАДИ · БІЗНЕС →">
-            ДЛЯ КОГО
+          <SectionLabel index="01" trailing="Громади · бізнес →">
+            Для кого
           </SectionLabel>
           <h2 id="activity-audience-title" className="vshanuy-activity-hub__visually-hidden">
             Для кого
@@ -111,8 +111,8 @@ export function ActivityHub({
         <Hairline />
 
         <section className="vshanuy-activity-hub__section" aria-labelledby="activity-projects-title">
-          <SectionLabel index="02" trailing="ПОМІЖ НАС →">
-            ПРОЄКТИ
+          <SectionLabel index="02" trailing="Поміж нас →">
+            Проєкти
           </SectionLabel>
           <h2 id="activity-projects-title" className="vshanuy-activity-hub__visually-hidden">
             Проєкти
@@ -129,8 +129,8 @@ export function ActivityHub({
         <Hairline />
 
         <section className="vshanuy-activity-hub__section" aria-labelledby="activity-tools-title">
-          <SectionLabel index="03" trailing="ГАЙДИ →">
-            ІНСТРУМЕНТИ
+          <SectionLabel index="03" trailing="Гайди →">
+            Інструменти
           </SectionLabel>
           <h2 id="activity-tools-title" className="vshanuy-activity-hub__visually-hidden">
             Інструменти
@@ -143,8 +143,8 @@ export function ActivityHub({
         <Hairline />
 
         <aside className="vshanuy-activity-hub__bridge" aria-label={bridgeLabel}>
-          <SectionLabel index="04" trailing="НАПРЯМИ →">
-            ДАЛІ
+          <SectionLabel index="04" trailing="Напрями →">
+            Далі
           </SectionLabel>
           <a className="vshanuy-activity-hub__bridge-link" href={bridgeHref}>
             {bridgeLabel}

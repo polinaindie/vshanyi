@@ -94,7 +94,7 @@ export const defaultDirectionItems: DirectionCarouselItem[] = [
   /** Label + title + cards stick together; further scroll scrubs cards horizontally. */
 export function DirectionsCarousel({
   id,
-  label = 'НАШІ НАПРЯМИ',
+  label = 'Наші напрями',
   title = 'Для кого ми говоримо про памʼять',
   items = defaultDirectionItems,
 }: DirectionsCarouselProps) {

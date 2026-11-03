@@ -183,7 +183,6 @@
   font-size: clamp(16px, 14.5px + 0.4vw, 20px);
   font-weight: 300;
   line-height: 1.15;
-  text-transform: uppercase;
   color: var(--ink);
 }
 
@@ -220,8 +219,8 @@
   font-family: var(--font-text);
   font-size: var(--step--1);
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--text-secondary);
+  text-transform: uppercase;
 }
 
 .vshanuy-project__intro .vshanuy-project__hero + .vshanuy-article__title {

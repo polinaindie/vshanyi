@@ -13,8 +13,8 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     index: '01',
-    children: 'ПРО НАС',
-    trailing: 'ЩО МИ РОБИМО →',
+    children: 'Про нас',
+    trailing: 'Що ми робимо →',
   },
   decorators: [
     (Story) => (

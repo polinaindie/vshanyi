@@ -31,7 +31,7 @@ export function ContactForm({
   showTopic = false,
   defaultTopic,
   index,
-  label = 'КОНТАКТИ',
+  label = 'Контакти',
   title = 'Напишіть нам',
   titleHidden = false,
   lead = 'Спокійно й по суті. Відповімо й підкажемо наступний крок.',

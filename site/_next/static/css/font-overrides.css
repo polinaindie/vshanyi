@@ -15,12 +15,66 @@
   box-sizing: border-box;
 }
 
+/* Sentence case site-wide: kill Tailwind .uppercase (logo stays caps via SVG). */
+.uppercase {
+  text-transform: none !important;
+}
+
+/* Service section labels — ALL CAPS (01 — ПРО НАС register); not CTAs/buttons/links. */
+h2.text-caption-30.uppercase,
+h3.text-caption-30.uppercase,
+p.vshanuy-partners__label,
+p.vshanuy-directions-carousel__label,
+.vshanuy-section-label {
+  text-transform: uppercase !important;
+}
+
 @font-face {
   font-family: "Piazzolla";
   src: url("../media/Piazzolla-Light.woff2") format("woff2");
   font-style: normal;
   font-weight: 300;
   font-display: swap;
+}
+
+/* Piazzolla Regular — меню, CTA (не Light) */
+@font-face {
+  font-family: "Piazzolla";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../media/Piazzolla-Regular-cyrillic-ext.woff2") format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+@font-face {
+  font-family: "Piazzolla";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../media/Piazzolla-Regular-cyrillic.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: "Piazzolla";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../media/Piazzolla-Regular-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4,
+    U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Piazzolla";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../media/Piazzolla-Regular-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -242,6 +296,18 @@ section[data-block-type="blockHeadline"]:has(.about-vshanuy)
   text-transform: uppercase;
 }
 
+/* Documentary photo captions — місце · рік · тег (brand register) */
+.vshanuy-photo-caption,
+.vshanuy-article__cover figcaption,
+.vshanuy-article__figure figcaption,
+.vshanuy-about-page__figure figcaption,
+.vshanuy-about-page__figure--wide figcaption,
+.vshanuy-about-page__vision-photo figcaption,
+.vshanuy-project__hero figcaption,
+.vshanuy-merch-page__figure figcaption:not(.vshanuy-merch-page__item-title) {
+  text-transform: uppercase;
+}
+
 .about-vshanuy__content {
   grid-column: 1 / -1;
   gap: 32px;
@@ -250,6 +316,7 @@ section[data-block-type="blockHeadline"]:has(.about-vshanuy)
 /* Мітка над h2 — той самий text-caption-30, що й «НАШІ ПРОЄКТИ» */
 .about-vshanuy__content h3.text-caption-30 {
   margin: 0;
+  text-transform: uppercase;
 }
 
 .about-vshanuy__lead {
@@ -994,8 +1061,11 @@ section[data-block-type="blockBenefits"]
   background-color: var(--beige);
 }
 
-section[data-block-type="blockBenefits"] .sticky:has(.vshanuy-guide-button) {
-  padding-bottom: 0;
+/* Картка гайду — inset 16px з усіх боків (як p-4 у картках проєктів) */
+section[data-block-type="blockBenefits"]
+  .sticky.top-\[var\(--header-height\)\]:has(.vshanuy-guide-button) {
+  box-sizing: border-box;
+  padding: 16px !important;
 }
 
 section[data-block-type="blockBenefits"] .sticky:has(.vshanuy-guide-button) > span:last-child {
@@ -1039,11 +1109,13 @@ section[data-block-type="blockBenefits"] .vshanuy-guide-download:focus-visible {
   outline-offset: 3px;
 }
 
-/* Primary archive CTAs — solid ink (ПРО НАС, ВСІ ГАЙДИ) */
+/* Primary archive CTAs — Piazzolla Regular 16/400 + Krapka (як пункти меню) */
 .about-vshanuy__link,
 section[data-block-type="blockBenefits"]
   .grid.grid-cols-1.py-96
-  a[href*="posibnyky/index"] {
+  a[href*="posibnyky/index"],
+section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+  .vshanuy-articles__all {
   position: relative;
   display: inline-flex;
   overflow: hidden;
@@ -1051,41 +1123,53 @@ section[data-block-type="blockBenefits"]
   min-height: 44px;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 6px;
   padding: 10px 12px;
   border: 0;
   border-radius: 0;
   background: var(--ink);
   color: var(--paper);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
+  font-family: "Piazzolla", Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: 0.08em;
+  letter-spacing: normal;
+  text-transform: none;
   text-decoration: none;
-  text-transform: uppercase;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
+/* Hide raw “→” in source text; label via ::before */
 .about-vshanuy__link {
   font-size: 0;
 }
 
 .about-vshanuy__link::before {
-  font-size: 12px;
-  font-weight: 600;
-  content: "ПРО НАС";
+  font-family: "Piazzolla", Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: normal;
+  content: "Місія та цінності";
 }
 
 .about-vshanuy__link::after,
 section[data-block-type="blockBenefits"]
   .grid.grid-cols-1.py-96
-  a[href*="posibnyky/index"]::after {
-  font-size: 20px;
-  line-height: 1;
-  content: "→";
-  transform: translateX(-4px);
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  a[href*="posibnyky/index"]::after,
+section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+  .vshanuy-articles__all::after {
+  flex: none;
+  width: 7px;
+  height: 5px;
+  font-size: 0;
+  line-height: 0;
+  content: "";
+  background: currentColor;
+  -webkit-mask: url("../media/Krapka.png") center / contain no-repeat;
+  mask: url("../media/Krapka.png") center / contain no-repeat;
+  transform: none;
+  transition: opacity 300ms ease-out;
 }
 
 /* Kill source wipe / icon hover so it matches ПРО НАС */
@@ -1123,8 +1207,12 @@ section[data-block-type="blockBenefits"]
   a[href*="posibnyky/index"]:hover::after,
 section[data-block-type="blockBenefits"]
   .grid.grid-cols-1.py-96
-  a[href*="posibnyky/index"]:focus-visible::after {
-  transform: translateX(4px);
+  a[href*="posibnyky/index"]:focus-visible::after,
+section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+  .vshanuy-articles__all:hover::after,
+section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
+  .vshanuy-articles__all:focus-visible::after {
+  opacity: 0.7;
 }
 
 .about-vshanuy__link:focus-visible,
@@ -1170,36 +1258,42 @@ section[data-block-type="blockBenefits"] .vshanuy-guide-button {
   margin: 0;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 6px;
   padding: 10px 12px;
   border: 1px solid var(--ink);
   border-radius: 0;
   background: transparent;
   color: var(--ink);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
+  font-family: "Piazzolla", Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: 0.08em;
+  letter-spacing: normal;
+  text-transform: none;
   text-decoration: none;
-  text-transform: uppercase;
   transition:
     background-color 300ms ease-out,
     color 300ms ease-out,
     border-color 300ms ease-out;
 }
 
-/* Прибираємо source wipe / SVG-іконку — стрілка як у primary CTA */
+/* Прибираємо source wipe / SVG-іконку — Крапка як у primary CTA */
 section[data-block-type="blockBenefits"] .vshanuy-guide-button > span {
   display: none !important;
 }
 
 section[data-block-type="blockBenefits"] .vshanuy-guide-button::after {
-  font-size: 20px;
-  line-height: 1;
-  content: "↓";
-  transform: translateY(-2px);
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  flex: none;
+  width: 7px;
+  height: 5px;
+  font-size: 0;
+  line-height: 0;
+  content: "";
+  background: currentColor;
+  -webkit-mask: url("../media/Krapka.png") center / contain no-repeat;
+  mask: url("../media/Krapka.png") center / contain no-repeat;
+  transform: none;
+  transition: opacity 300ms ease-out;
 }
 
 section[data-block-type="blockBenefits"]
@@ -1219,7 +1313,7 @@ section[data-block-type="blockBenefits"]
 section[data-block-type="blockBenefits"]
   .vshanuy-guide-download:focus-visible
   .vshanuy-guide-button::after {
-  transform: translateY(2px);
+  opacity: 0.7;
 }
 
 section[data-block-type="blockBenefits"]
@@ -1242,15 +1336,10 @@ section[data-block-type="blockBenefits"]
 
 @media (min-width: 1024px) {
   section[data-block-type="blockBenefits"]
-    .sticky.top-\[var\(--header-height\)\].lg\:aspect-square {
+    .sticky.top-\[var\(--header-height\)\].lg\:aspect-square:has(.vshanuy-guide-button) {
     min-height: 360px;
-    padding: 32px;
+    padding: 16px !important;
     aspect-ratio: auto;
-  }
-
-  section[data-block-type="blockBenefits"]
-    .sticky:has(.vshanuy-guide-button) {
-    padding-bottom: 0;
   }
 
   section[data-block-type="blockBenefits"] .vshanuy-guide-button {
@@ -1304,7 +1393,6 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: normal;
-  text-transform: uppercase;
 }
 
 section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
@@ -1411,38 +1499,8 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
 
 section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
   .vshanuy-articles__all {
-  position: relative;
-  display: inline-flex;
-  overflow: hidden;
-  min-width: 200px;
-  min-height: 44px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
   margin-top: 24px;
   margin-left: 8px;
-  padding: 10px 12px;
-  border: 0;
-  border-radius: 0;
-  background: var(--ink);
-  color: var(--paper);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: background-color 300ms ease-out, color 300ms ease-out;
-}
-
-section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
-  .vshanuy-articles__all::after {
-  font-size: 20px;
-  line-height: 1;
-  content: "→";
-  transform: translateX(-4px);
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
@@ -1451,13 +1509,6 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
   .vshanuy-articles__all:focus-visible {
   background-color: var(--yellow);
   color: var(--ink);
-}
-
-section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
-  .vshanuy-articles__all:hover::after,
-section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
-  .vshanuy-articles__all:focus-visible::after {
-  transform: translateX(4px);
 }
 
 section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
@@ -1952,7 +2003,7 @@ header.sticky.vshanuy-desktop-header {
   top: 0;
   z-index: 1000;
   box-sizing: border-box;
-  height: 33px;
+  height: 41px;
   padding: 0 8px;
   border: 0 solid var(--vshanuy-grid-line);
   border-bottom-width: 1px;
@@ -1961,9 +2012,10 @@ header.sticky.vshanuy-desktop-header {
 
 .vshanuy-desktop-menu {
   display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   width: 100%;
-  height: 32px;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  height: 40px;
+  align-items: stretch;
   border-left: 1px solid var(--vshanuy-grid-line, var(--vshanuy-page-grid-line));
   border-right: 1px solid var(--vshanuy-grid-line, var(--vshanuy-page-grid-line));
   color: var(--ink);
@@ -1975,29 +2027,41 @@ header.sticky.vshanuy-desktop-header {
   list-style: none;
 }
 
-.vshanuy-desktop-menu__brand,
-.vshanuy-desktop-menu__label {
+.vshanuy-desktop-menu__brand {
   display: block;
   min-width: 0;
-  height: 32px;
+  height: 40px;
   overflow: hidden;
   color: var(--ink);
-  font-family: "Piazzolla", Georgia, serif;
+  font-family: "Volja", sans-serif;
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 900;
   line-height: 1;
   text-decoration: none;
-  text-transform: uppercase;
   white-space: nowrap;
 }
 
 .vshanuy-desktop-menu__label {
-  font-size: 14px;
-  font-weight: 600;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+  color: var(--ink);
+  font-family: "Piazzolla", Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  text-transform: none;
 }
 
 .vshanuy-desktop-menu__brand {
-  border-right: 1px solid var(--vshanuy-grid-line);
+  grid-column: 1;
+  width: 100%;
+  min-width: 0;
+  border-right: 0;
   font-family: "Volja", sans-serif;
   font-weight: 900;
 }
@@ -2014,13 +2078,13 @@ header.sticky.vshanuy-desktop-header {
 .vshanuy-desktop-menu__brand:hover .vshanuy-desktop-menu__slide,
 .vshanuy-desktop-menu__brand:focus-visible .vshanuy-desktop-menu__slide,
 .vshanuy-desktop-header[data-scrolled] .vshanuy-desktop-menu__brand .vshanuy-desktop-menu__slide {
-  transform: translateY(-32px);
+  transform: translateY(-40px);
 }
 
 .vshanuy-desktop-menu__layer {
   display: flex;
   width: 100%;
-  height: 32px;
+  height: 40px;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
@@ -2028,13 +2092,19 @@ header.sticky.vshanuy-desktop-header {
 }
 
 .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer {
+  justify-content: space-between;
+  gap: 6px;
+  padding-inline: 20px;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
+
 .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer > span:first-child {
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: 1.25;
 }
 
 .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer--active {
@@ -2042,13 +2112,18 @@ header.sticky.vshanuy-desktop-header {
 }
 
 .vshanuy-desktop-menu__item:hover > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer,
-.vshanuy-desktop-menu__item:focus-within > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer {
+.vshanuy-desktop-menu__item:focus-within > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer,
+.vshanuy-desktop-menu__item--nav-active > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer {
   background: var(--graphite);
   color: var(--paper);
 }
 
+.vshanuy-desktop-menu__item--support > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer,
 .vshanuy-desktop-menu__item--support:hover > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer,
-.vshanuy-desktop-menu__item--support:focus-within > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer {
+.vshanuy-desktop-menu__item--support:focus-within > .vshanuy-desktop-menu__label .vshanuy-desktop-menu__layer,
+.vshanuy-desktop-menu__item--support.vshanuy-desktop-menu__item--nav-active
+  > .vshanuy-desktop-menu__label
+  .vshanuy-desktop-menu__layer {
   background: var(--yellow);
   color: var(--ink);
 }
@@ -2072,16 +2147,19 @@ header.sticky.vshanuy-desktop-header {
 .vshanuy-desktop-menu__wordmark {
   flex: none;
   overflow: visible;
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1;
+  letter-spacing: -0.01em;
   white-space: nowrap;
 }
 
 .vshanuy-desktop-menu__time {
   flex: none;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1;
+  letter-spacing: -0.01em;
   white-space: nowrap;
+  color: var(--ink);
 }
 
 .vshanuy-desktop-menu__dot {
@@ -2098,19 +2176,27 @@ header.sticky.vshanuy-desktop-header {
   height: 13px;
 }
 
-.vshanuy-desktop-menu__primary {
+/* Three equal items (= half page-col each), flush right across cols 3–4. */
+.vshanuy-desktop-menu ul.vshanuy-desktop-menu__primary {
+  grid-column: 3 / 5;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 75%;
+  min-width: 0;
+  margin: 0;
+  justify-self: end;
+  align-items: stretch;
+  gap: 0;
+  padding-inline-end: 0;
 }
 
 .vshanuy-desktop-menu__item {
   position: relative;
   min-width: 0;
-  border-right: 1px solid var(--vshanuy-grid-line);
 }
 
-.vshanuy-desktop-menu__item:last-child {
-  border-right: 0;
+.vshanuy-desktop-menu__item + .vshanuy-desktop-menu__item {
+  border-left: 1px solid var(--vshanuy-grid-line, var(--vshanuy-page-grid-line));
 }
 
 .vshanuy-desktop-menu__trigger {
@@ -2133,8 +2219,8 @@ header.sticky.vshanuy-desktop-header {
 
 .vshanuy-desktop-menu__submenu {
   position: absolute;
-  top: 32px;
-  left: -1px;
+  top: 40px;
+  left: 0;
   width: max(100%, 240px);
   border: 1px solid var(--vshanuy-grid-line);
   background: var(--paper);
@@ -2149,7 +2235,7 @@ header.sticky.vshanuy-desktop-header {
 }
 
 .vshanuy-desktop-menu__item:nth-last-child(-n + 2) .vshanuy-desktop-menu__submenu {
-  right: -1px;
+  right: 0;
   left: auto;
 }
 
@@ -2232,7 +2318,6 @@ header.sticky.vshanuy-desktop-header {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .vshanuy-menu-trigger__label {
@@ -2365,7 +2450,6 @@ header.sticky.vshanuy-desktop-header {
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0;
-  text-transform: uppercase;
 }
 
 .vshanuy-menu__close-dot {
@@ -2473,7 +2557,7 @@ header.sticky.vshanuy-desktop-header {
   padding: 0;
 }
 
-/* Як footer CTA: ink → yellow hover, Fixel, стрілка */
+/* Як footer CTA: ink → yellow hover, Piazzolla + Крапка */
 .vshanuy-menu__support-btn {
   display: inline-flex;
   overflow: hidden;
@@ -2482,28 +2566,36 @@ header.sticky.vshanuy-desktop-header {
   min-height: 44px;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 6px;
   padding: 10px 12px;
   border: 0;
   border-radius: 0;
   background: var(--ink);
   color: var(--paper);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-family: "Piazzolla", Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: normal;
   line-height: 1;
+  text-transform: none;
   text-decoration: none;
-  text-transform: uppercase;
   cursor: pointer;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
 .vshanuy-menu__support-btn > span[aria-hidden="true"] {
-  font-size: 20px;
-  line-height: 1;
-  transform: translateX(-4px);
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  flex: none;
+  width: 7px;
+  height: 5px;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
+  background: currentColor;
+  -webkit-mask: url("../media/Krapka.png") center / contain no-repeat;
+  mask: url("../media/Krapka.png") center / contain no-repeat;
+  transform: none;
+  transition: opacity 300ms ease-out;
 }
 
 .vshanuy-menu__support-btn:hover,
@@ -2515,7 +2607,7 @@ header.sticky.vshanuy-desktop-header {
 
 .vshanuy-menu__support-btn:hover > span[aria-hidden="true"],
 .vshanuy-menu__support-btn:focus-visible > span[aria-hidden="true"] {
-  transform: translateX(4px);
+  opacity: 0.7;
 }
 
 .vshanuy-menu__support-btn:focus-visible {
@@ -2903,7 +2995,6 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   font-weight: 500;
   line-height: 1.4;
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
 }
 
 .vshanuy-site-footer__column ul,
@@ -2965,7 +3056,6 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   font-size: 14px !important;
   font-weight: 400 !important;
   line-height: 1.25 !important;
-  text-transform: uppercase;
   overflow-wrap: anywhere;
 }
 
@@ -2995,28 +3085,36 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   min-height: 44px !important;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 6px;
   margin-bottom: 0;
   padding: 10px 12px;
   border: 0;
   border-radius: 0;
   background: var(--ink);
   color: var(--paper) !important;
-  font-family: "Fixel", system-ui, sans-serif !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
+  font-family: "Piazzolla", Georgia, serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
   line-height: 1;
-  letter-spacing: 0.08em;
+  letter-spacing: normal;
+  text-transform: none;
   text-decoration: none !important;
-  text-transform: uppercase;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
 .vshanuy-site-footer__cta > span[aria-hidden="true"] {
-  font-size: 20px;
-  line-height: 1;
-  transform: translateX(-4px);
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  flex: none;
+  width: 7px;
+  height: 5px;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
+  background: currentColor;
+  -webkit-mask: url("../media/Krapka.png") center / contain no-repeat;
+  mask: url("../media/Krapka.png") center / contain no-repeat;
+  transform: none;
+  transition: opacity 300ms ease-out;
 }
 
 .vshanuy-site-footer__cta:hover,
@@ -3028,7 +3126,7 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
 
 .vshanuy-site-footer__cta:hover > span[aria-hidden="true"],
 .vshanuy-site-footer__cta:focus-visible > span[aria-hidden="true"] {
-  transform: translateX(4px);
+  opacity: 0.7;
 }
 
 .vshanuy-site-footer__cta:focus-visible {
@@ -3057,7 +3155,6 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.25;
-  text-transform: uppercase;
 }
 
 .vshanuy-site-footer__links .vshanuy-dead-link {
@@ -3065,7 +3162,6 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.25;
-  text-transform: uppercase;
 }
 
 .vshanuy-site-footer__column--sections {
@@ -3085,7 +3181,6 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.25;
-  text-transform: uppercase;
 }
 
 .vshanuy-site-footer__inline-list .vshanuy-dead-link {
@@ -3093,7 +3188,6 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.25;
-  text-transform: uppercase;
 }
 
 .vshanuy-site-footer__column--brand {
@@ -3198,7 +3292,6 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   color: var(--grey);
   font-size: 14px;
   line-height: 1.25;
-  text-transform: uppercase;
 }
 
 .vshanuy-site-footer__meta a {
@@ -3307,7 +3400,6 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   font-weight: 500;
   line-height: 1;
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
 }
 
 .vshanuy-site-footer__column a,
@@ -3356,7 +3448,6 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   font-size: 14px !important;
   font-weight: 400 !important;
   line-height: 1.25 !important;
-  text-transform: uppercase;
   overflow-wrap: normal;
 }
 
@@ -3669,7 +3760,6 @@ main
   font-weight: 400;
   line-height: 1.25;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .vshanuy-site-footer__column--support {
@@ -4364,7 +4454,6 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   text-decoration: underline;
   text-decoration-color: transparent;
   text-decoration-thickness: 1px;
@@ -4397,4 +4486,53 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
   .vshanuy-articles-all > span {
     transition: none;
   }
+}
+
+/* === Shared CTAs: Piazzolla Regular 16/400 + Krapka === */
+.vshanuy-about-page__cta,
+.vshanuy-support-page__cta,
+.vshanuy-collab-page__cta,
+.vshanuy-merch-page__cta,
+.vshanuy-contact__submit,
+.vshanuy-block-button,
+button.vshanuy-contact__submit {
+  font-family: "Piazzolla", Georgia, serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  gap: 6px !important;
+}
+
+.vshanuy-about-page__cta > span[aria-hidden="true"],
+.vshanuy-support-page__cta > span[aria-hidden="true"],
+.vshanuy-collab-page__cta > span[aria-hidden="true"],
+.vshanuy-merch-page__cta > span[aria-hidden="true"],
+.vshanuy-contact__submit > span[aria-hidden="true"],
+.vshanuy-block-button__arrow {
+  flex: none !important;
+  width: 7px !important;
+  height: 5px !important;
+  overflow: hidden !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  color: transparent !important;
+  background: currentColor !important;
+  -webkit-mask: url("../media/Krapka.png") center / contain no-repeat !important;
+  mask: url("../media/Krapka.png") center / contain no-repeat !important;
+  transform: none !important;
+}
+
+.vshanuy-about-page__cta:hover > span[aria-hidden="true"],
+.vshanuy-about-page__cta:focus-visible > span[aria-hidden="true"],
+.vshanuy-support-page__cta:hover > span[aria-hidden="true"],
+.vshanuy-support-page__cta:focus-visible > span[aria-hidden="true"],
+.vshanuy-collab-page__cta:hover > span[aria-hidden="true"],
+.vshanuy-collab-page__cta:focus-visible > span[aria-hidden="true"],
+.vshanuy-merch-page__cta:hover > span[aria-hidden="true"],
+.vshanuy-merch-page__cta:focus-visible > span[aria-hidden="true"],
+.vshanuy-contact__submit:hover > span[aria-hidden="true"],
+.vshanuy-contact__submit:focus-visible > span[aria-hidden="true"] {
+  opacity: 0.7;
+  transform: none !important;
 }

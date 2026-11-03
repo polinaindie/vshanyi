@@ -153,7 +153,6 @@
   color: var(--graphite);
   font-size: var(--step--1);
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   max-width: 72ch;
   line-height: 1.7;
 }
@@ -197,7 +196,6 @@
 .vshanuy-directions-register__bridge-links a {
   display: inline-block;
   text-decoration: none;
-  text-transform: uppercase;
   letter-spacing: var(--tracking-label);
   font-size: var(--step--1);
   font-weight: var(--weight-semibold);

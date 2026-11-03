@@ -45,7 +45,7 @@ export function SiteFooter(_props: SiteFooterProps = {}) {
             </ul>
           </div>
           <p className="vshanuy-site-footer__column-foot">
-            © 2026 ВШАНУЙ
+            © 2026 Вшануй
           </p>
         </nav>
 

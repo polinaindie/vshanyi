@@ -48,7 +48,6 @@
   font-family: var(--font-text);
   font-size: var(--step--1);
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--text-secondary);
   font-weight: 500;
 }
@@ -173,7 +172,6 @@
   font-family: var(--font-text);
   font-size: var(--step--1);
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--text-secondary);
 }
 
@@ -245,7 +243,6 @@
   line-height: 1;
   letter-spacing: 0.08em;
   text-decoration: none;
-  text-transform: uppercase;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
@@ -304,7 +301,6 @@
   line-height: 1;
   letter-spacing: 0.08em;
   text-decoration: none;
-  text-transform: uppercase;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 

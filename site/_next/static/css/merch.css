@@ -102,8 +102,8 @@
   font-family: var(--font-text);
   font-size: 12px;
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--text-secondary);
+  text-transform: uppercase;
 }
 
 .vshanuy-merch-page__order {
@@ -131,7 +131,6 @@
   font-size: clamp(12px, calc(12px + 4 * (100vw - 375px) / 1225), 16px);
   font-weight: 400;
   line-height: 1.2;
-  text-transform: uppercase;
   color: var(--text);
 }
 
@@ -180,7 +179,6 @@
   line-height: 1;
   letter-spacing: 0.08em;
   text-decoration: none;
-  text-transform: uppercase;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 

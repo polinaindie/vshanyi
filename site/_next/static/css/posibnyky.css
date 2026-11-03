@@ -64,7 +64,6 @@
   line-height: 1;
   letter-spacing: 0.08em;
   text-decoration: none;
-  text-transform: uppercase;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 

@@ -30,16 +30,16 @@ const joinLinks = ['Підтримати', 'Купити мерч', 'Співп�
 
 const defaultItems: DesktopNavItem[] = [
   {
-    label: 'Про нас.',
+    label: 'Про нас',
     links: aboutLinks,
   },
   {
-    label: 'Діяльність.',
+    label: 'Діяльність',
     links: activityLinks,
     activity: true,
   },
   {
-    label: 'Долучитися.',
+    label: 'Долучитися',
     links: joinLinks,
     support: true,
   },
@@ -78,17 +78,11 @@ function SlideLabel({
     <span className="vshanuy-desktop-menu__slide">
       <span className="vshanuy-desktop-menu__layer">
         <span>{label}</span>
-        <span
-          className={`vshanuy-desktop-menu__dot${isButton ? ' vshanuy-desktop-menu__dot--large' : ''}`}
-          aria-hidden="true"
-        />
+        <span className="vshanuy-desktop-menu__dot" aria-hidden="true" />
       </span>
       <span className="vshanuy-desktop-menu__layer vshanuy-desktop-menu__layer--active" aria-hidden="true">
         <span>{label}</span>
-        <span
-          className={`vshanuy-desktop-menu__dot${isButton ? ' vshanuy-desktop-menu__dot--large' : ''}`}
-          aria-hidden="true"
-        />
+        <span className="vshanuy-desktop-menu__dot" aria-hidden="true" />
       </span>
     </span>
   )

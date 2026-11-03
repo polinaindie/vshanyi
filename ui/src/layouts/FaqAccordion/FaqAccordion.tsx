@@ -35,7 +35,7 @@ export function FaqAccordion({ items = defaultItems }: FaqAccordionProps) {
   return (
     <section className="vshanuy-faq" aria-labelledby="faq-title">
       <header>
-        <SectionLabel index="08">ПИТАННЯ</SectionLabel>
+        <SectionLabel index="08">Питання</SectionLabel>
         <h2 id="faq-title">Часті питання</h2>
       </header>
       <div className="vshanuy-faq__list">
