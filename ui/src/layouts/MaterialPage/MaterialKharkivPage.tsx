@@ -60,7 +60,13 @@ export function MaterialKharkivPage({ showHeader = true }: MaterialKharkivPagePr
       <main className="vshanuy-article">
         <article>
           <header className="vshanuy-article__intro">
-            <a className="vshanuy-article__back" href="materialy.html"><span aria-hidden="true">←</span> Публікації</a>
+            <nav className="vshanuy-crumbs" aria-label="Навігаційний шлях">
+              <ol>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="materialy.html">Публікації</a></li>
+                <li><span aria-current="page">Дослідження міських практик памʼяті, прощання та меморіалізації в Харкові</span></li>
+              </ol>
+            </nav>
             <p className="vshanuy-article__tag">Дослідження <span aria-hidden="true">·</span> м. Харків</p>
             <h1 className="vshanuy-article__title">Дослідження міських практик памʼяті, прощання та меморіалізації в Харкові</h1>
             <p className="vshanuy-article__standfirst">Як Харків памʼятає своїх? Що ми побачили, дізналися та зафіксували під час поїздки до Харкова.</p>
