@@ -108,8 +108,47 @@
   }
 
   .vshanuy-support-page__row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0;
+  }
+
+  .vshanuy-support-page__cell:first-child {
+    grid-column: 1 / span 2;
+  }
+
+  .vshanuy-support-page__cell:last-child {
+    grid-column: 3 / span 2;
+    padding-inline: 0;
+  }
+
+  /* Заголовки й абзаци лишаються в колонці 3, лінія заголовка йде на обидві */
+  .vshanuy-support-page__text,
+  .vshanuy-support-page__cta,
+  .vshanuy-support-page__link {
+    margin-left: var(--space-2);
+    max-width: calc(50% - 2 * var(--space-2));
+  }
+
+  .vshanuy-support-page__heading {
+    margin-right: 0;
+    padding-left: var(--space-2);
+    padding-right: calc(50% + var(--space-2));
+  }
+
+  .vshanuy-support-page__field {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 0;
+    padding: var(--space-2) 0;
+  }
+
+  .vshanuy-support-page__field dt,
+  .vshanuy-support-page__field dd {
+    padding-inline: var(--space-2);
+  }
+
+  .vshanuy-support-page__copy {
+    justify-self: end;
+    margin-right: var(--space-2);
   }
 
   .vshanuy-support-page__photo {

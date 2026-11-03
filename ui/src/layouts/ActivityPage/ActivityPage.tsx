@@ -13,7 +13,7 @@ export type ActivityPageProps = {
   directions?: AboutDirection[]
 }
 
-/** Page composition: H1 «Напрями роботи.» → «Для кого ми говоримо про памʼять»: 7 напрямів одна під одною, як на головній (текст + фото; непарні з 2-ї колонки, парні з 1-ї). Проєкти — окрема сторінка `ProjectsPage`. Жовтий-бюджет 0. */
+/** Page composition: H1 «Напрями роботи.» → «Для кого ми говоримо про памʼять»: усі 7 напрямів одразу, по 2 в ряд (фото, назва, текст). Проєкти — окрема сторінка `ProjectsPage`. Жовтий-бюджет 0. */
 export function ActivityPage({ showHeader = true, directions = activityDirections }: ActivityPageProps) {
   return (
     <div className="vshanuy-materials-page vshanuy-activity-page">
