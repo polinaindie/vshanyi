@@ -7,14 +7,12 @@ import '../../components/PhotoCaption/PhotoCaption.css'
 export type HeroProps = {
   title?: string
   ctaLabel?: string
-  ctaAccent?: boolean
   caption?: { place: string; year: string; tag: string }
 }
 
 export function Hero({
   title = "Памʼятай про полеглих — допомагай живим.",
   ctaLabel = 'Підтримати',
-  ctaAccent = true,
   caption = { place: 'Дніпро', year: '2024', tag: 'Хвилина мовчання' },
 }: HeroProps) {
   return (
@@ -34,8 +32,10 @@ export function Hero({
         <div className="vshanuy-hero__spacer" />
         <div className="vshanuy-hero__cta">
           <BlockButton
-            variant={ctaAccent ? 'accent' : 'ink'}
+            variant="primary"
             href="https://send.monobank.ua/jar/7rme78odM9"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {ctaLabel}
           </BlockButton>

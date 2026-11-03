@@ -38,40 +38,28 @@
   }
 }
 
+.vshanuy-guide-download:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
 .vshanuy-guide-download__desc {
   margin: 0;
   color: var(--text-secondary);
   max-width: 28ch;
 }
 
-.vshanuy-guide-button {
+.vshanuy-guide-download__footer {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: var(--space-2);
 }
 
 .vshanuy-guide-title {
+  margin: 0;
   max-width: 100%;
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 2.1vw, 2.25rem);
   line-height: var(--leading-display);
   font-weight: var(--weight-display);
-}
-
-.vshanuy-guide-button__action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-1) 0;
-  border-top: var(--line);
-  letter-spacing: var(--tracking-label);
-  font-size: var(--step--1);
-  font-weight: 600;
-}
-
-.vshanuy-guide-download:hover .vshanuy-guide-button__action,
-.vshanuy-guide-download:focus-visible .vshanuy-guide-button__action {
-  color: var(--ink);
-  background: var(--beige);
-  padding-inline: var(--space-1);
 }

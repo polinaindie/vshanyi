@@ -17,11 +17,13 @@ import nekypilaPhoto from '../../assets/about/team/nekypila.jpg'
 import verbResearchPhoto from '../../assets/about/directions/napryam-osvita.webp'
 import verbCreatePhoto from '../../assets/about/directions/tryzna.jpg'
 import verbSupportPhoto from '../../assets/about/directions/napryam-suspilstvo.webp'
+import { BlockButton } from '../../components/BlockButton/BlockButton'
 import { DesktopHeader } from '../../components/DesktopHeader/DesktopHeader'
 import { SectionLabel } from '../../components/SectionLabel/SectionLabel'
 import { SiteFooter } from '../../components/SiteFooter/SiteFooter'
 import { DirectionsCarousel } from '../DirectionsCarousel/DirectionsCarousel'
 import { ProjectSlider, type ProjectSliderCard } from '../ProjectPage/ProjectSlider'
+import '../../components/BlockButton/BlockButton.css'
 import '../../components/DesktopHeader/DesktopHeader.css'
 import '../../components/SectionLabel/SectionLabel.css'
 import '../../components/SiteFooter/SiteFooter.css'
@@ -371,9 +373,13 @@ export function AboutPage({
                   Наша країна зараз переживає багато змін. І одна з них це те, що ми переходимо від
                   культури монументів до культури відповідальності, де відповідальний кожен з нас.
                 </p>
-                <a className="vshanuy-about-page__cta" href="pidtrymaty.html">
-                  Підтримати <span aria-hidden="true">→</span>
-                </a>
+                <BlockButton
+                  className="vshanuy-about-page__cta"
+                  variant="primary"
+                  href="pidtrymaty.html"
+                >
+                  Підтримати
+                </BlockButton>
               </div>
             </div>
           </div>

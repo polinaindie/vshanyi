@@ -1,4 +1,6 @@
+import { BlockButton } from '../BlockButton/BlockButton'
 import { Logo } from '../Logo/Logo'
+import '../BlockButton/BlockButton.css'
 import '../Logo/Logo.css'
 
 export type SiteFooterProps = {
@@ -24,9 +26,13 @@ export function SiteFooter(_props: SiteFooterProps = {}) {
               допомагай живим
             </p>
           </div>
-          <a className="vshanuy-site-footer__cta" href="pidtrymaty.html">
-            Підтримати <span aria-hidden="true">→</span>
-          </a>
+          <BlockButton
+            className="vshanuy-site-footer__cta"
+            variant="primary"
+            href="pidtrymaty.html"
+          >
+            Підтримати
+          </BlockButton>
         </section>
 
         <nav

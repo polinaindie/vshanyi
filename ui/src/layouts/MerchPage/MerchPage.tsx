@@ -2,9 +2,11 @@ import heroPhoto from '../../assets/merch/vshanuy-merch-sheet.jpg'
 import phonePhoto from '../../assets/merch/vshanuy-merch-phone.jpg'
 import doorPhoto from '../../assets/merch/vshanuy-merch-door.jpg'
 import carPhoto from '../../assets/merch/vshanuy-merch-car.jpg'
+import { BlockButton } from '../../components/BlockButton/BlockButton'
 import { DesktopHeader } from '../../components/DesktopHeader/DesktopHeader'
 import { SectionLabel } from '../../components/SectionLabel/SectionLabel'
 import { SiteFooter } from '../../components/SiteFooter/SiteFooter'
+import '../../components/BlockButton/BlockButton.css'
 import '../../components/DesktopHeader/DesktopHeader.css'
 import '../../components/SectionLabel/SectionLabel.css'
 import '../../components/SiteFooter/SiteFooter.css'
@@ -68,10 +70,16 @@ export function MerchPage({
             <p className="vshanuy-merch-page__accent">
               Це не просто наліпки — вони також є маркерами для оточення.
             </p>
-            <a className="vshanuy-merch-page__cta" href={orderHref} target="_blank" rel="noopener noreferrer">
-              Замовити наліпки <span aria-hidden="true">→</span>
+            <BlockButton
+              className="vshanuy-merch-page__cta"
+              variant="primary"
+              href={orderHref}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Замовити наліпки
               <span className="vshanuy-visually-hidden"> (відкриється в новій вкладці)</span>
-            </a>
+            </BlockButton>
           </div>
         </div>
 

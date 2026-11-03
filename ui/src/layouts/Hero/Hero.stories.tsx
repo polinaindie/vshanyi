@@ -9,7 +9,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Як служить переходу памʼять → дія: зупинись (тиша + свідчення), потім один жовтий CTA — крок до живих. Без lifestyle-вайбу.',
+          'Як служить переходу памʼять → дія: зупинись (тиша + свідчення), потім primary CTA (ink → yellow на hover). Без lifestyle-вайбу.',
       },
     },
   },
@@ -22,6 +22,6 @@ export const Default: Story = {
   args: {},
 }
 
-export const InkCta: Story = {
-  args: { ctaAccent: false, ctaLabel: 'Дізнатися більше' },
+export const CustomLabel: Story = {
+  args: { ctaLabel: 'Дізнатися більше' },
 }

@@ -166,58 +166,10 @@
   padding-inline: 0;
 }
 
-.vshanuy-menu__support-btn {
-  display: inline-flex;
-  overflow: hidden;
-  width: fit-content;
-  min-width: 12.5rem;
-  min-height: 2.75rem;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-2);
-  padding: 0.625rem 0.75rem;
-  border: 0;
-  border-radius: var(--radius);
-  background: var(--ink);
-  color: var(--text-inverse);
-  font-family: var(--font-text);
-  font-size: var(--step--1);
-  font-weight: 600;
-  letter-spacing: var(--tracking-label);
-  line-height: 1;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 300ms ease-out, color 300ms ease-out;
-}
-
-.vshanuy-menu__support-btn > span[aria-hidden='true'] {
-  font-size: 1.25rem;
-  line-height: 1;
-  transform: translateX(-4px);
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.vshanuy-menu__support-btn:hover,
-.vshanuy-menu__support-btn:focus-visible {
-  background: var(--accent);
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.vshanuy-menu__support-btn:hover > span[aria-hidden='true'],
-.vshanuy-menu__support-btn:focus-visible > span[aria-hidden='true'] {
-  transform: translateX(4px);
-}
-
-.vshanuy-menu__support-btn:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
-}
+/* Support CTA visuals from BlockButton */
 
 @media (prefers-reduced-motion: reduce) {
-  .vshanuy-menu__section-title,
-  .vshanuy-menu__support-btn,
-  .vshanuy-menu__support-btn > span[aria-hidden='true'] {
+  .vshanuy-menu__section-title {
     transition: none;
   }
 }

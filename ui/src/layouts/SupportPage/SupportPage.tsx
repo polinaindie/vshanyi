@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react'
 import supportPhoto from '../../assets/support-photo.jpg'
+import { BlockButton } from '../../components/BlockButton/BlockButton'
 import { DesktopHeader } from '../../components/DesktopHeader/DesktopHeader'
 import { SiteFooter } from '../../components/SiteFooter/SiteFooter'
+import '../../components/BlockButton/BlockButton.css'
 import '../../components/DesktopHeader/DesktopHeader.css'
 import '../../components/SiteFooter/SiteFooter.css'
 
@@ -134,15 +136,16 @@ export function SupportPage({
               <p className="vshanuy-support-page__text">
                 Підтримайте команду ГО «Вшануй» — допоможіть поширювати культуру памʼяті щодня.
               </p>
-              <a
+              <BlockButton
                 className="vshanuy-support-page__cta"
+                variant="primary"
                 href={donateHref}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Зробити внесок <span aria-hidden="true">→</span>
+                Зробити внесок
                 <span className="vshanuy-visually-hidden"> (відкриється в новій вкладці)</span>
-              </a>
+              </BlockButton>
             </section>
 
             <section

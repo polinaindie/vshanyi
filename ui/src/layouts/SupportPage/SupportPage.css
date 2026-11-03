@@ -223,62 +223,7 @@
   display: block;
 }
 
-.vshanuy-support-page__cta {
-  box-sizing: border-box;
-  display: inline-flex;
-  width: fit-content;
-  min-width: 200px;
-  min-height: 44px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 10px 12px;
-  border: 0;
-  border-radius: var(--radius);
-  background: var(--ink);
-  color: var(--paper);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  transition: background-color 300ms ease-out, color 300ms ease-out;
-}
-
-.vshanuy-support-page__cta > span[aria-hidden="true"] {
-  font-size: 20px;
-  line-height: 1;
-  transform: translateX(-4px);
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.vshanuy-support-page__cta:hover,
-.vshanuy-support-page__cta:focus-visible {
-  background: var(--yellow);
-  color: var(--ink);
-}
-
-.vshanuy-support-page__cta:hover > span[aria-hidden="true"],
-.vshanuy-support-page__cta:focus-visible > span[aria-hidden="true"] {
-  transform: translateX(4px);
-}
-
-.vshanuy-support-page__cta:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .vshanuy-support-page__cta,
-  .vshanuy-support-page__cta > span[aria-hidden="true"] {
-    transition: none;
-  }
-
-  .vshanuy-support-page__cta > span[aria-hidden="true"] {
-    transform: none;
-  }
-}
+/* CTA visuals from BlockButton */
 
 /* Merch link */
 

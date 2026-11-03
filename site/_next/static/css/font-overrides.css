@@ -21,18 +21,15 @@
 }
 
 /* Service section labels — ALL CAPS (01 — ПРО НАС register); not CTAs/buttons/links.
-   Канон: ui Foundations/SectionLabel; аліаси — page-BEM мітки на всіх сторінках. */
-h2.text-caption-30.uppercase,
-h3.text-caption-30.uppercase,
-p.vshanuy-partners__label,
-p.vshanuy-directions-carousel__label,
+   Канон: ui Foundations/SectionLabel; аліаси — page-BEM мітки на всіх сторінках.
+   px, не rem-токени: на головній 1rem = 10px і --step--1 стискає мітку до ~8px.
+   Не чіпати h2/h3.text-caption-30 (ГО «ВШАНУЙ», НАШІ ПРОЄКТИ) — це caption-30, не SectionLabel. */
 .vshanuy-section-label,
 .vshanuy-about-page__label,
 .vshanuy-article__label,
-.vshanuy-merch-page__label,
-.vshanuy-partners__label {
+.vshanuy-merch-page__label {
   font-family: var(--font-text);
-  font-size: var(--step--1);
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: var(--tracking-label);
@@ -324,10 +321,16 @@ section[data-block-type="blockHeadline"]:has(.about-vshanuy)
   gap: 32px;
 }
 
-/* Мітка над h2 — той самий text-caption-30, що й «НАШІ ПРОЄКТИ» */
+/* Мітка над h2 — той самий text-caption-30, що й «НАШІ ПРОЄКТИ» / partners */
 .about-vshanuy__content h3.text-caption-30 {
   margin: 0;
-  text-transform: uppercase;
+  color: var(--ink);
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: clamp(12px, 10.775px + 0.3265vw, 16px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-transform: uppercase !important;
 }
 
 .about-vshanuy__lead {
@@ -2779,7 +2782,7 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: normal;
-  text-transform: uppercase;
+  text-transform: uppercase !important;
 }
 
 .vshanuy-partners__header h2 {
@@ -4146,7 +4149,7 @@ main
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: normal;
-  text-transform: uppercase;
+  text-transform: uppercase !important;
 }
 
 .vshanuy-directions-carousel__title {

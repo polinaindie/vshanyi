@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react'
+import { BlockButton } from '../BlockButton/BlockButton'
 import { Logo } from '../Logo/Logo'
+import '../BlockButton/BlockButton.css'
 import '../Logo/Logo.css'
 
 export type MenuItem = {
@@ -134,10 +136,13 @@ export function FullscreenMenu({
           })}
         </div>
         <div className="vshanuy-menu__cta">
-          <a className="vshanuy-menu__support-btn" href={supportHref}>
-            <span>Підтримати</span>
-            <span aria-hidden="true">→</span>
-          </a>
+          <BlockButton
+            className="vshanuy-menu__support-btn"
+            variant="primary"
+            href={supportHref}
+          >
+            Підтримати
+          </BlockButton>
         </div>
       </nav>
     </div>

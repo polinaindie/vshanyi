@@ -1,7 +1,11 @@
+import { BlockButton } from '../BlockButton/BlockButton'
+import '../BlockButton/BlockButton.css'
+
 export type GuideItem = {
   title: string
   description: string
   href?: string
+  actionLabel?: string
 }
 
 export type GuideCtaProps = {
@@ -32,10 +36,12 @@ export function GuideCta({ items = defaultItems, as: Tag = 'section' }: GuideCta
         {items.map((item) => (
           <a key={item.title} className="vshanuy-guide-download" href={item.href || '#'}>
             <p className="vshanuy-guide-download__desc">{item.description}</p>
-            <span className="vshanuy-guide-button">
-              <span className="vshanuy-guide-title">{item.title}</span>
-              <span className="vshanuy-guide-button__action">Завантажити PDF</span>
-            </span>
+            <div className="vshanuy-guide-download__footer">
+              <h3 className="vshanuy-guide-title">{item.title}</h3>
+              <BlockButton variant="secondary" as="span" fullWidth>
+                {item.actionLabel || 'Завантажити PDF'}
+              </BlockButton>
+            </div>
           </a>
         ))}
       </div>

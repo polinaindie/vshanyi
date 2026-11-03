@@ -2,8 +2,10 @@ import collabPhoto from '../../assets/spivpratsya.jpg'
 import volunteerPhoto from '../../assets/spivpratsya-volonter.jpg'
 import communityPhoto from '../../assets/spivpratsya-gromada.jpg'
 import partnerPhoto from '../../assets/projects/vinkuvannya-komanda.jpg'
+import { BlockButton } from '../../components/BlockButton/BlockButton'
 import { DesktopHeader } from '../../components/DesktopHeader/DesktopHeader'
 import { SiteFooter } from '../../components/SiteFooter/SiteFooter'
+import '../../components/BlockButton/BlockButton.css'
 import '../../components/DesktopHeader/DesktopHeader.css'
 import '../../components/SiteFooter/SiteFooter.css'
 
@@ -168,14 +170,21 @@ export function CollaborationPage({
                     <p key={paragraph}>{paragraph}</p>
                   ))}
                   <div className="vshanuy-collab-page__actions">
-                    <a className="vshanuy-collab-page__cta" href={format.cta.href}>
-                      {format.cta.label} <span aria-hidden="true">→</span>
-                    </a>
+                    <BlockButton
+                      className="vshanuy-collab-page__cta"
+                      variant="primary"
+                      href={format.cta.href}
+                    >
+                      {format.cta.label}
+                    </BlockButton>
                     {format.more ? (
-                      <a className="vshanuy-collab-page__more" href={format.more.href}>
-                        <span className="vshanuy-collab-page__more-text">{format.more.label}</span>{' '}
-                        <span className="vshanuy-collab-page__more-arrow" aria-hidden="true">→</span>
-                      </a>
+                      <BlockButton
+                        className="vshanuy-collab-page__more"
+                        variant="secondary"
+                        href={format.more.href}
+                      >
+                        {format.more.label}
+                      </BlockButton>
                     ) : null}
                   </div>
                 </div>

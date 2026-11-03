@@ -15,7 +15,7 @@ import '../../components/SiteFooter/SiteFooter.css'
 export function PageRhythm() {
   return (
     <div className="vshanuy-page-rhythm">
-      <Hero ctaAccent />
+      <Hero />
       <NumberedDirections />
       <GuideCta />
       <ValuesStrip />

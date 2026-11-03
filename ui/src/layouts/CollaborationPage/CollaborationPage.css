@@ -209,65 +209,7 @@
   margin-top: var(--space-3);
 }
 
-/* CTA — same behaviour as .vshanuy-about-page__cta */
-
-.vshanuy-collab-page__cta {
-  box-sizing: border-box;
-  display: inline-flex;
-  width: fit-content;
-  min-width: 200px;
-  min-height: 44px;
-  margin-top: var(--space-3);
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 10px 12px;
-  border: 0;
-  border-radius: var(--radius);
-  background: var(--ink);
-  color: var(--paper);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  transition: background-color 300ms ease-out, color 300ms ease-out;
-}
-
-.vshanuy-collab-page__cta > span[aria-hidden="true"] {
-  font-size: 20px;
-  line-height: 1;
-  transform: translateX(-4px);
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.vshanuy-collab-page__cta:hover,
-.vshanuy-collab-page__cta:focus-visible {
-  background: var(--yellow);
-  color: var(--ink);
-}
-
-.vshanuy-collab-page__cta:hover > span[aria-hidden="true"],
-.vshanuy-collab-page__cta:focus-visible > span[aria-hidden="true"] {
-  transform: translateX(4px);
-}
-
-.vshanuy-collab-page__cta:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .vshanuy-collab-page__cta,
-  .vshanuy-collab-page__cta > span[aria-hidden="true"] {
-    transition: none;
-  }
-
-  .vshanuy-collab-page__cta > span[aria-hidden="true"] {
-    transform: none;
-  }
-}
+/* CTA visuals from BlockButton */
 
 /* Photo placeholder — until the real photo arrives */
 
@@ -284,7 +226,7 @@
   letter-spacing: var(--tracking-label);
 }
 
-/* Actions: CTA + secondary link */
+/* Actions: primary + secondary BlockButton */
 
 .vshanuy-collab-page__actions {
   display: flex;
@@ -292,58 +234,6 @@
   align-items: center;
   gap: var(--space-2) var(--space-3);
   margin-top: var(--space-3);
-}
-
-.vshanuy-collab-page__actions .vshanuy-collab-page__cta {
-  margin-top: 0;
-}
-
-.vshanuy-collab-page__more {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  gap: 12px;
-  padding: 0 14px;
-  border: var(--line);
-  border-radius: var(--radius);
-  color: var(--ink);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  transition: background-color 300ms ease-out, color 300ms ease-out;
-}
-
-.vshanuy-collab-page__more-arrow {
-  font-size: 20px;
-  line-height: 1;
-  transform: translateX(-4px);
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.vshanuy-collab-page__more:hover,
-.vshanuy-collab-page__more:focus-visible {
-  background: var(--ink);
-  color: var(--paper);
-}
-
-.vshanuy-collab-page__more:hover .vshanuy-collab-page__more-arrow,
-.vshanuy-collab-page__more:focus-visible .vshanuy-collab-page__more-arrow {
-  transform: translateX(4px);
-}
-
-.vshanuy-collab-page__more:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .vshanuy-collab-page__more,
-  .vshanuy-collab-page__more-arrow {
-    transition: none;
-  }
 }
 
 /* Layout */

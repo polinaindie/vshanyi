@@ -9,8 +9,14 @@ const meta = {
     docs: {
       description: {
         component:
-          'Як служить переходу памʼять → дія: block CTA кличе зробити крок. Accent (жовтий) — лише коли це єдина подія на екрані.',
+          'Єдиний archive CTA. Primary — суцільний ink (Місія та цінності). Secondary — контур (Завантажити PDF). Жовтий лише на hover/focus; Крапка як у меню.',
       },
+    },
+  },
+  argTypes: {
+    variant: {
+      control: 'inline-radio',
+      options: ['primary', 'secondary'],
     },
   },
 } satisfies Meta<typeof BlockButton>
@@ -18,8 +24,12 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Ink: Story = {
-  args: { children: 'Підтримати', variant: 'ink' },
+export const Primary: Story = {
+  args: {
+    children: 'Місія та цінності',
+    variant: 'primary',
+    href: 'pro-nas.html',
+  },
   decorators: [
     (Story) => (
       <div style={{ maxWidth: 280, padding: 'var(--space-3)' }}>
@@ -29,8 +39,13 @@ export const Ink: Story = {
   ],
 }
 
-export const AccentAction: Story = {
-  args: { children: 'Підтримати', variant: 'accent' },
+export const Secondary: Story = {
+  args: {
+    children: 'Завантажити PDF',
+    variant: 'secondary',
+    href: '#',
+    fullWidth: true,
+  },
   decorators: [
     (Story) => (
       <div style={{ maxWidth: 280, padding: 'var(--space-3)' }}>
@@ -40,37 +55,35 @@ export const AccentAction: Story = {
   ],
 }
 
-/** На canvas рівно один жовтий акцент = дія. */
-export const OneYellowAccent: Story = {
-  args: { children: 'Підтримати', variant: 'accent' },
+/** Обидва варіанти поруч — як на головній. */
+export const PrimaryAndSecondary: Story = {
+  args: { children: 'Місія та цінності' },
+  render: () => (
+    <div
+      style={{
+        display: 'grid',
+        gap: 24,
+        maxWidth: 280,
+        padding: 'var(--space-3)',
+        background: 'var(--paper)',
+      }}
+    >
+      <BlockButton variant="primary" href="pro-nas.html">
+        Місія та цінності
+      </BlockButton>
+      <BlockButton variant="secondary" href="#" fullWidth>
+        Завантажити PDF
+      </BlockButton>
+    </div>
+  ),
+}
+
+export const AsSubmit: Story = {
+  args: { children: 'Надіслати', type: 'submit' },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          minHeight: '40vh',
-          display: 'grid',
-          placeContent: 'center',
-          padding: 'var(--space-silence) var(--space-3)',
-          background: 'var(--paper)',
-        }}
-      >
-        <div style={{ width: 'min(100%, 20rem)' }}>
-          <p
-            style={{
-              margin: '0 0 var(--space-3)',
-              fontFamily: 'var(--font-display)',
-              fontSize: 'var(--step-2)',
-              lineHeight: 'var(--leading-display)',
-              fontWeight: 300,
-              textAlign: 'center',
-            }}
-          >
-            Памʼятай про полеглих —
-            <br />
-            допомагай живим.
-          </p>
-          <Story />
-        </div>
+      <div style={{ maxWidth: 280, padding: 'var(--space-3)' }}>
+        <Story />
       </div>
     ),
   ],

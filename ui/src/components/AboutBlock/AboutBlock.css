@@ -37,38 +37,3 @@
   color: var(--text-secondary);
   max-width: 40ch;
 }
-
-.about-vshanuy__link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-  min-width: 200px;
-  min-height: 44px;
-  padding: 10px 12px;
-  border: 0;
-  background: var(--ink);
-  color: var(--paper);
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 300;
-  letter-spacing: normal;
-  text-decoration: none;
-  transition: background-color 300ms ease-out, color 300ms ease-out;
-}
-
-.about-vshanuy__link::after {
-  flex: none;
-  width: 7px;
-  height: 5px;
-  content: "";
-  background: currentColor;
-  -webkit-mask: url("../../assets/Krapka.png") center / contain no-repeat;
-  mask: url("../../assets/Krapka.png") center / contain no-repeat;
-}
-
-.about-vshanuy__link:hover,
-.about-vshanuy__link:focus-visible {
-  background: var(--yellow);
-  color: var(--ink);
-}

@@ -1,4 +1,6 @@
+import { BlockButton } from '../../components/BlockButton/BlockButton'
 import { SectionLabel } from '../../components/SectionLabel/SectionLabel'
+import '../../components/BlockButton/BlockButton.css'
 import '../../components/SectionLabel/SectionLabel.css'
 
 export const CONTACT_TOPICS = [
@@ -85,9 +87,9 @@ export function ContactForm({
           <textarea name="message" rows={5} />
         </label>
         <div className="vshanuy-contact__full">
-          <button className="vshanuy-contact__submit" type="submit">
-            Надіслати <span aria-hidden="true">→</span>
-          </button>
+          <BlockButton className="vshanuy-contact__submit" type="submit" variant="primary">
+            Надіслати
+          </BlockButton>
         </div>
       </form>
     </section>
