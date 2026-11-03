@@ -25,7 +25,13 @@ export function MaterialDlyaChohoPage({ showHeader = true }: MaterialDlyaChohoPa
       <main className="vshanuy-article">
         <article>
           <header className="vshanuy-article__intro">
-            <a className="vshanuy-article__back" href="materialy.html"><span aria-hidden="true">←</span> Публікації</a>
+            <nav className="vshanuy-crumbs" aria-label="Навігаційний шлях">
+              <ol>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="materialy.html">Публікації</a></li>
+                <li><span aria-current="page">А для чого памʼятаєш ти?</span></li>
+              </ol>
+            </nav>
             <p className="vshanuy-article__tag">Колонка Катерини Даценко</p>
             <h1 className="vshanuy-article__title">А для чого памʼятаєш ти?</h1>
             <p className="vshanuy-article__date"><time dateTime="2026-05-22">22 травня 2026</time></p>

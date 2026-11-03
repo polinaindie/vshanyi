@@ -2,8 +2,9 @@
 
 /* «Інші проєкти» — слайдер в один ряд, як «Наші проєкти» на головній */
 
-/* Заголовок проєкту — на --space-section-top, фото нижче тексту. */
+/* Заголовок проєкту — на --space-section-top, фото нижче тексту. Крихти на місці стрілки «назад». */
 .vshanuy-project-page .vshanuy-article__back + .vshanuy-article__title,
+.vshanuy-project-page .vshanuy-crumbs + .vshanuy-article__title,
 .vshanuy-project__intro .vshanuy-article__title {
   margin-top: 0;
 }
@@ -141,6 +142,10 @@
   margin: var(--space-2) calc(-1 * var(--space-2)) 0;
 }
 
+.vshanuy-crumbs + .vshanuy-project__hero {
+  margin-top: 32px;
+}
+
 .vshanuy-project__hero img {
   display: block;
   width: 100%;
@@ -167,7 +172,7 @@
 .vshanuy-project__passport {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  margin: var(--space-4) calc(-1 * var(--space-2)) 0;
+  margin: 32px calc(-1 * var(--space-2)) 0;
   border-top: var(--line-muted);
   border-bottom: var(--line-muted);
 }
@@ -182,8 +187,9 @@
 
 .vshanuy-project__passport dd {
   margin: 0;
-  font-size: var(--step-0);
-  line-height: var(--leading-text);
+  font-family: var(--font-text);
+  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
+  line-height: 1.55;
 }
 
 .vshanuy-project__passport a {
@@ -251,7 +257,7 @@
 }
 
 .vshanuy-project__intro .vshanuy-article__standfirst {
-  margin-top: var(--space-3);
+  margin-top: 32px;
 }
 
 /* Сторінка «Проєкти»: усі картки одразу, 2 в ряд до 1024 і 4 далі. Не слайдер.

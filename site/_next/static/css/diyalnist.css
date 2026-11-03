@@ -104,7 +104,7 @@
 }
 
 .vshanuy-activity__projects--page .vshanuy-projects-page__list {
-  margin-top: var(--space-5);
+  margin-top: 96px;
 }
 
 .vshanuy-projects-page__item[hidden] {
@@ -127,6 +127,10 @@
   /* Дві картки в ряд: кожна займає дві колонки сітки, лінії збігаються з гайдами */
   .vshanuy-activity__directions > li {
     grid-column: span 2;
+  }
+
+  .vshanuy-activity__projects--page .vshanuy-projects-page__list {
+    margin-top: 240px;
   }
 
   .vshanuy-activity__directions .vshanuy-directions-carousel__card {

@@ -49,8 +49,10 @@
   font-family: var(--font-display);
   font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   line-height: 1;
+  letter-spacing: -0.02em;
   font-weight: 300;
   letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 /* Filters */
@@ -136,7 +138,7 @@
 .vshanuy-materials-page__body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: 0;
   padding: var(--space-2) var(--space-2) 0;
 }
 
@@ -148,10 +150,12 @@
 }
 
 .vshanuy-materials-page__name {
+  margin-top: 24px;
   font-family: var(--font-display);
-  font-size: var(--step-1);
+  font-size: clamp(22px, calc(22px + 10 * (100vw - 375px) / 1225), 32px);
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   text-decoration: underline;
   text-decoration-color: transparent;
   text-decoration-thickness: 1px;
@@ -161,16 +165,18 @@
 
 .vshanuy-materials-page__excerpt {
   max-width: 40ch;
-  font-size: var(--step-0);
-  line-height: var(--leading-text);
+  margin-top: 16px;
+  font-family: var(--font-text);
+  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
+  line-height: 1.55;
   color: var(--text-secondary);
 }
 
 .vshanuy-materials-page__more {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-top: var(--space-1);
+  gap: 12px;
+  margin-top: 40px;
   font-family: "Fixel", system-ui, sans-serif;
   font-size: 12px;
   font-weight: 600;
@@ -206,8 +212,9 @@
 /* Featured */
 
 .vshanuy-materials-page__item--featured .vshanuy-materials-page__name {
-  font-size: var(--step-3);
-  line-height: 1.1;
+  font-size: clamp(32px, calc(32px + 20 * (100vw - 375px) / 1225), 52px);
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -245,5 +252,151 @@
 
   .vshanuy-materials-page__item--featured .vshanuy-materials-page__body {
     padding-top: 0;
+  }
+
+  .vshanuy-materials-page__name {
+    margin-top: 32px;
+  }
+}
+
+/* Silence map: no global rails. H/V meet at cell edges. Gap between title and grid is silence, V starts at the grid. */
+
+body:not(.vshanuy-direction-page--gromada) .vshanuy-page-guides {
+  display: none;
+}
+
+body:not(.vshanuy-direction-page--gromada) {
+  --vshanuy-block-gap: 96px;
+}
+
+.vshanuy-materials-page__main {
+  padding: 48px 8px 0;
+}
+
+.vshanuy-materials-page__list {
+  position: relative;
+  row-gap: 0;
+  margin-top: var(--vshanuy-block-gap, 96px);
+}
+
+.vshanuy-materials-page__item {
+  position: relative;
+  padding: 16px;
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+}
+
+.vshanuy-materials-page__item::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+  pointer-events: none;
+}
+
+.vshanuy-materials-page__card {
+  background: transparent;
+  transition: background-color 300ms ease-out;
+}
+
+.vshanuy-materials-page__card:hover,
+.vshanuy-materials-page__card:focus-visible {
+  background: var(--beige);
+}
+
+.vshanuy-materials-page__card img {
+  width: 100%;
+  margin-inline: 0;
+}
+
+.vshanuy-materials-page__body {
+  padding: 16px 0 0;
+}
+
+.vshanuy-article__related .vshanuy-materials-page__list {
+  margin-top: 64px;
+}
+
+@media (min-width: 640px) {
+  .vshanuy-materials-page__list {
+    row-gap: 0;
+  }
+
+  .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured)::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+
+  .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(odd)::before {
+    display: none;
+  }
+
+  /* Featured на всю ширину зсуває першу комірку ряду на парний індекс */
+  .vshanuy-materials-page__list:has(.vshanuy-materials-page__item--featured)
+    .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(odd)::before {
+    display: block;
+  }
+
+  .vshanuy-materials-page__list:has(.vshanuy-materials-page__item--featured)
+    .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(even)::before {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  body:not(.vshanuy-direction-page--gromada) {
+    --vshanuy-block-gap: 240px;
+  }
+
+  .vshanuy-materials-page__main {
+    padding-top: 96px;
+  }
+
+  .vshanuy-materials-page__list {
+    row-gap: 0;
+  }
+
+  .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(odd)::before,
+  .vshanuy-materials-page__list:has(.vshanuy-materials-page__item--featured)
+    .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(even)::before {
+    display: block;
+  }
+
+  .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(4n + 1)::before {
+    display: none;
+  }
+
+  .vshanuy-materials-page__list:has(.vshanuy-materials-page__item--featured)
+    .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(4n + 1)::before {
+    display: block;
+  }
+
+  .vshanuy-materials-page__list:has(.vshanuy-materials-page__item--featured)
+    .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured):nth-child(4n + 2)::before {
+    display: none;
+  }
+
+  .vshanuy-materials-page__item--featured::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 0.5px);
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+
+  .vshanuy-article__related .vshanuy-materials-page__list {
+    margin-top: 96px;
   }
 }

@@ -45,8 +45,10 @@
   font-family: var(--font-display);
   font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   line-height: 1;
+  letter-spacing: -0.02em;
   font-weight: 300;
   letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .vshanuy-support-page__lead {
@@ -141,20 +143,23 @@
 
 .vshanuy-support-page__heading {
   margin: 0;
-  padding-bottom: var(--space-3);
+  padding-bottom: 32px;
   border-bottom: var(--line);
   font-family: var(--font-display);
-  font-size: var(--step-2);
+  font-size: clamp(28px, 22px + 1.2vw, 40px);
   line-height: 1.1;
+  letter-spacing: -0.02em;
   font-weight: 300;
   letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .vshanuy-support-page__text {
   max-width: 40ch;
-  margin: var(--space-3) 0 var(--space-3);
-  font-size: var(--step-0);
-  line-height: var(--leading-text);
+  margin: 32px 0 32px;
+  font-family: var(--font-text);
+  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
+  line-height: 1.55;
 }
 
 /* Bank details */
@@ -180,17 +185,20 @@
 .vshanuy-support-page__field dt {
   grid-column: 1;
   font-family: var(--font-text);
-  font-size: var(--step--1);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
   letter-spacing: var(--tracking-label);
   color: var(--text-secondary);
 }
 
 .vshanuy-support-page__field dd {
   grid-column: 1;
-  margin: var(--space-1) 0 0;
+  margin: 8px 0 0;
   font-family: var(--font-display);
-  font-size: var(--step-1);
-  line-height: 1.25;
+  font-size: clamp(16px, 14.78px + 0.327vw, 20px);
+  font-weight: 300;
+  line-height: 1.2;
   overflow-wrap: anywhere;
 }
 

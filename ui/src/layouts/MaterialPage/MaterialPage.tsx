@@ -64,7 +64,13 @@ export function MaterialPage({ showHeader = true }: MaterialPageProps) {
       <main className="vshanuy-article">
         <article>
           <header className="vshanuy-article__intro">
-            <a className="vshanuy-article__back" href="materialy.html"><span aria-hidden="true">←</span> Публікації</a>
+            <nav className="vshanuy-crumbs" aria-label="Навігаційний шлях">
+              <ol>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="materialy.html">Публікації</a></li>
+                <li><span aria-current="page">Історія Хвилини мовчання</span></li>
+              </ol>
+            </nav>
             <p className="vshanuy-article__tag">Колонка Катерини Даценко</p>
             <h1 className="vshanuy-article__title">Історія Хвилини мовчання</h1>
             <p className="vshanuy-article__date"><time dateTime="2026-10-09">9 жовтня 2026</time></p>

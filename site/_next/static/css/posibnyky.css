@@ -1,10 +1,11 @@
 /* Сторінка «Гайди»: нумерований список, розділений лінійками; гайд із файлом має посилання в 4-й колонці */
 
 .vshanuy-guides-page__list {
-  margin: var(--space-5) 0 0;
+  position: relative;
+  margin: 96px 0 0;
   padding: 0;
   list-style: none;
-  border-bottom: var(--line-muted);
+  border-bottom: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-guides-page__item {
@@ -12,7 +13,7 @@
   grid-template-columns: minmax(0, 1fr);
   gap: var(--space-2);
   padding: var(--space-3) var(--space-2);
-  border-top: var(--line-muted);
+  border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-guides-page__num {
@@ -27,7 +28,7 @@
 
 .vshanuy-guides-page__copy {
   display: grid;
-  gap: var(--space-2);
+  gap: 24px;
   min-width: 0;
 }
 
@@ -97,6 +98,28 @@
 }
 
 @media (min-width: 1024px) {
+  .vshanuy-guides-page__list {
+    margin-top: 240px;
+  }
+
+  /* V на 25% і 75%: текст займає кол. 2–3, лінія його не ріже */
+  .vshanuy-guides-page__list::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+    background-repeat: no-repeat;
+    background-size: 1px 100%, 1px 100%;
+    background-position: calc(25% - 0.5px) 0, calc(75% - 0.5px) 0;
+  }
+
   .vshanuy-guides-page__item {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: first baseline;

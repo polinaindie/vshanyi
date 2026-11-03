@@ -16,6 +16,18 @@
   box-sizing: border-box;
 }
 
+.vshanuy-page-guides {
+  display: none;
+}
+
+.vshanuy-page-guides > span {
+  border-right: 1px solid var(--vshanuy-page-grid-line);
+}
+
+.vshanuy-page-guides > span:nth-child(n + 2) {
+  display: none;
+}
+
 .vshanuy-collab-page > main,
 .vshanuy-collab-page > .vshanuy-site-footer {
   position: relative;
@@ -37,12 +49,16 @@
   font-family: var(--font-display);
   font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   line-height: 1;
+  letter-spacing: -0.02em;
   font-weight: 300;
   letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .vshanuy-collab-page__section {
-  margin-top: var(--space-4);
+  position: relative;
+  margin-top: 0;
+  padding-top: 96px;
 }
 
 /* Photo */
@@ -74,20 +90,28 @@
 }
 
 .vshanuy-collab-page__prose p {
-  margin: 0 0 var(--space-2);
-  font-size: var(--step-0);
-  line-height: var(--leading-text);
+  margin: 0 0 16px;
+  font-family: var(--font-text);
+  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
+  line-height: 1.55;
 }
 
 .vshanuy-collab-page__prose p:last-of-type {
   margin-bottom: 0;
 }
 
-.vshanuy-collab-page__prose .vshanuy-collab-page__accent {
+.vshanuy-collab-page__prose p.vshanuy-collab-page__accent {
+  color: var(--text);
   font-family: var(--font-display);
-  font-size: var(--step-2);
+  font-size: clamp(28px, 18px + 1.6vw, 44px);
   font-weight: 300;
-  line-height: 1.25;
+  line-height: 1.08;
+  letter-spacing: normal;
+  text-wrap: balance;
+}
+
+.vshanuy-collab-page__prose p.vshanuy-collab-page__accent:not(:last-of-type) {
+  margin-bottom: 32px;
 }
 
 /* Contact list */
@@ -164,13 +188,14 @@
 .vshanuy-collab-page__formats,
 .vshanuy-collab-page__format + .vshanuy-collab-page__format,
 .vshanuy-collab-page__closing {
-  margin-top: var(--space-silence);
+  margin-top: 96px;
 }
 
 .vshanuy-collab-page__format,
 .vshanuy-collab-page__closing {
-  padding-top: var(--space-3);
-  border-top: var(--line);
+  position: relative;
+  padding-top: 0;
+  border-top: 0;
 }
 
 .vshanuy-collab-page__format {
@@ -359,6 +384,39 @@
 /* Layout */
 
 @media (min-width: 1024px) {
+  .vshanuy-collab-page__main {
+    padding-top: 96px;
+  }
+
+  .vshanuy-collab-page__section {
+    padding-top: 240px;
+  }
+
+  .vshanuy-collab-page__formats,
+  .vshanuy-collab-page__format + .vshanuy-collab-page__format,
+  .vshanuy-collab-page__closing {
+    margin-top: 240px;
+  }
+
+  /* Mid V крізь тишу над сплітом і між фото та текстом */
+  .vshanuy-collab-page__section::before,
+  .vshanuy-collab-page__format:not(:last-child)::before,
+  .vshanuy-collab-page__format:last-child::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 0.5px);
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+
+  .vshanuy-collab-page__section::before,
+  .vshanuy-collab-page__format:not(:last-child)::before {
+    bottom: -240px;
+  }
 
   .vshanuy-collab-page__split {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -383,6 +441,7 @@
 
   .vshanuy-collab-page__format-title {
     grid-column: 1 / span 2;
+    min-width: 0;
   }
 
   .vshanuy-collab-page__format > .vshanuy-collab-page__figure {

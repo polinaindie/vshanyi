@@ -317,3 +317,57 @@
     aspect-ratio: 21 / 9;
   }
 }
+
+/* Картки «Інші напрями»: V стикується з H, зум 1.05. Громади без цих правок. */
+body:not(.vshanuy-direction-page--gromada) .vshanuy-direction__cards li {
+  border-top-color: var(--vshanuy-page-grid-line);
+}
+
+body:not(.vshanuy-direction-page--gromada) .vshanuy-direction__cards li::after {
+  border-top-color: var(--vshanuy-page-grid-line);
+}
+
+body:not(.vshanuy-direction-page--gromada) .vshanuy-direction__card {
+  padding: 16px;
+}
+
+body:not(.vshanuy-direction-page--gromada) .vshanuy-direction__card-media {
+  margin-bottom: 16px;
+}
+
+body:not(.vshanuy-direction-page--gromada) .vshanuy-direction__card:hover .vshanuy-direction__card-media img,
+body:not(.vshanuy-direction-page--gromada) .vshanuy-direction__card:focus-visible .vshanuy-direction__card-media img {
+  transform: scale(1.05);
+}
+
+@media (min-width: 640px) {
+  body:not(.vshanuy-direction-page--gromada) .vshanuy-direction__cards li:nth-child(even)::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  body:not(.vshanuy-direction-page--gromada) .vshanuy-direction__cards li::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+
+  body:not(.vshanuy-direction-page--gromada) .vshanuy-direction__cards li:nth-child(4n + 1)::before {
+    display: none;
+  }
+}
