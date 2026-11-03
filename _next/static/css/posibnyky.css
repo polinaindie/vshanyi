@@ -17,12 +17,11 @@
 
 .vshanuy-guides-page__num {
   margin: 0;
-  color: var(--graphite);
+  color: var(--ink);
   font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: clamp(12px, calc(12px + 4 * (100vw - 375px) / 1225), 16px);
+  font-weight: 400;
   line-height: 1.2;
-  letter-spacing: 0.12em;
 }
 
 .vshanuy-guides-page__copy {
@@ -55,39 +54,23 @@
   align-items: center;
   justify-self: start;
   gap: 12px;
-  padding: 0;
-  border: 0;
+  padding: 0 14px;
+  border: var(--line);
   border-radius: var(--radius);
-  background: transparent;
   color: var(--ink);
   font-family: "Fixel", system-ui, sans-serif;
   font-size: 12px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.08em;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
+  text-decoration: none;
   text-transform: uppercase;
-  transition: text-decoration-color 300ms ease-out;
+  transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
-.vshanuy-guides-page__link > span {
-  font-size: 20px;
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.vshanuy-guides-page__link:hover,
-.vshanuy-guides-page__link:focus-visible {
-  background: transparent;
-  color: var(--ink);
-  text-decoration-color: currentColor;
-}
-
-.vshanuy-guides-page__link:hover > span,
-.vshanuy-guides-page__link:focus-visible > span {
-  transform: translateX(4px);
+.vshanuy-guides-page__link:hover {
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .vshanuy-guides-page__link:focus-visible {
@@ -119,13 +102,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vshanuy-guides-page__link,
-  .vshanuy-guides-page__link > span {
+  .vshanuy-guides-page__link {
     transition: none;
-  }
-
-  .vshanuy-guides-page__link:hover > span,
-  .vshanuy-guides-page__link:focus-visible > span {
-    transform: none;
   }
 }

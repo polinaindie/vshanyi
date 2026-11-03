@@ -333,6 +333,11 @@
         .querySelector(".vshanuy-desktop-menu__item--activity")
         ?.classList.add("vshanuy-desktop-menu__item--nav-active");
     }
+    // Inner pages: brand always shows scrolled lockup (ВШАНУЙ. 09:00).
+    // Home keeps the top-of-page 09:00 until scroll.
+    if (!document.documentElement.classList.contains("vshanuy-home")) {
+      header.toggleAttribute("data-scrolled", true);
+    }
     return true;
   };
 
@@ -433,10 +438,17 @@
       true,
     );
 
+    const isHomePage = () =>
+      document.documentElement.classList.contains("vshanuy-home");
+
     const updateBrandOnScroll = () => {
-      document
-        .querySelector(".vshanuy-desktop-header")
-        ?.toggleAttribute("data-scrolled", window.scrollY > 8);
+      const header = document.querySelector(".vshanuy-desktop-header");
+      if (!header) return;
+      // Home: slide brand in after a short scroll. Other pages: always active.
+      header.toggleAttribute(
+        "data-scrolled",
+        isHomePage() ? window.scrollY > 8 : true,
+      );
     };
     window.addEventListener("scroll", updateBrandOnScroll, { passive: true });
     updateBrandOnScroll();

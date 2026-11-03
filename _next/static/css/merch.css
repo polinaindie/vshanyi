@@ -64,7 +64,7 @@
 .vshanuy-merch-page__title {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(36px, 22.5306px + 3.59184vw, 80px);
+  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   line-height: 1;
   font-weight: 300;
 }
@@ -128,12 +128,11 @@
 .vshanuy-merch-page__label {
   margin: 0 var(--space-2);
   font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: clamp(12px, calc(12px + 4 * (100vw - 375px) / 1225), 16px);
+  font-weight: 400;
   line-height: 1.2;
-  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--text);
 }
 
 .vshanuy-merch-page__items {

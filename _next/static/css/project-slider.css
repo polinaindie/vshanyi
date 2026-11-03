@@ -9,6 +9,73 @@
   margin-top: var(--space-silence);
 }
 
+.vshanuy-project-slider--about {
+  position: relative;
+  margin-top: 0;
+}
+
+/* V від H над картками крізь viewport і блок «‹ 9:00 ›» */
+#proekty .vshanuy-project-slider--about::after {
+  content: "";
+  position: absolute;
+  top: var(--space-4);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  pointer-events: none;
+  background-image: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+  background-repeat: no-repeat;
+  background-size: 1px 100%;
+  background-position: calc(50% - 0.5px) 0;
+}
+
+#proekty .vshanuy-project-slider--about .vshanuy-project-slider__viewport {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--space-4);
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+}
+
+#proekty .vshanuy-project-slider--about .vshanuy-project-slider__controls {
+  position: relative;
+  z-index: 4;
+}
+
+/* Beige bar поверх центральної V */
+#proekty .vshanuy-project-slider--about .vshanuy-project-slider__bar {
+  position: relative;
+  z-index: 4;
+}
+
+#proekty .vshanuy-project-slider--about .vshanuy-project-slider__slide {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 1024px) {
+  #proekty .vshanuy-project-slider--about {
+    grid-column: 1 / -1;
+  }
+
+  #proekty .vshanuy-project-slider--about .vshanuy-project-slider__viewport {
+    margin-top: 96px;
+  }
+
+  #proekty .vshanuy-project-slider--about::after {
+    top: 96px;
+    background-image:
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+    background-size: 1px 100%, 1px 100%, 1px 100%;
+    background-position:
+      calc(25% - 0.5px) 0,
+      calc(50% - 0.5px) 0,
+      calc(75% - 0.5px) 0;
+  }
+}
+
 .vshanuy-project-slider__head {
   display: flex;
   flex-wrap: wrap;
@@ -52,8 +119,17 @@
 .vshanuy-project-slider__slide {
   flex: 0 0 50%;
   min-width: 0;
-  padding-inline: 16px;
+  /* Як blockSelectedProjects на головній: inset 16 + hover beige */
+  padding: 16px;
+  box-sizing: border-box;
+  background-color: transparent;
   scroll-snap-align: start;
+  transition: background-color 300ms ease-out;
+}
+
+.vshanuy-project-slider__slide:hover,
+.vshanuy-project-slider__slide:focus-within {
+  background-color: var(--beige);
 }
 
 .vshanuy-project-slider__card {
@@ -82,13 +158,17 @@
   height: 100%;
   object-fit: cover;
   transform: scale(1);
-  transition: transform 1s ease-out;
+  transform-origin: center;
+  transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
   -webkit-user-drag: none;
 }
 
+.vshanuy-project-slider__slide:hover .vshanuy-project-slider__media img,
+.vshanuy-project-slider__slide:focus-within .vshanuy-project-slider__media img,
 .vshanuy-project-slider__card:hover .vshanuy-project-slider__media img,
 .vshanuy-project-slider__card:focus-visible .vshanuy-project-slider__media img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .vshanuy-project-slider__meta {
@@ -124,7 +204,7 @@
 
 /* Сторінка проєкту, перший екран: фото першим, під ним назва й паспорт */
 .vshanuy-project__hero {
-  margin: var(--space-2) calc(-1 * var(--space-2)) 0;
+  margin: var(--space-2) 0 0;
 }
 
 .vshanuy-project__hero img {
@@ -151,7 +231,7 @@
 .vshanuy-project__passport {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  margin: var(--space-4) calc(-1 * var(--space-2)) 0;
+  margin: var(--space-4) 0 0;
   border-top: var(--line-muted);
   border-bottom: var(--line-muted);
 }
@@ -161,7 +241,7 @@
   flex-wrap: wrap;
   align-items: baseline;
   gap: var(--space-1);
-  padding: var(--space-2);
+  padding-block: var(--space-2);
 }
 
 .vshanuy-project__passport dd {
@@ -238,15 +318,14 @@
   margin-top: var(--space-3);
 }
 
-/* Сторінка «Проєкти»: усі картки одразу, 2 в ряд до 1024 і 4 далі. Не слайдер. */
+/* Сторінка «Проєкти»: ті самі картки сіткою */
 .vshanuy-projects-page__list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  row-gap: 64px;
+  row-gap: var(--space-4);
   margin: var(--space-5) 0 0;
   padding: 0;
   list-style: none;
-  overflow: visible;
 }
 
 .vshanuy-projects-page__item {
@@ -331,7 +410,7 @@
 
   .vshanuy-projects-page__list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    row-gap: 96px;
+    row-gap: var(--space-5);
   }
 
   .vshanuy-project-slider__meta {
@@ -360,6 +439,7 @@
 
   .vshanuy-project__passport {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-inline: calc(-1 * var(--space-2));
   }
 
   .vshanuy-project__passport > div {
@@ -373,12 +453,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .vshanuy-project-slider__slide,
   .vshanuy-project-slider__media img,
   .vshanuy-project-slider__desc,
   .vshanuy-project-slider__button {
     transition: none;
   }
 
+  .vshanuy-project-slider__slide:hover .vshanuy-project-slider__media img,
+  .vshanuy-project-slider__slide:focus-within .vshanuy-project-slider__media img,
   .vshanuy-project-slider__card:hover .vshanuy-project-slider__media img,
   .vshanuy-project-slider__card:focus-visible .vshanuy-project-slider__media img {
     transform: none;

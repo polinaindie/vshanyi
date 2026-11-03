@@ -31,11 +31,6 @@
               <li><span class="vshanuy-dead-link">Звіт про діяльність.</span></li>
               <li><a href="${rootPrefix}kontakty.html">Контакти.</a></li>
             </ul>
-            <ul class="vshanuy-site-footer__links vshanuy-site-footer__links--social" aria-label="Соцмережі">
-              <li><a href="https://www.instagram.com/moment_of_honor/" target="_blank" rel="noopener noreferrer">Instagram.</a></li>
-              <li><a href="https://www.threads.com/@moment_of_honor" target="_blank" rel="noopener noreferrer">Threads.</a></li>
-              <li><a href="https://www.facebook.com/momentofhonor" target="_blank" rel="noopener noreferrer">Facebook.</a></li>
-            </ul>
           </div>
           <p class="vshanuy-site-footer__column-foot">© 2026 ВШАНУЙ</p>
         </nav>
