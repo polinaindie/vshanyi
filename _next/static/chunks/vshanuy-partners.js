@@ -106,7 +106,7 @@
       </div>
       <div class="vshanuy-partners__inner">
         <header class="vshanuy-partners__header">
-          <p class="vshanuy-partners__label">ПАРТНЕРИ</p>
+          <p class="vshanuy-partners__label">Партнери</p>
           <h2
             id="vshanuy-partners-title"
             class="font-serif"
@@ -188,7 +188,7 @@
   window.addEventListener("hashchange", scrollToProjects);
 
   const footerScript = document.createElement("script");
-  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261028q";
+  footerScript.src = "_next/static/chunks/vshanuy-footer.js?v=20261103nocaps";
   document.head.append(footerScript);
 
   const menuScript = document.createElement("script");

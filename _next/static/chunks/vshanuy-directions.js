@@ -97,7 +97,7 @@
       <div class="vshanuy-directions-carousel__shell">
         <div class="vshanuy-directions-carousel__pin">
           <header class="vshanuy-directions-carousel__header">
-            <p class="vshanuy-directions-carousel__label text-caption-30 uppercase">НАШІ НАПРЯМИ</p>
+            <p class="vshanuy-directions-carousel__label text-caption-30 uppercase">Наші напрями</p>
             <h2 id="${titleId}" class="vshanuy-directions-carousel__title font-serif">
               ${title}
             </h2>

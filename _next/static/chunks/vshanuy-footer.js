@@ -32,7 +32,7 @@
               <li><a href="${rootPrefix}kontakty.html">Контакти.</a></li>
             </ul>
           </div>
-          <p class="vshanuy-site-footer__column-foot">© 2026 ВШАНУЙ</p>
+          <p class="vshanuy-site-footer__column-foot">© 2026 Вшануй</p>
         </nav>
 
         <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-secondary" aria-label="Діяльність">

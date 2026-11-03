@@ -234,7 +234,6 @@
   font-size: clamp(12px, calc(12px + 4 * (100vw - 375px) / 1225), 16px);
   font-weight: 400;
   line-height: 1.2;
-  text-transform: uppercase;
 }
 
 .vshanuy-partners-page__row-link {
@@ -249,7 +248,6 @@
   line-height: 1;
   letter-spacing: 0.08em;
   text-decoration: none;
-  text-transform: uppercase;
 }
 
 .vshanuy-partners-page__row-link-text {

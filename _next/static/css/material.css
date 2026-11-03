@@ -32,25 +32,21 @@
 
 /* Service text */
 
-.vshanuy-article__label,
+/* Label typography — Foundations/SectionLabel via font-overrides (ALL CAPS). */
 .vshanuy-article__stamp,
 .vshanuy-article__tag {
   margin: 0;
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
+  font-family: var(--font-text);
+  font-size: var(--step--1);
   font-weight: 500;
   line-height: 1.2;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-secondary);
   text-transform: uppercase;
 }
 
 .vshanuy-article__label {
-  color: var(--text);
-}
-
-.vshanuy-article__stamp,
-.vshanuy-article__tag {
-  color: var(--text-secondary);
+  margin: 0;
 }
 
 .vshanuy-article__back,
@@ -70,7 +66,6 @@
   text-decoration-color: transparent;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
-  text-transform: uppercase;
   transition: text-decoration-color 300ms ease-out;
 }
 
@@ -158,8 +153,8 @@
   font-family: var(--font-text);
   font-size: 12px;
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--text-secondary);
+  text-transform: uppercase;
 }
 
 /* Aside: author + contents */
@@ -414,6 +409,7 @@
   color: var(--text-secondary);
   font-size: var(--step--1);
   line-height: 1.45;
+  text-transform: uppercase;
 }
 
 /* Quotes */

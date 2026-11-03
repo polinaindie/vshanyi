@@ -102,8 +102,8 @@
   font-family: var(--font-text);
   font-size: 12px;
   letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
   color: var(--text-secondary);
+  text-transform: uppercase;
 }
 
 .vshanuy-merch-page__order {
@@ -125,14 +125,9 @@
   margin-top: var(--space-5);
 }
 
+/* Layout only — типографіка ALL CAPS з Foundations/SectionLabel (font-overrides) */
 .vshanuy-merch-page__label {
   margin: 0 var(--space-2);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(12px, calc(12px + 4 * (100vw - 375px) / 1225), 16px);
-  font-weight: 400;
-  line-height: 1.2;
-  text-transform: uppercase;
-  color: var(--text);
 }
 
 .vshanuy-merch-page__items {
@@ -158,7 +153,7 @@
   color: var(--text);
 }
 
-/* CTA — same behaviour as the footer «Підтримати» */
+/* CTA — Piazzolla + Крапка (як BlockButton primary) */
 
 .vshanuy-merch-page__cta {
   box-sizing: border-box;
@@ -168,27 +163,33 @@
   min-height: 44px;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 6px;
   padding: 10px 12px;
   border: 0;
-  border-radius: var(--radius);
+  border-radius: 0;
   background: var(--ink);
   color: var(--paper);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
+  font-family: "Piazzolla", Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: 0.08em;
+  letter-spacing: normal;
+  text-transform: none;
   text-decoration: none;
-  text-transform: uppercase;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
 .vshanuy-merch-page__cta > span[aria-hidden="true"] {
-  font-size: 20px;
-  line-height: 1;
-  transform: translateX(-4px);
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  flex: none;
+  width: 7px;
+  height: 5px;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  background: currentColor;
+  -webkit-mask: url("../media/Krapka.png") center / contain no-repeat;
+  mask: url("../media/Krapka.png") center / contain no-repeat;
+  transition: opacity 300ms ease-out;
 }
 
 .vshanuy-merch-page__cta:hover,
@@ -199,7 +200,7 @@
 
 .vshanuy-merch-page__cta:hover > span[aria-hidden="true"],
 .vshanuy-merch-page__cta:focus-visible > span[aria-hidden="true"] {
-  transform: translateX(4px);
+  opacity: 0.7;
 }
 
 .vshanuy-merch-page__cta:focus-visible {
@@ -211,10 +212,6 @@
   .vshanuy-merch-page__cta,
   .vshanuy-merch-page__cta > span[aria-hidden="true"] {
     transition: none;
-  }
-
-  .vshanuy-merch-page__cta > span[aria-hidden="true"] {
-    transform: none;
   }
 }
 
