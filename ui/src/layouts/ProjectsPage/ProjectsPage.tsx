@@ -5,7 +5,8 @@ import '../../components/DesktopHeader/DesktopHeader.css'
 import '../../components/SiteFooter/SiteFooter.css'
 import '../MaterialsPage/MaterialsPage.css'
 import { directionFilters, projectDirections, projects, type DirectionId } from '../ProjectPage/ProjectPage'
-import { projectTeasers } from '../ProjectPage/ProjectSlider'
+import { ProjectCard } from '../../components/ProjectCard/ProjectCard'
+import { getProjectTeaser } from '../../data/projectTeasers'
 import '../ProjectPage/ProjectSlider.css'
 import '../ActivityPage/ActivityPage.css'
 
@@ -58,24 +59,16 @@ export function ProjectsPage({ showHeader = true }: ProjectsPageProps) {
           <ul className="vshanuy-projects-page__list">
             {projects.map((item, index) => (
               <li key={item.slug} className="vshanuy-projects-page__item" hidden={!matches(item.slug, filter)}>
-                <a className="vshanuy-project-slider__card" href={`napryamky/${item.slug}.html`}>
-                  <span className="vshanuy-project-slider__media">
-                    <img
-                      src={item.image}
-                      alt=""
-                      width={item.imageWidth}
-                      height={item.imageHeight}
-                      loading={index > 1 ? 'lazy' : undefined}
-                      decoding="async"
-                    />
-                  </span>
-                  <div className="vshanuy-project-slider__meta">
-                    <div className="vshanuy-project-slider__text">
-                      <h2 className="vshanuy-project-slider__name">{item.cardTitle}</h2>
-                      <p className="vshanuy-project-slider__desc">{projectTeasers[item.slug] ?? item.standfirst}</p>
-                    </div>
-                  </div>
-                </a>
+                <ProjectCard
+                  href={`napryamky/${item.slug}.html`}
+                  title={item.cardTitle}
+                  description={getProjectTeaser(item.slug) ?? item.standfirst}
+                  image={item.image}
+                  imageWidth={item.imageWidth}
+                  imageHeight={item.imageHeight}
+                  titleAs="h2"
+                  imgLoading={index > 1 ? 'lazy' : undefined}
+                />
               </li>
             ))}
           </ul>

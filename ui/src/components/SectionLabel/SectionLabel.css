@@ -1,7 +1,7 @@
 /*
  * Foundations/SectionLabel — канон службової мітки секції.
- * Архівний регістр: Fixel, 500, ALL CAPS, tracking-label, muted.
- * Аліаси нижче тримають page-BEM мітки на тому ж рецепті без дубльованої типографіки.
+ * Як h3 «ГО „ВШАНУЙ“» на головній: Fixel 400, caption 12→16, без розрядки, ALL CAPS.
+ * Живе дзеркало — site font-overrides.css (--vshanuy-caption-size).
  */
 
 .vshanuy-section-label,
@@ -10,12 +10,12 @@
 .vshanuy-merch-page__label,
 .vshanuy-partners__label {
   margin: 0;
-  font-family: var(--font-text);
-  font-size: 12px;
-  font-weight: 500;
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: clamp(12px, 10.775px + 0.3265vw, 16px);
+  font-weight: 400;
   line-height: 1.2;
-  letter-spacing: var(--tracking-label);
-  color: var(--text-muted);
+  letter-spacing: normal;
+  color: var(--ink);
   text-transform: uppercase;
 }
 

@@ -2,14 +2,14 @@
 
 /* Перший екран: розділ із змістом */
 .vshanuy-direction__kicker {
-  margin: var(--space-3) calc(-1 * var(--space-2)) 0;
-  padding: 0 var(--space-2) var(--space-1);
-  border-bottom: var(--line-muted);
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 .vshanuy-direction__intro .vshanuy-article__title {
   max-width: none;
-  margin-top: var(--space-3);
+  margin-top: 0;
 }
 
 .vshanuy-direction__lead {
@@ -245,10 +245,14 @@
 }
 
 .vshanuy-direction__cards p {
-  max-width: 40ch;
+  max-width: none;
   margin: 0;
-  font-size: var(--step-0);
-  line-height: var(--leading-text);
+  color: var(--text-secondary);
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: var(--vshanuy-body-size);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: normal;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -366,12 +366,14 @@ def list_page():
     src = open(SITE / "_next/static/chunks/vshanuy-directions.js", encoding="utf-8").read()
     dirs = _re.findall(r'title: "([^"]+)",\s*href: "([^"]+)",\s*image: "([^"]+)",\s*description:\s*"([^"]+)"', src)
     directions = "\n".join(f"""      <li>
-        <a class="vshanuy-activity__card" href="{h}">
-          <div class="vshanuy-activity__copy">
-            <h3 class="vshanuy-activity__title">{t}</h3>
-            <p class="vshanuy-activity__text">{d}</p>
+        <a class="vshanuy-directions-carousel__card" href="{h}">
+          <figure class="vshanuy-directions-carousel__media">
+            <img src="{img}" alt="" width="960" height="640"{' loading="lazy"' if i > 1 else ''} decoding="async"/>
+          </figure>
+          <div class="vshanuy-directions-carousel__copy">
+            <h3 class="vshanuy-directions-carousel__name">{t}</h3>
+            <p class="vshanuy-directions-carousel__text">{d}</p>
           </div>
-          <span class="vshanuy-activity__media" aria-hidden="true"><img src="{img}" alt="" width="960" height="640"{' loading="lazy"' if i > 1 else ''} decoding="async"/></span>
         </a>
       </li>""" for i, (t, h, img, d) in enumerate(dirs))
     counts = {k: sum(k in v for v in PROJECT_DIRECTIONS.values()) for k, _ in FILTERS}
@@ -393,12 +395,10 @@ def list_page():
         </li>""" for i, o in enumerate(PROJECTS))
     directions_body = f"""    <header class="vshanuy-materials-page__intro">
       <h1 class="vshanuy-materials-page__title">Напрями роботи.</h1>
+      <p class="vshanuy-activity__intro-lead" id="vshanuy-activity-directions-lead">Для кого ми говоримо про памʼять</p>
     </header>
 
-    <section class="vshanuy-activity__section" aria-labelledby="vshanuy-activity-directions-title">
-      <header class="vshanuy-activity__section-head">
-        <h2 class="vshanuy-activity__section-title" id="vshanuy-activity-directions-title">Для кого ми говоримо про памʼять</h2>
-      </header>
+    <section class="vshanuy-activity__section" aria-labelledby="vshanuy-activity-directions-lead">
       <ul class="vshanuy-activity__directions">
 {directions}
       </ul>

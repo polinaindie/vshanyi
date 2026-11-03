@@ -1,133 +1,74 @@
 /* «Напрями роботи»: усі напрями одразу, по 2 в ряд (на 4 колонках — span 2). «Проєкти» — сітка нижче. */
+/* Картка напряму — direction-card.css, підключений у HTML перед цим файлом. */
+
+.vshanuy-activity-page {
+  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
+}
+
+.vshanuy-activity-page > .vshanuy-site-footer {
+  margin-top: 0;
+}
+
+.vshanuy-activity__intro-lead {
+  max-width: none;
+  margin: 32px 0 0;
+  padding: 0;
+  color: var(--text-secondary);
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: var(--vshanuy-body-size);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: normal;
+}
 
 .vshanuy-activity__section {
-  margin-top: var(--space-3);
+  margin-top: 64px;
 }
 
 .vshanuy-activity__directions {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: 64px 0 0;
+  margin: 0;
   padding: 0;
   list-style: none;
+  isolation: isolate;
+}
+
+/* Центральна V між картками — крізь сітку й тишу main до футера */
+.vshanuy-activity__directions::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(50% - 0.5px);
+  z-index: 2;
+  width: 1px;
+  height: calc(100% + var(--space-silence));
+  background: var(--vshanuy-page-grid-line);
+  pointer-events: none;
 }
 
 .vshanuy-activity__directions > li {
   position: relative;
+  z-index: 1;
   min-width: 0;
-  border-top: var(--line-muted);
+  border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
-/* Нижня лінія збігається з верхньою наступного ряду і закриває останній */
-.vshanuy-activity__directions > li::after {
+/* Більше повітря над нижньою H комірки (лише сітка diyalnist, не карусель) */
+.vshanuy-activity__directions .vshanuy-directions-carousel__card {
+  padding-bottom: 32px;
+}
+
+/* Нижня H між рядами; остання картка без лінії знизу (тиша до футера) */
+.vshanuy-activity__directions > li:not(:last-child)::after {
   content: "";
   position: absolute;
   right: 0;
   bottom: -1px;
   left: 0;
-  border-top: var(--line-muted);
+  border-top: 1px solid var(--vshanuy-page-grid-line);
   pointer-events: none;
-}
-
-.vshanuy-activity__card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  gap: 0;
-  padding: var(--space-3) var(--space-2) var(--space-4);
-  background: transparent;
-  color: var(--ink);
-  text-decoration: none;
-  transition: background-color 300ms ease-out;
-}
-
-.vshanuy-activity__card:hover,
-.vshanuy-activity__card:focus-visible {
-  background-color: var(--beige);
-}
-
-.vshanuy-activity__card:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: -2px;
-}
-
-.vshanuy-activity__copy {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  min-width: 0;
-}
-
-.vshanuy-activity__title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(16px, 14.5px + 0.4vw, 20px);
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  text-transform: uppercase;
-}
-
-.vshanuy-activity__text {
-  max-width: 40ch;
-  margin: 0;
-  font-size: var(--step-0);
-  line-height: var(--leading-text);
-  color: var(--graphite);
-}
-
-.vshanuy-activity__media {
-  display: block;
-  order: -1;
-  margin-bottom: var(--space-3);
-  overflow: hidden;
-}
-
-.vshanuy-activity__media img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  transform: scale(1);
-  transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.vshanuy-activity__card:hover .vshanuy-activity__media img,
-.vshanuy-activity__card:focus-visible .vshanuy-activity__media img {
-  transform: scale(1.05);
-}
-
-/* Підзаголовок під H1 «Напрями роботи.» */
-.vshanuy-activity__section-head {
-  display: grid;
-  gap: 32px;
-  padding-inline: var(--space-2);
-}
-
-.vshanuy-activity__label {
-  margin: 0;
-  color: var(--graphite);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.vshanuy-activity__section-title {
-  max-width: 24ch;
-  margin: 0;
-  font-family: var(--font-display);
-  /* .vshanuy-type-title / text-title-40 */
-  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--text-secondary);
-  text-wrap: balance;
 }
 
 /* Проєкти */
@@ -171,26 +112,29 @@
 }
 
 @media (min-width: 1024px) {
+  .vshanuy-activity__intro-lead {
+    max-width: 50%;
+  }
+
+  .vshanuy-activity__section {
+    margin-top: 96px;
+  }
+
   .vshanuy-activity__directions {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-top: 96px;
   }
 
   /* Дві картки в ряд: кожна займає дві колонки сітки, лінії збігаються з гайдами */
   .vshanuy-activity__directions > li {
     grid-column: span 2;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .vshanuy-activity__card,
-  .vshanuy-activity__media,
-  .vshanuy-activity__media img {
-    transition: none;
+  .vshanuy-activity__directions .vshanuy-directions-carousel__card {
+    padding-bottom: 32px;
   }
 
-  .vshanuy-activity__card:hover .vshanuy-activity__media img,
-  .vshanuy-activity__card:focus-visible .vshanuy-activity__media img {
-    transform: none;
+  .vshanuy-activity__directions .vshanuy-directions-carousel__copy {
+    padding-bottom: 32px;
   }
 }
+

@@ -39,18 +39,20 @@
 }
 
 .vshanuy-type-body {
-  font-family: var(--font-text, "Fixel", system-ui, sans-serif);
-  font-size: clamp(16px, 15.39px + 0.163vw, 18px);
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: var(--vshanuy-body-size, clamp(16px, calc(16px + 2 * (100vw - 375px) / 1225), 18px));
   font-weight: 400;
   line-height: 1.55;
+  letter-spacing: normal;
 }
 
 .vshanuy-type-lead {
-  font-family: var(--font-text, "Fixel", system-ui, sans-serif);
-  font-size: clamp(16px, 15.39px + 0.163vw, 18px);
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: var(--vshanuy-body-size, clamp(16px, calc(16px + 2 * (100vw - 375px) / 1225), 18px));
   font-weight: 400;
   line-height: 1.55;
-  color: var(--graphite);
+  letter-spacing: normal;
+  color: var(--text-secondary);
 }
 
 .vshanuy-type-lead--narrow {

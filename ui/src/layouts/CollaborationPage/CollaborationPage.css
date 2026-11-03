@@ -69,7 +69,7 @@
 }
 
 .vshanuy-collab-page__prose {
-  max-width: 60ch;
+  max-width: none;
   padding-inline: var(--space-2);
 }
 

@@ -1,8 +1,11 @@
+@import url("project-card.css");
+
 /* «Інші проєкти» — слайдер в один ряд, як «Наші проєкти» на головній */
 
-/* Без тегу над заголовком зберігаємо той самий відступ, що в матеріалах */
-.vshanuy-project-page .vshanuy-article__back + .vshanuy-article__title {
-  margin-top: var(--space-3);
+/* Заголовок проєкту — на --space-section-top, фото нижче тексту. */
+.vshanuy-project-page .vshanuy-article__back + .vshanuy-article__title,
+.vshanuy-project__intro .vshanuy-article__title {
+  margin-top: 0;
 }
 
 .vshanuy-project-slider {
@@ -132,75 +135,6 @@
   background-color: var(--beige);
 }
 
-.vshanuy-project-slider__card {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.vshanuy-project-slider__card:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 4px;
-}
-
-.vshanuy-project-slider__media {
-  display: block;
-  aspect-ratio: 3 / 2;
-  overflow: hidden;
-  background: var(--beige);
-}
-
-.vshanuy-project-slider__media img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1);
-  transform-origin: center;
-  transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
-  -webkit-user-drag: none;
-}
-
-.vshanuy-project-slider__slide:hover .vshanuy-project-slider__media img,
-.vshanuy-project-slider__slide:focus-within .vshanuy-project-slider__media img,
-.vshanuy-project-slider__card:hover .vshanuy-project-slider__media img,
-.vshanuy-project-slider__card:focus-visible .vshanuy-project-slider__media img {
-  transform: scale(1.05);
-}
-
-.vshanuy-project-slider__meta {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.vshanuy-project-slider__name {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(16px, 14.5px + 0.4vw, 20px);
-  font-weight: 300;
-  line-height: 1.15;
-  color: var(--ink);
-}
-
-.vshanuy-project-slider__desc {
-  display: -webkit-box;
-  max-width: 36ch;
-  margin: 8px 0 0;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(13px, 12.5px + 0.2vw, 15px);
-  font-weight: 400;
-  line-height: 1.45;
-  color: var(--text-secondary);
-}
-
 /* Сторінка проєкту, перший екран: фото першим, під ним назва й паспорт */
 .vshanuy-project__hero {
   margin: var(--space-2) calc(-1 * var(--space-2)) 0;
@@ -223,8 +157,10 @@
   text-transform: uppercase;
 }
 
-.vshanuy-project__intro .vshanuy-project__hero + .vshanuy-article__title {
-  margin-top: var(--space-3);
+@media (min-width: 1024px) {
+  .vshanuy-article__intro > .vshanuy-project__hero {
+    margin-top: 96px;
+  }
 }
 
 .vshanuy-project__passport {

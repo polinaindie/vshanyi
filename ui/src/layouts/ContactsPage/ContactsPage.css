@@ -13,7 +13,7 @@
 }
 
 .vshanuy-contacts-page .vshanuy-section-label {
-  color: var(--text-secondary);
+  margin: 0;
 }
 
 .vshanuy-contacts-page .vshanuy-section-label__trail {
@@ -51,7 +51,7 @@
 
 .vshanuy-contacts-page__lead {
   margin: 32px 0 0;
-  max-width: 36ch;
+  max-width: none;
   color: var(--text-secondary);
   font-family: var(--font-text);
   font-size: clamp(16px, 15.39px + 0.163vw, 18px);

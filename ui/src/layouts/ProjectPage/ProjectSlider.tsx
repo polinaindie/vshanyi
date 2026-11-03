@@ -1,26 +1,10 @@
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from 'react'
+import { ProjectCard } from '../../components/ProjectCard/ProjectCard'
+import { getProjectTeaser, projectTeasers } from '../../data/projectTeasers'
 import type { Project } from './ProjectPage'
 import './ProjectSlider.css'
 
-/** Короткі описи — ті самі, що зʼявляються при наведенні на головній */
-export const projectTeasers: Record<string, string> = {
-  'hvylyna-movchannya':
-    'Хвилина мовчання – це ритуал подяки, пошани та памʼяті. Це символічна обʼєднавча дія, відкрита для залученості широкого кола суспільства, і покликана зберігати памʼять про російсько-українську війну, нашу спільну боротьбу за незалежність.',
-  chekafest:
-    'ЧЕКАфест – це благодійний освітньо-музичний фестиваль памʼяті Ірини Цибух. Він створений родиною та друзями Іри ЧЕКИ Цибух. Фестиваль щорічний та проводиться у найближчих зручних датах до дня народження Ірини – 1 червня.',
-  'proshchannya-z-praporom':
-    'Церемонія, коли державний символ завершує службу — і ми визнаємо це з повагою. Коли прапор зношується й втрачає вигляд, постає питання: що робити далі?',
-  tryzna:
-    'Публічне прощання з військовим — спосіб вшанувати людину й подякувати за службу. Прощання з містом — остання зустріч загиблого з громадою; особливо важлива для родини.',
-  'pomizh-nas':
-    'Загальноукраїнський проєкт ГО «Вшануй»: вшанування памʼяті загиблих Захисників і Захисниць та підтримка родин полонених і зниклих безвісти. Тактовне нагадування про ціну умовно спокійного життя.',
-  'dzerkalo-pamyati':
-    'Проєкт координаторок «Вшануй» у Полтаві. Місце, де кожен може залишити імʼя людини, яку вбила росія, — щоб вона була видимою у просторі міста.',
-  vinkuvannya:
-    '29 серпня 2026-го, у День памʼяті загиблих, ми відновлювали традицію вінкування. Родини та друзі плели вінки з живих квітів під розповіді про найщасливіші моменти полеглих.',
-  'tse-mozhe-buty-tysha':
-    'Це виставка про мить, коли щодня о 9:00 ми зупиняємося, щоб згадати тих, кого вже немає поруч.',
-}
+export { projectTeasers }
 
 export type ProjectSliderCard = {
   href: string
@@ -46,7 +30,7 @@ export function projectToSliderCard(item: Project): ProjectSliderCard {
     image: item.image,
     imageWidth: item.imageWidth,
     imageHeight: item.imageHeight,
-    description: projectTeasers[item.slug] ?? item.standfirst,
+    description: getProjectTeaser(item.slug) ?? item.standfirst,
   }
 }
 
@@ -170,25 +154,16 @@ export function ProjectSlider({ items, variant = 'related' }: ProjectSliderProps
         <ul className="vshanuy-project-slider__track">
           {cards.map((item) => (
             <li key={item.href} className="vshanuy-project-slider__slide">
-              <a className="vshanuy-project-slider__card" href={item.href}>
-                <span className="vshanuy-project-slider__media">
-                  <img
-                    src={item.image}
-                    alt=""
-                    width={item.imageWidth ?? 960}
-                    height={item.imageHeight ?? 640}
-                    loading="lazy"
-                    decoding="async"
-                    draggable={false}
-                  />
-                </span>
-                <div className="vshanuy-project-slider__meta">
-                  <div className="vshanuy-project-slider__text">
-                    <h3 className="vshanuy-project-slider__name">{item.cardTitle}</h3>
-                    <p className="vshanuy-project-slider__desc">{item.description}</p>
-                  </div>
-                </div>
-              </a>
+              <ProjectCard
+                href={item.href}
+                title={item.cardTitle}
+                description={item.description}
+                image={item.image}
+                imageWidth={item.imageWidth}
+                imageHeight={item.imageHeight}
+                titleAs="h3"
+                draggable={false}
+              />
             </li>
           ))}
         </ul>

@@ -198,7 +198,7 @@
 
 .vshanuy-business-page__context-body {
   margin: var(--space-3) 0 0;
-  max-width: 36ch;
+  max-width: none;
   color: var(--text-secondary);
   /* text-body-30 */
   font-size: clamp(16px, 15.39px + 0.163vw, 18px);
@@ -276,10 +276,16 @@
 
 .vshanuy-business-page__lead {
   margin: var(--space-3) 0 0;
-  max-width: 36ch;
+  max-width: none;
   color: var(--text-secondary);
   font-size: var(--step-1);
   line-height: 1.4;
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-business-page__lead {
+    max-width: 50%;
+  }
 }
 
 .vshanuy-business-page__figure {

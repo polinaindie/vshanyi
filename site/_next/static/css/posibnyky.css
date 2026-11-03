@@ -46,7 +46,7 @@
   max-width: 40ch;
   margin: 0;
   color: var(--text-secondary);
-  font-size: clamp(16px, 14.8px + 0.32vw, 18px);
+  font-size: var(--vshanuy-body-size);
   line-height: 1.55;
 }
 

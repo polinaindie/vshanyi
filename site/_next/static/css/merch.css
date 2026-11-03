@@ -55,7 +55,7 @@
 
 .vshanuy-merch-page__lead {
   font-family: var(--font-text);
-  max-width: 52ch;
+  max-width: none;
   margin: var(--space-3) 0 0;
   color: var(--text-secondary);
   font-size: clamp(16px, 15.39px + 0.163vw, 18px);
@@ -205,8 +205,8 @@
 @media (min-width: 1024px) {
 
   .vshanuy-merch-page__lead {
-  font-family: var(--font-text);
-    max-width: calc(50% - var(--space-2));
+    font-family: var(--font-text);
+    max-width: 50%;
   }
 
   .vshanuy-merch-page__row {

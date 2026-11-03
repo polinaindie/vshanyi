@@ -98,7 +98,7 @@
 .vshanuy-about-page__intro {
   position: relative;
   z-index: 1;
-  padding: var(--space-4) var(--space-2) var(--space-4);
+  padding: var(--space-section-top) var(--space-2) var(--space-4);
   background: var(--paper);
   border-bottom: 0;
 }
@@ -117,7 +117,7 @@
 }
 
 .vshanuy-about-page__lead {
-  max-width: 52ch;
+  max-width: none;
   margin: var(--space-3) 0 0;
   padding: 0;
   background: transparent;
@@ -892,7 +892,7 @@
 
 @media (min-width: 1024px) {
   .vshanuy-about-page__lead {
-    max-width: calc(50% - var(--space-2));
+    max-width: 50%;
   }
 
   .vshanuy-about-page__figure--wide {

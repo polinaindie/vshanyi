@@ -100,19 +100,65 @@
   outline-offset: 3px;
 }
 
-/* Intro */
+/* Intro. h1 стоїть на --space-section-top, як «Напрями роботи».
+   Посилання назад і мітка живуть у цій тиші й не зсувають заголовок. */
 
 .vshanuy-article__intro {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 24px;
+  margin-top: 0;
   padding: 0 var(--space-2);
 }
 
+@media (min-width: 1024px) {
+  .vshanuy-article__intro {
+    margin-top: -44px;
+  }
+}
+
 .vshanuy-article__tag {
-  margin-top: var(--space-3);
+  margin: 0;
+}
+
+.vshanuy-article__back {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.vshanuy-article__tag,
+.vshanuy-direction__kicker {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: start;
+}
+
+@media (max-width: 1023px) {
+  .vshanuy-article__intro > .vshanuy-article__title {
+    grid-row: 1;
+  }
+
+  .vshanuy-article__intro > .vshanuy-article__back,
+  .vshanuy-article__intro > .vshanuy-article__tag,
+  .vshanuy-article__intro > .vshanuy-direction__kicker {
+    grid-row: 2;
+  }
+}
+
+.vshanuy-article__intro > :not(.vshanuy-article__back):not(.vshanuy-article__tag):not(.vshanuy-direction__kicker):not(.vshanuy-project__hero) {
+  grid-column: 1 / -1;
+}
+
+.vshanuy-article__intro > .vshanuy-project__hero {
+  grid-column: 1 / -1;
+  grid-row: 20;
+  margin-top: 48px;
 }
 
 .vshanuy-article__title {
   max-width: 18ch;
-  margin: var(--space-2) 0 0;
+  margin: 0;
   font-family: var(--font-display);
   font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   font-weight: 300;
@@ -129,7 +175,7 @@
 }
 
 .vshanuy-article__standfirst {
-  max-width: 52ch;
+  max-width: none;
   margin: var(--space-3) 0 0;
   color: var(--text-secondary);
   font-size: var(--step-1);
@@ -333,8 +379,16 @@
 .vshanuy-article__section p.vshanuy-article__stamp,
 .vshanuy-article__note p.vshanuy-article__label {
   margin: 0;
-  font-size: clamp(12px, calc(12px + 4 * (100vw - 375px) / 1225), 16px);
   line-height: 1.2;
+}
+
+/* Підпис фото лишається дрібним службовим кеглем; «Примітка» — мітка секції. */
+.vshanuy-article__section p.vshanuy-article__stamp {
+  font-size: var(--step--1);
+}
+
+.vshanuy-article__note p.vshanuy-article__label {
+  font-size: clamp(12px, calc(12px + 4 * (100vw - 375px) / 1225), 16px);
 }
 
 .vshanuy-article__section p.vshanuy-article__accent {
@@ -560,7 +614,7 @@
   }
 
   .vshanuy-article__standfirst {
-    max-width: calc(50% - var(--space-2));
+    max-width: 50%;
   }
 
   .vshanuy-article__cover {

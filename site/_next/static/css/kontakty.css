@@ -29,12 +29,6 @@
 
 .vshanuy-section-label {
   margin: 0;
-  font-family: var(--font-text);
-  font-size: 12px;
-  letter-spacing: var(--tracking-label);
-  color: var(--text-secondary);
-  font-weight: 500;
-  text-transform: uppercase;
 }
 
 .vshanuy-section-label__trail {
@@ -86,7 +80,7 @@ a.vshanuy-section-label__trail:focus-visible {
 
 .vshanuy-contacts-page__lead {
   margin: 32px 0 0;
-  max-width: 36ch;
+  max-width: none;
   color: var(--text-secondary);
   font-family: var(--font-text);
   /* text-body-30 */
