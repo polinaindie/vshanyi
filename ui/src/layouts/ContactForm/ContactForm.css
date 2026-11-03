@@ -63,6 +63,7 @@
   gap: var(--space-1);
   font-size: var(--step--1);
   letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
   color: var(--text-secondary);
 }
 
@@ -99,6 +100,7 @@
   margin: 0 0 var(--space-1);
   font-size: var(--step--1);
   letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
   color: var(--text-secondary);
 }
 
@@ -116,15 +118,19 @@
 .vshanuy-contact__choice {
   position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   min-height: 4.5rem;
   margin: 0 0 -1px;
   padding: var(--space-2);
   border: var(--line);
   border-radius: var(--radius);
   color: var(--ink);
-  font-size: var(--step-0);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1.25;
+  letter-spacing: normal;
+  text-transform: none;
   cursor: pointer;
 }
 
@@ -149,9 +155,7 @@
 }
 
 .vshanuy-contact__choice:has(input:checked) {
-  background: var(--ink);
-  color: var(--text-inverse);
-  font-weight: 600;
+  background: var(--beige);
 }
 
 .vshanuy-contact__choice:has(input:focus-visible) {

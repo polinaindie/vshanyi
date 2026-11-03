@@ -2,6 +2,10 @@
 
 .vshanuy-contacts-page {
   --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
+  /* Lead band under hairline: primary mail ↔ topic row */
+  --contacts-lead-band: calc(
+    64px + 19px + 8px + (clamp(20px, 16.9px + 0.816vw, 28px) * 1.2)
+  );
 
   background: var(--paper);
   color: var(--text);
@@ -144,6 +148,7 @@
 @media (min-width: 1024px) {
   .vshanuy-contacts-page__form .vshanuy-contact__header {
     margin-inline: -16px;
+    margin-bottom: 0;
     padding-inline: 16px;
   }
 
@@ -155,6 +160,31 @@
   .vshanuy-contacts-page__list li {
     margin-inline: -16px;
     padding-inline: 16px;
+  }
+
+  /* Topic pack to bottom — T-join with primary mail row across mid V */
+  .vshanuy-contacts-page__link--primary {
+    box-sizing: border-box;
+    min-height: var(--contacts-lead-band);
+  }
+
+  .vshanuy-contacts-page__form .vshanuy-contact__topic {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: var(--contacts-lead-band);
+    min-height: var(--contacts-lead-band);
+  }
+
+  .vshanuy-contacts-page__form .vshanuy-contact__topic legend {
+    float: left;
+    width: 100%;
+  }
+
+  .vshanuy-contacts-page__form .vshanuy-contact__topic-options {
+    clear: both;
+    width: 100%;
   }
 }
 
@@ -180,6 +210,7 @@
   font-family: var(--font-text);
   font-size: 12px;
   letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
   color: var(--text-secondary);
 }
 
