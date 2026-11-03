@@ -6,7 +6,7 @@
 }
 
 .vshanuy-project-slider {
-  margin-top: var(--space-silence);
+  margin-top: 96px;
 }
 
 .vshanuy-project-slider--about {
@@ -321,16 +321,49 @@
 .vshanuy-projects-page__list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  row-gap: 64px;
-  margin: var(--space-5) 0 0;
+  row-gap: 0;
+  margin: 96px 0 0;
   padding: 0;
   list-style: none;
   overflow: visible;
 }
 
 .vshanuy-projects-page__item {
+  position: relative;
   min-width: 0;
-  padding-inline: 16px;
+  padding: 16px;
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+}
+
+body:not(.vshanuy-direction-page--gromada) .vshanuy-projects-page__item::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: var(--vshanuy-page-grid-line);
+  pointer-events: none;
+}
+
+body:not(.vshanuy-direction-page--gromada) .vshanuy-projects-page__item:nth-child(odd)::before {
+  display: none;
+}
+
+body:not(.vshanuy-direction-page--gromada) .vshanuy-projects-page__item::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+  pointer-events: none;
+}
+
+body:not(.vshanuy-direction-page--gromada) .vshanuy-projects-page__item:hover,
+body:not(.vshanuy-direction-page--gromada) .vshanuy-projects-page__item:focus-within {
+  background: var(--beige);
 }
 
 /* Смуга керування: «‹ 9:00 ›» */
@@ -410,7 +443,20 @@
 
   .vshanuy-projects-page__list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    row-gap: 96px;
+    row-gap: 0;
+    margin-top: 240px;
+  }
+
+  .vshanuy-project-slider:not(.vshanuy-project-slider--about) {
+    margin-top: 240px;
+  }
+
+  body:not(.vshanuy-direction-page--gromada) .vshanuy-projects-page__item:nth-child(odd)::before {
+    display: block;
+  }
+
+  body:not(.vshanuy-direction-page--gromada) .vshanuy-projects-page__item:nth-child(4n + 1)::before {
+    display: none;
   }
 
   .vshanuy-project-slider__meta {
@@ -448,6 +494,80 @@
 
   .vshanuy-project__passport > div + div {
     border-left: var(--line-muted);
+  }
+}
+
+/* «Інші проєкти» на сторінках проєктів: V від H над картками крізь «‹ 9:00 ›», шапка маскує лінію */
+.vshanuy-project-slider:not(.vshanuy-project-slider--about) {
+  position: relative;
+}
+
+.vshanuy-project-slider:not(.vshanuy-project-slider--about)::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+  background-repeat: no-repeat;
+  background-size: 1px 100%;
+  background-position: calc(50% - 0.5px) 0;
+}
+
+.vshanuy-project-slider:not(.vshanuy-project-slider--about) .vshanuy-project-slider__head {
+  position: relative;
+  z-index: 4;
+  margin-bottom: 0;
+  background: var(--paper);
+}
+
+.vshanuy-project-slider:not(.vshanuy-project-slider--about) .vshanuy-project-slider__viewport {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+}
+
+.vshanuy-project-slider:not(.vshanuy-project-slider--about) .vshanuy-project-slider__controls {
+  position: relative;
+  z-index: 1;
+}
+
+.vshanuy-project-slider:not(.vshanuy-project-slider--about) .vshanuy-project-slider__bar {
+  position: relative;
+  z-index: 4;
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-project-slider:not(.vshanuy-project-slider--about)::after {
+    background-image:
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+    background-size: 1px 100%, 1px 100%, 1px 100%;
+    background-position:
+      calc(25% - 0.5px) 0,
+      calc(50% - 0.5px) 0,
+      calc(75% - 0.5px) 0;
+  }
+}
+
+/* Перший напрям (Громади) лишає свій ритм сітки проєктів */
+.vshanuy-direction-page--gromada .vshanuy-projects-page__list {
+  row-gap: 64px;
+}
+
+.vshanuy-direction-page--gromada .vshanuy-projects-page__item {
+  padding: 0 16px;
+  border-top: 0;
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-direction-page--gromada .vshanuy-projects-page__list {
+    row-gap: 96px;
+    margin-top: 0;
   }
 }
 

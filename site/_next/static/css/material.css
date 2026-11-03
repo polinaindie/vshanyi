@@ -643,3 +643,57 @@
     grid-column: 1 / -1;
   }
 }
+
+/* Тиша між блоками статті. Громади лишаються на старому ритмі. */
+.vshanuy-article-page:not(.vshanuy-direction-page--gromada) .vshanuy-article {
+  padding: 48px 8px 0;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page--gromada) .vshanuy-article__cover,
+.vshanuy-article-page:not(.vshanuy-direction-page--gromada) .vshanuy-article__layout,
+.vshanuy-article-page:not(.vshanuy-direction-page--gromada) .vshanuy-article__related,
+.vshanuy-article-page:not(.vshanuy-direction-page--gromada) .vshanuy-direction__projects,
+.vshanuy-article-page:not(.vshanuy-direction-page--gromada) .vshanuy-direction__related {
+  margin-top: var(--vshanuy-block-gap, 96px);
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-article-page:not(.vshanuy-direction-page--gromada) .vshanuy-article {
+    padding-top: 96px;
+  }
+
+  .vshanuy-article-page:not(.vshanuy-direction-page--gromada) .vshanuy-article__layout:has(.vshanuy-article__aside) {
+    position: relative;
+  }
+
+  /* V між колонкою автора і текстом: від низу фото крізь тишу, без заходу на знімок */
+  .vshanuy-article-page:not(.vshanuy-direction-page--gromada) .vshanuy-article__layout:has(.vshanuy-article__aside)::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: calc(-1 * var(--vshanuy-block-gap, 240px));
+    bottom: 0;
+    left: 25%;
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+
+  /* Та сама 25% крізь тишу і мітку «Інші публікації» до H сітки карток.
+     Картки далі ведуть свою V. Мітка лишається ліворуч від лінії. */
+  .vshanuy-article-page:not(.vshanuy-direction-page--gromada) article:has(.vshanuy-article__aside) + .vshanuy-article__related .vshanuy-article__related-head {
+    position: relative;
+  }
+
+  .vshanuy-article-page:not(.vshanuy-direction-page--gromada) article:has(.vshanuy-article__aside) + .vshanuy-article__related .vshanuy-article__related-head::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: calc(-1 * var(--vshanuy-block-gap, 240px));
+    bottom: calc(-1 * var(--space-3));
+    left: 25%;
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+}
