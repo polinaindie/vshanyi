@@ -916,7 +916,7 @@ body.vshanuy-about-page > .vshanuy-site-footer {
   }
 }
 
-/* CTA — same behaviour as the footer «Підтримати» */
+/* CTA — Piazzolla + Крапка (як BlockButton primary) */
 
 .vshanuy-about-page__cta {
   box-sizing: border-box;
@@ -927,26 +927,33 @@ body.vshanuy-about-page > .vshanuy-site-footer {
   margin-top: var(--space-3);
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 6px;
   padding: 10px 12px;
   border: 0;
-  border-radius: var(--radius);
+  border-radius: 0;
   background: var(--ink);
   color: var(--paper);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
+  font-family: "Piazzolla", Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: 0.08em;
+  letter-spacing: normal;
+  text-transform: none;
   text-decoration: none;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
 .vshanuy-about-page__cta > span[aria-hidden="true"] {
-  font-size: 20px;
-  line-height: 1;
-  transform: translateX(-4px);
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  flex: none;
+  width: 7px;
+  height: 5px;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  background: currentColor;
+  -webkit-mask: url("../media/Krapka.png") center / contain no-repeat;
+  mask: url("../media/Krapka.png") center / contain no-repeat;
+  transition: opacity 300ms ease-out;
 }
 
 .vshanuy-about-page__cta:hover,
@@ -957,7 +964,7 @@ body.vshanuy-about-page > .vshanuy-site-footer {
 
 .vshanuy-about-page__cta:hover > span[aria-hidden="true"],
 .vshanuy-about-page__cta:focus-visible > span[aria-hidden="true"] {
-  transform: translateX(4px);
+  opacity: 0.7;
 }
 
 .vshanuy-about-page__cta:focus-visible {

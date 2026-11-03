@@ -2604,7 +2604,7 @@ header.sticky.vshanuy-desktop-header {
   overflow: hidden;
   font-size: 0;
   line-height: 0;
-  color: transparent;
+  /* Inherit button color — transparent + currentColor makes the mask invisible */
   background: currentColor;
   -webkit-mask: url("../media/Krapka.png") center / contain no-repeat;
   mask: url("../media/Krapka.png") center / contain no-repeat;
@@ -3123,7 +3123,7 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   overflow: hidden;
   font-size: 0;
   line-height: 0;
-  color: transparent;
+  /* Inherit button color — transparent + currentColor makes the mask invisible */
   background: currentColor;
   -webkit-mask: url("../media/Krapka.png") center / contain no-repeat;
   mask: url("../media/Krapka.png") center / contain no-repeat;
@@ -4523,14 +4523,15 @@ button.vshanuy-contact__submit {
 .vshanuy-collab-page__cta > span[aria-hidden="true"],
 .vshanuy-merch-page__cta > span[aria-hidden="true"],
 .vshanuy-contact__submit > span[aria-hidden="true"],
-.vshanuy-block-button__arrow {
+.vshanuy-block-button__arrow,
+.vshanuy-block-button__mark {
   flex: none !important;
   width: 7px !important;
   height: 5px !important;
   overflow: hidden !important;
   font-size: 0 !important;
   line-height: 0 !important;
-  color: transparent !important;
+  /* Inherit button color — transparent + currentColor makes the mask invisible */
   background: currentColor !important;
   -webkit-mask: url("../media/Krapka.png") center / contain no-repeat !important;
   mask: url("../media/Krapka.png") center / contain no-repeat !important;

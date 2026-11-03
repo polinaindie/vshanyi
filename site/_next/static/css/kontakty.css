@@ -383,8 +383,7 @@ a.vshanuy-section-label__trail:focus-visible {
   outline-offset: 2px;
 }
 
-/* Primary CTA — ink → yellow, як на головній */
-
+/* Submit visuals — font-overrides shared CTAs (Piazzolla + Крапка) */
 .vshanuy-contact__submit {
   box-sizing: border-box;
   display: inline-flex;
@@ -393,27 +392,34 @@ a.vshanuy-section-label__trail:focus-visible {
   min-height: 44px;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 6px;
   padding: 10px 12px;
   border: 0;
   border-radius: 0;
   background: var(--ink);
   color: var(--paper);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
+  font-family: "Piazzolla", Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: 0.08em;
+  letter-spacing: normal;
+  text-transform: none;
   text-decoration: none;
   cursor: pointer;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 
 .vshanuy-contact__submit > span[aria-hidden="true"] {
-  font-size: 20px;
-  line-height: 1;
-  transform: translateX(-4px);
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  flex: none;
+  width: 7px;
+  height: 5px;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  background: currentColor;
+  -webkit-mask: url("../media/Krapka.png") center / contain no-repeat;
+  mask: url("../media/Krapka.png") center / contain no-repeat;
+  transition: opacity 300ms ease-out;
 }
 
 .vshanuy-contact__submit:hover,
@@ -424,7 +430,7 @@ a.vshanuy-section-label__trail:focus-visible {
 
 .vshanuy-contact__submit:hover > span[aria-hidden="true"],
 .vshanuy-contact__submit:focus-visible > span[aria-hidden="true"] {
-  transform: translateX(4px);
+  opacity: 0.7;
 }
 
 .vshanuy-contact__submit:focus-visible {
@@ -437,9 +443,5 @@ a.vshanuy-section-label__trail:focus-visible {
   .vshanuy-contact__submit > span[aria-hidden="true"],
   .vshanuy-contacts-page__value {
     transition: none;
-  }
-
-  .vshanuy-contact__submit > span[aria-hidden="true"] {
-    transform: none;
   }
 }
