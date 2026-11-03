@@ -1,10 +1,6 @@
 /* «Напрями роботи»: усі напрями одразу, по 2 в ряд (на 4 колонках — span 2). «Проєкти» — сітка нижче. */
 /* Картка напряму — direction-card.css, підключений у HTML перед цим файлом. */
 
-.vshanuy-activity-page {
-  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
-}
-
 .vshanuy-activity-page > .vshanuy-site-footer {
   margin-top: 0;
 }
@@ -35,15 +31,15 @@
   isolation: isolate;
 }
 
-/* Центральна V між картками — крізь сітку й тишу main до футера */
+/* Центральна V між картками — крізь сітку до футера (main без нижньої тиші) */
 .vshanuy-activity__directions::after {
   content: "";
   position: absolute;
   top: 0;
+  bottom: 0;
   left: calc(50% - 0.5px);
   z-index: 2;
   width: 1px;
-  height: calc(100% + var(--space-silence));
   background: var(--vshanuy-page-grid-line);
   pointer-events: none;
 }
@@ -60,8 +56,9 @@
   padding-bottom: 32px;
 }
 
-/* Нижня H між рядами; остання картка без лінії знизу (тиша до футера) */
-.vshanuy-activity__directions > li:not(:last-child)::after {
+/* Нижня H — лише під картками, що не стоять в останньому ряду (тиша до футера) */
+.vshanuy-activity__directions > li:nth-last-child(n + 3)::after,
+.vshanuy-activity__directions > li:nth-last-child(2):nth-child(even)::after {
   content: "";
   position: absolute;
   right: 0;
@@ -73,38 +70,11 @@
 
 /* Проєкти */
 .vshanuy-activity__projects {
-  margin-top: var(--space-silence);
-  scroll-margin-top: calc(33px + var(--space-4));
+  scroll-margin-top: calc(var(--vshanuy-header-offset) + var(--space-4));
 }
 
 .vshanuy-activity__projects:focus {
   outline: none;
-}
-
-.vshanuy-activity__projects-head {
-  padding-inline: var(--space-2);
-}
-
-.vshanuy-activity__projects-title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-
-.vshanuy-activity__projects .vshanuy-projects-page__list {
-  margin-top: var(--space-4);
-}
-
-/* Окрема сторінка «Проєкти»: фільтри в шапці, як на «Публікаціях» */
-.vshanuy-activity__projects--page {
-  margin-top: 0;
-}
-
-.vshanuy-activity__projects--page .vshanuy-projects-page__list {
-  margin-top: 96px;
 }
 
 .vshanuy-projects-page__item[hidden] {
@@ -129,16 +99,7 @@
     grid-column: span 2;
   }
 
-  .vshanuy-activity__projects--page .vshanuy-projects-page__list {
-    margin-top: 240px;
-  }
-
-  .vshanuy-activity__directions .vshanuy-directions-carousel__card {
-    padding-bottom: 32px;
-  }
-
   .vshanuy-activity__directions .vshanuy-directions-carousel__copy {
     padding-bottom: 32px;
   }
 }
-

@@ -92,7 +92,7 @@
 
 .vshanuy-directions-carousel__card:hover .vshanuy-directions-carousel__media img,
 .vshanuy-directions-carousel__card:focus-visible .vshanuy-directions-carousel__media img {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
 /* Сітка «Напрями роботи» — фото зверху комірки без зайвого відступу каруселі */

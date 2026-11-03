@@ -51,12 +51,14 @@
 
 .vshanuy-directions-carousel__text {
   margin: 0;
-  max-width: 36ch;
+  max-width: none;
+  width: 100%;
   font-family: var(--font-text);
-  font-size: clamp(16px, 14.8px + 0.32vw, 18px);
-  font-weight: var(--weight-text, 400);
-  line-height: var(--leading-text, 1.55);
-  color: var(--graphite);
+  font-size: var(--vshanuy-body-size);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: normal;
+  color: var(--text-secondary);
 }
 
 .vshanuy-directions-carousel__media {
@@ -90,7 +92,7 @@
 
 .vshanuy-directions-carousel__card:hover .vshanuy-directions-carousel__media img,
 .vshanuy-directions-carousel__card:focus-visible .vshanuy-directions-carousel__media img {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
 /* Сітка «Напрями роботи» — фото зверху комірки без зайвого відступу каруселі */

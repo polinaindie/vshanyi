@@ -1,8 +1,6 @@
 /* Partners page — mirrored in site/_next/static/css/partnery.css */
 
 .vshanuy-partners-page {
-  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
-
   position: relative;
   margin: 0;
   min-height: 100%;
@@ -34,7 +32,12 @@
   z-index: 1;
 }
 
-/* Page */
+/* Один silence перед футером (pad-bottom main) — V рядів доходять до футера */
+.vshanuy-partners-page > .vshanuy-site-footer {
+  margin-top: 0;
+}
+
+/* Page header — без ліній */
 
 .vshanuy-partners-page__main {
   padding: var(--space-section-top) 8px var(--space-silence);
@@ -46,17 +49,15 @@
 
 .vshanuy-partners-page__title {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  text-wrap: balance;
 }
 
+/* Текст — тиша над блоком без ліній, далі власна верхня H */
+
 .vshanuy-partners-page__section {
-  margin-top: var(--space-4);
+  position: relative;
+  margin-top: var(--space-silence-mobile);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-partners-page__split {
@@ -70,10 +71,10 @@
 }
 
 .vshanuy-partners-page__prose p {
-  margin: 0 0 16px;
+  margin: 0 0 var(--space-2);
   color: var(--ink);
   font-family: var(--font-text);
-  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
+  font-size: var(--vshanuy-body-size);
   line-height: 1.55;
 }
 
@@ -84,21 +85,22 @@
 .vshanuy-partners-page__prose p.vshanuy-partners-page__accent {
   color: var(--text);
   font-family: var(--font-display);
-  font-size: clamp(28px, 18px + 1.6vw, 44px);
+  font-size: var(--vshanuy-h2-size);
   font-weight: 300;
   line-height: 1.08;
-  letter-spacing: normal;
   text-wrap: balance;
 }
 
 .vshanuy-partners-page__prose p.vshanuy-partners-page__accent:not(:last-of-type) {
-  margin-bottom: 32px;
+  margin-bottom: var(--space-3);
 }
 
-/* Logos — same cell metrics as .vshanuy-partners on the homepage */
+/* Logos — same cell metrics as .vshanuy-partners on the homepage.
+   H над кожним рядом (верх блока + стик); під останнім рядом H немає. */
 
 .vshanuy-partners-page__logos {
-  margin-top: var(--space-silence);
+  position: relative;
+  margin-top: var(--space-silence-mobile);
 }
 
 .vshanuy-partners-page__list {
@@ -110,12 +112,44 @@
 }
 
 .vshanuy-partners-page__item {
+  position: relative;
   display: flex;
   min-width: 0;
   min-height: 144px;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: var(--space-rhythm-3);
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+}
+
+/* V на лівому краї комірки: mobile — mid (парні), desktop — 25/50/75 */
+.vshanuy-partners-page__item::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: var(--vshanuy-page-grid-line);
+  pointer-events: none;
+}
+
+.vshanuy-partners-page__item:nth-child(odd)::before {
+  display: none;
+}
+
+/* V сітки логотипів продовжуються крізь тишу до H рядів проєктів */
+.vshanuy-partners-page__logos::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 100%;
+  left: 50%;
+  width: 1px;
+  height: var(--space-silence-mobile);
+  background: var(--vshanuy-page-grid-line);
+  pointer-events: none;
 }
 
 .vshanuy-partners-page__link {
@@ -125,7 +159,6 @@
   width: 100%;
   min-height: 44px;
   text-decoration: none;
-  border-radius: var(--radius);
 }
 
 .vshanuy-partners-page__link:focus-visible {
@@ -160,17 +193,19 @@
   }
 }
 
-/* Partner rows — logo | description | project */
+/* Partner rows — logo | description | project.
+   H — верх блока і стик між рядами; під останнім рядом H немає. */
 
 .vshanuy-partners-page__projects {
-  margin-top: var(--space-4);
+  margin-top: var(--space-silence-mobile);
 }
 
 .vshanuy-partners-page__rows {
+  position: relative;
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: var(--line-muted);
+  border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-partners-page__row {
@@ -178,7 +213,10 @@
   grid-template-columns: minmax(0, 1fr);
   gap: var(--space-2);
   padding: var(--space-3) var(--space-2);
-  border-bottom: var(--line-muted);
+}
+
+.vshanuy-partners-page__row + .vshanuy-partners-page__row {
+  border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-partners-page__row-logo {
@@ -187,7 +225,6 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  border-radius: var(--radius);
 }
 
 .vshanuy-partners-page__row-logo img {
@@ -211,7 +248,7 @@
   margin: 0;
   color: var(--ink);
   font-family: var(--font-text);
-  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
+  font-size: var(--vshanuy-body-size);
   line-height: 1.55;
 }
 
@@ -225,8 +262,8 @@
 
 .vshanuy-partners-page__row-label {
   color: var(--text);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(12px, calc(12px + 4 * (100vw - 375px) / 1225), 16px);
+  font-family: var(--font-text);
+  font-size: var(--vshanuy-caption-size);
   font-weight: 400;
   line-height: 1.2;
 }
@@ -235,9 +272,9 @@
   display: inline-flex;
   min-height: 44px;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-1);
   color: var(--ink);
-  font-family: "Fixel", system-ui, sans-serif;
+  font-family: var(--font-text);
   font-size: 12px;
   font-weight: 600;
   line-height: 1;
@@ -285,6 +322,25 @@
 /* Layout */
 
 @media (min-width: 1024px) {
+  .vshanuy-partners-page__section,
+  .vshanuy-partners-page__logos,
+  .vshanuy-partners-page__projects {
+    margin-top: var(--space-silence-desktop);
+  }
+
+  /* Текст у кол. 2–3: V на 25% і 75% від H блока крізь тишу до H логотипів; mid знято */
+  .vshanuy-partners-page__section::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: calc(-1 * var(--space-silence-desktop));
+    left: 25%;
+    width: calc(50% + 1px);
+    border-left: 1px solid var(--vshanuy-page-grid-line);
+    border-right: 1px solid var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
 
   .vshanuy-partners-page__split {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -303,7 +359,24 @@
 
   .vshanuy-partners-page__item {
     min-height: 176px;
-    padding: 32px;
+    padding: var(--space-3);
+  }
+
+  .vshanuy-partners-page__item:nth-child(odd)::before {
+    display: block;
+  }
+
+  .vshanuy-partners-page__item:nth-child(4n + 1)::before {
+    display: none;
+  }
+
+  .vshanuy-partners-page__logos::after {
+    left: 25%;
+    width: calc(50% + 1px);
+    height: var(--space-silence-desktop);
+    border-left: 1px solid var(--vshanuy-page-grid-line);
+    border-right: 1px solid var(--vshanuy-page-grid-line);
+    background: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)) center / 1px 100% no-repeat;
   }
 
   .vshanuy-partners-page__row {
@@ -320,5 +393,19 @@
   .vshanuy-partners-page__row-text {
     grid-column: 2 / span 2;
     max-width: none;
+  }
+
+  /* V 25/75 на рядах (текст у кол. 2–3 знімає mid) → pad main → футер */
+  .vshanuy-partners-page__rows::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: calc(-1 * var(--space-silence));
+    left: 25%;
+    width: calc(50% + 1px);
+    border-left: 1px solid var(--vshanuy-page-grid-line);
+    border-right: 1px solid var(--vshanuy-page-grid-line);
+    pointer-events: none;
   }
 }

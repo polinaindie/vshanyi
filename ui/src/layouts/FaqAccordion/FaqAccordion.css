@@ -1,21 +1,25 @@
 .vshanuy-faq {
-  padding: var(--space-silence) var(--space-2);
+  padding: var(--space-rhythm-8, 96px) var(--space-rhythm-1, 8px);
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-faq {
+    padding-block: var(--space-rhythm-9, 120px);
+  }
 }
 
 .vshanuy-faq h2 {
   margin: var(--space-2) 0 var(--space-4);
   font-family: var(--font-display);
-  font-size: var(--step-3);
-  line-height: var(--leading-display);
+  font-size: var(--vshanuy-title-size);
+  line-height: 1;
   font-weight: var(--weight-display);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .vshanuy-faq__item {
-  border-top: var(--line-muted);
-}
-
-.vshanuy-faq__item:last-child {
-  border-bottom: var(--line-muted);
+  border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-faq__trigger {
@@ -23,26 +27,34 @@
   grid-template-columns: 3rem 1fr auto;
   gap: var(--space-2);
   width: 100%;
+  min-height: 44px;
   padding: var(--space-2) 0;
   border: 0;
   background: transparent;
+  color: var(--ink);
   text-align: left;
   cursor: pointer;
   font-family: var(--font-display);
-  font-size: var(--step-1);
+  font-size: var(--vshanuy-card-title-size);
   font-weight: var(--weight-display);
+}
+
+.vshanuy-faq__trigger:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
 }
 
 .vshanuy-faq__index {
   color: var(--text-muted);
   font-family: var(--font-text);
-  font-size: var(--step--1);
+  font-size: 12px;
   letter-spacing: var(--tracking-label);
 }
 
 .vshanuy-faq__answer {
   margin: 0 0 var(--space-3);
   padding-left: calc(3rem + var(--space-2));
+  font-size: var(--vshanuy-body-size);
   color: var(--text-secondary);
   max-width: 48ch;
 }

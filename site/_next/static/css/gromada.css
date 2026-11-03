@@ -16,7 +16,6 @@
    Mobile: без mid V. Ділення — hairline рядів. */
 
 .vshanuy-gromada-page {
-  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
   --gromada-silence: 96px;
 
   margin: 0;
@@ -202,7 +201,7 @@
   margin-top: var(--gromada-silence);
   padding-top: 32px;
   border-top: 1px solid var(--vshanuy-page-grid-line);
-  scroll-margin-top: calc(33px + 32px);
+  scroll-margin-top: calc(var(--vshanuy-header-offset) + 32px);
 }
 
 .vshanuy-gromada__part:focus {
@@ -332,7 +331,7 @@
 
 .vshanuy-gromada__cta {
   align-items: center;
-  gap: 49px !important;
+  gap: 48px !important;
   max-width: calc(100% - 16px);
   margin: 40px 8px 0;
 }
@@ -410,7 +409,7 @@ a.vshanuy-gromada__row-title {
 
 /* Підпис під назвою рядка — як опис картки проєкту на головній, не абзац. */
 span.vshanuy-gromada__note {
-  font-size: clamp(13px, 12.5px + 0.2vw, 15px);
+  font-size: var(--vshanuy-note-size);
   line-height: 1.45;
 }
 
@@ -438,44 +437,10 @@ a.vshanuy-gromada__row:focus-visible,
   background: var(--beige);
 }
 
-/* Нумерація матеріалів */
-
-.vshanuy-gromada__register--steps {
-  counter-reset: gromada-step;
-}
-
-.vshanuy-gromada__register--steps > li {
-  counter-increment: gromada-step;
-}
-
-.vshanuy-gromada__register--steps .vshanuy-gromada__row,
-.vshanuy-gromada__register--steps .vshanuy-gromada__plain {
-  grid-template-columns: 2.5ch minmax(0, 1fr) auto;
-}
-
-.vshanuy-gromada__register--steps .vshanuy-gromada__index {
-  color: var(--graphite);
-  font-family: var(--font-text);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.12em;
-  font-variant-numeric: tabular-nums;
-}
-
-.vshanuy-gromada__register--steps .vshanuy-gromada__index::before {
-  content: counter(gromada-step, decimal-leading-zero);
-}
-
-.vshanuy-gromada__links {
-  margin: 0;
-  color: var(--ink);
-}
-
 /* Чати */
 
 .vshanuy-gromada__chats {
-  scroll-margin-top: calc(33px + 32px);
+  scroll-margin-top: calc(var(--vshanuy-header-offset) + 32px);
 }
 
 .vshanuy-gromada__chats > summary {
@@ -733,7 +698,7 @@ a.vshanuy-gromada__row:focus-visible,
 
 .vshanuy-gromada__slab {
   margin-top: var(--gromada-silence);
-  scroll-margin-top: calc(33px + 32px);
+  scroll-margin-top: calc(var(--vshanuy-header-offset) + 32px);
 }
 
 .vshanuy-gromada__head {
@@ -773,8 +738,26 @@ a.vshanuy-gromada__row:focus-visible,
 }
 
 .vshanuy-gromada__cards > li {
+  position: relative;
   min-width: 0;
   border-top: 1px solid var(--vshanuy-page-grid-line);
+}
+
+/* Неповний ряд проєктів: H над рядом тягнеться крізь порожні колонки до краю сітки. */
+.vshanuy-gromada__cards--projects > li:last-child::after {
+  position: absolute;
+  top: -1px;
+  left: 100%;
+  width: 100%;
+  height: 1px;
+  background: var(--vshanuy-page-grid-line);
+  pointer-events: none;
+}
+
+@media (max-width: 1023px) {
+  .vshanuy-gromada__cards--projects > li:last-child:nth-child(odd)::after {
+    content: "";
+  }
 }
 
 .vshanuy-gromada__card {
@@ -846,7 +829,7 @@ a.vshanuy-gromada__row:focus-visible,
 .vshanuy-gromada__cards--projects .vshanuy-gromada__card h3 {
   margin: 24px 0 0;
   font-family: "Piazzolla", Georgia, serif;
-  font-size: clamp(16px, 14.5px + 0.4vw, 20px);
+  font-size: var(--vshanuy-card-title-size);
   font-weight: 300;
   line-height: 1.15;
   letter-spacing: normal;
@@ -863,7 +846,7 @@ a.vshanuy-gromada__row:focus-visible,
   line-clamp: 4;
   color: var(--text-secondary);
   font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(13px, 12.5px + 0.2vw, 15px);
+  font-size: var(--vshanuy-note-size);
   font-weight: 400;
   line-height: 1.45;
   letter-spacing: normal;
@@ -1021,8 +1004,10 @@ a.vshanuy-gromada__row:focus-visible,
       100% 0;
   }
 
-  #dlya-hromad::after,
-  .vshanuy-gromada__slab::after {
+  /* Верхня H бежевого блока — на всю ширину екрана.
+     Шапка «Проєктів» і «Інших напрямів» без верхньої горизонталі:
+     вертикалі йдуть крізь неї до лінії над картками. */
+  #dlya-hromad::after {
     content: "";
     position: absolute;
     z-index: 3;
@@ -1032,26 +1017,10 @@ a.vshanuy-gromada__row:focus-visible,
     width: 100vw;
     margin-left: -50vw;
     pointer-events: none;
-    background-image:
-      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
-      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
-    background-size: 100% 1px, 100% 1px;
-    background-position: center top, center bottom;
-    background-repeat: no-repeat;
-  }
-
-  #dlya-hromad::after,
-  #doslidzhennya::after,
-  .vshanuy-gromada__slab::after {
     background-image: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
     background-size: 100% 1px;
     background-position: center top;
-  }
-
-  /* Шапка «Проєктів» і «Інших напрямів» без верхньої горизонталі.
-     Вертикалі йдуть крізь неї до лінії над картками. */
-  .vshanuy-gromada__slab::after {
-    content: none;
+    background-repeat: no-repeat;
   }
 
   /* 25% починається під заголовком і йде крізь панелі, низ бежевого блока
@@ -1406,6 +1375,20 @@ a.vshanuy-gromada__row:focus-visible,
 
   .vshanuy-gromada__cards--projects > li {
     grid-column: span 1;
+  }
+
+  .vshanuy-gromada__cards--projects > li:last-child:nth-child(4n + 1)::after {
+    content: "";
+    width: 300%;
+  }
+
+  .vshanuy-gromada__cards--projects > li:last-child:nth-child(4n + 2)::after {
+    content: "";
+    width: 200%;
+  }
+
+  .vshanuy-gromada__cards--projects > li:last-child:nth-child(4n + 3)::after {
+    content: "";
   }
 
   /* «Проєкти»: 25/50/75 крізь заголовок, картки і повітря до «Інших напрямів». */

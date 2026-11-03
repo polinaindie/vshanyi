@@ -43,8 +43,8 @@ export function MerchPage({
 
       <main className="vshanuy-merch-page__main">
         <header className="vshanuy-merch-page__intro">
-          <h1 className="vshanuy-merch-page__title">Мерч.</h1>
-          <p className="vshanuy-merch-page__lead">
+          <h1 className="vshanuy-merch-page__title vshanuy-type-title">Мерч.</h1>
+          <p className="vshanuy-merch-page__lead vshanuy-type-lead">
             Щоб підтримати ГО «Вшануй», ви можете придбати мерч. Зараз у доступі є різні наліпки.
           </p>
         </header>

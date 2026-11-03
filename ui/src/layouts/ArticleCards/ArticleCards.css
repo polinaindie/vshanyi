@@ -1,14 +1,16 @@
 .vshanuy-articles {
-  padding: var(--space-silence) var(--space-2);
+  padding: var(--space-rhythm-8, 96px) var(--space-rhythm-1, 8px);
 }
 
 .vshanuy-articles__header h2 {
   margin: var(--space-2) 0 var(--space-4);
   font-family: var(--font-display);
-  font-size: var(--step-3);
-  line-height: var(--leading-display);
+  font-size: var(--vshanuy-title-size);
+  line-height: 1;
   font-weight: var(--weight-display);
+  letter-spacing: -0.02em;
   max-width: 22ch;
+  text-wrap: balance;
 }
 
 .vshanuy-articles__list {
@@ -17,35 +19,36 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: var(--line-muted);
-}
-
-@media (min-width: 960px) {
-  .vshanuy-articles__list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+  border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-articles__card {
-  padding: var(--space-3);
-  border-bottom: var(--line-muted);
+  padding: var(--space-rhythm-2, 16px);
 }
 
-@media (min-width: 960px) {
-  .vshanuy-articles__card {
-    border-bottom: 0;
-    border-right: 1px solid var(--grid-line);
+.vshanuy-articles__card + .vshanuy-articles__card {
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-articles {
+    padding-block: var(--space-rhythm-9, 120px);
   }
 
-  .vshanuy-articles__card:last-child {
-    border-right: 0;
+  .vshanuy-articles__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .vshanuy-articles__card + .vshanuy-articles__card {
+    border-top: 0;
+    border-left: 1px solid var(--vshanuy-page-grid-line);
   }
 }
 
 .vshanuy-articles__tag,
 .vshanuy-articles__date {
   margin: 0 0 var(--space-1);
-  font-size: var(--step--1);
+  font-size: var(--vshanuy-caption-size);
   letter-spacing: var(--tracking-label);
   color: var(--text-muted);
 }
@@ -53,13 +56,14 @@
 .vshanuy-articles__card h3 {
   margin: 0 0 var(--space-2);
   font-family: var(--font-display);
-  font-size: var(--step-1);
+  font-size: var(--vshanuy-card-title-size);
   line-height: var(--leading-display);
   font-weight: var(--weight-display);
 }
 
 .vshanuy-articles__summary {
   margin: 0;
+  font-size: var(--vshanuy-body-size);
   color: var(--text-secondary);
   max-width: 34ch;
 }
@@ -71,7 +75,7 @@
   gap: 8px;
   margin-top: 24px;
   color: var(--ink);
-  font-family: "Fixel", system-ui, sans-serif;
+  font-family: var(--font-text);
   font-size: 12px;
   font-weight: 600;
   line-height: 1;

@@ -55,7 +55,7 @@
   border-bottom: var(--line-muted);
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1024px) {
   .vshanuy-practices__card {
     flex-basis: 50%;
     border-right: 1px solid var(--grid-line);

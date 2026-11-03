@@ -2,37 +2,51 @@
 
 /* «Інші проєкти» — слайдер в один ряд, як «Наші проєкти» на головній */
 
+/* Вертикалі колонок: mid (mobile) і 25/50/75 (desktop) — один набір для слайдера, сітки й «Проєктів». */
+.vshanuy-project-slider,
+.vshanuy-projects-page__list,
+.vshanuy-projects-index-page {
+  --vshanuy-slider-v: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+  --vshanuy-slider-v-mid: calc(50% - 0.5px) 0;
+  --vshanuy-slider-v-cols: var(--vshanuy-slider-v), var(--vshanuy-slider-v), var(--vshanuy-slider-v);
+  --vshanuy-slider-v-cols-size: 1px 100%, 1px 100%, 1px 100%;
+  --vshanuy-slider-v-cols-position: calc(25% - 0.5px) 0, calc(50% - 0.5px) 0, calc(75% - 0.5px) 0;
+}
+
 /* Заголовок проєкту — на --space-section-top, фото нижче тексту. Крихти на місці стрілки «назад». */
-.vshanuy-project-page .vshanuy-article__back + .vshanuy-article__title,
 .vshanuy-project-page .vshanuy-crumbs + .vshanuy-article__title,
 .vshanuy-project__intro .vshanuy-article__title {
   margin-top: 0;
 }
 
 .vshanuy-project-slider {
-  margin-top: var(--space-silence);
+  position: relative;
+  margin-top: var(--space-silence-mobile, 96px);
 }
 
-/* Вбудовано в «Про нас» (#proekty) — сітка як blockSelectedProjects на головній */
 .vshanuy-project-slider--about {
-  position: relative;
   margin-top: 0;
 }
 
 /* V від H над картками крізь viewport і блок «‹ 9:00 ›» */
-#proekty .vshanuy-project-slider--about::after {
+#proekty .vshanuy-project-slider--about::after,
+.vshanuy-project-slider:not(.vshanuy-project-slider--about)::after,
+.vshanuy-projects-page__list::after {
   content: "";
   position: absolute;
-  top: var(--space-4);
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 3;
   pointer-events: none;
-  background-image: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+  background-image: var(--vshanuy-slider-v);
   background-repeat: no-repeat;
   background-size: 1px 100%;
-  background-position: calc(50% - 0.5px) 0;
+  background-position: var(--vshanuy-slider-v-mid);
+}
+
+#proekty .vshanuy-project-slider--about::after {
+  top: var(--space-4);
+  z-index: 3;
 }
 
 #proekty .vshanuy-project-slider--about .vshanuy-project-slider__viewport {
@@ -58,26 +72,60 @@
   z-index: 1;
 }
 
+/* «Інші проєкти»: V від лінії над картками крізь «‹ 9:00 ›».
+   Шапка маскує V лише в межах тексту — крайні рейки сторінки йдуть крізь неї. */
+.vshanuy-project-slider:not(.vshanuy-project-slider--about)::after {
+  top: 0;
+  z-index: 3;
+}
+
+.vshanuy-project-slider:not(.vshanuy-project-slider--about) .vshanuy-project-slider__head {
+  position: relative;
+  z-index: 4;
+  margin-bottom: 0;
+  background: var(--paper);
+  background-clip: content-box;
+}
+
+.vshanuy-project-slider:not(.vshanuy-project-slider--about) .vshanuy-project-slider__viewport {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+}
+
+.vshanuy-project-slider:not(.vshanuy-project-slider--about) .vshanuy-project-slider__controls {
+  position: relative;
+  z-index: 1;
+}
+
+.vshanuy-project-slider:not(.vshanuy-project-slider--about) .vshanuy-project-slider__bar {
+  position: relative;
+  z-index: 4;
+}
+
 @media (min-width: 1024px) {
+  .vshanuy-project-slider:not(.vshanuy-project-slider--about) {
+    margin-top: var(--space-silence-desktop, 240px);
+  }
+
   #proekty .vshanuy-project-slider--about {
     grid-column: 1 / -1;
   }
 
   #proekty .vshanuy-project-slider--about .vshanuy-project-slider__viewport {
-    margin-top: 96px;
+    margin-top: var(--space-rhythm-8, 96px);
   }
 
   #proekty .vshanuy-project-slider--about::after {
-    top: 96px;
-    background-image:
-      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
-      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
-      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
-    background-size: 1px 100%, 1px 100%, 1px 100%;
-    background-position:
-      calc(25% - 0.5px) 0,
-      calc(50% - 0.5px) 0,
-      calc(75% - 0.5px) 0;
+    top: var(--space-rhythm-8, 96px);
+  }
+
+  #proekty .vshanuy-project-slider--about::after,
+  .vshanuy-project-slider:not(.vshanuy-project-slider--about)::after,
+  .vshanuy-projects-page__list::after {
+    background-image: var(--vshanuy-slider-v-cols);
+    background-size: var(--vshanuy-slider-v-cols-size);
+    background-position: var(--vshanuy-slider-v-cols-position);
   }
 }
 
@@ -169,12 +217,11 @@
   }
 }
 
+/* Паспорт стоїть у хедері сторінки (до фото) — без ліній. */
 .vshanuy-project__passport {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   margin: 32px calc(-1 * var(--space-2)) 0;
-  border-top: var(--line-muted);
-  border-bottom: var(--line-muted);
 }
 
 .vshanuy-project__passport > div {
@@ -188,7 +235,7 @@
 .vshanuy-project__passport dd {
   margin: 0;
   font-family: var(--font-text);
-  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
+  font-size: var(--vshanuy-body-size);
   line-height: 1.55;
 }
 
@@ -260,32 +307,24 @@
   margin-top: 32px;
 }
 
-/* Сторінка «Проєкти»: усі картки одразу, 2 в ряд до 1024 і 4 далі. Не слайдер.
-   Лінії як B-team / B-projects-slider: H над рядом і між рядами, V 50% → 25/50/75. */
+/* Сітка карток («Проєкти», «Проєкти в межах діяльності»): 2 в ряд до 1024 і 4 далі. Не слайдер.
+   V — overlay списку (mid → 25/50/75). H — верх кожного ряду: border картки, перша картка ряду
+   тягне лінію ліворуч, остання — праворуч крізь порожні колонки, до краю контейнера
+   з overflow-x: clip. Лінії не накладаються одна на одну. Під останнім рядом H немає. */
 .vshanuy-projects-page__list {
-  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
-
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0;
-  margin: var(--space-5) 0 0;
+  margin: 0;
   padding: 0;
   list-style: none;
   overflow: visible;
 }
 
-/* V mid (mobile) крізь усі ряди — стик з H на межах клітинок */
 .vshanuy-projects-page__list::after {
-  content: "";
-  position: absolute;
-  inset: 0;
+  top: 0;
   z-index: 2;
-  pointer-events: none;
-  background-image: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
-  background-repeat: no-repeat;
-  background-size: 1px 100%;
-  background-position: calc(50% - 0.5px) 0;
 }
 
 .vshanuy-projects-page__item {
@@ -294,10 +333,44 @@
   min-width: 0;
   padding: 16px;
   box-sizing: border-box;
-  /* H на повну ширину комірки → безперервна смуга ряду (і з фільтрами) */
   border-top: 1px solid var(--vshanuy-page-grid-line);
   background-color: transparent;
   transition: background-color 300ms ease-out;
+}
+
+.vshanuy-projects-page__item::before,
+.vshanuy-projects-page__item::after {
+  position: absolute;
+  top: -1px;
+  z-index: 2;
+  width: 100vw;
+  height: 1px;
+  background: var(--vshanuy-page-grid-line);
+  pointer-events: none;
+}
+
+.vshanuy-projects-page__item::before {
+  right: 100%;
+}
+
+.vshanuy-projects-page__item::after {
+  left: 100%;
+}
+
+@media (max-width: 1023px) {
+  .vshanuy-projects-page__item:nth-child(2n + 1 of :not([hidden]))::before,
+  .vshanuy-projects-page__item:nth-child(2n of :not([hidden]))::after,
+  .vshanuy-projects-page__item:nth-last-child(1 of :not([hidden]))::after {
+    content: "";
+  }
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-projects-page__item:nth-child(4n + 1 of :not([hidden]))::before,
+  .vshanuy-projects-page__item:nth-child(4n of :not([hidden]))::after,
+  .vshanuy-projects-page__item:nth-last-child(1 of :not([hidden]))::after {
+    content: "";
+  }
 }
 
 .vshanuy-projects-page__item:hover,
@@ -323,7 +396,7 @@
 
 .vshanuy-project-slider__time {
   font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(12px, 10.775px + 0.3265vw, 16px);
+  font-size: var(--vshanuy-caption-size);
   line-height: 1;
   color: var(--ink);
 }
@@ -384,18 +457,6 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .vshanuy-projects-page__list::after {
-    background-image:
-      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
-      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
-      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
-    background-size: 1px 100%, 1px 100%, 1px 100%;
-    background-position:
-      calc(25% - 0.5px) 0,
-      calc(50% - 0.5px) 0,
-      calc(75% - 0.5px) 0;
-  }
-
   .vshanuy-project-slider__meta {
     flex-direction: row;
     align-items: baseline;
@@ -428,19 +489,10 @@
     grid-column: span 2;
     padding-inline: var(--space-2);
   }
-
-  .vshanuy-project__passport > div + div {
-    border-left: var(--line-muted);
-  }
 }
 
-/* «Проєкти»: крайні рейки на 8px (стик з хедером і футером), внутрішні V крізь тишу до футера.
-   H рядів — на всю ширину екрана. ::before лишається лівою рейкою, не 75%. */
-.vshanuy-projects-index-page {
-  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
-  --vshanuy-projects-index-v-line: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
-}
-
+/* «Проєкти»: крайні рейки на 8px (стик з хедером і футером). V сітки — від першого ряду до футера
+   (main без нижньої тиші), не ріже заголовок і фільтри. H рядів — на всю ширину екрана (main обрізає лінію). */
 .vshanuy-projects-index-page > .vshanuy-site-footer {
   margin-top: 0;
 }
@@ -454,10 +506,10 @@
   isolation: isolate;
   overflow-x: clip;
   /* Середина (mobile) / 75% (desktop) на всю висоту main, включно з тишею */
-  background-image: var(--vshanuy-projects-index-v-line);
+  background-image: var(--vshanuy-slider-v);
   background-repeat: no-repeat;
   background-size: 1px 100%;
-  background-position: calc(50% - 0.5px) 0;
+  background-position: var(--vshanuy-slider-v-mid);
 }
 
 .vshanuy-projects-index-page .vshanuy-materials-page__main > * {
@@ -469,55 +521,9 @@
   margin-top: var(--space-3);
 }
 
-/* H кожного ряду — до лівого і правого краю екрана */
-.vshanuy-projects-index-page .vshanuy-projects-page__item {
-  border-top: 0;
-  border-left: 0;
-}
-
-.vshanuy-projects-index-page .vshanuy-projects-page__item::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: calc(50% - 50vw);
-  z-index: 2;
-  width: 100vw;
-  height: 1px;
-  background: var(--vshanuy-page-grid-line);
-  pointer-events: none;
-}
-
-/* V сітки від першого ряду крізь тишу до футера (не ріже заголовок і фільтри) */
-.vshanuy-projects-index-page .vshanuy-projects-page__list::after {
-  content: "";
-  display: block;
-  top: 0;
-  bottom: auto;
-  left: 0;
-  z-index: 3;
-  width: 100%;
-  height: calc(100% + var(--space-silence));
-  background-image: var(--vshanuy-projects-index-v-line);
-  background-repeat: no-repeat;
-  background-size: 1px 100%;
-  background-position: calc(50% - 0.5px) 0;
-}
-
 @media (min-width: 1024px) {
   .vshanuy-projects-index-page .vshanuy-materials-page__main {
     background-position: calc(8px + 0.75 * (100% - 16px)) 0;
-  }
-
-  .vshanuy-projects-index-page .vshanuy-projects-page__list::after {
-    background-image:
-      var(--vshanuy-projects-index-v-line),
-      var(--vshanuy-projects-index-v-line),
-      var(--vshanuy-projects-index-v-line);
-    background-size: 1px 100%, 1px 100%, 1px 100%;
-    background-position:
-      calc(25% - 0.5px) 0,
-      calc(50% - 0.5px) 0,
-      calc(75% - 0.5px) 0;
   }
 
   .vshanuy-projects-index-page > .vshanuy-desktop-header,
@@ -548,16 +554,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .vshanuy-project-slider__slide,
-  .vshanuy-project-slider__media img,
-  .vshanuy-project-slider__desc,
+  .vshanuy-projects-page__item,
   .vshanuy-project-slider__button {
     transition: none;
-  }
-
-  .vshanuy-project-slider__slide:hover .vshanuy-project-slider__media img,
-  .vshanuy-project-slider__slide:focus-within .vshanuy-project-slider__media img,
-  .vshanuy-project-slider__card:hover .vshanuy-project-slider__media img,
-  .vshanuy-project-slider__card:focus-visible .vshanuy-project-slider__media img {
-    transform: none;
   }
 }

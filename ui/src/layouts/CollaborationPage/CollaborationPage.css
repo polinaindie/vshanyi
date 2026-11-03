@@ -1,8 +1,6 @@
 /* Collaboration page — mirrored in site/_next/static/css/spivpratsya.css */
 
 .vshanuy-collab-page {
-  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
-
   position: relative;
   margin: 0;
   min-height: 100%;
@@ -22,7 +20,12 @@
   z-index: 1;
 }
 
-/* Page */
+/* Один silence перед футером (pad-bottom main) — mid V доходить до футера */
+.vshanuy-collab-page > .vshanuy-site-footer {
+  margin-top: 0;
+}
+
+/* Page header — без ліній */
 
 .vshanuy-collab-page__main {
   padding: var(--space-section-top) 8px var(--space-silence);
@@ -34,17 +37,15 @@
 
 .vshanuy-collab-page__title {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  text-wrap: balance;
 }
 
+/* Фото | акцент — тиша над блоком без ліній, далі власна верхня H */
+
 .vshanuy-collab-page__section {
-  margin-top: var(--space-4);
+  position: relative;
+  margin-top: var(--space-silence-mobile);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
 /* Photo */
@@ -71,14 +72,13 @@
 }
 
 .vshanuy-collab-page__prose {
-  max-width: none;
   padding-inline: var(--space-2);
 }
 
 .vshanuy-collab-page__prose p {
-  margin: 0 0 16px;
+  margin: 0 0 var(--space-2);
   font-family: var(--font-text);
-  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
+  font-size: var(--vshanuy-body-size);
   line-height: 1.55;
 }
 
@@ -89,47 +89,33 @@
 .vshanuy-collab-page__prose p.vshanuy-collab-page__accent {
   color: var(--text);
   font-family: var(--font-display);
-  font-size: clamp(28px, 18px + 1.6vw, 44px);
+  font-size: var(--vshanuy-h2-size);
   font-weight: 300;
   line-height: 1.08;
-  letter-spacing: normal;
   text-wrap: balance;
 }
 
-.vshanuy-collab-page__prose p.vshanuy-collab-page__accent:not(:last-of-type) {
-  margin-bottom: 32px;
-}
-
-/* Contact list */
+/* Contact list — H стик абзац | пошта до краю смуги; під останнім рядком H немає */
 
 .vshanuy-collab-page__list {
   list-style: none;
-  margin: var(--space-3) 0 0;
-  padding: 0;
-  border-top: var(--line);
-  border-bottom: var(--line-muted);
+  margin: var(--space-3) calc(-1 * var(--space-2)) 0;
+  padding: 0 var(--space-2);
+  border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-collab-page__link {
   display: grid;
-  grid-template-columns: 7.5rem 1fr auto;
-  align-items: baseline;
-  gap: var(--space-2);
-  min-height: 3rem;
-  padding: var(--space-2) 0;
-  color: var(--ink);
-  text-decoration: none;
-  border-radius: var(--radius);
-}
-
-.vshanuy-collab-page__link--primary {
   grid-template-columns: 1fr;
   gap: var(--space-1);
+  min-height: 3rem;
   padding: var(--space-3) 0;
+  color: var(--ink);
+  text-decoration: none;
 }
 
 .vshanuy-collab-page__service {
-  font-family: "Fixel", system-ui, sans-serif;
+  font-family: var(--font-text);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: var(--tracking-label);
@@ -139,7 +125,8 @@
 .vshanuy-collab-page__value {
   min-width: 0;
   font-family: var(--font-display);
-  font-size: var(--step-1);
+  font-size: clamp(var(--step-1), 5vw, var(--step-2));
+  font-weight: 300;
   line-height: 1.2;
   overflow-wrap: anywhere;
   text-decoration: underline;
@@ -147,11 +134,6 @@
   text-underline-offset: 0.2em;
   text-decoration-color: transparent;
   transition: text-decoration-color 250ms ease-out;
-}
-
-.vshanuy-collab-page__link--primary .vshanuy-collab-page__value {
-  font-size: clamp(var(--step-1), 5vw, var(--step-2));
-  font-weight: 300;
 }
 
 .vshanuy-collab-page__link:hover .vshanuy-collab-page__value {
@@ -169,41 +151,34 @@
   }
 }
 
-/* Formats */
+/* Formats — у кожного блока своя верхня H; між блоками з'єднане повітря */
 
 .vshanuy-collab-page__formats,
 .vshanuy-collab-page__format + .vshanuy-collab-page__format,
 .vshanuy-collab-page__closing {
-  margin-top: var(--space-silence);
+  margin-top: var(--space-silence-mobile);
 }
 
 .vshanuy-collab-page__format,
 .vshanuy-collab-page__closing {
+  position: relative;
   padding-top: var(--space-3);
-  border-top: var(--line);
+  border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-collab-page__format {
-  scroll-margin-top: calc(33px + var(--space-3));
+  scroll-margin-top: calc(var(--vshanuy-header-offset) + var(--space-3));
 }
 
 .vshanuy-collab-page__format-title {
   margin: 0;
   padding-inline: var(--space-2);
-  font-family: var(--font-display);
-  font-size: clamp(24px, calc(24px + 32 * (100vw - 375px) / 1225), 56px);
-  font-weight: 300;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  text-wrap: balance;
 }
 
 .vshanuy-collab-page__format > .vshanuy-collab-page__figure,
 .vshanuy-collab-page__format > .vshanuy-collab-page__prose {
   margin-top: var(--space-3);
 }
-
-/* CTA visuals from BlockButton */
 
 /* Photo placeholder — until the real photo arrives */
 
@@ -214,7 +189,7 @@
   justify-content: center;
   background: var(--beige);
   color: var(--text-secondary);
-  font-family: "Fixel", system-ui, sans-serif;
+  font-family: var(--font-text);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: var(--tracking-label);
@@ -233,6 +208,32 @@
 /* Layout */
 
 @media (min-width: 1024px) {
+  .vshanuy-collab-page__section,
+  .vshanuy-collab-page__formats,
+  .vshanuy-collab-page__format + .vshanuy-collab-page__format,
+  .vshanuy-collab-page__closing {
+    margin-top: var(--space-silence-desktop);
+  }
+
+  /* Mid V між фото і текстом: від H кожного блока крізь тишу до H наступного */
+  .vshanuy-collab-page__section::before,
+  .vshanuy-collab-page__format::before,
+  .vshanuy-collab-page__closing::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: calc(-1 * var(--space-silence-desktop));
+    left: calc(50% - 0.5px);
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+
+  /* Останній блок: mid V → pad main → футер */
+  .vshanuy-collab-page__closing::before {
+    bottom: calc(-1 * var(--space-silence));
+  }
 
   .vshanuy-collab-page__split {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -257,6 +258,7 @@
 
   .vshanuy-collab-page__format-title {
     grid-column: 1 / span 2;
+    min-width: 0;
   }
 
   .vshanuy-collab-page__format > .vshanuy-collab-page__figure {

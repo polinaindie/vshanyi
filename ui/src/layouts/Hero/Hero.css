@@ -26,7 +26,7 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1024px) {
   .vshanuy-hero__guides {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -51,7 +51,7 @@
   color: var(--text-inverse);
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1024px) {
   .vshanuy-hero__grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0;
@@ -78,7 +78,7 @@
   grid-column: 1 / -1;
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1024px) {
   .vshanuy-hero__title {
     grid-column: 2 / 4;
     font-size: var(--step-4);
@@ -103,7 +103,7 @@
   display: none;
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1024px) {
   .vshanuy-hero__spacer {
     display: block;
   }

@@ -104,7 +104,7 @@ export function CollaborationPage({
 
       <main className="vshanuy-collab-page__main">
         <header className="vshanuy-collab-page__intro">
-          <h1 className="vshanuy-collab-page__title" id="collab-title">
+          <h1 className="vshanuy-collab-page__title vshanuy-type-title" id="collab-title">
             Співпраця.
           </h1>
         </header>
@@ -140,7 +140,7 @@ export function CollaborationPage({
                 id={format.id}
                 aria-labelledby={`${format.id}-title`}
               >
-                <h2 className="vshanuy-collab-page__format-title" id={`${format.id}-title`}>
+                <h2 className="vshanuy-collab-page__format-title vshanuy-type-heading" id={`${format.id}-title`}>
                   {format.title}
                 </h2>
                 <figure className="vshanuy-collab-page__figure">
@@ -196,7 +196,7 @@ export function CollaborationPage({
             <ul className="vshanuy-collab-page__list">
               <li>
                 <a
-                  className="vshanuy-collab-page__link vshanuy-collab-page__link--primary"
+                  className="vshanuy-collab-page__link"
                   href={`mailto:${email}`}
                 >
                   <span className="vshanuy-collab-page__service">Пошта</span>

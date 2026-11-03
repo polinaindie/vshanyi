@@ -1,6 +1,8 @@
 .vshanuy-photo-caption {
   margin: var(--space-1) 0 0;
-  font-size: var(--step--1);
+  font-family: var(--font-text);
+  font-size: 12px;
+  line-height: 1.2;
   letter-spacing: var(--tracking-label);
   color: var(--text-secondary);
   text-transform: uppercase;

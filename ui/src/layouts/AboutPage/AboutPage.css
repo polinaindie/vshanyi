@@ -1,8 +1,6 @@
 /* About page — mirrored in site/_next/static/css/pro-nas.css */
 
 .vshanuy-about-page {
-  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
-
   position: relative;
   margin: 0;
   min-height: 100%;
@@ -25,7 +23,7 @@
   padding: 0 8px var(--space-silence);
 }
 
-/* Continuous 2→4 column guides — T-join section H; outer rails = main::before/after */
+/* Колонкові V 2→4 під секціями; paper секцій знімає їх там, де вони сіли б на контент */
 .vshanuy-about-page__guides {
   pointer-events: none;
   position: absolute;
@@ -38,10 +36,6 @@
 
 .vshanuy-about-page__guides > span {
   border-right: 1px solid var(--vshanuy-page-grid-line);
-}
-
-.vshanuy-about-page__guides > span:first-child {
-  border-left: 0;
 }
 
 .vshanuy-about-page__guides > span:last-child {
@@ -94,23 +88,18 @@
   pointer-events: none;
 }
 
-/* Hero: лише крайні рейки (main::before/after z:2); paper криє внутрішні guides */
+/* Hero: paper криє внутрішні guides — хедер сторінки без ліній */
 .vshanuy-about-page__intro {
   position: relative;
   z-index: 1;
   padding: var(--space-section-top) var(--space-2) var(--space-4);
   background: var(--paper);
-  border-bottom: 0;
 }
 
 .vshanuy-about-page__title {
   margin: 0;
-  padding: 0;
-  background: transparent;
-  border: 0;
   font-family: "Piazzolla", Georgia, serif;
-  /* .vshanuy-type-title — text-title-40 з головної */
-  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
+  font-size: var(--vshanuy-title-size);
   line-height: 1;
   font-weight: 300;
   letter-spacing: -0.02em;
@@ -119,19 +108,16 @@
 .vshanuy-about-page__lead {
   max-width: none;
   margin: var(--space-3) 0 0;
-  padding: 0;
-  background: transparent;
-  border: 0;
   color: var(--text-secondary);
   font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
+  font-size: var(--vshanuy-body-size);
   font-weight: 400;
   line-height: 1.55;
 }
 
 .vshanuy-about-page__section {
   margin-top: 0;
-  padding-top: var(--space-5);
+  padding-top: var(--space-rhythm-9);
   border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
@@ -143,24 +129,11 @@
   border-top: 0;
 }
 
-/*
-  Mid V лише ≥1024 (як kontakty): на <1024 split — 1 кол., лінія на 50%
-  різала б заголовок/прозу. Desktop: prose кол. 1–2, portrait 3–5.
-*/
-#istoriya .vshanuy-about-page__split {
-  margin-top: 0;
-}
-
 /* Layout only — типографіка ALL CAPS з Foundations/SectionLabel */
 .vshanuy-about-page__label {
-  margin: 0 var(--space-2);
-  padding-bottom: var(--space-2);
-  border-bottom: var(--line);
-}
-
-.vshanuy-about-page__label--plain {
-  padding-bottom: 0;
-  border-bottom: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 /* Photos */
@@ -188,21 +161,17 @@
   text-transform: uppercase;
 }
 
-/* Банер + історія: H зверху стикує з intro; V — з page guides */
+/* Банер + історія: paper криє guides; mid V історії — #istoriya::before */
 .vshanuy-about-page__story-band {
   position: relative;
   z-index: 1;
   display: flow-root;
-  margin-top: 0;
   background: var(--paper);
-  /* Без border-top: intro вже має border-bottom — один стик */
 }
 
+/* Full-bleed між крайніми лініями (inset 8px main) — без зайвого cell pad */
 .vshanuy-about-page__figure--wide {
-  margin-top: 0;
-  /* Full-bleed між крайніми лініями (inset 8px main) — без зайвого cell pad */
   padding-inline: 0;
-  border-bottom: 0;
 }
 
 /* Банер над гайдами — лінії структурно під фото */
@@ -211,41 +180,18 @@
   z-index: 2;
 }
 
-/* Інсет-фото: paper криє внутрішні V; H зверху/знизу + pad 16 — як articles на головній */
-.vshanuy-about-page__portrait,
-.vshanuy-about-page__team-photo {
+/* Портрет: paper криє внутрішні V; H лише як стик з прозою (mobile), під ним — повітря */
+.vshanuy-about-page__portrait {
+  margin: 0;
   padding: 16px;
   background: var(--paper);
   border-top: 1px solid var(--vshanuy-page-grid-line);
-  border-bottom: 1px solid var(--vshanuy-page-grid-line);
-}
-
-.vshanuy-about-page__portrait {
-  /* figcaption лишається в клітинці під img */
-  margin: 0;
 }
 
 /* Дієслова: inset лише на li (8px), щоб фото й текст збігалися */
 .vshanuy-about-page__verb-photo {
   margin: 0;
   padding: 0;
-  background: transparent;
-  border: 0;
-}
-
-.vshanuy-about-page__team-photo {
-  margin: 0;
-}
-
-.vshanuy-about-page__figure--wide figcaption {
-  padding-inline: var(--space-2);
-}
-
-.vshanuy-about-page__portrait img {
-  aspect-ratio: 3 / 2;
-  height: auto;
-  object-fit: cover;
-  object-position: center;
 }
 
 /* History — не дзеркало головної: текст зліва, альбомне фото справа (2+2) */
@@ -254,44 +200,34 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-3);
-  margin-top: var(--space-3);
 }
 
 .vshanuy-about-page__prose {
-  max-width: none;
   padding-inline: var(--space-2);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
 }
 
-.vshanuy-about-page__prose p {
+.vshanuy-about-page__prose p,
+.vshanuy-about-page__aside p {
   margin: 0;
   font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
+  font-size: var(--vshanuy-body-size);
   font-weight: 400;
   line-height: 1.55;
   color: var(--text-secondary);
 }
 
-.vshanuy-about-page__aside p {
-  margin: 0 0 16px;
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
-  font-weight: 400;
-  line-height: 1.55;
-  color: var(--text-secondary);
-}
-
-.vshanuy-about-page__aside p:last-child {
-  margin-bottom: 0;
+.vshanuy-about-page__aside p:not(:last-of-type) {
+  margin-bottom: var(--space-rhythm-2);
 }
 
 .vshanuy-about-page__prose .vshanuy-about-page__accent {
   margin: 0;
   color: var(--text);
   font-family: "Piazzolla", Georgia, serif;
-  font-size: clamp(28px, 18px + 1.6vw, 44px);
+  font-size: var(--vshanuy-h2-size);
   font-weight: 300;
   line-height: 1.08;
   letter-spacing: normal;
@@ -301,8 +237,7 @@
 /* Mission & vision — як blockHeadline на головній: мітка → h2 = 32px */
 
 .vshanuy-about-page__quote {
-  margin: 32px 0 0;
-  padding-inline: var(--space-2);
+  margin: 0;
 }
 
 .vshanuy-about-page__quote p,
@@ -310,23 +245,19 @@
   max-width: 18ch;
   margin: 0;
   font-family: "Piazzolla", Georgia, serif;
-  /* text-title-40 як на головній */
-  font-size: clamp(36px, 22.53px + 3.592vw, 80px);
+  font-size: var(--vshanuy-display-size);
   font-weight: 300;
   line-height: 1;
   letter-spacing: -0.02em;
 }
 
 .vshanuy-about-page__aside {
-  max-width: 60ch;
-  margin-top: 24px;
-  padding-inline: var(--space-2);
+  margin: 0;
 }
 
 .vshanuy-about-page__headline-frame {
   position: relative;
-  box-sizing: border-box;
-  padding-top: 96px;
+  padding-top: var(--space-rhythm-8);
   padding-bottom: var(--space-3);
 }
 
@@ -343,24 +274,6 @@
   flex-direction: column;
   gap: 32px;
   padding-inline: 16px;
-  background: transparent;
-  border: 0;
-  box-sizing: border-box;
-}
-
-#misiya .vshanuy-about-page__label {
-  margin: 0;
-  padding: 0;
-  width: auto;
-  background: transparent;
-  border: 0;
-}
-
-#misiya .vshanuy-about-page__quote {
-  margin: 0;
-  padding: 0;
-  background: transparent;
-  border: 0;
 }
 
 #misiya .vshanuy-about-page__quote p {
@@ -368,23 +281,20 @@
   width: 100%;
 }
 
-#misiya .vshanuy-about-page__aside {
-  margin: 0;
-  padding: 0;
-  max-width: none;
-  background: transparent;
-  border: 0;
-}
-
+/* Верхня H — від .section; нижньої немає: її дає верх #shcho-robymo (один стик) */
 #misiya {
   padding-top: 0;
   background: var(--paper);
-  border-bottom: 1px solid var(--vshanuy-page-grid-line);
+}
+
+/* Paper знімає mid V: на <1024 дієслова на всю ширину, лінія різала б текст */
+#shcho-robymo {
+  background: var(--paper);
 }
 
 @media (min-width: 1024px) {
   #misiya .vshanuy-about-page__headline-frame {
-    padding-top: 240px;
+    padding-top: var(--space-rhythm-10);
   }
 
   /* V кол. 2|3 і 3|4 — порожні кол. 3–4, лінії видно */
@@ -395,19 +305,16 @@
     top: 0;
     bottom: 0;
     width: 1px;
-    margin-left: -0.5px;
     background: var(--vshanuy-page-grid-line);
     pointer-events: none;
   }
 
   #misiya .vshanuy-about-page__headline-frame::before {
     left: calc(50% - 0.5px);
-    margin-left: 0;
   }
 
   #misiya .vshanuy-about-page__headline-frame::after {
     left: calc(75% - 0.5px);
-    margin-left: 0;
   }
 
   #misiya .vshanuy-about-page__headline-grid {
@@ -434,33 +341,13 @@
   }
 }
 
-/* Проєкти: мітка + h2 — без H; на desktop текст кол. 2–3, V лише зліва кол. 4 */
+/* Проєкти: мітка + h2 — без H; на desktop текст кол. 2–3, кол. 4 — V 75% з page guides */
 .vshanuy-about-page__projects-head {
   display: flex;
   flex-direction: column;
   gap: 32px;
   margin: 0;
   padding: 16px;
-  background: transparent;
-  border: 0;
-  box-sizing: border-box;
-}
-
-#proekty .vshanuy-about-page__projects-head .vshanuy-about-page__label,
-#proekty .vshanuy-about-page__projects-head .vshanuy-about-page__display {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  max-width: none;
-  width: 100%;
-}
-
-#proekty .vshanuy-about-page__projects-head .vshanuy-about-page__display {
-  margin-top: 0;
-  padding-inline: 0;
-  width: auto;
-  max-width: 18ch;
 }
 
 /* Після каруселі — тиша; без H над заголовком проєктів */
@@ -470,6 +357,13 @@
 
 #napryamy + #proekty.vshanuy-about-page__section {
   padding-top: var(--space-4);
+}
+
+/* <1024: mid V з page guides різала б h2 — paper знімає; слайдер малює свою V від H над картками */
+@media (max-width: 1023px) {
+  #proekty {
+    background: var(--paper);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -492,39 +386,18 @@
     padding-inline: 8px;
   }
 
-  /* Мітка + h2 — кол. 2–3; кол. 4 порожня з лівою V */
+  /* Мітка + h2 — кол. 2–3; кол. 4 порожня */
   #proekty .vshanuy-about-page__projects-head > * {
     grid-column: 1 / 3;
   }
-
-  #proekty .vshanuy-about-page__projects-head::after {
-    content: "";
-    grid-column: 3;
-    grid-row: 1 / -1;
-    border-left: 1px solid var(--vshanuy-page-grid-line);
-    pointer-events: none;
-  }
-
-}
-
-/* Історія: мітка всередині prose — одна клітинка з текстом */
-#istoriya .vshanuy-about-page__prose > .vshanuy-about-page__label {
-  margin: 0;
-  padding: 0;
-  width: auto;
-  background: transparent;
-  border: 0;
 }
 
 /* Команда: тиша в pad мітки (paper криє 25/75); без H над міткою */
 #komanda.vshanuy-about-page__section {
   position: relative;
-  margin-top: 0;
   padding-top: 0;
   border-top: 0;
 }
-
-/* Mid V команди — лише ≥1024 (див. media нижче); на мобільному не ріже мітку/картки */
 
 /* Один silence перед футером (main уже має pad-bottom); mid V доходить до guides футера */
 .vshanuy-about-page > .vshanuy-site-footer {
@@ -538,12 +411,9 @@
 #komanda > .vshanuy-about-page__label {
   position: relative;
   z-index: 1;
-  margin: 0;
   padding: calc(var(--space-4) + 16px) 16px 16px;
   width: 100%;
-  box-sizing: border-box;
   background: var(--paper);
-  border: 0;
 }
 
 @media (min-width: 1024px) {
@@ -552,22 +422,15 @@
   }
 }
 
-/* Фото команди — без H; inset на li (16 = як бічні) */
-#komanda .vshanuy-about-page__team-photo {
-  padding: 0;
-  background: transparent;
-  border: 0;
-}
-
 /* Vision — фото + цитата/текст */
 
 .vshanuy-about-page__vision {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
-  margin-top: 0;
 }
 
+/* Верхня H блока; нижня лише як стик фото|текст у мобільному стеку */
 .vshanuy-about-page__vision-photo {
   padding: 16px;
   background: var(--paper);
@@ -580,52 +443,18 @@
   object-position: center;
 }
 
-.vshanuy-about-page__vision-photo figcaption {
-  padding-inline: 0;
-}
-
 .vshanuy-about-page__vision-copy {
   display: flex;
   flex-direction: column;
   gap: 32px;
   padding: 16px;
   background: var(--paper);
-  border-top: 1px solid var(--vshanuy-page-grid-line);
-  border-bottom: 1px solid var(--vshanuy-page-grid-line);
 }
 
-/* Mobile stack: спільний стик фото|текст — без подвійної H */
-@media (max-width: 1023px) {
-  .vshanuy-about-page__vision-copy {
-    border-top: 0;
-  }
-}
-
-/* Мітка над цитатою — без окремої H-огорожі */
 /* Після сітки проєктів — тиша; H лише на блоці фото|текст */
 #bachennya.vshanuy-about-page__section {
   position: relative;
   border-top: 0;
-}
-
-/* Mid V бачення — лише ≥1024; на мобільному фото|текст у стеку без лінії крізь copy */
-
-#bachennya .vshanuy-about-page__vision-copy > .vshanuy-about-page__label {
-  margin: 0;
-  padding: 0;
-  width: auto;
-  background: transparent;
-  border: 0;
-}
-
-.vshanuy-about-page__vision-copy .vshanuy-about-page__quote {
-  margin-top: 0;
-}
-
-.vshanuy-about-page__vision-copy .vshanuy-about-page__aside {
-  margin-left: 0;
-  margin-top: 0;
-  max-width: none;
 }
 
 /* Team */
@@ -642,16 +471,15 @@
   border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
-/* Desktop: V 25/75 на сітці (50% — #komanda::before, continuous з баченням) */
-#komanda .vshanuy-about-page__team::after {
-  content: none;
-}
-
+/* Команда: inset 16 як по боках; H між рядами */
 .vshanuy-about-page__team > li {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
   min-width: 0;
+  padding: 16px;
 }
 
 .vshanuy-about-page__team-photo {
@@ -675,7 +503,7 @@
 .vshanuy-about-page__team h3 {
   margin: 0;
   font-family: "Piazzolla", Georgia, serif;
-  font-size: clamp(16px, 14.5px + 0.4vw, 20px);
+  font-size: var(--vshanuy-card-title-size);
   font-weight: 300;
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -685,13 +513,13 @@
 .vshanuy-about-page__team p {
   margin: 0;
   font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(13px, 12.5px + 0.2vw, 15px);
+  font-size: var(--vshanuy-note-size);
   font-weight: 400;
   line-height: 1.45;
   color: var(--text-secondary);
 }
 
-/* What we do — три колонки на всю ширину (мітку прибрано) */
+/* What we do — три колонки (мітку прибрано) */
 
 .vshanuy-about-page__work {
   display: grid;
@@ -714,7 +542,6 @@
   gap: var(--space-2);
   padding: 8px 8px 16px;
   min-width: 0;
-  box-sizing: border-box;
 }
 
 .vshanuy-about-page__verb-photo img {
@@ -739,156 +566,18 @@
   max-width: 40ch;
   margin: 0;
   font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(16px, 15.4px + 0.163vw, 18px);
+  font-size: var(--vshanuy-body-size);
   font-weight: 400;
   line-height: 1.55;
   color: var(--text-secondary);
 }
 
-/* Directions */
-
-.vshanuy-about-page__display {
-  margin-top: var(--space-4);
-  padding-inline: var(--space-2);
-}
-
-.vshanuy-about-page__directions {
-  display: grid;
-  grid-template-columns: 1fr;
-  margin: var(--space-4) 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.vshanuy-activity-page .vshanuy-about-page__directions {
-  margin-top: var(--space-5);
-}
-
-.vshanuy-about-page__directions li {
-  position: relative;
-  border-top: 1px solid var(--vshanuy-page-grid-line);
-}
-
-/* Нижня H ряду — стик з page guides; V колонок уже continuous */
-.vshanuy-about-page__directions li::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: -1px;
-  left: 0;
-  border-top: 1px solid var(--vshanuy-page-grid-line);
-}
-
-/* Картки як у blockSelectedProjects на головній: pad 16, gap 24, фото 3:2, zoom 1.05 */
-.vshanuy-about-page__direction {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  height: 100%;
-  padding: 16px;
-  box-sizing: border-box;
-  color: var(--ink);
-  text-decoration: none;
-  transition: background-color 300ms ease-out;
-}
-
-.vshanuy-about-page__direction:hover,
-.vshanuy-about-page__direction:focus-visible {
-  background-color: var(--beige);
-}
-
-.vshanuy-about-page__direction:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: -2px;
-}
-
-.vshanuy-about-page__direction-media {
-  display: block;
-  margin: 0;
-  overflow: hidden;
-  background: var(--beige);
-}
-
-.vshanuy-about-page__direction-media img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  transform: scale(1);
-  transform-origin: center;
-  transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
-}
-
-.vshanuy-about-page__direction:hover .vshanuy-about-page__direction-media img,
-.vshanuy-about-page__direction:focus-visible .vshanuy-about-page__direction-media img {
-  transform: scale(1.05);
-}
-
-.vshanuy-about-page__direction-meta {
-  position: relative;
-  flex: 0 0 auto;
-  padding-bottom: 104px;
-  min-width: 0;
-  width: 100%;
-}
-
-.vshanuy-about-page__directions h2,
-.vshanuy-about-page__directions h3 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(16px, 14.5px + 0.4vw, 20px);
-  font-weight: 300;
-  line-height: 1.15;
-  color: var(--ink);
-}
-
-.vshanuy-about-page__directions p {
-  position: absolute;
-  top: calc(100% - 104px + 8px);
-  left: 0;
-  display: -webkit-box;
-  width: 100%;
-  max-width: 36ch;
-  margin: 0;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  color: var(--text-secondary);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(13px, 12.5px + 0.2vw, 15px);
-  font-weight: 400;
-  line-height: 1.45;
-  letter-spacing: 0;
-  text-transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .vshanuy-about-page__direction,
-  .vshanuy-about-page__direction-media img {
-    transition: none;
-  }
-
-  .vshanuy-about-page__direction:hover .vshanuy-about-page__direction-media img,
-  .vshanuy-about-page__direction:focus-visible .vshanuy-about-page__direction-media img {
-    transform: none;
-  }
-}
-
-/* CTA — layout hook; visuals from BlockButton */
+/* CTA — layout hook; visuals from BlockButton. Абзац → CTA = 40 (як на головній) */
 .vshanuy-about-page__cta {
-  margin-top: var(--space-3);
+  margin-top: var(--space-rhythm-5);
 }
 
 /* Layout */
-
-@media (min-width: 640px) {
-  .vshanuy-about-page__directions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
 
 @media (min-width: 1024px) {
   .vshanuy-about-page__lead {
@@ -904,8 +593,7 @@
     aspect-ratio: 21 / 9;
   }
 
-  .vshanuy-about-page__split,
-  .vshanuy-about-page__directions {
+  .vshanuy-about-page__split {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0;
   }
@@ -932,16 +620,14 @@
     z-index: 1;
   }
 
-  /* Проза кол. 1–2 | портрет 3–5; без H; mid V на межі — не крізь гліфи */
+  /* Проза кол. 1–2 | портрет 3–4; без H; mid V на межі — не крізь гліфи */
   #istoriya .vshanuy-about-page__prose {
     grid-column: 1 / 3;
     order: 1;
     min-width: 0;
-    overflow: visible;
     gap: 24px;
     padding: 16px;
     background: var(--paper);
-    border: 0;
   }
 
   #istoriya .vshanuy-about-page__prose > * {
@@ -955,22 +641,6 @@
     min-width: 0;
     align-self: stretch;
     border-top: 0;
-    border-bottom: 0;
-  }
-
-  .vshanuy-about-page__prose .vshanuy-about-page__accent {
-    width: auto;
-    max-width: none;
-  }
-
-  .vshanuy-about-page__quote p {
-    max-width: 75%;
-  }
-
-  .vshanuy-about-page__work {
-    grid-template-columns: 1fr;
-    gap: 0;
-    align-items: start;
   }
 
   /* 4 кол.: 1 порожня, дієслова в 2–4 */
@@ -980,17 +650,12 @@
     gap: 0;
   }
 
-  .vshanuy-about-page__verbs li {
-    padding: 8px 8px 16px;
-  }
-
   /* V 25 / 50 / 75 — одна сітка з каруселлю (без обрізків на li) */
   #shcho-robymo {
     position: relative;
     padding-top: 0;
     padding-bottom: 0;
     overflow: visible;
-    background: var(--paper);
   }
 
   #shcho-robymo .vshanuy-about-page__work,
@@ -999,18 +664,13 @@
     z-index: 1;
   }
 
-  /* V на самій 4-кol сітці ul — збіг з #misiya (50/75) і колонками li */
-  /* 1px перекриття з #napryamy::after на стику секцій */
-  #shcho-robymo .vshanuy-about-page__verbs::after {
-    bottom: -1px;
-  }
-
+  /* V на самій 4-col сітці ul — збіг з #misiya (50/75) і колонками li; −1px — стик з #napryamy::after */
   .vshanuy-about-page__verbs::after {
     content: "";
     position: absolute;
     top: 0;
     right: 0;
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     z-index: 0;
     pointer-events: none;
@@ -1029,15 +689,6 @@
   .vshanuy-about-page__verbs li {
     position: relative;
     z-index: 1;
-  }
-
-  .vshanuy-about-page__verbs::before {
-    content: none;
-    border-right: 0;
-  }
-
-  .vshanuy-about-page__verbs li:not(:last-child) {
-    border-right: 0;
   }
 
   /*
@@ -1077,9 +728,8 @@
   /* Sticky обовʼязковий: vertical scroll → horizontal snap карток; relative ламає runway. */
   .vshanuy-about-page .vshanuy-directions-carousel__pin {
     position: sticky;
-    top: var(--header-height, 33px);
+    top: var(--vshanuy-header-offset);
     padding-inline: 0;
-    box-sizing: border-box;
     overflow: visible;
     background: var(--paper);
   }
@@ -1088,14 +738,7 @@
     content: none;
   }
 
-  .vshanuy-about-page .vshanuy-directions-carousel__header {
-    position: relative;
-    z-index: 2;
-    margin-inline: 0;
-    background: transparent;
-    background-image: none;
-  }
-
+  .vshanuy-about-page .vshanuy-directions-carousel__header,
   .vshanuy-about-page .vshanuy-directions-carousel__viewport {
     position: relative;
     z-index: 2;
@@ -1112,7 +755,7 @@
     display: none !important;
   }
 
-  /* Mid V крізь бачення + тиша до команди; copy лише кол. 3–5 */
+  /* Mid V крізь бачення + тиша до команди; copy лише кол. 3–4 */
   #bachennya::before {
     content: "";
     position: absolute;
@@ -1128,15 +771,16 @@
   #bachennya .vshanuy-about-page__vision {
     position: relative;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0;
     align-items: stretch;
   }
 
+  /* Desktop: фото|текст поруч — під ними повітря до команди, без нижньої H */
   .vshanuy-about-page__vision-photo {
     position: relative;
     z-index: 1;
     grid-column: 1 / 3;
     min-width: 0;
+    border-bottom: 0;
   }
 
   .vshanuy-about-page__vision-copy {
@@ -1144,25 +788,15 @@
     z-index: 1;
     grid-column: 3 / 5;
     min-width: 0;
-    gap: 32px;
-  }
-
-  .vshanuy-about-page__vision-copy .vshanuy-about-page__quote,
-  .vshanuy-about-page__vision-copy .vshanuy-about-page__aside {
-    padding-inline: 0;
+    border-top: 1px solid var(--vshanuy-page-grid-line);
   }
 
   .vshanuy-about-page__vision-copy .vshanuy-about-page__quote p {
     max-width: none;
   }
 
-  .vshanuy-about-page__vision-copy .vshanuy-about-page__aside {
-    margin-top: 0;
-  }
-
   .vshanuy-about-page__team {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0;
   }
 
   /* Mid V крізь тишу + мітку + сітку + pad main → футер */
@@ -1178,6 +812,7 @@
     pointer-events: none;
   }
 
+  /* V 25/75 на сітці (50% — #komanda::before, continuous з баченням) */
   #komanda .vshanuy-about-page__team::after {
     content: "";
     position: absolute;
@@ -1193,14 +828,6 @@
       calc(25% - 0.5px) 0,
       calc(75% - 0.5px) 0;
   }
-}
-
-/* Команда: inset 16 як по боках; H між рядами */
-.vshanuy-about-page__team > li {
-  position: relative;
-  z-index: 1;
-  padding: 16px;
-  box-sizing: border-box;
 }
 
 @media (max-width: 1023px) {

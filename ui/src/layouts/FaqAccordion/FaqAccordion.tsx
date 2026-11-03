@@ -41,19 +41,21 @@ export function FaqAccordion({ items = defaultItems }: FaqAccordionProps) {
       <div className="vshanuy-faq__list">
         {items.map((item, index) => {
           const isOpen = open === index
+          const answerId = `vshanuy-faq-answer-${index + 1}`
           return (
             <div key={item.question} className="vshanuy-faq__item" data-state={isOpen ? 'open' : 'closed'}>
               <button
                 type="button"
                 className="vshanuy-faq__trigger"
                 aria-expanded={isOpen}
+                aria-controls={answerId}
                 onClick={() => setOpen(isOpen ? null : index)}
               >
                 <span className="vshanuy-faq__index">{String(index + 1).padStart(2, '0')}</span>
                 <span>{item.question}</span>
                 <span aria-hidden="true">{isOpen ? '−' : '+'}</span>
               </button>
-              {isOpen ? <p className="vshanuy-faq__answer">{item.answer}</p> : null}
+              <p className="vshanuy-faq__answer" id={answerId} hidden={!isOpen}>{item.answer}</p>
             </div>
           )
         })}

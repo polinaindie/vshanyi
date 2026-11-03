@@ -1,8 +1,6 @@
 /* Merch page — mirrors ui/ MerchPage */
 
 .vshanuy-merch-page {
-  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
-
   position: relative;
   margin: 0;
   min-height: 100%;
@@ -28,25 +26,18 @@
   border: 0;
 }
 
-.vshanuy-page-guides {
-  display: none;
-}
-
-.vshanuy-page-guides > span {
-  border-right: 1px solid var(--vshanuy-page-grid-line);
-}
-
-.vshanuy-page-guides > span:nth-child(n + 2) {
-  display: none;
-}
-
 .vshanuy-merch-page > main,
 .vshanuy-merch-page > .vshanuy-site-footer {
   position: relative;
   z-index: 1;
 }
 
-/* Page */
+/* Один silence перед футером (pad-bottom main) — mid V доходить до футера */
+.vshanuy-merch-page > .vshanuy-site-footer {
+  margin-top: 0;
+}
+
+/* Page header — без ліній */
 
 .vshanuy-merch-page__main {
   padding: var(--space-section-top) 8px var(--space-silence);
@@ -58,31 +49,22 @@
 
 .vshanuy-merch-page__title {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  text-wrap: balance;
 }
 
 .vshanuy-merch-page__lead {
-  font-family: var(--font-text);
-  max-width: none;
   margin: var(--space-3) 0 0;
-  color: var(--text-secondary);
-  font-size: clamp(16px, 15.39px + 0.163vw, 18px);
-  line-height: 1.55;
 }
+
+/* Фото | акцент + CTA — тиша над блоком без ліній, далі власна верхня H */
 
 .vshanuy-merch-page__row {
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
-  margin-top: 0;
-  padding-top: 96px;
+  gap: var(--space-3);
+  margin-top: var(--space-silence-mobile);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-merch-page__figure {
@@ -98,34 +80,25 @@
   object-fit: cover;
 }
 
-.vshanuy-merch-page__figure figcaption {
-  margin-top: 8px;
-  font-family: var(--font-text);
-  font-size: 12px;
-  letter-spacing: var(--tracking-label);
-  color: var(--text-secondary);
-  text-transform: uppercase;
-}
-
 .vshanuy-merch-page__order {
   max-width: 60ch;
   padding-inline: var(--space-2);
 }
 
 .vshanuy-merch-page__accent {
-  margin: 0 0 40px;
+  margin: 0 0 var(--space-rhythm-5);
   font-family: var(--font-display);
-  font-size: clamp(28px, 18px + 1.6vw, 44px);
+  font-size: var(--vshanuy-h2-size);
   font-weight: 300;
   line-height: 1.08;
-  letter-spacing: normal;
   text-wrap: balance;
 }
 
-/* Items */
+/* Items — мітка без H; H над картками; під останнім рядом H немає */
 
 .vshanuy-merch-page__section {
-  margin-top: 96px;
+  position: relative;
+  margin-top: var(--space-silence-mobile);
 }
 
 /* Layout only — типографіка ALL CAPS з Foundations/SectionLabel (font-overrides) */
@@ -134,28 +107,21 @@
 }
 
 .vshanuy-merch-page__items {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 0;
-  margin: 64px 0 0;
+  margin: var(--space-4) 0 0;
   padding: 0;
   list-style: none;
+  border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-merch-page__items li {
-  position: relative;
-  padding: 16px;
-  border-top: 1px solid var(--vshanuy-page-grid-line);
+  padding: var(--space-2);
 }
 
-.vshanuy-merch-page__items li::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: -1px;
-  left: 0;
+.vshanuy-merch-page__items li + li {
   border-top: 1px solid var(--vshanuy-page-grid-line);
-  pointer-events: none;
 }
 
 .vshanuy-merch-page__items .vshanuy-merch-page__figure {
@@ -166,84 +132,20 @@
   aspect-ratio: 3 / 4;
 }
 
-.vshanuy-merch-page__figure .vshanuy-merch-page__item-title {
+.vshanuy-merch-page__item-title {
   margin-top: var(--space-2);
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: var(--vshanuy-card-title-size);
   font-weight: 300;
-  line-height: 1.2;
-  letter-spacing: normal;
+  line-height: 1.15;
+  text-transform: uppercase;
   color: var(--text);
 }
 
-/* CTA — Piazzolla + Крапка (як BlockButton primary) */
-
-.vshanuy-merch-page__cta {
-  box-sizing: border-box;
-  display: inline-flex;
-  width: fit-content;
-  min-width: 200px;
-  min-height: 44px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-  padding: 10px 12px;
-  border: 0;
-  border-radius: 0;
-  background: var(--ink);
-  color: var(--paper);
-  font-family: "Piazzolla", Georgia, serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  text-decoration: none;
-  transition: background-color 300ms ease-out, color 300ms ease-out;
-}
-
-.vshanuy-merch-page__cta > span[aria-hidden="true"] {
-  flex: none;
-  width: 7px;
-  height: 5px;
-  overflow: hidden;
-  font-size: 0;
-  line-height: 0;
-  background: currentColor;
-  -webkit-mask: url("../media/Krapka.png") center / contain no-repeat;
-  mask: url("../media/Krapka.png") center / contain no-repeat;
-  transition: opacity 300ms ease-out;
-}
-
-.vshanuy-merch-page__cta:hover,
-.vshanuy-merch-page__cta:focus-visible {
-  background: var(--yellow);
-  color: var(--ink);
-}
-
-.vshanuy-merch-page__cta:hover > span[aria-hidden="true"],
-.vshanuy-merch-page__cta:focus-visible > span[aria-hidden="true"] {
-  opacity: 0.7;
-}
-
-.vshanuy-merch-page__cta:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .vshanuy-merch-page__cta,
-  .vshanuy-merch-page__cta > span[aria-hidden="true"] {
-    transition: none;
-  }
-}
-
-/* Layout — сітка товарів збігається з 4 колонками сторінки від 1024px. */
+/* Layout — сітка товарів збігається з 4 колонками сторінки від 1024px */
 
 @media (min-width: 1024px) {
-
   .vshanuy-merch-page__lead {
-    font-family: var(--font-text);
     max-width: 50%;
   }
 
@@ -251,47 +153,62 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: end;
     gap: 0;
-    margin-top: 0;
-    padding-top: 240px;
+    margin-top: var(--space-silence-desktop);
   }
 
-  .vshanuy-merch-page__row::before {
+  /* Mid V: від H блока крізь тишу до секції товарів */
+  .vshanuy-merch-page__row::before,
+  .vshanuy-merch-page__section::before {
     content: "";
     position: absolute;
     z-index: 2;
     top: 0;
-    bottom: 0;
     left: calc(50% - 0.5px);
     width: 1px;
     background: var(--vshanuy-page-grid-line);
     pointer-events: none;
   }
 
-  .vshanuy-merch-page__section {
-    margin-top: 240px;
+  .vshanuy-merch-page__row::before {
+    bottom: calc(-1 * var(--space-silence-desktop));
   }
 
-  .vshanuy-merch-page__items {
-    margin-top: 96px;
+  /* Mid V крізь мітку (кол. 1) і картки → pad main → футер */
+  .vshanuy-merch-page__section {
+    margin-top: var(--space-silence-desktop);
+  }
+
+  .vshanuy-merch-page__section::before {
+    bottom: calc(-1 * var(--space-silence));
   }
 
   .vshanuy-merch-page__items {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: var(--space-rhythm-8);
   }
 
   .vshanuy-merch-page__items li:first-child {
     grid-column-start: 2;
   }
 
-  .vshanuy-merch-page__items li::before {
+  .vshanuy-merch-page__items li + li {
+    border-top: 0;
+  }
+
+  /* V 25/75 на ряду карток (50% — section::before) */
+  .vshanuy-merch-page__items::after {
     content: "";
     position: absolute;
+    inset: 0;
     z-index: 2;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 1px;
-    background: var(--vshanuy-page-grid-line);
+    background-image:
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+    background-repeat: no-repeat;
+    background-size: 1px 100%, 1px 100%;
+    background-position:
+      calc(25% - 0.5px) 0,
+      calc(75% - 0.5px) 0;
     pointer-events: none;
   }
 }

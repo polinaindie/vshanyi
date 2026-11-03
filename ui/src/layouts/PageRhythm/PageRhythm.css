@@ -2,7 +2,3 @@
   background: var(--paper);
   color: var(--text);
 }
-
-.vshanuy-page-rhythm > * + * {
-  /* Тиша як матеріал між великими блоками — задана padding секцій (--space-silence) */
-}

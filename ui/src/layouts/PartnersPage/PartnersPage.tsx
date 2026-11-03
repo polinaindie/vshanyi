@@ -67,7 +67,7 @@ export function PartnersPage({ showHeader = true, partners: items = partners }: 
 
       <main className="vshanuy-partners-page__main">
         <header className="vshanuy-partners-page__intro">
-          <h1 className="vshanuy-partners-page__title" id="partners-title">
+          <h1 className="vshanuy-partners-page__title vshanuy-type-title" id="partners-title">
             Партнери.
           </h1>
         </header>

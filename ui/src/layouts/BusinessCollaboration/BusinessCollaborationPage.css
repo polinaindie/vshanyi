@@ -1,3 +1,9 @@
+/*
+  Для бізнесу: hero (beige, хедер сторінки — без ліній) → контекст (paper).
+  Лінії лише в контексті: верхня H на всю ширину + mid V між фото|текстом,
+  крізь тишу main → футер. 25/75 сіли б на фото й текст — їх немає.
+*/
+
 .vshanuy-business-page {
   background: var(--beige);
   color: var(--text);
@@ -11,35 +17,6 @@
   background: var(--beige);
 }
 
-/* Фонові гайди — збігаються з колонками .band */
-.vshanuy-business-page__guides {
-  pointer-events: none;
-  position: absolute;
-  z-index: 2;
-  inset: 0 8px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0;
-}
-
-.vshanuy-business-page__guides > span {
-  border-right: 1px solid var(--grid-line);
-}
-
-.vshanuy-business-page__guides > span:first-child {
-  border-left: 0;
-}
-
-.vshanuy-business-page__guides > span:last-child {
-  border-right: 0;
-}
-
-@media (min-width: 1024px) {
-  .vshanuy-business-page__guides {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
 .vshanuy-business-page__shell > .vshanuy-desktop-header,
 .vshanuy-business-page__main {
   position: relative;
@@ -51,26 +28,12 @@
   background: transparent;
 }
 
-.vshanuy-business-page .vshanuy-desktop-menu__item--activity.vshanuy-desktop-menu__item--nav-active
-  > .vshanuy-desktop-menu__label
-  .vshanuy-desktop-menu__layer {
-  background: var(--graphite);
-  color: var(--paper);
+/* Одна тиша перед футером (pad main); mid V контексту доходить до футера */
+.vshanuy-business-page > .vshanuy-site-footer {
+  margin-top: 0;
 }
 
-.vshanuy-business-page__visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* —— Смуга = та сама сітка, що гайди —— */
+/* —— Смуга: 2 → 4 колонки —— */
 
 .vshanuy-business-page__band {
   display: grid;
@@ -85,20 +48,6 @@
   }
 }
 
-.vshanuy-business-page__cell {
-  min-width: 0;
-  padding: var(--space-3) var(--space-2);
-  box-sizing: border-box;
-}
-
-.vshanuy-business-page__cell--span-2 {
-  grid-column: span 2;
-}
-
-.vshanuy-business-page__cell--span-full {
-  grid-column: 1 / -1;
-}
-
 @keyframes vshanuy-business-page-title-in {
   from {
     opacity: 0;
@@ -111,9 +60,9 @@
   }
 }
 
-/* Hero: full-bleed beige через shell; гайди видимі (main прозорий) */
+/* Hero: full-bleed beige через shell */
 .vshanuy-business-page__band--hero {
-  padding-block: var(--space-5) var(--space-4);
+  padding-block: var(--space-rhythm-9) var(--space-4);
   padding-inline: 8px;
   min-height: min(70vh, 36rem);
   align-content: end;
@@ -126,21 +75,9 @@
   padding-inline: var(--space-1);
 }
 
-.vshanuy-business-page__hero-copy {
-  max-width: none;
-  margin: 0.15em 0 0;
-  font-family: var(--font-display);
-  font-size: clamp(36px, 4vw, 52px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  font-weight: var(--weight-display);
-  text-wrap: balance;
-  color: var(--ink);
-}
-
 @media (min-width: 1024px) {
   .vshanuy-business-page__band--hero {
-    padding-block: 240px 96px;
+    padding-block: var(--space-rhythm-10) var(--space-rhythm-8);
     min-height: min(78vh, 42rem);
   }
 
@@ -150,15 +87,13 @@
   }
 }
 
-.vshanuy-business-page__band:not(.vshanuy-business-page__band--hero) {
-  padding-inline: var(--space-1);
-}
-
-/* Контекст: Anuc 2-й блок — landscape фото 2 кол. + текст col 3–4; тло paper */
+/* Контекст: landscape фото 2 кол. + текст кол. 3–4; тло paper */
 .vshanuy-business-page__band--context {
-  padding-block: var(--space-5);
+  position: relative;
+  padding-block: var(--space-rhythm-9);
+  padding-inline: var(--space-1);
   background: var(--paper);
-  align-items: start;
+  border-top: 1px solid var(--vshanuy-page-grid-line);
   row-gap: var(--space-3);
 }
 
@@ -187,8 +122,7 @@
 .vshanuy-business-page__context-title {
   margin: 0;
   font-family: var(--font-display);
-  /* text-title-40 — як h2 секцій на головній */
-  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
+  font-size: var(--vshanuy-title-size);
   line-height: 1;
   letter-spacing: -0.02em;
   font-weight: var(--weight-display);
@@ -200,15 +134,27 @@
   margin: var(--space-3) 0 0;
   max-width: none;
   color: var(--text-secondary);
-  /* text-body-30 */
-  font-size: clamp(16px, 15.39px + 0.163vw, 18px);
+  font-family: var(--font-text);
+  font-size: var(--vshanuy-body-size);
   line-height: 1.55;
 }
 
 @media (min-width: 1024px) {
   .vshanuy-business-page__band--context {
-    padding-block: 240px;
+    padding-block: var(--space-rhythm-10);
     row-gap: 0;
+  }
+
+  /* Mid V: T з верхньою H → межа фото|текст → тиша main → футер */
+  .vshanuy-business-page__band--context::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: calc(-1 * var(--space-silence));
+    left: calc(50% - 0.5px);
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
   }
 
   .vshanuy-business-page__context-photo {
@@ -224,26 +170,10 @@
   }
 }
 
-.vshanuy-business-page__band--offer-head {
-  padding-block: var(--space-4);
-}
-
-.vshanuy-business-page__band--offer-body {
-  padding-block: var(--space-4);
-}
-
-.vshanuy-business-page__band--consult {
-  padding-block: var(--space-silence) 0;
-}
-
-/* —— Типографіка —— */
+/* —— Типографіка hero —— */
 
 .vshanuy-business-page__eyebrow {
   margin: 0;
-  font-size: var(--step--1);
-  font-weight: 500;
-  letter-spacing: var(--tracking-label);
-  color: var(--text-secondary);
 }
 
 .vshanuy-business-page__title {
@@ -271,200 +201,5 @@
     animation: none;
     transition: none;
     transform: none;
-  }
-}
-
-.vshanuy-business-page__lead {
-  margin: var(--space-3) 0 0;
-  max-width: none;
-  color: var(--text-secondary);
-  font-size: var(--step-1);
-  line-height: 1.4;
-}
-
-@media (min-width: 1024px) {
-  .vshanuy-business-page__lead {
-    max-width: 50%;
-  }
-}
-
-.vshanuy-business-page__figure {
-  margin: 0;
-}
-
-.vshanuy-business-page__figure img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  background: var(--beige);
-}
-
-.vshanuy-business-page__prose-p {
-  margin: 0;
-  max-width: 36ch;
-  color: var(--text-secondary);
-  font-size: var(--step-0);
-  line-height: 1.55;
-}
-
-.vshanuy-business-page__offer-title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: var(--step-3);
-  line-height: var(--leading-display);
-  font-weight: var(--weight-display);
-  text-wrap: balance;
-}
-
-.vshanuy-business-page__offer-kicker {
-  margin: 0;
-  color: var(--ink);
-  font-size: var(--step-0);
-  line-height: 1.4;
-  font-weight: 600;
-}
-
-.vshanuy-business-page__offer-text {
-  margin: var(--space-2) 0 0;
-  max-width: 36ch;
-  color: var(--text-secondary);
-  font-size: var(--step-0);
-  line-height: 1.55;
-}
-
-.vshanuy-business-page__offer-aside {
-  margin: var(--space-3) 0 0;
-  color: var(--text-secondary);
-  font-size: var(--step--1);
-  line-height: 1.45;
-}
-
-.vshanuy-business-page__offer-aside a {
-  color: var(--ink);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-}
-
-.vshanuy-business-page__offer-aside a:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
-}
-
-.vshanuy-business-page__steps {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.vshanuy-business-page__step {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: var(--space-2);
-  align-items: start;
-  min-height: 3rem;
-  padding: var(--space-2) 0;
-  color: var(--ink);
-  text-decoration: none;
-  border-radius: var(--radius);
-}
-
-a.vshanuy-business-page__step:hover .vshanuy-business-page__step-title {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-}
-
-a.vshanuy-business-page__step:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 4px;
-}
-
-.vshanuy-business-page__step-body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  min-width: 0;
-}
-
-.vshanuy-business-page__step-title {
-  font-family: var(--font-display);
-  font-size: var(--step-1);
-  line-height: 1.2;
-  font-weight: var(--weight-display);
-}
-
-.vshanuy-business-page__step-note {
-  color: var(--text-secondary);
-  font-size: var(--step--1);
-  line-height: 1.4;
-}
-
-.vshanuy-business-page__step-arrow {
-  font-size: var(--step-1);
-  padding-top: 0.15em;
-}
-
-.vshanuy-business-page__consult-actions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  justify-content: flex-end;
-  padding-block: var(--space-3);
-}
-
-.vshanuy-business-page__telegram {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  min-height: 1.5rem;
-  width: fit-content;
-  color: var(--ink);
-  font-size: var(--step--1);
-  letter-spacing: var(--tracking-label);
-  text-decoration: none;
-  border-bottom: var(--line);
-  padding-bottom: 0.2rem;
-}
-
-.vshanuy-business-page__telegram:hover {
-  background: var(--beige);
-}
-
-.vshanuy-business-page__telegram:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 4px;
-}
-
-.vshanuy-business-page__consult-email {
-  margin: 0;
-  font-size: var(--step--1);
-  color: var(--text-secondary);
-}
-
-.vshanuy-business-page__consult-email a {
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.vshanuy-business-page__consult-email a:hover {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-}
-
-.vshanuy-business-page__consult-email a:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
-}
-
-@media (max-width: 1023px) {
-  .vshanuy-business-page__band--flip .vshanuy-business-page__cell:first-child {
-    order: 2;
-  }
-
-  .vshanuy-business-page__band--flip .vshanuy-business-page__cell:last-child {
-    order: 1;
   }
 }

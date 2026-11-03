@@ -1,9 +1,11 @@
 import businessVisibleMemory from '../../assets/business-visible-memory.jpg'
 import { DesktopHeader } from '../../components/DesktopHeader/DesktopHeader'
 import { PhotoCaption } from '../../components/PhotoCaption/PhotoCaption'
+import { SectionLabel } from '../../components/SectionLabel/SectionLabel'
 import { SiteFooter } from '../../components/SiteFooter/SiteFooter'
 import '../../components/DesktopHeader/DesktopHeader.css'
 import '../../components/PhotoCaption/PhotoCaption.css'
+import '../../components/SectionLabel/SectionLabel.css'
 import '../../components/SiteFooter/SiteFooter.css'
 import './BusinessCollaborationPage.css'
 
@@ -39,19 +41,12 @@ export function BusinessCollaborationPage({
   return (
     <div className="vshanuy-business-page">
       <div className="vshanuy-business-page__shell">
-        <div className="vshanuy-business-page__guides" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-          <span />
-        </div>
-
         {showHeader ? <DesktopHeader navActiveIndex={0} /> : null}
 
         <main className="vshanuy-business-page__main">
           <header className="vshanuy-business-page__band vshanuy-business-page__band--hero">
             <div className="vshanuy-business-page__hero-content">
-              <p className="vshanuy-business-page__eyebrow">Для бізнесу</p>
+              <SectionLabel className="vshanuy-business-page__eyebrow">Для бізнесу</SectionLabel>
               <h1 className="vshanuy-business-page__title">{headline}</h1>
             </div>
           </header>

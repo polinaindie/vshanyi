@@ -78,6 +78,40 @@ export const defaultMaterials: Material[] = [
   },
 ]
 
+export type MaterialCardProps = {
+  material: Material
+  featured?: boolean
+  eager?: boolean
+}
+
+/** Картка публікації: обкладинка 3:2, мітка, назва; головна — ще лід і «Читати →». */
+export function MaterialCard({ material, featured = false, eager = false }: MaterialCardProps) {
+  return (
+    <a className="vshanuy-materials-page__card" href={material.href}>
+      <img
+        src={material.cover}
+        alt=""
+        width={material.coverWidth}
+        height={material.coverHeight}
+        loading={eager ? undefined : 'lazy'}
+        decoding="async"
+      />
+      <span className="vshanuy-materials-page__body">
+        <span className="vshanuy-materials-page__tag">{material.tag}</span>
+        <span className="vshanuy-materials-page__name">{material.title}</span>
+        {featured && material.excerpt ? (
+          <span className="vshanuy-materials-page__excerpt">{material.excerpt}</span>
+        ) : null}
+        {featured ? (
+          <span className="vshanuy-materials-page__more">
+            Читати <span aria-hidden="true">→</span>
+          </span>
+        ) : null}
+      </span>
+    </a>
+  )
+}
+
 /** Page composition: H1 + фільтр за типом → головний матеріал на всю ширину → картки в колонках сітки. Жовтий-бюджет 0. */
 export function MaterialsPage({ showHeader = true, materials = defaultMaterials }: MaterialsPageProps) {
   const [filter, setFilter] = useState<'all' | MaterialType>('all')
@@ -119,28 +153,7 @@ export function MaterialsPage({ showHeader = true, materials = defaultMaterials 
               className={`vshanuy-materials-page__item${featured ? ' vshanuy-materials-page__item--featured' : ''}`}
               hidden={filter !== 'all' && material.type !== filter}
             >
-              <a className="vshanuy-materials-page__card" href={material.href}>
-                <img
-                  src={material.cover}
-                  alt=""
-                  width={material.coverWidth}
-                  height={material.coverHeight}
-                  loading={material.featured ? undefined : 'lazy'}
-                  decoding="async"
-                />
-                <span className="vshanuy-materials-page__body">
-                  <span className="vshanuy-materials-page__tag">{material.tag}</span>
-                  <span className="vshanuy-materials-page__name">{material.title}</span>
-                  {featured && material.excerpt ? (
-                    <span className="vshanuy-materials-page__excerpt">{material.excerpt}</span>
-                  ) : null}
-                  {featured ? (
-                    <span className="vshanuy-materials-page__more">
-                      Читати <span aria-hidden="true">→</span>
-                    </span>
-                  ) : null}
-                </span>
-              </a>
+              <MaterialCard material={material} featured={featured} eager={material.featured} />
             </li>
             )
           })}

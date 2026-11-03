@@ -42,8 +42,9 @@
   --space-2: 1rem;
   --space-3: 2rem;
   --space-4: 4rem;
-  --space-5: 8rem;
-  --space-silence: clamp(6rem, 14vh, 12rem);
+  --space-5: 7.5rem;
+  /* Тиша між великими секціями — шкала головної: 96 mobile / 240 desktop. */
+  --space-silence: 96px;
 
   /* Форма */
   --radius: 0;
@@ -89,4 +90,10 @@ body {
 
 .logo__timer {
   color: var(--accent);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --space-silence: 240px;
+  }
 }

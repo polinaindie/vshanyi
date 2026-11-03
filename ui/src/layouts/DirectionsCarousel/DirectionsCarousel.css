@@ -17,13 +17,13 @@
 
 .vshanuy-directions-carousel__pin {
   position: sticky;
-  top: var(--header-height, 33px);
+  top: var(--vshanuy-header-offset);
   z-index: 1;
   display: flex;
   flex-direction: column;
   /* Без padding-bottom: нижня H viewport стикується з вертикалями наступної секції. */
-  height: calc(100dvh - var(--header-height, 33px) - 8px);
-  max-height: calc(100dvh - var(--header-height, 33px) - 8px);
+  height: calc(100dvh - var(--vshanuy-header-offset) - 8px);
+  max-height: calc(100dvh - var(--vshanuy-header-offset) - 8px);
   padding-bottom: 0;
   background: var(--paper);
   box-sizing: border-box;
@@ -46,7 +46,7 @@
   row-gap: 24px;
   /* Inset 8px — крайні V продовжують about до нижньої H перед слайдами. */
   margin-inline: 8px;
-  padding: calc(var(--space-silence) / 2) 8px 48px;
+  padding: var(--space-section-top) 8px 48px;
   /* Без верхньої H — лише L/R + нижня (перед слайдами). */
   border: 1px solid var(--directions-carousel-hairline);
   border-top: 0;
@@ -68,7 +68,7 @@
 .vshanuy-directions-carousel__title {
   max-width: 18ch;
   font-family: var(--font-display);
-  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
+  font-size: var(--vshanuy-title-size);
   font-weight: var(--weight-display);
   line-height: 1;
   letter-spacing: -0.02em;

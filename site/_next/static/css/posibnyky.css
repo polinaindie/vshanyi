@@ -1,11 +1,12 @@
-/* Сторінка «Гайди»: нумерований список, розділений лінійками; гайд із файлом має посилання в 4-й колонці */
+/* Сторінка «Гайди»: нумерований список, розділений лінійками; гайд із файлом має посилання в 4-й колонці.
+   Дзеркало: ui/src/layouts/GuidesPage/GuidesPage.css */
 
+/* H зверху кожного гайда; під останнім лінії немає — V доходять до футера. */
 .vshanuy-guides-page__list {
   position: relative;
-  margin: 96px 0 0;
+  margin: var(--vshanuy-block-gap, 96px) 0 0;
   padding: 0;
   list-style: none;
-  border-bottom: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-guides-page__item {
@@ -37,7 +38,6 @@
   font-family: var(--font-display);
   font-size: clamp(28px, 22px + 1.2vw, 40px);
   font-weight: 300;
-  letter-spacing: -0.02em;
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-wrap: balance;
@@ -59,7 +59,6 @@
   gap: 8px;
   padding: 0;
   border: 0;
-  border-radius: var(--radius);
   background: transparent;
   color: var(--ink);
   font-family: "Fixel", system-ui, sans-serif;
@@ -82,8 +81,6 @@
 
 .vshanuy-guides-page__link:hover,
 .vshanuy-guides-page__link:focus-visible {
-  background: transparent;
-  color: var(--ink);
   text-decoration-color: currentColor;
 }
 
@@ -98,19 +95,12 @@
 }
 
 @media (min-width: 1024px) {
-  .vshanuy-guides-page__list {
-    margin-top: 240px;
-  }
-
   /* V на 25% і 75%: текст займає кол. 2–3, лінія його не ріже */
   .vshanuy-guides-page__list::before {
     content: "";
     position: absolute;
     z-index: 2;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    inset: 0;
     pointer-events: none;
     background-image:
       linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),

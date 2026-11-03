@@ -111,8 +111,8 @@ export function SupportPage({
 
       <main className="vshanuy-support-page__main">
         <header className="vshanuy-support-page__intro">
-          <h1 className="vshanuy-support-page__title">{title}</h1>
-          {lead ? <p className="vshanuy-support-page__lead">{lead}</p> : null}
+          <h1 className="vshanuy-support-page__title vshanuy-type-title">{title}</h1>
+          {lead ? <p className="vshanuy-support-page__lead vshanuy-type-lead">{lead}</p> : null}
         </header>
 
         <div className="vshanuy-support-page__row">

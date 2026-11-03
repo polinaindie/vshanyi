@@ -1,6 +1,7 @@
 .vshanuy-values {
-  padding: var(--space-5) var(--space-2);
-  border-block: var(--line-muted);
+  padding: var(--space-rhythm-9) var(--space-2);
+  /* Верхня H блока; під останнім контентом (нотаткою) — повітря, без нижньої */
+  border-top: var(--line-muted);
   background: var(--beige);
 }
 

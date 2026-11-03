@@ -4,11 +4,11 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Контакти — Вшануй</title>
-  <link rel="stylesheet" href="_next/static/css/font-overrides.css?v=20261103menu"/>
-  <link rel="stylesheet" href="_next/static/css/type-roles.css?v=20261103body"/>
-  <link rel="stylesheet" href="_next/static/css/space-roles.css?v=20261103unify"/>
+  <link rel="stylesheet" href="_next/static/css/font-overrides.css?v=20261103refactor"/>
+  <link rel="stylesheet" href="_next/static/css/type-roles.css?v=20261103vars"/>
+  <link rel="stylesheet" href="_next/static/css/space-roles.css?v=20261103vars"/>
   <link rel="stylesheet" href="_next/static/css/block-button.css?v=20261103unify"/>
-  <link rel="stylesheet" href="_next/static/css/kontakty.css?v=20261103lead"/>
+  <link rel="stylesheet" href="_next/static/css/kontakty.css?v=20261103refactor"/>
 </head>
 <body class="vshanuy-contacts-page">
   <header class="sticky"></header>
@@ -100,8 +100,8 @@
               <textarea name="message" rows="5"></textarea>
             </label>
             <div class="vshanuy-contact__full">
-              <button class="vshanuy-contact__submit vshanuy-block-button vshanuy-block-button--primary" type="submit">
-                Надіслати <span aria-hidden="true">→</span>
+              <button class="vshanuy-block-button vshanuy-block-button--primary vshanuy-contact__submit" type="submit">
+                <span class="vshanuy-block-button__label">Надіслати</span><span class="vshanuy-block-button__mark" aria-hidden="true"></span>
               </button>
             </div>
           </form>

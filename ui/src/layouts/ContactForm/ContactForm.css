@@ -9,9 +9,11 @@
 .vshanuy-contact__header h2 {
   margin: var(--space-2) 0 var(--space-2);
   font-family: var(--font-display);
-  font-size: var(--step-3);
-  line-height: var(--leading-display);
+  font-size: var(--vshanuy-title-size);
+  line-height: 1;
+  letter-spacing: -0.02em;
   font-weight: var(--weight-display);
+  text-wrap: balance;
 }
 
 .vshanuy-contact__header p {
@@ -61,7 +63,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
-  font-size: var(--step--1);
+  font-family: var(--font-text);
+  font-size: 12px;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--text-secondary);
@@ -71,7 +74,7 @@
 .vshanuy-contact__field textarea {
   border: 0;
   border-bottom: var(--line);
-  border-radius: var(--radius);
+  border-radius: 0;
   background: transparent;
   padding: var(--space-1) 0;
   color: var(--ink);
@@ -98,7 +101,8 @@
 .vshanuy-contact__topic legend {
   padding: 0;
   margin: 0 0 var(--space-1);
-  font-size: var(--step--1);
+  font-family: var(--font-text);
+  font-size: 12px;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--text-secondary);
@@ -119,11 +123,11 @@
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 4.5rem;
+  min-height: 64px;
   margin: 0 0 -1px;
   padding: var(--space-2);
   border: var(--line);
-  border-radius: var(--radius);
+  border-radius: 0;
   color: var(--ink);
   font-family: var(--font-display);
   font-size: 16px;

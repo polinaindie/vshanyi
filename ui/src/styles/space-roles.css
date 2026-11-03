@@ -16,6 +16,8 @@
   --space-section-top-lg: 96px;
   --space-silence-mobile: 96px;
   --space-silence-desktop: 240px;
+  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
+  --vshanuy-header-offset: var(--header-height, 33px);
 }
 
 @media (min-width: 1024px) {

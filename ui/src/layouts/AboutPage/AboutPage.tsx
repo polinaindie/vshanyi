@@ -189,7 +189,7 @@ export function AboutPage({
                 <SectionLabel
                   as="h2"
                   id="about-history-label"
-                  className="vshanuy-about-page__label vshanuy-about-page__label--plain"
+                  className="vshanuy-about-page__label"
                 >
                   Історія
                 </SectionLabel>
@@ -241,7 +241,7 @@ export function AboutPage({
                 <SectionLabel
                   as="h2"
                   id="about-mission-label"
-                  className="vshanuy-about-page__label vshanuy-about-page__label--plain"
+                  className="vshanuy-about-page__label"
                 >
                   Місія
                 </SectionLabel>
@@ -322,7 +322,7 @@ export function AboutPage({
         <section className="vshanuy-about-page__section" id="proekty" aria-labelledby="about-projects-title">
           <div className="vshanuy-about-page__projects-head">
             <SectionLabel
-              className="vshanuy-about-page__label vshanuy-about-page__label--plain"
+              className="vshanuy-about-page__label"
               aria-hidden="true"
             >
               Наші проєкти
@@ -355,7 +355,7 @@ export function AboutPage({
               <SectionLabel
                 as="h2"
                 id="about-vision-label"
-                className="vshanuy-about-page__label vshanuy-about-page__label--plain"
+                className="vshanuy-about-page__label"
               >
                 Наше бачення
               </SectionLabel>
@@ -389,7 +389,7 @@ export function AboutPage({
           <SectionLabel
             as="h2"
             id="about-team-title"
-            className="vshanuy-about-page__label vshanuy-about-page__label--plain"
+            className="vshanuy-about-page__label"
           >
             Наша команда
           </SectionLabel>
