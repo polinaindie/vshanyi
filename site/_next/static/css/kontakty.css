@@ -56,7 +56,7 @@ a.vshanuy-section-label__trail:focus-visible {
 
 .vshanuy-contacts-page__main {
   position: relative;
-  padding: 48px 8px var(--space-silence);
+  padding: var(--space-section-top) 8px var(--space-silence);
 }
 
 .vshanuy-contacts-page__intro {
@@ -112,10 +112,6 @@ a.vshanuy-section-label__trail:focus-visible {
 }
 
 @media (min-width: 1024px) {
-  .vshanuy-contacts-page__main {
-    padding-top: 96px;
-  }
-
   /* Continuous mid V: стик з mid меню → intro → тиша → сітка → футер */
   .vshanuy-contacts-page__main::before {
     content: "";

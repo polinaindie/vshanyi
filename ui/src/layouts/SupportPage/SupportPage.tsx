@@ -107,12 +107,6 @@ export function SupportPage({
 
   return (
     <div className="vshanuy-support-page">
-      <div className="vshanuy-page-guides" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-        <span />
-      </div>
       {showHeader ? <DesktopHeader /> : null}
 
       <main className="vshanuy-support-page__main">
@@ -177,9 +171,13 @@ export function SupportPage({
               <p className="vshanuy-support-page__text">
                 Щоб підтримати ГО «Вшануй», ви також можете придбати мерч.
               </p>
-              <a className="vshanuy-support-page__link" href="merch.html">
-                Купити мерч <span aria-hidden="true">→</span>
-              </a>
+              <BlockButton
+                className="vshanuy-support-page__link"
+                variant="secondary"
+                href="merch.html"
+              >
+                Купити мерч
+              </BlockButton>
             </section>
           </div>
         </div>

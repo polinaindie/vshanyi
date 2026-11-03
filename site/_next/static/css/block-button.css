@@ -1,0 +1,113 @@
+/* Site mirror of ui BlockButton — Krapka via media/ */
+/*
+  Archive CTA — один компонент, два варіанти.
+  Еталон: головна `.about-vshanuy__link` (primary)
+  і `.vshanuy-guide-button` (secondary).
+  Piazzolla Regular 16/400 + Крапка; жовтий лише на hover/focus.
+*/
+
+.vshanuy-block-button {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  overflow: hidden;
+  width: fit-content;
+  min-width: 200px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 300ms ease-out,
+    color 300ms ease-out,
+    border-color 300ms ease-out;
+}
+
+.vshanuy-block-button--full {
+  width: 100%;
+  min-width: 0;
+}
+
+.vshanuy-block-button--primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.vshanuy-block-button--primary:hover,
+.vshanuy-block-button--primary:focus-visible {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.vshanuy-block-button--secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+
+.vshanuy-block-button--secondary:hover,
+.vshanuy-block-button--secondary:focus-visible {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--ink);
+}
+
+.vshanuy-block-button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.vshanuy-block-button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.vshanuy-block-button__label {
+  min-width: 0;
+}
+
+.vshanuy-block-button__mark {
+  flex: none;
+  width: 7px;
+  height: 5px;
+  background: currentColor;
+  -webkit-mask: url("../media/Krapka.png") center / contain no-repeat;
+  mask: url("../media/Krapka.png") center / contain no-repeat;
+  transition: opacity 300ms ease-out;
+}
+
+.vshanuy-block-button:hover .vshanuy-block-button__mark,
+.vshanuy-block-button:focus-visible .vshanuy-block-button__mark {
+  opacity: 0.7;
+}
+
+/* Parent-link hover (картка гайду з as="span") */
+a:hover .vshanuy-block-button--secondary,
+a:focus-visible .vshanuy-block-button--secondary {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--ink);
+}
+
+a:hover .vshanuy-block-button--secondary .vshanuy-block-button__mark,
+a:focus-visible .vshanuy-block-button--secondary .vshanuy-block-button__mark {
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vshanuy-block-button,
+  .vshanuy-block-button__mark {
+    transition: none;
+  }
+}

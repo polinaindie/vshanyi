@@ -285,7 +285,6 @@ def page(p):
   <link rel="stylesheet" href="../_next/static/css/project-slider.css?v=20261028b"/>
 </head>
 <body class="vshanuy-article-page vshanuy-project-page">
-  <div class="vshanuy-page-guides" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
   <header class="sticky"></header>
 
   <main class="vshanuy-article">
@@ -437,7 +436,6 @@ def list_shell(title, body_class, body, extra_scripts):
   <link rel="stylesheet" href="_next/static/css/diyalnist.css?v={CSS_V['diyal']}"/>
 </head>
 <body class="vshanuy-materials-page {body_class}">
-  <div class="vshanuy-page-guides" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
   <header class="sticky"></header>
 
   <main class="vshanuy-materials-page__main">

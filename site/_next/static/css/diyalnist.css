@@ -64,6 +64,7 @@
   font-family: var(--font-display);
   font-size: clamp(16px, 14.5px + 0.4vw, 20px);
   font-weight: 300;
+  letter-spacing: -0.02em;
   line-height: 1.15;
   text-transform: uppercase;
 }
@@ -95,7 +96,7 @@
 
 .vshanuy-activity__card:hover .vshanuy-activity__media img,
 .vshanuy-activity__card:focus-visible .vshanuy-activity__media img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 /* Підзаголовок під H1 «Напрями роботи.» */
@@ -112,15 +113,19 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .vshanuy-activity__section-title {
   max-width: 24ch;
   margin: 0;
   font-family: var(--font-display);
-  font-size: var(--step-2);
+  /* .vshanuy-type-title / text-title-40 */
+  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1;
+  letter-spacing: -0.02em;
   color: var(--text-secondary);
   text-wrap: balance;
 }
@@ -142,9 +147,10 @@
 .vshanuy-activity__projects-title {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(28px, 22px + 1.2vw, 40px);
+  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   font-weight: 300;
-  line-height: 1.1;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .vshanuy-activity__projects .vshanuy-projects-page__list {

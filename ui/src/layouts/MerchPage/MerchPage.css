@@ -30,23 +30,6 @@
   border: 0;
 }
 
-.vshanuy-page-guides {
-  position: absolute;
-  z-index: 0;
-  inset: 0 8px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  pointer-events: none;
-}
-
-.vshanuy-page-guides > span {
-  border-right: 1px solid var(--vshanuy-page-grid-line);
-}
-
-.vshanuy-page-guides > span:nth-child(n + 2) {
-  display: none;
-}
-
 .vshanuy-merch-page > main,
 .vshanuy-merch-page > .vshanuy-site-footer {
   position: relative;
@@ -56,7 +39,7 @@
 /* Page */
 
 .vshanuy-merch-page__main {
-  padding: var(--space-4) 8px var(--space-silence);
+  padding: var(--space-section-top) 8px var(--space-silence);
 }
 
 .vshanuy-merch-page__intro {
@@ -69,14 +52,16 @@
   font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   line-height: 1;
   font-weight: 300;
+  letter-spacing: -0.02em;
 }
 
 .vshanuy-merch-page__lead {
+  font-family: var(--font-text);
   max-width: 52ch;
   margin: var(--space-3) 0 0;
   color: var(--text-secondary);
-  font-size: var(--step-1);
-  line-height: 1.4;
+  font-size: clamp(16px, 15.39px + 0.163vw, 18px);
+  line-height: 1.55;
 }
 
 .vshanuy-merch-page__row {
@@ -167,19 +152,9 @@
 }
 
 @media (min-width: 1024px) {
-  .vshanuy-page-guides {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .vshanuy-page-guides > span:nth-child(n + 2) {
-    display: block;
-  }
-
-  .vshanuy-page-guides > span:last-child {
-    border-right: 0;
-  }
 
   .vshanuy-merch-page__lead {
+  font-family: var(--font-text);
     max-width: calc(50% - var(--space-2));
   }
 

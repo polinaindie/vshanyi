@@ -28,23 +28,6 @@
   border: 0;
 }
 
-.vshanuy-page-guides {
-  position: absolute;
-  z-index: 0;
-  inset: 0 8px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  pointer-events: none;
-}
-
-.vshanuy-page-guides > span {
-  border-right: 1px solid var(--vshanuy-page-grid-line);
-}
-
-.vshanuy-page-guides > span:nth-child(n + 2) {
-  display: none;
-}
-
 .vshanuy-materials-page > main,
 .vshanuy-materials-page > .vshanuy-site-footer {
   position: relative;
@@ -54,7 +37,7 @@
 /* Page */
 
 .vshanuy-materials-page__main {
-  padding: var(--space-4) 8px var(--space-silence);
+  padding: var(--space-section-top) 8px var(--space-silence);
 }
 
 .vshanuy-materials-page__intro {
@@ -67,6 +50,7 @@
   font-size: clamp(36px, 26.2px + 2.612vw, 68px);
   line-height: 1;
   font-weight: 300;
+  letter-spacing: -0.02em;
 }
 
 /* Filters */
@@ -85,7 +69,7 @@
   min-height: 44px;
   align-items: center;
   gap: 8px;
-  padding: 0 14px;
+  padding: 0 16px;
   border: var(--line);
   border-radius: var(--radius);
   background: transparent;
@@ -184,7 +168,7 @@
 .vshanuy-materials-page__more {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   margin-top: var(--space-1);
   font-family: "Fixel", system-ui, sans-serif;
   font-size: 12px;
@@ -246,17 +230,6 @@
 }
 
 @media (min-width: 1024px) {
-  .vshanuy-page-guides {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .vshanuy-page-guides > span:nth-child(n + 2) {
-    display: block;
-  }
-
-  .vshanuy-page-guides > span:last-child {
-    border-right: 0;
-  }
 
   .vshanuy-materials-page__list {
     grid-template-columns: repeat(4, minmax(0, 1fr));

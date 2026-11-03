@@ -384,7 +384,6 @@ def page(d):
   <link rel="stylesheet" href="../_next/static/css/napryamok.css?v={CSS_V['dir']}"/>
 </head>
 <body class="vshanuy-article-page vshanuy-project-page vshanuy-direction-page">
-  <div class="vshanuy-page-guides" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
   <header class="sticky"></header>
 
   <main class="vshanuy-article">

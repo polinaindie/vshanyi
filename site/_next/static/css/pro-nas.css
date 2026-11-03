@@ -109,11 +109,11 @@
   background: transparent;
   border: 0;
   font-family: "Piazzolla", Georgia, serif;
-  /* Mini-hero сторінки — як publications/partners h2 на головній */
-  font-size: clamp(40px, 25.3px + 3.918vw, 88px);
-  line-height: 0.92;
+  /* .vshanuy-type-title — text-title-40 з головної */
+  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
+  line-height: 1;
   font-weight: 300;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 }
 
 .vshanuy-about-page__lead {
@@ -143,20 +143,10 @@
   border-top: 0;
 }
 
-/* Центральна V: тиша над секцією + блок історії */
-#istoriya::before {
-  content: "";
-  position: absolute;
-  top: calc(-1 * var(--space-4));
-  bottom: 0;
-  left: 50%;
-  z-index: 2;
-  width: 1px;
-  margin-left: -0.5px;
-  background: var(--vshanuy-page-grid-line);
-  pointer-events: none;
-}
-
+/*
+  Mid V лише ≥1024 (як kontakty): на <1024 split — 1 кол., лінія на 50%
+  різала б заголовок/прозу. Desktop: prose кол. 1–2, portrait 3–5.
+*/
 #istoriya .vshanuy-about-page__split {
   margin-top: 0;
 }
@@ -534,18 +524,7 @@
   border-top: 0;
 }
 
-/* Центральна V крізь тишу + мітку + сітку + pad main → стик з футером */
-#komanda::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: calc(-1 * var(--space-silence));
-  left: calc(50% - 0.5px);
-  z-index: 2;
-  width: 1px;
-  background: var(--vshanuy-page-grid-line);
-  pointer-events: none;
-}
+/* Mid V команди — лише ≥1024 (див. media нижче); на мобільному не ріже мітку/картки */
 
 /* Один silence перед футером (main уже має pad-bottom); mid V доходить до guides футера */
 .vshanuy-about-page > .vshanuy-site-footer,
@@ -630,24 +609,7 @@ body.vshanuy-about-page > .vshanuy-site-footer {
   border-top: 0;
 }
 
-/* Центральна V: крізь бачення + тиша до #komanda */
-#bachennya::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: calc(-1 * var(--space-4));
-  left: calc(50% - 0.5px);
-  z-index: 2;
-  width: 1px;
-  background: var(--vshanuy-page-grid-line);
-  pointer-events: none;
-}
-
-@media (min-width: 1024px) {
-  #bachennya::before {
-    bottom: calc(-1 * var(--space-silence));
-  }
-}
+/* Mid V бачення — лише ≥1024; на мобільному фото|текст у стеку без лінії крізь copy */
 
 #bachennya .vshanuy-about-page__vision-copy > .vshanuy-about-page__label {
   margin: 0;
@@ -868,7 +830,7 @@ body.vshanuy-about-page > .vshanuy-site-footer {
 .vshanuy-about-page__direction-meta {
   position: relative;
   flex: 0 0 auto;
-  padding-bottom: 112px;
+  padding-bottom: 104px;
   min-width: 0;
   width: 100%;
 }
@@ -885,7 +847,7 @@ body.vshanuy-about-page > .vshanuy-site-footer {
 
 .vshanuy-about-page__directions p {
   position: absolute;
-  top: calc(100% - 112px + 8px);
+  top: calc(100% - 104px + 8px);
   left: 0;
   display: -webkit-box;
   width: 100%;
@@ -1015,8 +977,17 @@ body.vshanuy-about-page > .vshanuy-site-footer {
     margin-top: var(--space-silence);
   }
 
+  /* Continuous mid V крізь тишу над історією; текст лишається ліворуч (кол. 1–2) */
   #istoriya::before {
+    content: "";
+    position: absolute;
     top: calc(-1 * var(--space-silence));
+    bottom: 0;
+    left: calc(50% - 0.5px);
+    z-index: 2;
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
   }
 
   #istoriya .vshanuy-about-page__split {
@@ -1024,10 +995,11 @@ body.vshanuy-about-page > .vshanuy-site-footer {
     z-index: 1;
   }
 
-  /* Проза + портрет: без верхніх/нижніх H; V — ::before на #istoriya */
+  /* Проза кол. 1–2 | портрет 3–5; без H; mid V на межі — не крізь гліфи */
   #istoriya .vshanuy-about-page__prose {
     grid-column: 1 / 3;
     order: 1;
+    min-width: 0;
     overflow: visible;
     gap: 24px;
     padding: 16px;
@@ -1035,9 +1007,15 @@ body.vshanuy-about-page > .vshanuy-site-footer {
     border: 0;
   }
 
+  #istoriya .vshanuy-about-page__prose > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
   #istoriya .vshanuy-about-page__portrait {
     grid-column: 3 / 5;
     order: 2;
+    min-width: 0;
     align-self: stretch;
     border-top: 0;
     border-bottom: 0;
@@ -1197,6 +1175,19 @@ body.vshanuy-about-page > .vshanuy-site-footer {
     display: none !important;
   }
 
+  /* Mid V крізь бачення + тиша до команди; copy лише кол. 3–5 */
+  #bachennya::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: calc(-1 * var(--space-silence));
+    left: calc(50% - 0.5px);
+    z-index: 2;
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+
   #bachennya .vshanuy-about-page__vision {
     position: relative;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1208,12 +1199,14 @@ body.vshanuy-about-page > .vshanuy-site-footer {
     position: relative;
     z-index: 1;
     grid-column: 1 / 3;
+    min-width: 0;
   }
 
   .vshanuy-about-page__vision-copy {
     position: relative;
     z-index: 1;
     grid-column: 3 / 5;
+    min-width: 0;
     gap: 32px;
   }
 
@@ -1233,6 +1226,19 @@ body.vshanuy-about-page > .vshanuy-site-footer {
   .vshanuy-about-page__team {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0;
+  }
+
+  /* Mid V крізь тишу + мітку + сітку + pad main → футер */
+  #komanda::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: calc(-1 * var(--space-silence));
+    left: calc(50% - 0.5px);
+    z-index: 2;
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
   }
 
   #komanda .vshanuy-about-page__team::after {

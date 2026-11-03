@@ -318,20 +318,49 @@
   margin-top: var(--space-3);
 }
 
-/* Сторінка «Проєкти»: усі картки одразу, 2 в ряд до 1024 і 4 далі. Не слайдер. */
+/* Сторінка «Проєкти»: усі картки одразу, 2 в ряд до 1024 і 4 далі. Не слайдер.
+   Лінії як B-team / B-projects-slider: H над рядом і між рядами, V 50% → 25/50/75. */
 .vshanuy-projects-page__list {
+  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
+
+  position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  row-gap: 64px;
+  gap: 0;
   margin: var(--space-5) 0 0;
   padding: 0;
   list-style: none;
   overflow: visible;
 }
 
+/* V mid (mobile) крізь усі ряди — стик з H на межах клітинок */
+.vshanuy-projects-page__list::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+  background-repeat: no-repeat;
+  background-size: 1px 100%;
+  background-position: calc(50% - 0.5px) 0;
+}
+
 .vshanuy-projects-page__item {
+  position: relative;
+  z-index: 1;
   min-width: 0;
-  padding-inline: 16px;
+  padding: 16px;
+  box-sizing: border-box;
+  /* H на повну ширину комірки → безперервна смуга ряду (і з фільтрами) */
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+  background-color: transparent;
+  transition: background-color 300ms ease-out;
+}
+
+.vshanuy-projects-page__item:hover,
+.vshanuy-projects-page__item:focus-within {
+  background-color: var(--beige);
 }
 
 /* Смуга керування: «‹ 9:00 ›» */
@@ -411,7 +440,18 @@
 
   .vshanuy-projects-page__list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    row-gap: 96px;
+  }
+
+  .vshanuy-projects-page__list::after {
+    background-image:
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+    background-size: 1px 100%, 1px 100%, 1px 100%;
+    background-position:
+      calc(25% - 0.5px) 0,
+      calc(50% - 0.5px) 0,
+      calc(75% - 0.5px) 0;
   }
 
   .vshanuy-project-slider__meta {
@@ -449,6 +489,97 @@
 
   .vshanuy-project__passport > div + div {
     border-left: var(--line-muted);
+  }
+}
+
+/* «Проєкти» (index): одна V на 75% (ліва межа 4-ї кол.) — хедер → сітка → тиша; без V на табах/картках */
+.vshanuy-projects-index-page {
+  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
+  --vshanuy-projects-index-v-line: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+}
+
+.vshanuy-projects-index-page > .vshanuy-site-footer {
+  margin-top: 0;
+}
+
+/* Заголовок і таби — вище лінії (z-index:1 з main > *), лінія просто йде під ними, нічого не ховаємо paper-маскою */
+.vshanuy-projects-index-page .vshanuy-materials-page__intro {
+  position: relative;
+  z-index: 1;
+}
+
+.vshanuy-projects-index-page .vshanuy-materials-page__main {
+  isolation: isolate;
+}
+
+/* 75% / 50% крізь intro і тишу; картки не перекривають — border-left у сітці */
+.vshanuy-projects-index-page .vshanuy-materials-page__main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--vshanuy-projects-index-v-line);
+  background-repeat: no-repeat;
+  background-size: 1px 100%;
+  background-position: calc(50% - 0.5px) 0;
+}
+
+.vshanuy-projects-index-page .vshanuy-materials-page__main > * {
+  position: relative;
+  z-index: 1;
+}
+
+.vshanuy-projects-index-page .vshanuy-activity__projects--page .vshanuy-projects-page__list {
+  margin-top: var(--space-3);
+}
+
+.vshanuy-projects-index-page .vshanuy-projects-page__list::after {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .vshanuy-projects-index-page .vshanuy-projects-page__item:nth-child(2n) {
+    border-left: 1px solid var(--vshanuy-page-grid-line);
+  }
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-projects-index-page .vshanuy-materials-page__main::before {
+    background-position: calc(75% - 0.5px) 0;
+  }
+
+  .vshanuy-projects-index-page .vshanuy-projects-page__item:nth-child(2n) {
+    border-left: 0;
+  }
+
+  .vshanuy-projects-index-page .vshanuy-projects-page__item:nth-child(4n) {
+    border-left: 1px solid var(--vshanuy-page-grid-line);
+  }
+
+  .vshanuy-projects-index-page > .vshanuy-desktop-header,
+  .vshanuy-projects-index-page > header.sticky {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .vshanuy-projects-index-page > .vshanuy-desktop-header::after,
+  .vshanuy-projects-index-page > header.sticky::after {
+    content: "";
+    position: absolute;
+    inset: 0 var(--space-1);
+    z-index: 0;
+    pointer-events: none;
+    background-image: var(--vshanuy-projects-index-v-line);
+    background-repeat: no-repeat;
+    background-size: 1px 100%;
+    background-position: calc(75% - 0.5px) 0;
+  }
+
+  .vshanuy-projects-index-page > .vshanuy-desktop-header .vshanuy-desktop-menu,
+  .vshanuy-projects-index-page > header.sticky .vshanuy-desktop-menu {
+    position: relative;
+    z-index: 1;
   }
 }
 

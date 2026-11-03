@@ -33,12 +33,6 @@ export function ProjectsPage({ showHeader = true }: ProjectsPageProps) {
 
   return (
     <div className="vshanuy-materials-page vshanuy-projects-index-page">
-      <div className="vshanuy-page-guides" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-        <span />
-      </div>
       {showHeader ? <DesktopHeader /> : null}
 
       <main className="vshanuy-materials-page__main">

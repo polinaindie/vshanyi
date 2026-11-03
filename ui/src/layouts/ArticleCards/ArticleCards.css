@@ -68,7 +68,7 @@
   display: inline-flex;
   min-height: 44px;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   margin-top: 24px;
   color: var(--ink);
   font-family: "Fixel", system-ui, sans-serif;

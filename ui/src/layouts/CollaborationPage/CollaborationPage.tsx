@@ -100,12 +100,6 @@ export function CollaborationPage({
 
   return (
     <div className="vshanuy-collab-page">
-      <div className="vshanuy-page-guides" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-        <span />
-      </div>
       {showHeader ? <DesktopHeader /> : null}
 
       <main className="vshanuy-collab-page__main">

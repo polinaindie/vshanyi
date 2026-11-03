@@ -39,12 +39,6 @@ export function MerchPage({
 }: MerchPageProps) {
   return (
     <div className="vshanuy-merch-page">
-      <div className="vshanuy-page-guides" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-        <span />
-      </div>
       {showHeader ? <DesktopHeader /> : null}
 
       <main className="vshanuy-merch-page__main">

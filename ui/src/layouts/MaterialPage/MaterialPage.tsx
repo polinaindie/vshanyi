@@ -59,12 +59,6 @@ export function MaterialPage({ showHeader = true }: MaterialPageProps) {
 
   return (
     <div className="vshanuy-article-page">
-      <div className="vshanuy-page-guides" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-        <span />
-      </div>
       {showHeader ? <DesktopHeader /> : null}
 
       <main className="vshanuy-article">

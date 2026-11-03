@@ -33,7 +33,7 @@
   /* Типографіка. Текстовий шрифт сайту ще на підтвердженні */
   --font-logo: "Volja", sans-serif;
   --font-display: "Piazzolla", Georgia, serif;
-  --font-text: "Geologica", system-ui, sans-serif;
+  --font-text: "Fixel", system-ui, sans-serif;
 
   --step--1: 0.8125rem;
   --step-0: 1rem;
@@ -77,7 +77,7 @@ body {
 
 .section-label {
   font-family: var(--font-text);
-  font-size: var(--step--1);
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: var(--tracking-label);
   color: var(--text-muted);
@@ -86,7 +86,7 @@ body {
 
 .display {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 300;
   font-size: var(--step-4);
   line-height: var(--leading-display);
   text-wrap: balance;

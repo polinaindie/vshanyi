@@ -1,0 +1,25 @@
+/* Homepage silence scale — rhythm roles for standalone pages.
+   Scale (px): 8 · 16 · 24 · 32 · 40 · 48 · 64 · 96 · 120 · 240 */
+
+:root {
+  --space-rhythm-1: 8px;
+  --space-rhythm-2: 16px;
+  --space-rhythm-3: 24px;
+  --space-rhythm-4: 32px;
+  --space-rhythm-5: 40px;
+  --space-rhythm-6: 48px;
+  --space-rhythm-7: 64px;
+  --space-rhythm-8: 96px;
+  --space-rhythm-9: 120px;
+  --space-rhythm-10: 240px;
+  --space-section-top: 48px;
+  --space-section-top-lg: 96px;
+  --space-silence-mobile: 96px;
+  --space-silence-desktop: 240px;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --space-section-top: 96px;
+  }
+}

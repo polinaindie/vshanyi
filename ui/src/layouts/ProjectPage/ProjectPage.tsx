@@ -254,12 +254,6 @@ export function ProjectPage({ slug, showHeader = true }: ProjectPageProps) {
 
   return (
     <div className="vshanuy-article-page vshanuy-project-page">
-      <div className="vshanuy-page-guides" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-        <span />
-      </div>
       {showHeader ? <DesktopHeader /> : null}
 
       <main className="vshanuy-article">
