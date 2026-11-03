@@ -75,10 +75,11 @@
   background: transparent;
   color: var(--ink);
   font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.08em;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-transform: none;
   cursor: pointer;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }

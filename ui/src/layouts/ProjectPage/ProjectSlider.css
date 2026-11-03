@@ -492,7 +492,8 @@
   }
 }
 
-/* «Проєкти» (index): одна V на 75% (ліва межа 4-ї кол.) — хедер → сітка → тиша; без V на табах/картках */
+/* «Проєкти»: крайні рейки на 8px (стик з хедером і футером), внутрішні V крізь тишу до футера.
+   H рядів — на всю ширину екрана. ::before лишається лівою рейкою, не 75%. */
 .vshanuy-projects-index-page {
   --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
   --vshanuy-projects-index-v-line: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
@@ -502,7 +503,6 @@
   margin-top: 0;
 }
 
-/* Заголовок і таби — вище лінії (z-index:1 з main > *), лінія просто йде під ними, нічого не ховаємо paper-маскою */
 .vshanuy-projects-index-page .vshanuy-materials-page__intro {
   position: relative;
   z-index: 1;
@@ -510,15 +510,8 @@
 
 .vshanuy-projects-index-page .vshanuy-materials-page__main {
   isolation: isolate;
-}
-
-/* 75% / 50% крізь intro і тишу; картки не перекривають — border-left у сітці */
-.vshanuy-projects-index-page .vshanuy-materials-page__main::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
+  overflow-x: clip;
+  /* Середина (mobile) / 75% (desktop) на всю висоту main, включно з тишею */
   background-image: var(--vshanuy-projects-index-v-line);
   background-repeat: no-repeat;
   background-size: 1px 100%;
@@ -534,27 +527,55 @@
   margin-top: var(--space-3);
 }
 
-.vshanuy-projects-index-page .vshanuy-projects-page__list::after {
-  display: none;
+/* H кожного ряду — до лівого і правого краю екрана */
+.vshanuy-projects-index-page .vshanuy-projects-page__item {
+  border-top: 0;
+  border-left: 0;
 }
 
-@media (min-width: 640px) {
-  .vshanuy-projects-index-page .vshanuy-projects-page__item:nth-child(2n) {
-    border-left: 1px solid var(--vshanuy-page-grid-line);
-  }
+.vshanuy-projects-index-page .vshanuy-projects-page__item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(50% - 50vw);
+  z-index: 2;
+  width: 100vw;
+  height: 1px;
+  background: var(--vshanuy-page-grid-line);
+  pointer-events: none;
+}
+
+/* V сітки від першого ряду крізь тишу до футера (не ріже заголовок і фільтри) */
+.vshanuy-projects-index-page .vshanuy-projects-page__list::after {
+  content: "";
+  display: block;
+  top: 0;
+  bottom: auto;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  height: calc(100% + var(--space-silence));
+  background-image: var(--vshanuy-projects-index-v-line);
+  background-repeat: no-repeat;
+  background-size: 1px 100%;
+  background-position: calc(50% - 0.5px) 0;
 }
 
 @media (min-width: 1024px) {
-  .vshanuy-projects-index-page .vshanuy-materials-page__main::before {
-    background-position: calc(75% - 0.5px) 0;
+  .vshanuy-projects-index-page .vshanuy-materials-page__main {
+    background-position: calc(8px + 0.75 * (100% - 16px)) 0;
   }
 
-  .vshanuy-projects-index-page .vshanuy-projects-page__item:nth-child(2n) {
-    border-left: 0;
-  }
-
-  .vshanuy-projects-index-page .vshanuy-projects-page__item:nth-child(4n) {
-    border-left: 1px solid var(--vshanuy-page-grid-line);
+  .vshanuy-projects-index-page .vshanuy-projects-page__list::after {
+    background-image:
+      var(--vshanuy-projects-index-v-line),
+      var(--vshanuy-projects-index-v-line),
+      var(--vshanuy-projects-index-v-line);
+    background-size: 1px 100%, 1px 100%, 1px 100%;
+    background-position:
+      calc(25% - 0.5px) 0,
+      calc(50% - 0.5px) 0,
+      calc(75% - 0.5px) 0;
   }
 
   .vshanuy-projects-index-page > .vshanuy-desktop-header,
@@ -567,13 +588,13 @@
   .vshanuy-projects-index-page > header.sticky::after {
     content: "";
     position: absolute;
-    inset: 0 var(--space-1);
-    z-index: 0;
+    top: 0;
+    bottom: 0;
+    left: calc(8px + 0.75 * (100% - 16px));
+    width: 1px;
+    z-index: 2;
     pointer-events: none;
-    background-image: var(--vshanuy-projects-index-v-line);
-    background-repeat: no-repeat;
-    background-size: 1px 100%;
-    background-position: calc(75% - 0.5px) 0;
+    background-color: var(--vshanuy-page-grid-line);
   }
 
   .vshanuy-projects-index-page > .vshanuy-desktop-header .vshanuy-desktop-menu,
