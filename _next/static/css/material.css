@@ -1,7 +1,9 @@
-/* Material (article) page — mirrors ui/ MaterialPage */
+/* Material (article) page — mirrors ui/ MaterialPage.
+   Базу беруть також сторінки проєктів і напрямів (vshanuy-project-page / vshanuy-direction-page);
+   правила лише для публікацій — під .vshanuy-article-page--material. */
 
 .vshanuy-article-page {
-  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
+  --vshanuy-article-sub-size: clamp(20px, calc(20px + 8 * (100vw - 375px) / 1225), 28px);
 
   position: relative;
   margin: 0;
@@ -23,7 +25,7 @@
 }
 
 .vshanuy-article {
-  padding: var(--space-4) 8px var(--space-silence);
+  padding: var(--space-section-top, 48px) 8px 0;
 }
 
 .vshanuy-article article {
@@ -37,7 +39,7 @@
 .vshanuy-article__tag {
   margin: 0;
   font-family: var(--font-text);
-  font-size: var(--step--1);
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: var(--tracking-label);
@@ -49,13 +51,12 @@
   margin: 0;
 }
 
-.vshanuy-article__back,
 .vshanuy-article__link {
   display: inline-flex;
   width: fit-content;
   min-height: 44px;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   color: var(--ink);
   font-family: "Fixel", system-ui, sans-serif;
   font-size: 12px;
@@ -69,22 +70,14 @@
   transition: text-decoration-color 300ms ease-out;
 }
 
-.vshanuy-article__back > span,
 .vshanuy-article__link > span {
   font-size: 20px;
   transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.vshanuy-article__back:hover,
-.vshanuy-article__back:focus-visible,
 .vshanuy-article__link:hover,
 .vshanuy-article__link:focus-visible {
   text-decoration-color: currentColor;
-}
-
-.vshanuy-article__back:hover > span,
-.vshanuy-article__back:focus-visible > span {
-  transform: translateX(-4px);
 }
 
 .vshanuy-article__link:hover > span,
@@ -97,21 +90,72 @@
   outline-offset: 3px;
 }
 
-/* Intro */
+/* Intro. h1 стоїть на --space-section-top, як «Напрями роботи».
+   Мітка й крихти живуть у цій тиші й не зсувають заголовок. */
 
 .vshanuy-article__intro {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 24px;
+  margin-top: 0;
   padding: 0 var(--space-2);
 }
 
-.vshanuy-article__tag {
-  margin-top: var(--space-3);
+@media (min-width: 1024px) {
+  .vshanuy-article__intro {
+    margin-top: -44px;
+  }
+}
+
+.vshanuy-article__tag,
+.vshanuy-direction__kicker {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: start;
+}
+
+@media (max-width: 1023px) {
+  .vshanuy-article__intro > .vshanuy-article__title {
+    grid-row: 1;
+  }
+
+  .vshanuy-article__intro > .vshanuy-article__tag,
+  .vshanuy-article__intro > .vshanuy-direction__kicker {
+    grid-row: 2;
+  }
+}
+
+.vshanuy-article__intro > :not(.vshanuy-article__tag):not(.vshanuy-direction__kicker):not(.vshanuy-project__hero) {
+  grid-column: 1 / -1;
+}
+
+.vshanuy-article__intro > .vshanuy-project__hero {
+  grid-column: 1 / -1;
+  grid-row: 20;
+  margin-top: 48px;
+}
+
+/* Публікація: крихти → мітка → заголовок одним стовпчиком від лівого краю. */
+.vshanuy-article-page--material .vshanuy-article__intro {
+  display: block;
+}
+
+.vshanuy-article-page--material .vshanuy-article__tag {
+  margin-top: var(--space-rhythm-1, 8px);
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-article-page--material .vshanuy-article__intro {
+    margin-top: calc(var(--space-rhythm-6, 48px) - var(--space-section-top, 96px));
+  }
 }
 
 .vshanuy-article__title {
   max-width: 18ch;
-  margin: var(--space-2) 0 0;
+  margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
+  font-size: var(--vshanuy-title-size);
   font-weight: 300;
   line-height: 1.05;
 }
@@ -126,17 +170,17 @@
 }
 
 .vshanuy-article__standfirst {
-  max-width: 52ch;
+  max-width: none;
   margin: var(--space-3) 0 0;
   color: var(--text-secondary);
   font-size: var(--step-1);
   line-height: 1.4;
 }
 
-/* Cover */
+/* Cover. Між блоками статті — тиша --vshanuy-block-gap (96 / 240). */
 
 .vshanuy-article__cover {
-  margin: var(--space-4) 0 0;
+  margin: var(--vshanuy-block-gap, 96px) 0 0;
   padding-inline: var(--space-2);
 }
 
@@ -160,7 +204,7 @@
 /* Aside: author + contents */
 
 .vshanuy-article__layout {
-  margin-top: var(--space-4);
+  margin-top: var(--vshanuy-block-gap, 96px);
 }
 
 .vshanuy-article__aside {
@@ -279,12 +323,12 @@
 }
 
 .vshanuy-article__section + .vshanuy-article__section {
-  margin-top: var(--space-5);
+  margin-top: var(--space-rhythm-9, 120px);
 }
 
 .vshanuy-article__part,
 .vshanuy-article__part + .vshanuy-article__section {
-  margin-top: var(--space-5);
+  margin-top: var(--space-rhythm-9, 120px);
 }
 
 .vshanuy-article__part > .vshanuy-article__heading--part {
@@ -298,7 +342,7 @@
 
 .vshanuy-article__part[id],
 .vshanuy-article__section[id] {
-  scroll-margin-top: calc(33px + var(--space-4));
+  scroll-margin-top: calc(var(--vshanuy-header-offset, 33px) + var(--space-4));
 }
 
 .vshanuy-article__part[id]:focus,
@@ -330,8 +374,16 @@
 .vshanuy-article__section p.vshanuy-article__stamp,
 .vshanuy-article__note p.vshanuy-article__label {
   margin: 0;
-  font-size: clamp(12px, calc(12px + 4 * (100vw - 375px) / 1225), 16px);
   line-height: 1.2;
+}
+
+/* Підпис фото лишається дрібним службовим кеглем; «Примітка» — мітка секції. */
+.vshanuy-article__section p.vshanuy-article__stamp {
+  font-size: 12px;
+}
+
+.vshanuy-article__note p.vshanuy-article__label {
+  font-size: var(--vshanuy-caption-size);
 }
 
 .vshanuy-article__section p.vshanuy-article__accent {
@@ -372,6 +424,7 @@
   counter-increment: vshanuy-step;
 }
 
+/* Нижня лінія відділяє список від абзацу, що йде далі. */
 .vshanuy-article__steps li:last-child {
   border-bottom: var(--line-muted);
 }
@@ -449,9 +502,11 @@
   max-width: 24ch;
   margin: 0;
   font-family: var(--font-display);
-  font-size: var(--step-3);
+  font-size: var(--vshanuy-heading-size);
   font-weight: 300;
   line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .vshanuy-article__pullquote footer {
@@ -474,7 +529,7 @@
   padding-top: 0;
   border-top: 0;
   color: var(--text-secondary);
-  font-size: var(--step--1);
+  font-size: var(--vshanuy-note-size);
   font-style: italic;
   line-height: 1.5;
 }
@@ -486,7 +541,7 @@
 }
 
 .vshanuy-article__sources {
-  margin-top: var(--space-5);
+  margin-top: var(--space-rhythm-9, 120px);
   padding-inline: var(--space-2);
 }
 
@@ -522,8 +577,10 @@
 
 /* Related */
 
-.vshanuy-article__related {
-  margin-top: var(--space-silence);
+.vshanuy-article__related,
+.vshanuy-article-page .vshanuy-direction__projects,
+.vshanuy-article-page .vshanuy-direction__related {
+  margin-top: var(--vshanuy-block-gap, 96px);
 }
 
 .vshanuy-article__related-head {
@@ -540,9 +597,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vshanuy-article__back,
   .vshanuy-article__link,
-  .vshanuy-article__back > span,
   .vshanuy-article__link > span,
   .vshanuy-article__toc a {
     transition: none;
@@ -557,7 +612,7 @@
   }
 
   .vshanuy-article__standfirst {
-    max-width: calc(50% - var(--space-2));
+    max-width: 50%;
   }
 
   .vshanuy-article__cover {
@@ -584,7 +639,6 @@
   .vshanuy-article__layout {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-top: var(--space-5);
   }
 
   .vshanuy-article__aside {
@@ -593,7 +647,7 @@
 
   .vshanuy-article__aside-inner {
     position: sticky;
-    top: calc(33px + var(--space-4));
+    top: calc(var(--vshanuy-header-offset, 33px) + var(--space-4));
   }
 
   .vshanuy-article__author {
@@ -641,5 +695,182 @@
 
   .vshanuy-article__section > .vshanuy-article__pullquote {
     grid-column: 1 / -1;
+  }
+
+  /* Silence map: 25% між колонкою автора і текстом — від низу обкладинки крізь тишу,
+     без заходу на знімок. 50% і 75% знімає текст (цитата на кол. 2–4). */
+  .vshanuy-article__layout:has(.vshanuy-article__aside) {
+    position: relative;
+  }
+
+  .vshanuy-article__layout:has(.vshanuy-article__aside)::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: calc(-1 * var(--vshanuy-block-gap, 240px));
+    bottom: 0;
+    left: 25%;
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+
+  /* Та сама 25% крізь тишу і мітку «Інші публікації» до H сітки карток.
+     Далі її веде реєстр карток. Мітка лишається ліворуч від лінії. */
+  article:has(.vshanuy-article__aside) + .vshanuy-article__related .vshanuy-article__related-head {
+    position: relative;
+  }
+
+  article:has(.vshanuy-article__aside) + .vshanuy-article__related .vshanuy-article__related-head::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: calc(-1 * var(--vshanuy-block-gap, 240px));
+    bottom: calc(-1 * var(--space-3));
+    left: 25%;
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+}
+
+/* Хлібні крихти. Службова навігація, як посилання футера. */
+
+.vshanuy-crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vshanuy-crumbs li {
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--text-secondary);
+  font-family: "Piazzolla", Georgia, serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.45;
+}
+
+.vshanuy-crumbs li:not(:last-child)::after {
+  content: "·";
+  margin-inline: 8px;
+  color: var(--grey);
+}
+
+.vshanuy-crumbs a,
+.vshanuy-crumbs [aria-current="page"] {
+  display: inline-flex;
+  min-height: 24px;
+  align-items: center;
+}
+
+.vshanuy-crumbs a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color 250ms ease-out;
+}
+
+.vshanuy-crumbs a:hover,
+.vshanuy-crumbs a:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.vshanuy-crumbs a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.vshanuy-crumbs [aria-current="page"] {
+  color: var(--ink);
+}
+
+.vshanuy-article__tag + .vshanuy-article__title,
+.vshanuy-crumbs + .vshanuy-article__title {
+  margin-top: 32px;
+}
+
+/* Проєкти й публікації. Сторінка напряму (включно з «Громадами») лишає свій кегль. */
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__title {
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__standfirst {
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: var(--vshanuy-body-size);
+  line-height: 1.55;
+}
+
+/* Проза. Цитати й примітка на полях мають власну роль і сюди не входять. */
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__section p:not(.vshanuy-article__stamp, .vshanuy-article__label, .vshanuy-article__accent, .vshanuy-article__citation p, .vshanuy-article__pullquote p, .vshanuy-article__note p),
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__epilogue p:not(.vshanuy-article__accent) {
+  font-family: var(--font-text);
+  font-size: var(--vshanuy-body-size);
+  line-height: 1.55;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__section p.vshanuy-article__accent {
+  margin: 16px 0 32px;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: var(--vshanuy-h2-size);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: normal;
+  text-wrap: balance;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__section p.vshanuy-article__accent:last-child {
+  margin-bottom: 0;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__heading {
+  margin: 32px 0 24px;
+  font-size: var(--vshanuy-heading-size);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__part > .vshanuy-article__heading--part {
+  margin-top: 0;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__heading--sub {
+  font-size: var(--vshanuy-article-sub-size);
+  line-height: 1.15;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__figure figcaption {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-label);
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__author-role {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.vshanuy-article-page:not(.vshanuy-direction-page) .vshanuy-article__citation p {
+  font-size: var(--vshanuy-article-sub-size);
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vshanuy-crumbs a {
+    transition: none;
   }
 }

@@ -4,86 +4,101 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Напрями роботи — Вшануй</title>
-  <link rel="stylesheet" href="_next/static/css/font-overrides.css?v=20261103ctaKrapka"/>
-  <link rel="stylesheet" href="_next/static/css/materialy.css?v=20261026b"/>
-  <link rel="stylesheet" href="_next/static/css/project-slider.css?v=20261102c"/>
-  <link rel="stylesheet" href="_next/static/css/diyalnist.css?v=20261102c"/>
+  <link rel="stylesheet" href="_next/static/css/font-overrides.css?v=20261103refactor"/>
+  <link rel="stylesheet" href="_next/static/css/type-roles.css?v=20261103vars"/>
+  <link rel="stylesheet" href="_next/static/css/space-roles.css?v=20261103vars"/>
+  <link rel="stylesheet" href="_next/static/css/block-button.css?v=20261103unify"/>
+  <link rel="stylesheet" href="_next/static/css/materialy.css?v=20261103refactor"/>
+  <link rel="stylesheet" href="_next/static/css/project-slider.css?v=20261103refactor"/>
+  <link rel="stylesheet" href="_next/static/css/direction-card.css?v=20261103refactor"/>
+  <link rel="stylesheet" href="_next/static/css/diyalnist.css?v=20261103refactor"/>
 </head>
 <body class="vshanuy-materials-page vshanuy-activity-page">
-  <div class="vshanuy-page-guides" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
   <header class="sticky"></header>
 
   <main class="vshanuy-materials-page__main">
     <header class="vshanuy-materials-page__intro">
-      <h1 class="vshanuy-materials-page__title">Напрями роботи.</h1>
+      <h1 class="vshanuy-materials-page__title vshanuy-type-title">Напрями роботи.</h1>
+      <p class="vshanuy-activity__intro-lead" id="vshanuy-activity-directions-lead">Для кого ми говоримо про памʼять</p>
     </header>
 
-    <section class="vshanuy-activity__section" aria-labelledby="vshanuy-activity-directions-title">
-      <header class="vshanuy-activity__section-head">
-        <h2 class="vshanuy-activity__section-title" id="vshanuy-activity-directions-title">Для кого ми говоримо про памʼять</h2>
-      </header>
+    <section class="vshanuy-activity__section" aria-labelledby="vshanuy-activity-directions-lead">
       <ul class="vshanuy-activity__directions">
       <li>
-        <a class="vshanuy-activity__card" href="napryamky/gromada.html">
-          <div class="vshanuy-activity__copy">
-            <h3 class="vshanuy-activity__title">Громади</h3>
-            <p class="vshanuy-activity__text">Працюємо з громадами та координаторами осередків, допомагаємо створювати й впроваджувати локальні практики памʼяті. Поширюємо ініціативи в громадах, розробляємо ритуали памʼяті та прощання.</p>
+        <a class="vshanuy-directions-carousel__card" href="napryamky/gromada.html">
+          <figure class="vshanuy-directions-carousel__media">
+            <img src="_next/static/media/vshanuy-napryam-gromady-1600.webp" alt="" width="960" height="640" decoding="async"/>
+          </figure>
+          <div class="vshanuy-directions-carousel__copy">
+            <h3 class="vshanuy-directions-carousel__name">Громади</h3>
+            <p class="vshanuy-directions-carousel__text">Працюємо з громадами та координаторами осередків, допомагаємо створювати й впроваджувати локальні практики памʼяті. Поширюємо ініціативи в громадах, розробляємо ритуали памʼяті та прощання.</p>
           </div>
-          <span class="vshanuy-activity__media" aria-hidden="true"><img src="_next/static/media/vshanuy-napryam-gromady-1600.webp" alt="" width="960" height="640" decoding="async"/></span>
         </a>
       </li>
       <li>
-        <a class="vshanuy-activity__card" href="napryamky/spivpratsya-z-biznesom.html">
-          <div class="vshanuy-activity__copy">
-            <h3 class="vshanuy-activity__title">Бізнес</h3>
-            <p class="vshanuy-activity__text">Допомагаємо бізнесу інтегрувати культуру памʼяті у свої комунікації. Проводимо консультації, аудити, лекції та сесії, щоб компанії могли говорити про війну, втрати й памʼять.</p>
+        <a class="vshanuy-directions-carousel__card" href="napryamky/spivpratsya-z-biznesom.html">
+          <figure class="vshanuy-directions-carousel__media">
+            <img src="_next/static/media/vshanuy-napryam-biznes-1600.webp" alt="" width="960" height="640" decoding="async"/>
+          </figure>
+          <div class="vshanuy-directions-carousel__copy">
+            <h3 class="vshanuy-directions-carousel__name">Бізнес</h3>
+            <p class="vshanuy-directions-carousel__text">Допомагаємо бізнесу інтегрувати культуру памʼяті у свої комунікації. Проводимо консультації, аудити, лекції та сесії, щоб компанії могли говорити про війну, втрати й памʼять.</p>
           </div>
-          <span class="vshanuy-activity__media" aria-hidden="true"><img src="_next/static/media/vshanuy-napryam-biznes-1600.webp" alt="" width="960" height="640" decoding="async"/></span>
         </a>
       </li>
       <li>
-        <a class="vshanuy-activity__card" href="napryamky/derzhava.html">
-          <div class="vshanuy-activity__copy">
-            <h3 class="vshanuy-activity__title">Держава</h3>
-            <p class="vshanuy-activity__text">Передаємо державним інституціям напрацьовані практики, рекомендації та інструкції й працюємо над їхнім системним впровадженням.</p>
+        <a class="vshanuy-directions-carousel__card" href="napryamky/derzhava.html">
+          <figure class="vshanuy-directions-carousel__media">
+            <img src="_next/static/media/vshanuy-napryam-derzhava-1600.webp" alt="" width="960" height="640" loading="lazy" decoding="async"/>
+          </figure>
+          <div class="vshanuy-directions-carousel__copy">
+            <h3 class="vshanuy-directions-carousel__name">Держава</h3>
+            <p class="vshanuy-directions-carousel__text">Передаємо державним інституціям напрацьовані практики, рекомендації та інструкції й працюємо над їхнім системним впровадженням.</p>
           </div>
-          <span class="vshanuy-activity__media" aria-hidden="true"><img src="_next/static/media/vshanuy-napryam-derzhava-1600.webp" alt="" width="960" height="640" loading="lazy" decoding="async"/></span>
         </a>
       </li>
       <li>
-        <a class="vshanuy-activity__card" href="napryamky/suspilstvo.html">
-          <div class="vshanuy-activity__copy">
-            <h3 class="vshanuy-activity__title">Суспільство</h3>
-            <p class="vshanuy-activity__text">Говоримо про складні й важливі теми, повʼязані з памʼяттю про війну: як прощатися, як говорити про загиблих, як уникати знеособлення втрат.</p>
+        <a class="vshanuy-directions-carousel__card" href="napryamky/suspilstvo.html">
+          <figure class="vshanuy-directions-carousel__media">
+            <img src="_next/static/media/vshanuy-napryam-suspilstvo-1600.webp" alt="" width="960" height="640" loading="lazy" decoding="async"/>
+          </figure>
+          <div class="vshanuy-directions-carousel__copy">
+            <h3 class="vshanuy-directions-carousel__name">Суспільство</h3>
+            <p class="vshanuy-directions-carousel__text">Говоримо про складні й важливі теми, повʼязані з памʼяттю про війну: як прощатися, як говорити про загиблих, як уникати знеособлення втрат.</p>
           </div>
-          <span class="vshanuy-activity__media" aria-hidden="true"><img src="_next/static/media/vshanuy-napryam-suspilstvo-1600.webp" alt="" width="960" height="640" loading="lazy" decoding="async"/></span>
         </a>
       </li>
       <li>
-        <a class="vshanuy-activity__card" href="napryamky/osvita.html">
-          <div class="vshanuy-activity__copy">
-            <h3 class="vshanuy-activity__title">Освіта</h3>
-            <p class="vshanuy-activity__text">Досліджуємо, як діти, підлітки та вчителі сприймають тему памʼяті й якою хочуть бачити розмову про неї в школі. Розробляємо практичні матеріали для освітян, проводимо лекції та зустрічі, створюємо документи-опори для роботи з темою памʼяті.</p>
+        <a class="vshanuy-directions-carousel__card" href="napryamky/osvita.html">
+          <figure class="vshanuy-directions-carousel__media">
+            <img src="_next/static/media/vshanuy-napryam-osvita-1600.webp" alt="" width="960" height="640" loading="lazy" decoding="async"/>
+          </figure>
+          <div class="vshanuy-directions-carousel__copy">
+            <h3 class="vshanuy-directions-carousel__name">Освіта</h3>
+            <p class="vshanuy-directions-carousel__text">Досліджуємо, як діти, підлітки та вчителі сприймають тему памʼяті й якою хочуть бачити розмову про неї в школі. Розробляємо практичні матеріали для освітян, проводимо лекції та зустрічі, створюємо документи-опори для роботи з темою памʼяті.</p>
           </div>
-          <span class="vshanuy-activity__media" aria-hidden="true"><img src="_next/static/media/vshanuy-napryam-osvita-1600.webp" alt="" width="960" height="640" loading="lazy" decoding="async"/></span>
         </a>
       </li>
       <li>
-        <a class="vshanuy-activity__card" href="napryamky/viysko.html">
-          <div class="vshanuy-activity__copy">
-            <h3 class="vshanuy-activity__title">Військо</h3>
-            <p class="vshanuy-activity__text">Досліджуємо військові ритуали й традиції та шукаємо способи зберігати їхню тяглість у сучасному українському війську. Працюємо над створенням церемоній прощання з військовослужбовцями, які можуть бути адаптовані та впроваджені в громадах по всій Україні.</p>
+        <a class="vshanuy-directions-carousel__card" href="napryamky/viysko.html">
+          <figure class="vshanuy-directions-carousel__media">
+            <img src="_next/static/media/vshanuy-napryam-viysko-1600.webp" alt="" width="960" height="640" loading="lazy" decoding="async"/>
+          </figure>
+          <div class="vshanuy-directions-carousel__copy">
+            <h3 class="vshanuy-directions-carousel__name">Військо</h3>
+            <p class="vshanuy-directions-carousel__text">Досліджуємо військові ритуали й традиції та шукаємо способи зберігати їхню тяглість у сучасному українському війську. Працюємо над створенням церемоній прощання з військовослужбовцями, які можуть бути адаптовані та впроваджені в громадах по всій Україні.</p>
           </div>
-          <span class="vshanuy-activity__media" aria-hidden="true"><img src="_next/static/media/vshanuy-napryam-viysko-1600.webp" alt="" width="960" height="640" loading="lazy" decoding="async"/></span>
         </a>
       </li>
       <li>
-        <a class="vshanuy-activity__card" href="napryamky/mystetstvo.html">
-          <div class="vshanuy-activity__copy">
-            <h3 class="vshanuy-activity__title">Мистецтво</h3>
-            <p class="vshanuy-activity__text">Використовуємо мистецтво як спосіб говорити про памʼять, людей і наш досвід.</p>
+        <a class="vshanuy-directions-carousel__card" href="napryamky/mystetstvo.html">
+          <figure class="vshanuy-directions-carousel__media">
+            <img src="_next/static/media/vshanuy-napryam-mystetstvo-1600.webp" alt="" width="960" height="640" loading="lazy" decoding="async"/>
+          </figure>
+          <div class="vshanuy-directions-carousel__copy">
+            <h3 class="vshanuy-directions-carousel__name">Мистецтво</h3>
+            <p class="vshanuy-directions-carousel__text">Використовуємо мистецтво як спосіб говорити про памʼять, людей і наш досвід.</p>
           </div>
-          <span class="vshanuy-activity__media" aria-hidden="true"><img src="_next/static/media/vshanuy-napryam-mystetstvo-1600.webp" alt="" width="960" height="640" loading="lazy" decoding="async"/></span>
         </a>
       </li>
       </ul>

@@ -1,4 +1,4 @@
-@import url("../../../brand/tokens.css");
+@import url("../../../brand/tokens.css?v=20261103silence");
 
 /* На самостійних сторінках текстова роль — Fixel, як на головній.
    У tokens.css --font-text ще Geologica. */
@@ -20,20 +20,29 @@
   text-transform: none !important;
 }
 
-/* Service section labels — ALL CAPS (01 — ПРО НАС register); not CTAs/buttons/links.
-   Канон: ui Foundations/SectionLabel; аліаси — page-BEM мітки на всіх сторінках.
-   px, не rem-токени: на головній 1rem = 10px і --step--1 стискає мітку до ~8px.
-   Не чіпати h2/h3.text-caption-30 (ГО «ВШАНУЙ», НАШІ ПРОЄКТИ) — це caption-30, не SectionLabel. */
+/* Службова мітка секції — один рецепт на всі сторінки, як h3 «ГО „ВШАНУЙ“»
+   (text-caption-30). px, не rem: на головній 1rem = 10px. */
+:root {
+  --vshanuy-caption-size: clamp(12px, 10.775px + 0.3265vw, 16px);
+  /* text-body-30 з головної: 16→18, lh 1.55 на абзацах */
+  --vshanuy-body-size: clamp(16px, calc(16px + 2 * (100vw - 375px) / 1225), 18px);
+}
+
 .vshanuy-section-label,
 .vshanuy-about-page__label,
 .vshanuy-article__label,
-.vshanuy-merch-page__label {
-  font-family: var(--font-text);
-  font-size: 12px;
-  font-weight: 500;
+.vshanuy-merch-page__label,
+.vshanuy-partners__label,
+.vshanuy-directions-carousel__label,
+.vshanuy-articles__label,
+.about-vshanuy__content h3.text-caption-30,
+.vshanuy-gromada__crumbs {
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: var(--vshanuy-caption-size);
+  font-weight: 400;
   line-height: 1.2;
-  letter-spacing: var(--tracking-label);
-  color: var(--text-muted);
+  letter-spacing: normal;
+  color: var(--ink);
   text-transform: uppercase !important;
 }
 
@@ -321,16 +330,8 @@ section[data-block-type="blockHeadline"]:has(.about-vshanuy)
   gap: 32px;
 }
 
-/* Мітка над h2 — той самий text-caption-30, що й «НАШІ ПРОЄКТИ» / partners */
 .about-vshanuy__content h3.text-caption-30 {
   margin: 0;
-  color: var(--ink);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(12px, 10.775px + 0.3265vw, 16px);
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: normal;
-  text-transform: uppercase !important;
 }
 
 .about-vshanuy__lead {
@@ -345,6 +346,10 @@ section[data-block-type="blockHeadline"]:has(.about-vshanuy)
 .about-vshanuy__copy {
   max-width: none;
   margin: 24px 0 0;
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: var(--vshanuy-body-size);
+  font-weight: 400;
+  letter-spacing: normal;
   color: var(--text-secondary);
   line-height: 1.55;
 }
@@ -748,7 +753,7 @@ section[data-block-type="blockSelectedProjects"] a[class*="group/link"] img {
 section[data-block-type="blockSelectedProjects"] a.group\/link .flex.flex-col.gap-x-24 {
   position: relative;
   flex: 0 0 auto;
-  padding-bottom: 112px;
+  padding-bottom: 104px;
   align-items: baseline;
   gap: 0;
   transform: none;
@@ -915,6 +920,7 @@ section[data-block-type="blockSelectedProjects"] .vshanuy-gallery-controls > div
   }
 }
 
+/* BEGIN project-teasers-sync (ui/scripts/sync-home-project-teasers.mjs) */
 /* 01 — Хвилина мовчання */
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="hvylyna-movchannya"] .absolute.inset-0 {
   background: center / cover no-repeat url("../media/vshanuy-proekt-hvylyna-movchannya-1600.webp");
@@ -991,6 +997,7 @@ section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vinkuvanny
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="vinkuvannya"] h3.font-serif::after {
   content: "29 серпня 2026-го, у День памʼяті загиблих, ми відновлювали традицію вінкування. Родини та друзі плели вінки з живих квітів під розповіді про найщасливіші моменти полеглих.";
 }
+
 /* 08 — Це може бути тиша */
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tse-mozhe-buty-tysha"] .absolute.inset-0 {
   background: center / cover no-repeat url("../media/vshanuy-proekt-tse-mozhe-buty-tysha-1600.webp");
@@ -1001,6 +1008,7 @@ section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tse-mozhe-
 section[data-block-type="blockSelectedProjects"] a.group\/link[href*="tse-mozhe-buty-tysha"] h3.font-serif::after {
   content: "Це виставка про мить, коли щодня о 9:00 ми зупиняємося, щоб згадати тих, кого вже немає поруч.";
 }
+/* END project-teasers-sync */
 
 section[data-block-type="blockBanner"] .overflow-hidden.absolute.inset-0.z-behind {
   z-index: 1;
@@ -1401,12 +1409,6 @@ section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
 section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
   .vshanuy-articles__label {
   margin: 0;
-  color: var(--ink);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(12px, 10.775px + 0.3265vw, 16px);
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: normal;
 }
 
 section[data-block-type="blockArticleOverview"].vshanuy-articles--ready
@@ -2235,7 +2237,8 @@ header.sticky.vshanuy-desktop-header {
   position: absolute;
   top: 40px;
   left: 0;
-  width: max(100%, 240px);
+  box-sizing: border-box;
+  width: 100%;
   border: 1px solid var(--vshanuy-grid-line);
   background: var(--paper);
   opacity: 0;
@@ -2774,16 +2777,6 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   margin: 0;
 }
 
-/* Як «ГО «ВШАНУЙ»»: text-caption-30 + uppercase */
-.vshanuy-partners__label {
-  color: var(--ink);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(12px, 10.775px + 0.3265vw, 16px);
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: normal;
-  text-transform: uppercase !important;
-}
 
 .vshanuy-partners__header h2 {
   max-width: 12ch;
@@ -3933,7 +3926,7 @@ main
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 12px;
+    gap: 8px;
   }
 
   .vshanuy-site-footer__column--support .vshanuy-site-footer__inline-list {
@@ -3945,7 +3938,7 @@ main
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 12px;
+    gap: 8px;
   }
 
   .vshanuy-site-footer__column .vshanuy-site-footer__column-foot,
@@ -4141,16 +4134,6 @@ main
   box-sizing: border-box;
 }
 
-/* Як «ГО «ВШАНУЙ»»: text-caption-30 + uppercase + ink */
-.vshanuy-directions-carousel__label {
-  color: var(--ink);
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(12px, 10.775px + 0.3265vw, 16px);
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: normal;
-  text-transform: uppercase !important;
-}
 
 .vshanuy-directions-carousel__title {
   font-family: "Piazzolla", Georgia, serif;
@@ -4293,10 +4276,11 @@ main
   max-width: none;
   width: 100%;
   font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(16px, 14.8px + 0.32vw, 18px);
+  font-size: var(--vshanuy-body-size);
   font-weight: 400;
   line-height: 1.55;
-  color: var(--graphite);
+  letter-spacing: normal;
+  color: var(--text-secondary);
 }
 
 .vshanuy-directions-carousel__media {
@@ -4460,7 +4444,7 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
   display: inline-flex;
   min-height: 44px;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   margin-top: 24px;
   color: var(--ink);
   font-family: "Fixel", system-ui, sans-serif;
@@ -4505,7 +4489,9 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
 /* === Shared CTAs: Piazzolla Regular 16/400 + Krapka === */
 .vshanuy-about-page__cta,
 .vshanuy-support-page__cta,
+.vshanuy-support-page__link,
 .vshanuy-collab-page__cta,
+.vshanuy-collab-page__more,
 .vshanuy-merch-page__cta,
 .vshanuy-contact__submit,
 .vshanuy-block-button,
@@ -4520,7 +4506,10 @@ button.vshanuy-contact__submit {
 
 .vshanuy-about-page__cta > span[aria-hidden="true"],
 .vshanuy-support-page__cta > span[aria-hidden="true"],
+.vshanuy-support-page__link > span[aria-hidden="true"],
 .vshanuy-collab-page__cta > span[aria-hidden="true"],
+.vshanuy-collab-page__more > span[aria-hidden="true"],
+.vshanuy-collab-page__more-arrow,
 .vshanuy-merch-page__cta > span[aria-hidden="true"],
 .vshanuy-contact__submit > span[aria-hidden="true"],
 .vshanuy-block-button__arrow,
@@ -4542,8 +4531,14 @@ button.vshanuy-contact__submit {
 .vshanuy-about-page__cta:focus-visible > span[aria-hidden="true"],
 .vshanuy-support-page__cta:hover > span[aria-hidden="true"],
 .vshanuy-support-page__cta:focus-visible > span[aria-hidden="true"],
+.vshanuy-support-page__link:hover > span[aria-hidden="true"],
+.vshanuy-support-page__link:focus-visible > span[aria-hidden="true"],
 .vshanuy-collab-page__cta:hover > span[aria-hidden="true"],
 .vshanuy-collab-page__cta:focus-visible > span[aria-hidden="true"],
+.vshanuy-collab-page__more:hover > span[aria-hidden="true"],
+.vshanuy-collab-page__more:focus-visible > span[aria-hidden="true"],
+.vshanuy-collab-page__more:hover .vshanuy-collab-page__more-arrow,
+.vshanuy-collab-page__more:focus-visible .vshanuy-collab-page__more-arrow,
 .vshanuy-merch-page__cta:hover > span[aria-hidden="true"],
 .vshanuy-merch-page__cta:focus-visible > span[aria-hidden="true"],
 .vshanuy-contact__submit:hover > span[aria-hidden="true"],

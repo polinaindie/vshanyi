@@ -1,8 +1,11 @@
 /* Materials page — mirrors ui/ MaterialsPage */
 
-.vshanuy-materials-page {
-  --vshanuy-page-grid-line: color-mix(in srgb, var(--grey) 20%, transparent);
+/* Тиша між блоками сторінки. Її беруть також статті й сторінки напрямів (material.css, napryamok.css). */
+body {
+  --vshanuy-block-gap: var(--space-silence-mobile, 96px);
+}
 
+.vshanuy-materials-page {
   position: relative;
   margin: 0;
   min-height: 100%;
@@ -28,33 +31,16 @@
   border: 0;
 }
 
-.vshanuy-page-guides {
-  position: absolute;
-  z-index: 0;
-  inset: 0 8px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  pointer-events: none;
-}
-
-.vshanuy-page-guides > span {
-  border-right: 1px solid var(--vshanuy-page-grid-line);
-}
-
-.vshanuy-page-guides > span:nth-child(n + 2) {
-  display: none;
-}
-
 .vshanuy-materials-page > main,
 .vshanuy-materials-page > .vshanuy-site-footer {
   position: relative;
   z-index: 1;
 }
 
-/* Page */
+/* Page. Хедер сторінки без ліній; реєстр починається з власної H після тиші. */
 
 .vshanuy-materials-page__main {
-  padding: var(--space-4) 8px var(--space-silence);
+  padding: var(--space-section-top, 48px) 8px 0;
 }
 
 .vshanuy-materials-page__intro {
@@ -64,9 +50,11 @@
 .vshanuy-materials-page__title {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(36px, 26.2px + 2.612vw, 68px);
-  line-height: 1;
+  font-size: var(--vshanuy-title-size);
   font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 /* Filters */
@@ -85,16 +73,17 @@
   min-height: 44px;
   align-items: center;
   gap: 8px;
-  padding: 0 14px;
+  padding: 0 16px;
   border: var(--line);
   border-radius: var(--radius);
   background: transparent;
   color: var(--ink);
   font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.08em;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-transform: none;
   cursor: pointer;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }
@@ -117,33 +106,50 @@
   font-weight: 400;
 }
 
-/* List */
+/* List. H зверху реєстру і на стиках рядів; під останнім рядом лінії немає.
+   Ряди рахуємо лише за видимими картками, тому фільтр не ламає сітку. */
 
 .vshanuy-materials-page__list {
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr;
-  row-gap: var(--space-4);
-  margin: var(--space-5) 0 0;
+  grid-template-columns: minmax(0, 1fr);
+  margin: var(--vshanuy-block-gap, 96px) 0 0;
   padding: 0;
   list-style: none;
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+}
+
+.vshanuy-materials-page__item {
+  position: relative;
+  padding: 16px;
 }
 
 .vshanuy-materials-page__item[hidden] {
   display: none;
 }
 
+.vshanuy-materials-page__item:nth-child(n + 2 of :not([hidden])) {
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+}
+
 .vshanuy-materials-page__card {
   display: flex;
   flex-direction: column;
+  background: transparent;
   color: inherit;
   text-decoration: none;
+  transition: background-color 300ms ease-out;
+}
+
+.vshanuy-materials-page__card:hover,
+.vshanuy-materials-page__card:focus-visible {
+  background: var(--beige);
 }
 
 .vshanuy-materials-page__card img {
   display: block;
-  width: calc(100% - 2 * var(--space-2));
+  width: 100%;
   height: auto;
-  margin-inline: var(--space-2);
   aspect-ratio: 3 / 2;
   object-fit: cover;
 }
@@ -151,22 +157,23 @@
 .vshanuy-materials-page__body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-2) 0;
+  padding: var(--space-2) 0 0;
 }
 
 .vshanuy-materials-page__tag {
   font-family: "Fixel", system-ui, sans-serif;
-  font-size: clamp(12px, calc(12px + 4 * (100vw - 375px) / 1225), 16px);
+  font-size: var(--vshanuy-caption-size);
   line-height: 1.2;
   color: var(--text-secondary);
 }
 
 .vshanuy-materials-page__name {
+  margin-top: 24px;
   font-family: var(--font-display);
-  font-size: var(--step-1);
+  font-size: clamp(22px, calc(22px + 10 * (100vw - 375px) / 1225), 32px);
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   text-decoration: underline;
   text-decoration-color: transparent;
   text-decoration-thickness: 1px;
@@ -176,16 +183,18 @@
 
 .vshanuy-materials-page__excerpt {
   max-width: 40ch;
-  font-size: var(--step-0);
-  line-height: var(--leading-text);
+  margin-top: 16px;
+  font-family: var(--font-text);
+  font-size: var(--vshanuy-body-size);
+  line-height: 1.55;
   color: var(--text-secondary);
 }
 
 .vshanuy-materials-page__more {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  margin-top: var(--space-1);
+  gap: 8px;
+  margin-top: 40px;
   font-family: "Fixel", system-ui, sans-serif;
   font-size: 12px;
   font-weight: 600;
@@ -221,12 +230,13 @@
 /* Featured */
 
 .vshanuy-materials-page__item--featured .vshanuy-materials-page__name {
-  font-size: var(--step-3);
-  line-height: 1.1;
+  font-size: clamp(32px, calc(32px + 20 * (100vw - 375px) / 1225), 52px);
+  line-height: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .vshanuy-materials-page__filters button,
+  .vshanuy-materials-page__card,
   .vshanuy-materials-page__name,
   .vshanuy-materials-page__more > span {
     transition: none;
@@ -240,36 +250,81 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  /* V колонок на всю висоту реєстру — і в порожніх клітинках останнього ряду */
+  .vshanuy-materials-page__list::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)) calc(50% - 0.5px) 0 / 1px 100% no-repeat;
+    pointer-events: none;
+  }
+
+  /* Головний матеріал на всю ширину: paper знімає V колонок під фото й текстом */
   .vshanuy-materials-page__item--featured {
     grid-column: 1 / -1;
+    background: var(--paper);
+    border-bottom: 1px solid var(--vshanuy-page-grid-line);
+  }
+
+  .vshanuy-materials-page__item:nth-child(n + 2 of :not([hidden])) {
+    border-top: 0;
+  }
+
+  .vshanuy-materials-page__item:nth-child(n + 3 of :not([hidden], .vshanuy-materials-page__item--featured)) {
+    border-top: 1px solid var(--vshanuy-page-grid-line);
   }
 }
 
 @media (min-width: 1024px) {
-  .vshanuy-page-guides {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .vshanuy-page-guides > span:nth-child(n + 2) {
-    display: block;
-  }
-
-  .vshanuy-page-guides > span:last-child {
-    border-right: 0;
+  body {
+    --vshanuy-block-gap: var(--space-silence-desktop, 240px);
   }
 
   .vshanuy-materials-page__list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    row-gap: var(--space-5);
   }
 
+  .vshanuy-materials-page__list::before {
+    background-image:
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+    background-position: calc(25% - 0.5px) 0, calc(50% - 0.5px) 0, calc(75% - 0.5px) 0;
+    background-size: 1px 100%, 1px 100%, 1px 100%;
+  }
+
+  .vshanuy-materials-page__item:nth-child(n + 3 of :not([hidden], .vshanuy-materials-page__item--featured)) {
+    border-top: 0;
+  }
+
+  .vshanuy-materials-page__item:nth-child(n + 5 of :not([hidden], .vshanuy-materials-page__item--featured)) {
+    border-top: 1px solid var(--vshanuy-page-grid-line);
+  }
+
+  /* Фото в кол. 1–2, текст у кол. 3–4; mid V між ними з inset 16px з обох боків */
   .vshanuy-materials-page__item--featured .vshanuy-materials-page__card {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 32px;
     align-items: end;
+  }
+
+  .vshanuy-materials-page__item--featured::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 0.5px);
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
   }
 
   .vshanuy-materials-page__item--featured .vshanuy-materials-page__body {
     padding-top: 0;
+  }
+
+  .vshanuy-materials-page__name {
+    margin-top: 32px;
   }
 }

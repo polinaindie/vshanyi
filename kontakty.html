@@ -4,8 +4,11 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Контакти — Вшануй</title>
-  <link rel="stylesheet" href="_next/static/css/font-overrides.css?v=20261103ctaKrapka"/>
-  <link rel="stylesheet" href="_next/static/css/kontakty.css?v=20261103topicBottom"/>
+  <link rel="stylesheet" href="_next/static/css/font-overrides.css?v=20261103refactor"/>
+  <link rel="stylesheet" href="_next/static/css/type-roles.css?v=20261103vars"/>
+  <link rel="stylesheet" href="_next/static/css/space-roles.css?v=20261103vars"/>
+  <link rel="stylesheet" href="_next/static/css/block-button.css?v=20261103unify"/>
+  <link rel="stylesheet" href="_next/static/css/kontakty.css?v=20261103refactor"/>
 </head>
 <body class="vshanuy-contacts-page">
   <header class="sticky"></header>
@@ -13,8 +16,8 @@
   <main class="vshanuy-contacts-page__main">
     <header class="vshanuy-contacts-page__intro">
       <div class="vshanuy-contacts-page__intro-inner">
-        <h1 class="vshanuy-contacts-page__title">Контакти.</h1>
-        <p class="vshanuy-contacts-page__lead">Готові долучитися до змін? Залиште повідомлення або звʼяжіться з нами у соцмережах.</p>
+        <h1 class="vshanuy-contacts-page__title vshanuy-type-title">Контакти.</h1>
+        <p class="vshanuy-contacts-page__lead vshanuy-type-lead">Готові долучитися до змін? Залиште повідомлення або звʼяжіться з нами у соцмережах.</p>
       </div>
     </header>
 
@@ -97,8 +100,8 @@
               <textarea name="message" rows="5"></textarea>
             </label>
             <div class="vshanuy-contact__full">
-              <button class="vshanuy-contact__submit" type="submit">
-                Надіслати <span aria-hidden="true">→</span>
+              <button class="vshanuy-block-button vshanuy-block-button--primary vshanuy-contact__submit" type="submit">
+                <span class="vshanuy-block-button__label">Надіслати</span><span class="vshanuy-block-button__mark" aria-hidden="true"></span>
               </button>
             </div>
           </form>

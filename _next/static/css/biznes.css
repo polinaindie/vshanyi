@@ -1,3 +1,9 @@
+/*
+  DEAD (2026-11-03): жодна сторінка site/ не підключає цей файл.
+  napryamky/spivpratsya-z-biznesom.html тепер на шаблоні direction-page.
+  Не правити; видалення — рішення менеджера.
+*/
+
 /* Співпраця з бізнесами — ритм по 4-колонковій сітці */
 
 .vshanuy-business-page {
@@ -172,7 +178,7 @@
 
 .vshanuy-business-page__context-body {
   margin: 32px 0 0;
-  max-width: 36ch;
+  max-width: none;
   color: var(--text-secondary);
   font-family: var(--font-text);
   /* text-body-30 — як абзаци на головній */
@@ -250,10 +256,16 @@
 
 .vshanuy-business-page__lead {
   margin: var(--space-3) 0 0;
-  max-width: 36ch;
+  max-width: none;
   color: var(--text-secondary);
   font-size: var(--step-1);
   line-height: 1.4;
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-business-page__lead {
+    max-width: 50%;
+  }
 }
 
 .vshanuy-business-page__figure {
@@ -402,11 +414,6 @@ a.vshanuy-business-page__step:focus-visible {
   font-size: var(--step--1);
   font-weight: 600;
   overflow: hidden;
-}
-
-.vshanuy-block-button--accent {
-  background: var(--accent);
-  color: var(--ink);
 }
 
 .vshanuy-block-button:focus-visible {

@@ -1,10 +1,12 @@
-/* Сторінка «Гайди»: нумерований список, розділений лінійками; гайд із файлом має посилання в 4-й колонці */
+/* Сторінка «Гайди»: нумерований список, розділений лінійками; гайд із файлом має посилання в 4-й колонці.
+   Дзеркало: ui/src/layouts/GuidesPage/GuidesPage.css */
 
+/* H зверху кожного гайда; під останнім лінії немає — V доходять до футера. */
 .vshanuy-guides-page__list {
-  margin: var(--space-5) 0 0;
+  position: relative;
+  margin: var(--vshanuy-block-gap, 96px) 0 0;
   padding: 0;
   list-style: none;
-  border-bottom: var(--line-muted);
 }
 
 .vshanuy-guides-page__item {
@@ -12,7 +14,7 @@
   grid-template-columns: minmax(0, 1fr);
   gap: var(--space-2);
   padding: var(--space-3) var(--space-2);
-  border-top: var(--line-muted);
+  border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-guides-page__num {
@@ -27,7 +29,7 @@
 
 .vshanuy-guides-page__copy {
   display: grid;
-  gap: var(--space-2);
+  gap: 24px;
   min-width: 0;
 }
 
@@ -45,7 +47,7 @@
   max-width: 40ch;
   margin: 0;
   color: var(--text-secondary);
-  font-size: clamp(16px, 14.8px + 0.32vw, 18px);
+  font-size: var(--vshanuy-body-size);
   line-height: 1.55;
 }
 
@@ -54,10 +56,9 @@
   min-height: 44px;
   align-items: center;
   justify-self: start;
-  gap: 12px;
+  gap: 8px;
   padding: 0;
   border: 0;
-  border-radius: var(--radius);
   background: transparent;
   color: var(--ink);
   font-family: "Fixel", system-ui, sans-serif;
@@ -80,8 +81,6 @@
 
 .vshanuy-guides-page__link:hover,
 .vshanuy-guides-page__link:focus-visible {
-  background: transparent;
-  color: var(--ink);
   text-decoration-color: currentColor;
 }
 
@@ -96,6 +95,21 @@
 }
 
 @media (min-width: 1024px) {
+  /* V на 25% і 75%: текст займає кол. 2–3, лінія його не ріже */
+  .vshanuy-guides-page__list::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+    background-repeat: no-repeat;
+    background-size: 1px 100%, 1px 100%;
+    background-position: calc(25% - 0.5px) 0, calc(75% - 0.5px) 0;
+  }
+
   .vshanuy-guides-page__item {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: first baseline;

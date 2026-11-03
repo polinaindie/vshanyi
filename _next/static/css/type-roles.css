@@ -1,0 +1,73 @@
+/*
+  Shared type roles — еталон живої головної (text-title-40 / subtitle / title-20 / label / body).
+  Дзеркало: ui/src/styles/type-roles.css
+  Сторінки беруть кеглі через var(--vshanuy-*-size), а не копіюють clamp().
+*/
+
+:root {
+  --vshanuy-title-size: clamp(36px, 26.2px + 2.612vw, 68px);
+  --vshanuy-display-size: clamp(36px, 22.53px + 3.592vw, 80px);
+  --vshanuy-heading-size: clamp(24px, 14.204px + 2.612vw, 56px);
+  --vshanuy-h2-size: clamp(28px, 18px + 1.6vw, 44px);
+  --vshanuy-subtitle-size: clamp(18px, 17.39px + 0.163vw, 20px);
+  --vshanuy-card-title-size: clamp(16px, 14.5px + 0.4vw, 20px);
+  --vshanuy-body-size: clamp(16px, 15.39px + 0.163vw, 18px);
+  --vshanuy-note-size: clamp(13px, 12.5px + 0.2vw, 15px);
+  --vshanuy-caption-size: clamp(12px, 10.775px + 0.3265vw, 16px);
+}
+
+.vshanuy-type-title {
+  font-family: var(--font-display, "Piazzolla", Georgia, serif);
+  font-size: var(--vshanuy-title-size);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.vshanuy-type-subtitle {
+  font-family: var(--font-display, "Piazzolla", Georgia, serif);
+  font-size: var(--vshanuy-subtitle-size);
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.vshanuy-type-heading {
+  font-family: var(--font-display, "Piazzolla", Georgia, serif);
+  font-size: var(--vshanuy-heading-size);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.vshanuy-type-label {
+  font-family: var(--font-text, "Fixel", system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted, var(--grey));
+}
+
+.vshanuy-type-body {
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: var(--vshanuy-body-size);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: normal;
+}
+
+.vshanuy-type-lead {
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: var(--vshanuy-body-size);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: normal;
+  color: var(--text-secondary);
+}
+
+.vshanuy-type-lead--narrow {
+  max-width: 36ch;
+}
