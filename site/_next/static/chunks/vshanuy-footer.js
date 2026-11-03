@@ -21,7 +21,7 @@
             </a>
             <p class="vshanuy-site-footer__motto">Памʼятай про полеглих<br>допомагай живим</p>
           </div>
-          <a class="vshanuy-site-footer__cta" href="${rootPrefix}pidtrymaty.html">Підтримати <span aria-hidden="true">→</span></a>
+          <a class="vshanuy-site-footer__cta" href="${rootPrefix}pidtrymaty.html">Підтримати <span aria-hidden="true"></span></a>
         </section>
 
         <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-primary" aria-label="Про нас">
@@ -129,6 +129,20 @@
     return true;
   };
 
+  /** Primary CTA: Krapka via CSS mask — not «→» (Next footer may hydrate without span). */
+  const normalizeFooterCta = () => {
+    const cta = document.querySelector(".vshanuy-site-footer__cta");
+    if (!cta) return;
+
+    const href = cta.getAttribute("href") || `${rootPrefix}pidtrymaty.html`;
+    cta.setAttribute("href", href);
+    cta.textContent = "";
+    cta.append("Підтримати ");
+    const dot = document.createElement("span");
+    dot.setAttribute("aria-hidden", "true");
+    cta.appendChild(dot);
+  };
+
   const mount = () => {
     document.querySelector(".about-vshanuy")?.closest("section")?.setAttribute("id", "about");
     document
@@ -140,6 +154,7 @@
     document.querySelector(".vshanuy-partners")?.setAttribute("id", "partners");
 
     fixProjectsTrack();
+    normalizeFooterCta();
 
     if (document.querySelector("footer.vshanuy-site-footer")) return true;
     const currentFooter = [...document.querySelectorAll("footer")].find(
