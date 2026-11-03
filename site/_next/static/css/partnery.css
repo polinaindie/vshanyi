@@ -29,12 +29,7 @@
 }
 
 .vshanuy-page-guides {
-  position: absolute;
-  z-index: 0;
-  inset: 0 8px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  pointer-events: none;
+  display: none;
 }
 
 .vshanuy-page-guides > span {
@@ -54,7 +49,7 @@
 /* Page */
 
 .vshanuy-partners-page__main {
-  padding: var(--space-4) 8px var(--space-silence);
+  padding: 48px 8px 0;
 }
 
 .vshanuy-partners-page__intro {
@@ -72,7 +67,9 @@
 }
 
 .vshanuy-partners-page__section {
-  margin-top: var(--space-4);
+  position: relative;
+  margin-top: 0;
+  padding-top: 96px;
 }
 
 .vshanuy-partners-page__split {
@@ -114,7 +111,7 @@
 /* Logos — same cell metrics as .vshanuy-partners on the homepage */
 
 .vshanuy-partners-page__logos {
-  margin-top: var(--space-silence);
+  margin-top: 96px;
 }
 
 .vshanuy-partners-page__list {
@@ -126,12 +123,40 @@
 }
 
 .vshanuy-partners-page__item {
+  position: relative;
   display: flex;
   min-width: 0;
   min-height: 144px;
   align-items: center;
   justify-content: center;
   padding: 24px;
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+}
+
+.vshanuy-partners-page__item::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+  pointer-events: none;
+}
+
+.vshanuy-partners-page__item::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: -1px;
+  left: 0;
+  width: 1px;
+  background: var(--vshanuy-page-grid-line);
+  pointer-events: none;
+}
+
+.vshanuy-partners-page__item:nth-child(odd)::before {
+  display: none;
 }
 
 .vshanuy-partners-page__link {
@@ -179,14 +204,14 @@
 /* Partner rows — logo | description | project */
 
 .vshanuy-partners-page__projects {
-  margin-top: var(--space-4);
+  margin-top: 96px;
 }
 
 .vshanuy-partners-page__rows {
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: var(--line-muted);
+  border-top: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-partners-page__row {
@@ -194,7 +219,7 @@
   grid-template-columns: minmax(0, 1fr);
   gap: var(--space-2);
   padding: var(--space-3) var(--space-2);
-  border-bottom: var(--line-muted);
+  border-bottom: 1px solid var(--vshanuy-page-grid-line);
 }
 
 .vshanuy-partners-page__row-logo {
@@ -301,16 +326,26 @@
 /* Layout */
 
 @media (min-width: 1024px) {
-  .vshanuy-page-guides {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .vshanuy-partners-page__main {
+    padding-top: 96px;
   }
 
-  .vshanuy-page-guides > span:nth-child(n + 2) {
-    display: block;
+  .vshanuy-partners-page__section {
+    padding-top: 240px;
   }
 
-  .vshanuy-page-guides > span:last-child {
-    border-right: 0;
+  /* Текст у кол. 2–3: V рівно на 25% і 75% (краї border-box), крізь тишу до H логотипів */
+  .vshanuy-partners-page__section::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: -240px;
+    left: 25%;
+    width: calc(50% + 1px);
+    border-left: 1px solid var(--vshanuy-page-grid-line);
+    border-right: 1px solid var(--vshanuy-page-grid-line);
+    pointer-events: none;
   }
 
   .vshanuy-partners-page__split {
@@ -347,5 +382,53 @@
   .vshanuy-partners-page__row-text {
     grid-column: 2 / span 2;
     max-width: none;
+  }
+
+  .vshanuy-partners-page__logos,
+  .vshanuy-partners-page__projects {
+    margin-top: 240px;
+  }
+
+  /* 25/75 між сіткою логотипів і рядами проєктів — лише в тиші, без подвійної V на комірках */
+  .vshanuy-partners-page__logos {
+    position: relative;
+  }
+
+  .vshanuy-partners-page__logos::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 100%;
+    left: 25%;
+    width: calc(50% + 1px);
+    height: 240px;
+    border-left: 1px solid var(--vshanuy-page-grid-line);
+    border-right: 1px solid var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+
+  .vshanuy-partners-page__item:nth-child(odd)::before {
+    display: block;
+  }
+
+  .vshanuy-partners-page__item:nth-child(4n + 1)::before {
+    display: none;
+  }
+
+  .vshanuy-partners-page__row {
+    position: relative;
+  }
+
+  .vshanuy-partners-page__row::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: 25%;
+    width: calc(50% + 1px);
+    border-left: 1px solid var(--vshanuy-page-grid-line);
+    border-right: 1px solid var(--vshanuy-page-grid-line);
+    pointer-events: none;
   }
 }
