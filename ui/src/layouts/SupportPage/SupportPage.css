@@ -20,13 +20,8 @@
   border: 0;
 }
 
-.vshanuy-page-guides {
-  position: absolute;
-  z-index: 0;
-  inset: 0 8px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  pointer-events: none;
+.vshanuy-support-page .vshanuy-page-guides {
+  display: none;
 }
 
 .vshanuy-page-guides > span {
@@ -55,11 +50,11 @@
 /* Page */
 
 .vshanuy-support-page__main {
-  padding: var(--space-4) 8px var(--space-silence);
+  padding: 48px 8px 0;
 }
 
 .vshanuy-support-page__intro {
-  padding: 0 var(--space-2) var(--space-3);
+  padding: 0 var(--space-2);
 }
 
 .vshanuy-support-page__title {
@@ -79,10 +74,11 @@
 }
 
 .vshanuy-support-page__row {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-3);
-  padding-top: var(--space-4);
+  gap: 32px;
+  padding-top: 96px;
 }
 
 .vshanuy-support-page__cell {
@@ -91,16 +87,8 @@
 }
 
 @media (min-width: 1024px) {
-  .vshanuy-page-guides {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .vshanuy-page-guides > span:nth-child(n + 2) {
-    display: block;
-  }
-
-  .vshanuy-page-guides > span:last-child {
-    border-right: 0;
+  .vshanuy-support-page__main {
+    padding-top: 96px;
   }
 
   .vshanuy-support-page__lead {
@@ -110,6 +98,20 @@
   .vshanuy-support-page__row {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0;
+    padding-top: 240px;
+  }
+
+  /* Mid V крізь тишу над сплітом і крізь фото | текст */
+  .vshanuy-support-page__row::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: calc(50% - 0.5px);
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
   }
 
   .vshanuy-support-page__cell:first-child {
@@ -172,7 +174,7 @@
 .vshanuy-support-page__heading {
   margin: 0;
   padding-bottom: var(--space-3);
-  border-bottom: var(--line);
+  border-bottom: 1px solid var(--vshanuy-page-grid-line);
   font-family: var(--font-display);
   font-size: var(--step-2);
   line-height: 1.1;
@@ -189,7 +191,7 @@
 /* Bank details */
 
 .vshanuy-support-page__bank {
-  margin-top: var(--space-5);
+  margin-top: 96px;
 }
 
 .vshanuy-support-page__details {

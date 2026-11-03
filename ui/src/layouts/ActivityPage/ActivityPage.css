@@ -1,15 +1,29 @@
 /* «Напрями роботи»: усі напрями одразу, по 2 в ряд (на 4 колонках — span 2). «Проєкти» — сітка нижче. */
 
 .vshanuy-activity__section {
-  margin-top: var(--space-3);
+  margin-top: 64px;
 }
 
 .vshanuy-activity__directions {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: 64px 0 0;
+  margin: 96px 0 0;
   padding: 0;
   list-style: none;
+}
+
+/* Mid V між двома картками ряду: від верхньої H крізь сітку */
+.vshanuy-activity__directions::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: -1px;
+  left: calc(50% - 0.5px);
+  width: 1px;
+  background: var(--vshanuy-page-grid-line);
+  pointer-events: none;
 }
 
 .vshanuy-activity__directions > li {
@@ -35,7 +49,7 @@
   flex-direction: column;
   height: 100%;
   gap: 0;
-  padding: var(--space-3) var(--space-2) var(--space-4);
+  padding: 16px;
   background: transparent;
   color: var(--ink);
   text-decoration: none;
@@ -79,7 +93,7 @@
 .vshanuy-activity__media {
   display: block;
   order: -1;
-  margin-bottom: var(--space-3);
+  margin-bottom: 16px;
   overflow: hidden;
 }
 
@@ -95,7 +109,7 @@
 
 .vshanuy-activity__card:hover .vshanuy-activity__media img,
 .vshanuy-activity__card:focus-visible .vshanuy-activity__media img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 /* Підзаголовок під H1 «Напрями роботи.» */
@@ -157,7 +171,7 @@
 }
 
 .vshanuy-activity__projects--page .vshanuy-projects-page__list {
-  margin-top: var(--space-5);
+  margin-top: 96px;
 }
 
 .vshanuy-projects-page__item[hidden] {
@@ -165,6 +179,10 @@
 }
 
 @media (min-width: 1024px) {
+  .vshanuy-activity__section {
+    margin-top: 96px;
+  }
+
   .vshanuy-activity__directions {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     margin-top: 96px;
@@ -173,6 +191,10 @@
   /* Дві картки в ряд: кожна займає дві колонки сітки, лінії збігаються з гайдами */
   .vshanuy-activity__directions > li {
     grid-column: span 2;
+  }
+
+  .vshanuy-activity__projects--page .vshanuy-projects-page__list {
+    margin-top: 240px;
   }
 }
 
