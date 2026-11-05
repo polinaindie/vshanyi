@@ -91,7 +91,7 @@
       .join("");
 
   const sectionMarkup = ({
-    title = "Для кого ми говоримо про памʼять",
+    title = "Для кого ми говоримо<br>про памʼять",
     titleId = "vshanuy-home-directions-title",
   } = {}) => `
       <div class="vshanuy-directions-carousel__shell">
