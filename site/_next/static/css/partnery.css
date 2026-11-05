@@ -409,3 +409,8 @@
     pointer-events: none;
   }
 }
+
+/* Перший блок — одразу під заголовком, як на «Проєктах» */
+.vshanuy-partners-page__intro + .vshanuy-partners-page__section {
+  margin-top: var(--space-3);
+}
