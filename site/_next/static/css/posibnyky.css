@@ -4,7 +4,7 @@
 /* H зверху кожного гайда; під останнім лінії немає — V доходять до футера. */
 .vshanuy-guides-page__list {
   position: relative;
-  margin: var(--vshanuy-block-gap, 96px) 0 0;
+  margin: var(--space-3) 0 0;
   padding: 0;
   list-style: none;
 }
