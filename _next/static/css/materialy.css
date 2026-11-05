@@ -198,11 +198,14 @@ body {
   align-items: center;
   gap: 8px;
   margin-top: 40px;
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: 0.08em;
+  letter-spacing: normal;
+  text-transform: none;
+  text-decoration: none;
 }
 
 .vshanuy-materials-page__item:not(.vshanuy-materials-page__item--featured) .vshanuy-materials-page__excerpt,
@@ -210,19 +213,9 @@ body {
   display: none;
 }
 
-.vshanuy-materials-page__more > span {
-  font-size: 20px;
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
 .vshanuy-materials-page__card:hover .vshanuy-materials-page__name,
 .vshanuy-materials-page__card:focus-visible .vshanuy-materials-page__name {
   text-decoration-color: currentColor;
-}
-
-.vshanuy-materials-page__card:hover .vshanuy-materials-page__more > span,
-.vshanuy-materials-page__card:focus-visible .vshanuy-materials-page__more > span {
-  transform: translateX(4px);
 }
 
 .vshanuy-materials-page__card:focus-visible {
@@ -240,8 +233,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .vshanuy-materials-page__filters button,
   .vshanuy-materials-page__card,
-  .vshanuy-materials-page__name,
-  .vshanuy-materials-page__more > span {
+  .vshanuy-materials-page__name {
     transition: none;
   }
 }
