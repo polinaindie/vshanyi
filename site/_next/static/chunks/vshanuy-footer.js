@@ -27,9 +27,9 @@
         <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-primary" aria-label="Про нас">
           <div class="vshanuy-site-footer__stack">
             <ul class="vshanuy-site-footer__links">
-              <li><a href="${rootPrefix}pro-nas.html">Місія та цінності.</a></li>
-              <li><span class="vshanuy-dead-link">Звіт про діяльність.</span></li>
-              <li><a href="${rootPrefix}kontakty.html">Контакти.</a></li>
+              <li><a href="${rootPrefix}pro-nas.html">Місія та цінності</a></li>
+              <li><span class="vshanuy-dead-link">Звіт про діяльність</span></li>
+              <li><a href="${rootPrefix}kontakty.html">Контакти</a></li>
             </ul>
           </div>
           <p class="vshanuy-site-footer__column-foot">© 2026 Вшануй</p>
@@ -37,10 +37,10 @@
 
         <nav class="vshanuy-site-footer__column vshanuy-site-footer__column--sections vshanuy-site-footer__column--sections-secondary" aria-label="Діяльність">
           <ul class="vshanuy-site-footer__links">
-            <li><a href="${rootPrefix}diyalnist.html">Напрями роботи.</a></li>
-            <li><a href="${rootPrefix}proekty.html">Проєкти.</a></li>
-            <li><a href="${rootPrefix}posibnyky/">Гайди.</a></li>
-            <li><a href="${rootPrefix}materialy.html">Публікації.</a></li>
+            <li><a href="${rootPrefix}diyalnist.html">Напрями роботи</a></li>
+            <li><a href="${rootPrefix}proekty.html">Проєкти</a></li>
+            <li><a href="${rootPrefix}posibnyky/">Гайди</a></li>
+            <li><a href="${rootPrefix}materialy.html">Публікації</a></li>
           </ul>
           <a class="vshanuy-site-footer__column-foot" href="${rootPrefix}polityka-konfidentsiynosti.html">Політика конфіденційності</a>
         </nav>
@@ -48,10 +48,10 @@
         <section class="vshanuy-site-footer__column vshanuy-site-footer__column--support" aria-label="Долучитися">
           <div class="vshanuy-site-footer__contacts">
             <ul class="vshanuy-site-footer__links" aria-label="Долучитися">
-              <li><a href="${rootPrefix}pidtrymaty.html">Підтримати.</a></li>
-              <li><a href="${rootPrefix}merch.html">Купити мерч.</a></li>
-              <li><a href="${rootPrefix}spivpratsya.html">Співпраця.</a></li>
-              <li><a href="${rootPrefix}partnery.html">Партнери.</a></li>
+              <li><a href="${rootPrefix}pidtrymaty.html">Підтримати</a></li>
+              <li><a href="${rootPrefix}merch.html">Купити мерч</a></li>
+              <li><a href="${rootPrefix}spivpratsya.html">Співпраця</a></li>
+              <li><a href="${rootPrefix}partnery.html">Партнери</a></li>
             </ul>
           </div>
           <div class="vshanuy-site-footer__support-foot">
