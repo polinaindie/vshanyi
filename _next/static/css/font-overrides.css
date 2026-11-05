@@ -4547,3 +4547,13 @@ button.vshanuy-contact__submit {
   opacity: 0.7;
   transform: none !important;
 }
+
+/* Пункти меню футера — 16px; лого OpenTech по лівому краю пунктів над ним. */
+.vshanuy-site-footer__links a,
+.vshanuy-site-footer__links .vshanuy-dead-link {
+  font-size: 16px;
+}
+
+.vshanuy-site-footer__column--support .vshanuy-site-footer__support-foot {
+  align-items: flex-start;
+}
