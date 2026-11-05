@@ -36,6 +36,7 @@
 .vshanuy-directions-carousel__label,
 .vshanuy-articles__label,
 .about-vshanuy__content h3.text-caption-30,
+#proekty h3.text-caption-30,
 .vshanuy-gromada__crumbs {
   font-family: "Fixel", system-ui, sans-serif;
   font-size: var(--vshanuy-caption-size);
