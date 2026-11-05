@@ -113,7 +113,7 @@ body {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  margin: var(--vshanuy-block-gap, 96px) 0 0;
+  margin: var(--space-3) 0 0;
   padding: 0;
   list-style: none;
   border-top: 1px solid var(--vshanuy-page-grid-line);
