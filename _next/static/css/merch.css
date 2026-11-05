@@ -212,3 +212,8 @@
     pointer-events: none;
   }
 }
+
+/* Перший блок — одразу під заголовком, як на «Проєктах» */
+.vshanuy-merch-page__intro + .vshanuy-merch-page__row {
+  margin-top: var(--space-3);
+}

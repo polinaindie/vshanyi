@@ -275,3 +275,8 @@
     margin-top: 0;
   }
 }
+
+/* Перший блок — одразу під заголовком, як на «Проєктах» */
+.vshanuy-collab-page__intro + .vshanuy-collab-page__section {
+  margin-top: var(--space-3);
+}

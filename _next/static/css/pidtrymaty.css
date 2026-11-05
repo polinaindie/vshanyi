@@ -255,3 +255,8 @@
     top: calc(var(--vshanuy-header-offset) + var(--space-3));
   }
 }
+
+/* Перший блок — одразу під заголовком, як на «Проєктах» */
+.vshanuy-support-page__intro + .vshanuy-support-page__row {
+  margin-top: var(--space-3);
+}
