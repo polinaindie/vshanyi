@@ -208,14 +208,15 @@
   outline: none;
 }
 
-/* «Спільнота»: H межі блока і рядів — на всю ширину екрана, не на ширину колонки. */
-#spilnota {
+/* «Спільнота» і центральні частини інших напрямів (--centre):
+   H межі блока і рядів — на всю ширину екрана, не на ширину колонки. */
+:is(#spilnota, .vshanuy-gromada__part--centre) {
   position: relative;
   border-top: 0;
 }
 
-#spilnota::after,
-#spilnota .vshanuy-gromada__register > li::before {
+:is(#spilnota, .vshanuy-gromada__part--centre)::after,
+:is(#spilnota, .vshanuy-gromada__part--centre) > .vshanuy-gromada__register > li::before {
   content: "";
   position: absolute;
   z-index: 3;
@@ -228,7 +229,7 @@
   pointer-events: none;
 }
 
-#spilnota .vshanuy-gromada__register > li {
+:is(#spilnota, .vshanuy-gromada__part--centre) > .vshanuy-gromada__register > li {
   position: relative;
   border-top: 0;
 }
@@ -325,6 +326,103 @@
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.25em;
+}
+
+.vshanuy-gromada__subhead {
+  margin: 48px 0 0;
+  padding-inline: 8px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: var(--vshanuy-h2-size);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* Пропозиції (напрям «Бізнес»): назва, фото, текст, реєстр матеріалів.
+   Mobile — одна під одною, H над кожною на всю ширину екрана. */
+
+.vshanuy-gromada__offers {
+  margin: 48px 0 0;
+}
+
+.vshanuy-gromada__offer {
+  position: relative;
+  min-width: 0;
+  padding: 16px 0 0;
+}
+
+.vshanuy-gromada__offer + .vshanuy-gromada__offer {
+  margin-top: 48px;
+}
+
+.vshanuy-gromada__offer::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 1px;
+  margin-left: -50vw;
+  background: var(--vshanuy-page-grid-line);
+  pointer-events: none;
+}
+
+.vshanuy-gromada__offer-title {
+  margin: 16px 0 0;
+  padding-inline: 8px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: var(--vshanuy-h2-size);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.vshanuy-gromada__offer-photo {
+  margin: 32px 0 0;
+  padding-inline: 8px;
+}
+
+.vshanuy-gromada__offer-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.vshanuy-gromada__offers .vshanuy-gromada__offer .vshanuy-gromada__prose {
+  width: auto;
+  margin-top: 24px;
+}
+
+.vshanuy-gromada__offers .vshanuy-gromada__offer .vshanuy-gromada__register {
+  width: auto;
+  margin: 32px 0 0;
+}
+
+.vshanuy-gromada__offer .vshanuy-gromada__row-title {
+  font-size: var(--vshanuy-card-title-size);
+  line-height: 1.25;
+}
+
+.vshanuy-gromada__offer a {
+  overflow-wrap: anywhere;
+}
+
+.vshanuy-gromada__plain a.vshanuy-gromada__row-title {
+  min-height: 24px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+
+.vshanuy-gromada__row-text .vshanuy-gromada__inline {
+  color: inherit;
 }
 
 /* Primary CTA під «Спільнотою»: у повітрі, поза лініями блока. Колонки 2–3. */
@@ -1042,9 +1140,9 @@ a.vshanuy-gromada__row:focus-visible,
     padding-inline: 0;
   }
 
-  /* Спільнота — дві центральні колонки (2–3).
-     Вертикалі заходять у повітря до лінії фото і до лінії «Дослідження». */
-  #spilnota {
+  /* Спільнота і --centre — дві центральні колонки (2–3).
+     Вертикалі заходять у повітря до лінії фото і до лінії наступного блока. */
+  :is(#spilnota, .vshanuy-gromada__part--centre) {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     width: auto;
@@ -1056,7 +1154,7 @@ a.vshanuy-gromada__row:focus-visible,
 
   /* Рамка блока: краї, 25% і 75%. 50% немає — сіла б на текст.
      Відрізки заходять у повітря зверху (до лінії фото) і знизу (до лінії «Дослідження»). */
-  #spilnota::before {
+  :is(#spilnota, .vshanuy-gromada__part--centre)::before {
     content: "";
     position: absolute;
     z-index: 2;
@@ -1079,21 +1177,27 @@ a.vshanuy-gromada__row:focus-visible,
     background-repeat: no-repeat;
   }
 
-  #spilnota > .vshanuy-section-label,
-  #spilnota > h2,
-  #spilnota > .vshanuy-gromada__prose {
+  :is(#spilnota, .vshanuy-gromada__part--centre) > .vshanuy-section-label,
+  :is(#spilnota, .vshanuy-gromada__part--centre) > h2,
+  :is(#spilnota, .vshanuy-gromada__part--centre) > .vshanuy-gromada__subhead,
+  :is(#spilnota, .vshanuy-gromada__part--centre) > .vshanuy-gromada__prose {
     grid-column: 2 / 4;
     width: auto;
     max-width: none;
   }
 
-  #spilnota > .vshanuy-gromada__register {
+  .vshanuy-gromada__part--centre > h2:first-child {
+    margin-top: 32px;
+  }
+
+  :is(#spilnota, .vshanuy-gromada__part--centre) > .vshanuy-gromada__register,
+  .vshanuy-gromada__part--centre > .vshanuy-gromada__offers {
     grid-column: 1 / -1;
     width: auto;
     max-width: none;
   }
 
-  #spilnota > .vshanuy-gromada__cta {
+  :is(#spilnota, .vshanuy-gromada__part--centre) > .vshanuy-gromada__cta {
     grid-column: 2 / 4;
     justify-self: start;
     width: fit-content;
@@ -1101,11 +1205,11 @@ a.vshanuy-gromada__row:focus-visible,
     margin: 40px 0 0 16px;
   }
 
-  #spilnota .vshanuy-gromada__prose p {
+  :is(#spilnota, .vshanuy-gromada__part--centre) .vshanuy-gromada__prose p {
     max-width: none;
   }
 
-  #spilnota .vshanuy-gromada__row,
+  :is(#spilnota, .vshanuy-gromada__part--centre) > .vshanuy-gromada__register .vshanuy-gromada__row,
   #spilnota .vshanuy-gromada__chats > summary {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     column-gap: 0;
@@ -1113,14 +1217,23 @@ a.vshanuy-gromada__row:focus-visible,
     padding-inline: 0;
   }
 
-  #spilnota .vshanuy-gromada__row-text,
+  :is(#spilnota, .vshanuy-gromada__part--centre) > .vshanuy-gromada__register .vshanuy-gromada__row-text,
   #spilnota .vshanuy-gromada__chats > summary .vshanuy-gromada__row-title,
   #spilnota .vshanuy-gromada__chats > summary .vshanuy-gromada__note {
     grid-column: 2 / 4;
     padding-inline: 16px;
   }
 
-  #spilnota .vshanuy-gromada__arrow {
+  :is(#spilnota, .vshanuy-gromada__part--centre) > .vshanuy-gromada__register a.vshanuy-gromada__row .vshanuy-gromada__row-text {
+    grid-row: 1;
+    padding-inline-end: 40px;
+  }
+
+  :is(#spilnota, .vshanuy-gromada__part--centre) > .vshanuy-gromada__register a.vshanuy-gromada__row .vshanuy-gromada__arrow {
+    grid-row: 1;
+  }
+
+  :is(#spilnota, .vshanuy-gromada__part--centre) > .vshanuy-gromada__register .vshanuy-gromada__arrow {
     grid-column: 3;
     justify-self: end;
     margin-inline-end: 16px;
@@ -1463,6 +1576,109 @@ a.vshanuy-gromada__row:focus-visible,
 
   .vshanuy-gromada__card {
     padding: 16px 16px 32px;
+  }
+
+  .vshanuy-gromada__subhead {
+    padding-inline: 16px;
+  }
+
+  /* Пропозиції — ряд у кол. 2–4. Краї, 25% і 75% — рамка частини.
+     50% — межа між пропозиціями, крізь тишу до «Проєктів». */
+  .vshanuy-gromada__offers {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .vshanuy-gromada__offers::before {
+    content: "";
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 50%;
+    width: 100vw;
+    height: 1px;
+    margin-left: -50vw;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
+  }
+
+  .vshanuy-gromada__offers::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    bottom: calc(-1 * var(--gromada-silence));
+    left: 0;
+    pointer-events: none;
+    background-image: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+    background-repeat: no-repeat;
+    background-size: 1px 100%;
+    background-position: calc(50% - 0.5px) 0;
+  }
+
+  .vshanuy-gromada__offer {
+    grid-column: span 1;
+  }
+
+  .vshanuy-gromada__offer:first-child {
+    grid-column: 2;
+  }
+
+  .vshanuy-gromada__offer + .vshanuy-gromada__offer {
+    margin-top: 0;
+  }
+
+  .vshanuy-gromada__offer::before {
+    content: none;
+  }
+
+  .vshanuy-gromada__offer-title,
+  .vshanuy-gromada__offer-photo {
+    padding-inline: 16px;
+  }
+
+  /* Після центральної частини 50% у шапці першого слеба почалася б у повітрі.
+     Вона стартує з лінії над картками і йде крізь тишу далі. */
+  #proekty.vshanuy-gromada__slab--after-prose::before {
+    background-image:
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+    background-size: 1px 100%, 1px 100%, 1px 100%, 1px 100%;
+    background-position:
+      0 0,
+      calc(25% - 0.5px) 0,
+      calc(75% - 0.5px) 0,
+      100% 0;
+  }
+
+  .vshanuy-gromada__slab--after-prose .vshanuy-gromada__cards--projects::after {
+    content: "";
+    bottom: calc(-1 * var(--gromada-silence));
+  }
+
+  .vshanuy-gromada__slab--after-prose.vshanuy-gromada__slab:last-of-type::before {
+    background-image:
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+    background-size: 1px 100%, 1px 100%;
+    background-position: 0 0, 100% 0;
+  }
+
+  .vshanuy-gromada__slab--after-prose .vshanuy-gromada__cards--directions::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: calc(-1 * var(--gromada-silence));
+    left: calc(50% - 0.5px);
+    width: 1px;
+    background: var(--vshanuy-page-grid-line);
+    pointer-events: none;
   }
 }
 
