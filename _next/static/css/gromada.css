@@ -164,6 +164,20 @@
   margin: 32px 0 0;
 }
 
+/* Паспорт проєкту (напрями, партнер) — між заголовком і лідом, без ліній. */
+.vshanuy-gromada__intro > .vshanuy-project__passport {
+  grid-column: 1 / -1;
+  margin: 32px 0 0;
+}
+
+.vshanuy-gromada__intro > .vshanuy-project__passport > div {
+  padding: 8px 0;
+}
+
+.vshanuy-gromada__intro > .vshanuy-project__passport + .vshanuy-gromada__lead {
+  margin-top: 16px;
+}
+
 @media (max-width: 1023px) {
   .vshanuy-gromada__title {
     grid-row: 1;
@@ -175,6 +189,14 @@
 
   .vshanuy-gromada__lead {
     grid-row: 3;
+  }
+
+  .vshanuy-gromada__intro--project > .vshanuy-project__passport {
+    grid-row: 3;
+  }
+
+  .vshanuy-gromada__intro--project > .vshanuy-gromada__lead {
+    grid-row: 4;
   }
 }
 
@@ -293,6 +315,14 @@
   width: 100%;
   max-width: none;
   margin: 0 0 24px;
+}
+
+.vshanuy-gromada__prose > * + .vshanuy-gromada__prose-photo {
+  margin-top: 24px;
+}
+
+.vshanuy-gromada__prose-photo:last-child {
+  margin-bottom: 0;
 }
 
 .vshanuy-gromada__prose-photo img {
@@ -423,6 +453,18 @@
 
 .vshanuy-gromada__row-text .vshanuy-gromada__inline {
   color: inherit;
+}
+
+/* Слайдер «Інші проєкти» в шаблоні: шапка як у слебів, без маски — лінії йдуть крізь неї.
+   Середня V слайдера стартує з лінії над картками (44px шапки + відступ). */
+.vshanuy-gromada__slab--slider .vshanuy-project-slider__head.vshanuy-gromada__head {
+  margin-bottom: 32px;
+  padding-inline: 8px;
+  background: none;
+}
+
+.vshanuy-gromada__slab--slider.vshanuy-project-slider::after {
+  top: calc(44px + 32px);
 }
 
 /* Primary CTA під «Спільнотою»: у повітрі, поза лініями блока. Колонки 2–3. */
@@ -1210,6 +1252,7 @@ a.vshanuy-gromada__row:focus-visible,
   }
 
   :is(#spilnota, .vshanuy-gromada__part--centre) > .vshanuy-gromada__register .vshanuy-gromada__row,
+  :is(#spilnota, .vshanuy-gromada__part--centre) > .vshanuy-gromada__register .vshanuy-gromada__plain,
   #spilnota .vshanuy-gromada__chats > summary {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     column-gap: 0;
@@ -1667,6 +1710,43 @@ a.vshanuy-gromada__row:focus-visible,
       linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
     background-size: 1px 100%, 1px 100%;
     background-position: 0 0, 100% 0;
+  }
+
+  .vshanuy-gromada__intro > .vshanuy-project__passport > div {
+    padding-inline: 16px;
+  }
+
+  .vshanuy-gromada__slab--slider .vshanuy-project-slider__head.vshanuy-gromada__head {
+    margin-bottom: 64px;
+    padding-inline: 0;
+  }
+
+  .vshanuy-gromada__slab--slider.vshanuy-project-slider::after {
+    top: calc(44px + 64px);
+    background-image: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+    background-size: 1px 100%;
+    background-position: calc(50% - 0.5px) 0;
+  }
+
+  /* Дві центральні частини поспіль: повітря між ними вже пройшла рамка верхньої. */
+  .vshanuy-gromada__part--centre + .vshanuy-gromada__part--centre::before {
+    top: 0;
+  }
+
+  /* Слайдер «Інші проєкти»: краї, 25% і 75% — від верху слеба (продовжують рамку частини над ним).
+     50% — лише від лінії над картками, крізь «‹ 9:00 ›» (bar beige поверх неї). */
+  .vshanuy-gromada__slab--slider.vshanuy-gromada__slab:last-of-type::before {
+    background-image:
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)),
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
+    background-size: 1px 100%, 1px 100%, 1px 100%, 1px 100%;
+    background-position:
+      0 0,
+      calc(25% - 0.5px) 0,
+      calc(75% - 0.5px) 0,
+      100% 0;
   }
 
   .vshanuy-gromada__slab--after-prose .vshanuy-gromada__cards--directions::before {
