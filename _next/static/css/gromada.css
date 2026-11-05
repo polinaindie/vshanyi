@@ -279,7 +279,7 @@
   background-repeat: no-repeat;
 }
 
-#dlya-hromad {
+:is(#dlya-hromad, #vydyma-pamyat) {
   background: var(--beige);
   padding-top: 64px;
   padding-bottom: 64px;
@@ -1080,7 +1080,7 @@ a.vshanuy-gromada__row:focus-visible,
     padding-top: 48px;
   }
 
-  #dlya-hromad {
+  :is(#dlya-hromad, #vydyma-pamyat) {
     position: relative;
     padding-top: 96px;
     padding-bottom: 96px;
@@ -1090,7 +1090,7 @@ a.vshanuy-gromada__row:focus-visible,
 
   /* Краї, 50% і 75% ідуть крізь увесь бежевий блок і повітря до «Проєктів».
      25% тут немає: вона перетнула б другий рядок заголовка. */
-  #dlya-hromad::before {
+  :is(#dlya-hromad, #vydyma-pamyat)::before {
     content: "";
     position: absolute;
     z-index: 2;
@@ -1147,7 +1147,7 @@ a.vshanuy-gromada__row:focus-visible,
   /* Верхня H бежевого блока — на всю ширину екрана.
      Шапка «Проєктів» і «Інших напрямів» без верхньої горизонталі:
      вертикалі йдуть крізь неї до лінії над картками. */
-  #dlya-hromad::after {
+  :is(#dlya-hromad, #vydyma-pamyat)::after {
     content: "";
     position: absolute;
     z-index: 3;
@@ -1165,7 +1165,7 @@ a.vshanuy-gromada__row:focus-visible,
 
   /* 25% починається під заголовком і йде крізь панелі, низ бежевого блока
      і повітря до верхньої лінії «Проєктів». */
-  #dlya-hromad .vshanuy-gromada__guides::after {
+  :is(#dlya-hromad, #vydyma-pamyat) .vshanuy-gromada__guides::after {
     top: -64px;
     bottom: calc(-1 * (96px + var(--gromada-silence)));
     background-image: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
@@ -1784,5 +1784,56 @@ a.vshanuy-gromada__row:focus-visible,
   .vshanuy-gromada__card:hover .vshanuy-gromada__media img,
   .vshanuy-gromada__card:focus-visible .vshanuy-gromada__media img {
     transform: none;
+  }
+}
+
+/* «Для бізнесу» — та сама будова, що «Для громад»: назва, опис, кнопки матеріалів стовпчиком. */
+#vydyma-pamyat .vshanuy-gromada__guide-lead a.vshanuy-gromada__inline {
+  display: inline;
+}
+
+#vydyma-pamyat .vshanuy-gromada__guide-actions {
+  flex-direction: column;
+}
+
+#vydyma-pamyat .vshanuy-gromada__guide-actions .vshanuy-gromada__guide-button {
+  flex: none;
+  width: 100%;
+  margin: 0;
+}
+
+#vydyma-pamyat .vshanuy-gromada__guide--photo img {
+  object-position: 50% 50%;
+}
+
+@media (min-width: 1024px) {
+  #vydyma-pamyat > .vshanuy-gromada__subhead {
+    box-sizing: border-box;
+    width: 50%;
+    padding-inline: 16px;
+  }
+
+  #vydyma-pamyat .vshanuy-gromada__guides-panels > .vshanuy-gromada__guide > .vshanuy-gromada__guide-copy {
+    grid-row: 2;
+    padding: 0 16px;
+  }
+
+  #vydyma-pamyat .vshanuy-gromada__guides-panels > .vshanuy-gromada__guide > .vshanuy-gromada__guide-actions {
+    grid-row: 3;
+    align-self: end;
+    margin-top: 0;
+    padding: 0 16px 16px;
+  }
+
+  #vydyma-pamyat .vshanuy-gromada__guides-panels > .vshanuy-gromada__guide:nth-child(1) > * {
+    grid-column: 1;
+  }
+
+  #vydyma-pamyat .vshanuy-gromada__guides-panels > .vshanuy-gromada__guide:nth-child(2) > * {
+    grid-column: 2;
+  }
+
+  #vydyma-pamyat .vshanuy-gromada__guides-panels > .vshanuy-gromada__guide:nth-child(3) > * {
+    grid-column: 3;
   }
 }
