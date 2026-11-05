@@ -1712,6 +1712,13 @@ a.vshanuy-gromada__row:focus-visible,
     background-position: 0 0, 100% 0;
   }
 
+  .vshanuy-gromada__intro > .vshanuy-project__passport {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 16px;
+  }
+
   .vshanuy-gromada__intro > .vshanuy-project__passport > div {
     padding-inline: 16px;
   }
