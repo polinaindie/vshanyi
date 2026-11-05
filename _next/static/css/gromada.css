@@ -458,13 +458,13 @@
 /* Слайдер «Інші проєкти» в шаблоні: шапка як у слебів, без маски — лінії йдуть крізь неї.
    Середня V слайдера стартує з лінії над картками (44px шапки + відступ). */
 .vshanuy-gromada__slab--slider .vshanuy-project-slider__head.vshanuy-gromada__head {
-  margin-bottom: 32px;
+  margin-bottom: 16px;
   padding-inline: 8px;
   background: none;
 }
 
 .vshanuy-gromada__slab--slider.vshanuy-project-slider::after {
-  top: calc(44px + 32px);
+  top: calc(44px + 16px);
 }
 
 /* Primary CTA під «Спільнотою»: у повітрі, поза лініями блока. Колонки 2–3. */
@@ -847,7 +847,7 @@ a.vshanuy-gromada__row:focus-visible,
   align-items: center;
   justify-content: space-between;
   gap: 8px 24px;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
   padding-inline: 8px;
 }
 
@@ -1017,7 +1017,7 @@ a.vshanuy-gromada__row:focus-visible,
 
   .vshanuy-gromada__head {
     display: grid;
-    margin-bottom: 64px;
+    margin-bottom: 16px;
   }
 
   .vshanuy-gromada__crumbs,
@@ -1724,12 +1724,12 @@ a.vshanuy-gromada__row:focus-visible,
   }
 
   .vshanuy-gromada__slab--slider .vshanuy-project-slider__head.vshanuy-gromada__head {
-    margin-bottom: 64px;
+    margin-bottom: 16px;
     padding-inline: 0;
   }
 
   .vshanuy-gromada__slab--slider.vshanuy-project-slider::after {
-    top: calc(44px + 64px);
+    top: calc(44px + 16px);
     background-image: linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line));
     background-size: 1px 100%;
     background-position: calc(50% - 0.5px) 0;
