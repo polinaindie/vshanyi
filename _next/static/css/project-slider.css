@@ -519,9 +519,14 @@
 
 .vshanuy-projects-index-page .vshanuy-activity__projects--page .vshanuy-projects-page__list {
   margin-top: var(--space-3);
+  padding-bottom: 48px;
 }
 
 @media (min-width: 1024px) {
+  .vshanuy-projects-index-page .vshanuy-activity__projects--page .vshanuy-projects-page__list {
+    padding-bottom: 64px;
+  }
+
   .vshanuy-projects-index-page .vshanuy-materials-page__main {
     background-position: calc(8px + 0.75 * (100% - 16px)) 0;
   }
