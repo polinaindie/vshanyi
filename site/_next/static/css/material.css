@@ -123,8 +123,13 @@
   display: block;
 }
 
+/* Мітка категорії — при назві, а не при крихтах. */
 .vshanuy-article-page--material .vshanuy-article__tag {
-  margin-top: var(--space-rhythm-1, 8px);
+  margin-top: 24px;
+}
+
+.vshanuy-article-page--material .vshanuy-article__tag + .vshanuy-article__title {
+  margin-top: 8px;
 }
 
 @media (min-width: 1024px) {
