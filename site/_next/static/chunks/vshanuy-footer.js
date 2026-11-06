@@ -62,6 +62,18 @@
             </div>
           </div>
         </section>
+
+        <div class="vshanuy-site-footer__legal">
+          <div class="vshanuy-site-footer__legal-text">
+            <p class="vshanuy-site-footer__legal-copy">© 2026 Вшануй</p>
+            <a class="vshanuy-site-footer__legal-policy" href="${rootPrefix}polityka-konfidentsiynosti.html">Політика конфіденційності</a>
+          </div>
+          <div class="vshanuy-site-footer__developer vshanuy-site-footer__legal-developer">
+            <a href="https://opentech.softserveinc.com/" target="_blank" rel="noopener noreferrer" aria-label="Розроблено в OpenTech і SoftServe">
+              <img src="${rootPrefix}_next/static/media/OpenTech.svg" alt="">
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   `;
