@@ -725,7 +725,18 @@
 
   .vshanuy-article-page--material .vshanuy-article__cover {
     margin-top: 64px;
-    padding-bottom: 0;
+    padding-bottom: 16px;
+  }
+
+  /* Обкладинка в колонці читання (2–3), підпис під нею. */
+  .vshanuy-article-page--material .vshanuy-article__cover img {
+    grid-column: 2 / 4;
+  }
+
+  .vshanuy-article-page--material .vshanuy-article__cover figcaption {
+    grid-column: 2 / 4;
+    grid-row: 2;
+    margin-top: 8px;
   }
 }
 
