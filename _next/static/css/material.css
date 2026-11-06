@@ -132,6 +132,25 @@
   margin-top: 8px;
 }
 
+/* Обкладинка ближче до вступу; під нею H на всю ширину екрана — з неї йдуть V тексту. */
+.vshanuy-article-page--material .vshanuy-article__cover {
+  position: relative;
+  margin-top: 48px;
+  padding-bottom: 16px;
+}
+
+.vshanuy-article-page--material .vshanuy-article__cover::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  height: 1px;
+  margin-left: -50vw;
+  background: var(--vshanuy-page-grid-line);
+  pointer-events: none;
+}
+
 @media (min-width: 1024px) {
   .vshanuy-article-page--material .vshanuy-article__intro {
     margin-top: calc(var(--space-rhythm-6, 48px) - var(--space-section-top, 96px));
@@ -678,12 +697,8 @@
     grid-column: 3;
   }
 
-  .vshanuy-article__section > .vshanuy-article__pullquote {
-    grid-column: 1 / -1;
-  }
-
-  /* Silence map: 25% між колонкою автора і текстом — від низу обкладинки крізь тишу,
-     без заходу на знімок. 50% і 75% знімає текст (цитата на кол. 2–4). */
+  /* Silence map: 25% і 75% обмежують текст (кол. 2–3) — від H під обкладинкою крізь тишу
+     до сітки «Інших публікацій». 50% знімає текст. */
   .vshanuy-article__layout:has(.vshanuy-article__aside) {
     position: relative;
   }
@@ -694,9 +709,11 @@
     z-index: 2;
     top: calc(-1 * var(--vshanuy-block-gap, 240px));
     bottom: 0;
-    left: 25%;
-    width: 1px;
-    background: var(--vshanuy-page-grid-line);
+    left: 0;
+    right: 0;
+    background:
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)) 25% 0 / 1px 100% no-repeat,
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)) 75% 0 / 1px 100% no-repeat;
     pointer-events: none;
   }
 
@@ -712,10 +729,17 @@
     z-index: 2;
     top: calc(-1 * var(--vshanuy-block-gap, 240px));
     bottom: calc(-1 * var(--space-3));
-    left: 25%;
-    width: 1px;
-    background: var(--vshanuy-page-grid-line);
+    left: 0;
+    right: 0;
+    background:
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)) 25% 0 / 1px 100% no-repeat,
+      linear-gradient(var(--vshanuy-page-grid-line), var(--vshanuy-page-grid-line)) 75% 0 / 1px 100% no-repeat;
     pointer-events: none;
+  }
+
+  .vshanuy-article-page--material .vshanuy-article__cover {
+    margin-top: 64px;
+    padding-bottom: 0;
   }
 }
 
