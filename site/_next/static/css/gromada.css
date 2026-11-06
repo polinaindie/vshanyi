@@ -1802,6 +1802,20 @@ a.vshanuy-gromada__row:focus-visible,
   margin: 0;
 }
 
+#vydyma-pamyat .vshanuy-gromada__guide-copy > .vshanuy-gromada__guide-button {
+  flex: none;
+  width: 100%;
+  margin: 0;
+}
+
+#vydyma-pamyat .vshanuy-gromada__guide-copy > .vshanuy-gromada__guide-button + .vshanuy-gromada__guide-lead {
+  margin-top: 8px;
+}
+
+#dorozhnya-karta > .vshanuy-gromada__guide-actions {
+  padding-top: 8px;
+}
+
 #vydyma-pamyat .vshanuy-gromada__guide--photo img {
   object-position: 50% 50%;
 }
@@ -1823,6 +1837,11 @@ a.vshanuy-gromada__row:focus-visible,
     align-self: end;
     margin-top: 0;
     padding: 0 16px 16px;
+  }
+
+  #vydyma-pamyat .vshanuy-gromada__guides-panels > #dorozhnya-karta > .vshanuy-gromada__guide-actions {
+    align-self: start;
+    padding-top: 8px;
   }
 
   #vydyma-pamyat .vshanuy-gromada__guides-panels > .vshanuy-gromada__guide:nth-child(1) > * {
