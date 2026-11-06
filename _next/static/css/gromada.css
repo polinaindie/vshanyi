@@ -1785,24 +1785,66 @@ a.vshanuy-gromada__row:focus-visible,
   margin-top: 8px;
 }
 
-#dorozhnya-karta > .vshanuy-gromada__guide-actions {
-  padding-top: 8px;
-}
-
 #vydyma-pamyat .vshanuy-gromada__guide-copy > .vshanuy-gromada__guide-actions {
   margin-top: 0;
   padding: 0;
 }
 
-#vydyma-pamyat .vshanuy-gromada__guide--photo img {
-  object-position: 50% 50%;
+/* «Усі матеріали» — окремий ряд під чотирма колонками, по центру. Висота ряду фіксована (76px),
+   бо від неї рахується, де закінчується 50%: вона не перетинає кнопку. */
+#vydyma-pamyat .vshanuy-gromada__guides-all {
+  display: flex;
+  grid-column: 1 / -1;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 76px;
+  padding: 31px 16px 0;
+  border-top: 1px solid var(--vshanuy-page-grid-line);
+}
+
+#vydyma-pamyat .vshanuy-gromada__guide-button--primary {
+  flex: none;
+  width: calc(50% - 16px);
+  height: 44px;
+  margin: 0;
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+#vydyma-pamyat .vshanuy-gromada__guide-button--primary:hover,
+#vydyma-pamyat .vshanuy-gromada__guide-button--primary:focus-visible {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--ink);
+}
+
+#vydyma-pamyat .vshanuy-gromada__guides::after {
+  background-size: 1px calc(100% - 64px - 76px);
 }
 
 @media (min-width: 1024px) {
-  #vydyma-pamyat > .vshanuy-gromada__subhead {
-    box-sizing: border-box;
-    width: 50%;
-    padding-inline: 16px;
+  #vydyma-pamyat .vshanuy-gromada__guides-panels {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  #vydyma-pamyat .vshanuy-gromada__guides-all {
+    padding-top: 32px;
+    border-top: 0;
+  }
+
+  #vydyma-pamyat .vshanuy-gromada__guide-button--primary {
+    width: calc(25% - 32px);
+  }
+
+  #vydyma-pamyat .vshanuy-gromada__guides::after {
+    background-size: 1px 100%;
+  }
+
+  /* 50% закінчується на нижній межі колонок: нижче вона перетнула б «Усі матеріали». */
+  #vydyma-pamyat::before {
+    background-size: 1px 100%, 1px calc(100% - var(--gromada-silence) - 96px - 76px), 1px 100%, 1px 100%;
   }
 
   #vydyma-pamyat .vshanuy-gromada__guides-panels > .vshanuy-gromada__guide > .vshanuy-gromada__guide-copy {
@@ -1817,11 +1859,6 @@ a.vshanuy-gromada__row:focus-visible,
     padding: 0 16px 16px;
   }
 
-  #vydyma-pamyat .vshanuy-gromada__guides-panels > #dorozhnya-karta > .vshanuy-gromada__guide-actions {
-    align-self: start;
-    padding-top: 8px;
-  }
-
   #vydyma-pamyat .vshanuy-gromada__guides-panels > .vshanuy-gromada__guide:nth-child(1) > * {
     grid-column: 1;
   }
@@ -1832,5 +1869,15 @@ a.vshanuy-gromada__row:focus-visible,
 
   #vydyma-pamyat .vshanuy-gromada__guides-panels > .vshanuy-gromada__guide:nth-child(3) > * {
     grid-column: 3;
+  }
+
+  #vydyma-pamyat .vshanuy-gromada__guides-panels > .vshanuy-gromada__guide:nth-child(4) > * {
+    grid-column: 4;
+  }
+
+  #vydyma-pamyat .vshanuy-gromada__guides-panels > .vshanuy-gromada__guide:nth-child(4) .vshanuy-gromada__guide-title {
+    grid-row: 1;
+    margin-bottom: 0;
+    padding: 16px 16px 0;
   }
 }
