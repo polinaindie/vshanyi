@@ -248,8 +248,9 @@
       <div class="vshanuy-menu__topline">
         <h2 id="vshanuy-menu-title" class="vshanuy-menu__brand" aria-label="Вшануй. 09:00">${menuLogoMarkup}</h2>
         <button class="vshanuy-menu__close" type="button">
-          <span>Закрити.</span>
+          <span>Закрити<span class="vshanuy-menu__close-period">.</span></span>
           <span class="vshanuy-menu__close-dot" aria-hidden="true"></span>
+          <span class="vshanuy-menu__close-cross" aria-hidden="true"></span>
         </button>
       </div>
       <nav class="vshanuy-menu__nav" aria-labelledby="vshanuy-menu-title">

@@ -2491,6 +2491,46 @@ header.sticky.vshanuy-desktop-header {
   mask: url("../media/Krapka.png") center / contain no-repeat;
 }
 
+.vshanuy-menu__close-cross {
+  display: none;
+}
+
+/* Mobile: «Закрити» — та сама рамка й місце, що й «Меню»; замість крапки — хрестик. */
+@media (max-width: 1023px) {
+  .vshanuy-menu__close {
+    top: 8px;
+    right: 0;
+    width: auto;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    justify-content: center;
+    gap: 8px;
+    padding-inline: 12px;
+    border: var(--line);
+    font-family: "Fixel", system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.08em;
+  }
+
+  .vshanuy-menu__close-period,
+  .vshanuy-menu__close-dot {
+    display: none;
+  }
+
+  .vshanuy-menu__close-cross {
+    display: block;
+    width: 28px;
+    height: 20px;
+    flex: none;
+    background: var(--ink);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M3 3l14 14M17 3L3 17' stroke='black' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M3 3l14 14M17 3L3 17' stroke='black' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+}
+
 .vshanuy-menu__nav {
   position: relative;
   z-index: 1;
@@ -4597,6 +4637,32 @@ button.vshanuy-contact__submit {
 
 .vshanuy-gromada__crumbs [aria-current="page"] {
   color: var(--ink);
+}
+
+/* Крихти: шлях — графіт, поточна сторінка — ink і вага 500. */
+.vshanuy-gromada__crumbs,
+.vshanuy-crumbs li,
+.vshanuy-direction-page .vshanuy-crumbs ol li,
+.vshanuy-direction-page .vshanuy-crumbs ol li:not(:last-child)::after,
+.vshanuy-crumbs li:not(:last-child)::after {
+  color: var(--text-secondary);
+}
+
+.vshanuy-gromada__crumbs a,
+.vshanuy-crumbs a {
+  transition: color 250ms ease-out, text-decoration-color 250ms ease-out;
+}
+
+.vshanuy-gromada__crumbs a:is(:hover, :focus-visible),
+.vshanuy-crumbs a:is(:hover, :focus-visible) {
+  color: var(--ink);
+}
+
+.vshanuy-gromada__crumbs [aria-current="page"],
+.vshanuy-crumbs [aria-current="page"],
+.vshanuy-direction-page .vshanuy-crumbs ol [aria-current="page"] {
+  color: var(--ink);
+  font-weight: 500;
 }
 
 /* Tertiary-посилання («Усі проєкти», «Усі публікації», «Відкрити»…): на ховер — підкреслення тексту.
