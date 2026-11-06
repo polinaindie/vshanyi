@@ -85,12 +85,12 @@
 
 .vshanuy-gromada__trail-mark {
   flex: none;
-  width: 7px;
-  height: 5px;
+  width: var(--vshanuy-arrow-w);
+  height: var(--vshanuy-arrow-h);
   margin-left: 0;
   background: currentColor;
-  -webkit-mask: url("../media/Krapka.png") center / contain no-repeat;
-  mask: url("../media/Krapka.png") center / contain no-repeat;
+  -webkit-mask: var(--vshanuy-arrow) center / contain no-repeat;
+  mask: var(--vshanuy-arrow) center / contain no-repeat;
   transition: opacity 300ms ease-out;
 }
 
@@ -529,12 +529,12 @@ span.vshanuy-gromada__note {
 .vshanuy-gromada__arrow {
   align-self: center;
   flex: none;
-  width: 7px;
-  height: 5px;
+  width: var(--vshanuy-arrow-w);
+  height: var(--vshanuy-arrow-h);
   margin-top: 0;
   background: currentColor;
-  -webkit-mask: url("../media/Krapka.png") center / contain no-repeat;
-  mask: url("../media/Krapka.png") center / contain no-repeat;
+  -webkit-mask: var(--vshanuy-arrow) center / contain no-repeat;
+  mask: var(--vshanuy-arrow) center / contain no-repeat;
   transition: opacity 300ms ease-out;
 }
 
@@ -766,11 +766,11 @@ a.vshanuy-gromada__row:focus-visible,
 .vshanuy-gromada__guide-button::after {
   content: "";
   flex: none;
-  width: 7px;
-  height: 5px;
+  width: var(--vshanuy-arrow-w);
+  height: var(--vshanuy-arrow-h);
   background: currentColor;
-  -webkit-mask: url("../media/Krapka.png") center / contain no-repeat;
-  mask: url("../media/Krapka.png") center / contain no-repeat;
+  -webkit-mask: var(--vshanuy-arrow) center / contain no-repeat;
+  mask: var(--vshanuy-arrow) center / contain no-repeat;
   transition: opacity 300ms ease-out;
 }
 
@@ -779,7 +779,7 @@ a.vshanuy-gromada__row:focus-visible,
 .vshanuy-gromada__guide-button:hover,
 .vshanuy-gromada__guide-button:focus-visible {
   background: var(--yellow);
-  border-color: var(--yellow);
+  border-color: var(--ink);
   color: var(--ink);
 }
 
@@ -1815,7 +1815,7 @@ a.vshanuy-gromada__row:focus-visible,
 #vydyma-pamyat .vshanuy-gromada__guide-button--primary:hover,
 #vydyma-pamyat .vshanuy-gromada__guide-button--primary:focus-visible {
   background: var(--yellow);
-  border-color: var(--yellow);
+  border-color: var(--ink);
   color: var(--ink);
 }
 
