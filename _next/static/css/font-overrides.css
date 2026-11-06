@@ -4598,3 +4598,23 @@ button.vshanuy-contact__submit {
 .vshanuy-gromada__crumbs [aria-current="page"] {
   color: var(--ink);
 }
+
+/* Tertiary-посилання («Усі проєкти», «Усі публікації», «Відкрити»…): на ховер — підкреслення тексту.
+   Стрілка — маска без тексту, тож лінія під неї не заходить. */
+a:is(
+  .vshanuy-gromada__trail--tertiary,
+  .vshanuy-guides-page__link,
+  .vshanuy-article__link,
+  .vshanuy-materials-page__more,
+  .vshanuy-partners-page__row-link
+):is(:hover, :focus-visible) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+
+.vshanuy-materials-page__card:is(:hover, :focus-visible) .vshanuy-materials-page__more {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
