@@ -137,20 +137,6 @@
   margin: 32px 0 0;
 }
 
-/* Паспорт проєкту (напрями, партнер) — між заголовком і лідом, без ліній. */
-.vshanuy-gromada__intro > .vshanuy-project__passport {
-  grid-column: 1 / -1;
-  margin: 32px 0 0;
-}
-
-.vshanuy-gromada__intro > .vshanuy-project__passport > div {
-  padding: 8px 0;
-}
-
-.vshanuy-gromada__intro > .vshanuy-project__passport + .vshanuy-gromada__lead {
-  margin-top: 16px;
-}
-
 @media (max-width: 1023px) {
   .vshanuy-gromada__title {
     grid-row: 1;
@@ -162,14 +148,6 @@
 
   .vshanuy-gromada__lead {
     grid-row: 3;
-  }
-
-  .vshanuy-gromada__intro--project > .vshanuy-project__passport {
-    grid-row: 3;
-  }
-
-  .vshanuy-gromada__intro--project > .vshanuy-gromada__lead {
-    grid-row: 4;
   }
 }
 
@@ -1685,17 +1663,6 @@ a.vshanuy-gromada__row:focus-visible,
     background-position: 0 0, 100% 0;
   }
 
-  .vshanuy-gromada__intro > .vshanuy-project__passport {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    column-gap: 16px;
-  }
-
-  .vshanuy-gromada__intro > .vshanuy-project__passport > div {
-    padding-inline: 16px;
-  }
-
   .vshanuy-gromada__slab--slider .vshanuy-project-slider__head.vshanuy-gromada__head {
     margin-bottom: 16px;
     padding-inline: 0;
@@ -1918,5 +1885,167 @@ a.vshanuy-gromada__row:focus-visible,
   .vshanuy-gromada__part--centre > .vshanuy-gromada__sources {
     grid-column: 2 / 4;
     padding-inline: 16px;
+  }
+}
+
+/* Перший екран проєкту: крихти → h1 → лід → фото → паспорт.
+   Silence map:
+   - крихти, h1 і лід без ліній.
+   - паспорт — реєстр: H над кожним рядом від краю до краю екрана, під останнім рядом її немає.
+     Лінії лежать під фото: на desktop видно 0…50vw, лінія впирається у фото.
+   - фото без своїх ліній; нижньої лінії шапки немає. Далі — чисте повітря до першої частини.
+   Mobile: фото на всю ширину екрана поверх крайових рейок, паспорт одразу під ним. */
+
+.vshanuy-gromada__intro.vshanuy-gromada__intro--project {
+  z-index: 3;
+}
+
+.vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-gromada__crumbs,
+.vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-gromada__title,
+.vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-gromada__lead,
+.vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-gromada__band,
+.vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-project__passport {
+  grid-row: auto;
+}
+
+.vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-gromada__title {
+  margin-top: 24px;
+}
+
+.vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-gromada__lead {
+  max-width: none;
+  margin: 24px 0 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(20px, 18.776px + 0.3265vw, 24px);
+  font-weight: 300;
+  line-height: 1.35;
+  letter-spacing: normal;
+}
+
+.vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-gromada__band {
+  position: relative;
+  z-index: 2;
+  align-self: stretch;
+  margin: 48px -16px 0;
+}
+
+.vshanuy-gromada__intro--project > .vshanuy-gromada__band img {
+  aspect-ratio: 1 / 1;
+  object-position: var(--project-photo-position, 50% 50%);
+}
+
+.vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-project__passport {
+  display: block;
+  margin: 0 -8px;
+}
+
+.vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-project__passport > div {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: baseline;
+  gap: 0;
+  padding: 16px 0;
+}
+
+/* Ряд починається на полі 8px, лінія — від краю екрана. */
+.vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-project__passport > div::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: -8px;
+  width: calc(100% + 16px);
+  height: 1px;
+  background: var(--vshanuy-page-grid-line);
+  pointer-events: none;
+}
+
+.vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-project__passport > .vshanuy-project__partners {
+  align-items: center;
+  padding-block: 8px;
+}
+
+.vshanuy-gromada__intro--project > .vshanuy-project__passport dt,
+.vshanuy-gromada__intro--project > .vshanuy-project__passport dd {
+  min-width: 0;
+  padding-inline: 8px;
+}
+
+.vshanuy-gromada__intro--project > .vshanuy-project__passport dd {
+  color: var(--ink);
+}
+
+/* Ціль натискання 44px без зміни висоти ряду. */
+.vshanuy-gromada__intro--project > .vshanuy-project__passport > div:not(.vshanuy-project__partners) dd a {
+  display: inline-block;
+  padding-block: 13px;
+  margin-block: -13px;
+}
+
+@media (min-width: 1024px) {
+  /* Ряд 4 — повітря між лідом і паспортом: мінімум 64, решту висоти фото забирає він,
+     тож паспорт стоїть унизу ряду. */
+  .vshanuy-gromada__intro.vshanuy-gromada__intro--project {
+    grid-template-rows: auto auto auto minmax(64px, 1fr) auto;
+  }
+
+  .vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-gromada__crumbs {
+    grid-row: 1;
+  }
+
+  .vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-gromada__title {
+    grid-row: 2;
+    margin-top: 0;
+  }
+
+  .vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-gromada__lead {
+    grid-row: 3;
+    margin-top: 32px;
+  }
+
+  /* Фото — кол. 3–4 від 50vw до краю екрана, верх впритул під лінією хедера сайту (40 + 1px).
+     Квадрат, не вище екрана під хедером; за вищим текстом тягнеться до 4:5. */
+  .vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-gromada__band {
+    grid-column: 3 / 5;
+    grid-row: 1 / -1;
+    min-height: min(50vw, 100svh - 41px);
+    max-height: 62.5vw;
+    margin: calc(-1 * var(--space-section-top)) -8px 0 0;
+  }
+
+  .vshanuy-gromada__intro--project > .vshanuy-gromada__band::after {
+    content: none;
+  }
+
+  .vshanuy-gromada__intro--project > .vshanuy-gromada__band img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-project__passport {
+    grid-column: 1 / 3;
+    grid-row: 5;
+    align-self: end;
+    margin: 0;
+  }
+
+  /* Паспорт займає кол. 1–2; 200% доводить лінію до правого краю екрана. */
+  .vshanuy-gromada__intro.vshanuy-gromada__intro--project > .vshanuy-project__passport > div::before {
+    width: calc(200% + 16px);
+  }
+
+  .vshanuy-gromada__intro--project > .vshanuy-project__passport dt,
+  .vshanuy-gromada__intro--project > .vshanuy-project__passport dd {
+    padding-inline: 16px;
+  }
+
+  /* Під шапкою проєкту лінії над першою частиною немає: рамка стартує з її верхньої H. */
+  .vshanuy-gromada__intro--project + .vshanuy-gromada__body > :is(#spilnota, .vshanuy-gromada__part--centre):first-child::before {
+    top: 0;
   }
 }
