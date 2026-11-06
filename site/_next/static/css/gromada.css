@@ -1816,6 +1816,11 @@ a.vshanuy-gromada__row:focus-visible,
   padding-top: 8px;
 }
 
+#vydyma-pamyat .vshanuy-gromada__guide-copy > .vshanuy-gromada__guide-actions {
+  margin-top: 0;
+  padding: 0;
+}
+
 #vydyma-pamyat .vshanuy-gromada__guide--photo img {
   object-position: 50% 50%;
 }
