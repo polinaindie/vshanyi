@@ -875,8 +875,8 @@
   line-height: 1.3;
 }
 
-/* Шапка публікації. Mobile: крихти → мітка → заголовок → дата → лід одним стовпчиком.
-   Desktop: мітка й дата в кол. 1 на baseline заголовка, заголовок і лід — у кол. 2–3,
+/* Шапка публікації. Mobile: крихти → заголовок → мітка · дата → автор → лід одним стовпчиком.
+   Desktop: автор у кол. 1 навпроти заголовка; заголовок, мітка · дата і лід — у кол. 2–3,
    як текст статті під обкладинкою. Стоїть після правил проєктів, щоб лід перекрити. */
 
 .vshanuy-article-page--material .vshanuy-article__intro {
@@ -885,27 +885,27 @@
   align-items: stretch;
 }
 
-.vshanuy-article-page--material .vshanuy-article__meta {
-  display: contents;
-}
-
 .vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__title {
-  order: 2;
-  margin-top: 8px;
-}
-
-.vshanuy-article-page--material .vshanuy-article__meta > .vshanuy-article__tag {
-  order: 1;
   margin-top: 24px;
 }
 
-.vshanuy-article-page--material .vshanuy-article__meta > .vshanuy-article__date {
-  order: 3;
+.vshanuy-article-page--material .vshanuy-article__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
   margin-top: 16px;
 }
 
+.vshanuy-article-page--material .vshanuy-article__meta > * {
+  margin: 0;
+}
+
+.vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__author {
+  margin-top: 24px;
+}
+
 .vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__standfirst {
-  order: 4;
   max-width: 100%;
   margin-top: 32px;
   color: var(--ink);
@@ -933,39 +933,32 @@
     grid-row: 1;
   }
 
-  /* first baseline: перший рядок мітки стоїть на лінії першого рядка заголовка. */
-  .vshanuy-article-page--material .vshanuy-article__meta {
-    display: block;
-    grid-row: 2;
-    align-self: first baseline;
-    margin-top: 48px;
-  }
-
-  .vshanuy-article-page--material .vshanuy-article__meta > .vshanuy-article__tag {
-    margin-top: 0;
-  }
-
-  .vshanuy-article-page--material .vshanuy-article__meta > .vshanuy-article__date {
-    margin-top: 8px;
-  }
-
   .vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__title {
     grid-row: 2;
-    align-self: first baseline;
     max-width: 100%;
     margin-top: 48px;
   }
 
-  .vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__standfirst {
+  .vshanuy-article-page--material .vshanuy-article__meta {
     grid-row: 3;
   }
 
+  .vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__author {
+    grid-row: 2 / span 3;
+    margin-top: 48px;
+  }
+
+  .vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__standfirst {
+    grid-row: 4;
+  }
+
   /* Подвійний клас сторінки перебиває спільне «intro > :not(...) { grid-column: 1 / -1 }». */
-  .vshanuy-article-page.vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__meta {
+  .vshanuy-article-page.vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__author {
     grid-column: 1;
   }
 
   .vshanuy-article-page.vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__title,
+  .vshanuy-article-page.vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__meta,
   .vshanuy-article-page.vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__standfirst {
     grid-column: 2 / 4;
   }
