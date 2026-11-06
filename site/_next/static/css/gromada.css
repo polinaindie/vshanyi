@@ -1881,3 +1881,42 @@ a.vshanuy-gromada__row:focus-visible,
     padding: 16px 16px 0;
   }
 }
+
+/* «Корисні матеріали» на проєктах — як «Джерела» в публікаціях: мітка і список посилань дрібним кеглем. */
+.vshanuy-gromada__sources {
+  margin: 24px 0 0;
+  padding: 0 8px;
+  list-style: none;
+}
+
+.vshanuy-gromada__sources li {
+  margin: 0 0 8px;
+  color: var(--text-secondary);
+  font-family: var(--font-text);
+  font-size: var(--step--1);
+  line-height: 1.5;
+}
+
+.vshanuy-gromada__sources li:last-child {
+  margin-bottom: 0;
+}
+
+.vshanuy-gromada__sources a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.vshanuy-gromada__sources a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-gromada__part--centre > .vshanuy-gromada__sources {
+    grid-column: 2 / 4;
+    padding-inline: 16px;
+  }
+}
