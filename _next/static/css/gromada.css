@@ -1834,8 +1834,3 @@ a.vshanuy-gromada__row:focus-visible,
     grid-column: 3;
   }
 }
-
-/* «Для бізнесу»: вступ винесено в центральну частину; бежевий блок відкривається підзаголовком. */
-#vydyma-pamyat > .vshanuy-gromada__subhead:first-child {
-  margin-top: 0;
-}
