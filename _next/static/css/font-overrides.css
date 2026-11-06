@@ -2724,6 +2724,14 @@ header.sticky.vshanuy-desktop-header {
   }
 }
 
+/* «Закрити» стоїть там само, де «Меню» (16px від краю; меню вже має поле 8px). */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .vshanuy-menu__close {
+    top: 16px;
+    right: 8px;
+  }
+}
+
 @media (min-width: 1024px) {
   .vshanuy-menu-trigger {
     display: none;
@@ -4683,4 +4691,77 @@ a:is(
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.25em;
+}
+
+/* Футер < 1024: ©, політика й OpenTech — спільний нижній рядок, а не низ кожної колонки.
+   Остання колонка лишає нижню лінію — вона ж верх цього рядка. */
+.vshanuy-site-footer__legal {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .vshanuy-site-footer__column > .vshanuy-site-footer__column-foot,
+  .vshanuy-site-footer__column--support > .vshanuy-site-footer__support-foot {
+    display: none;
+  }
+
+  .vshanuy-site-footer__column.vshanuy-site-footer__column--support {
+    border-bottom: 1px solid var(--vshanuy-footer-line);
+  }
+
+  .vshanuy-site-footer__legal {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    row-gap: 16px;
+    padding: 16px 0 24px;
+  }
+
+  .vshanuy-site-footer__legal > * {
+    min-width: 0;
+    margin: 0;
+    padding-inline: 16px;
+  }
+
+  .vshanuy-site-footer__legal-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .vshanuy-site-footer__legal-copy,
+  .vshanuy-site-footer__legal-policy {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    margin: 0;
+    color: var(--graphite);
+    font-family: "Fixel", system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .vshanuy-site-footer__legal-developer img {
+    width: min(220px, 100%);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .vshanuy-site-footer__column.vshanuy-site-footer__column--sections-secondary {
+    border-bottom: 1px solid var(--vshanuy-footer-line);
+  }
+
+  .vshanuy-site-footer__legal {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vshanuy-site-footer__legal-text {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
 }
