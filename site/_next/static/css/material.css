@@ -901,6 +901,16 @@
   margin: 0;
 }
 
+.vshanuy-article-page--material .vshanuy-article__meta > .vshanuy-article__date {
+  color: var(--text-secondary);
+  font-family: var(--font-text);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
 .vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__author {
   margin-top: 24px;
 }
@@ -944,8 +954,8 @@
   }
 
   .vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__author {
-    grid-row: 2 / span 3;
-    margin-top: 48px;
+    grid-row: 4;
+    margin-top: 32px;
   }
 
   .vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__standfirst {
