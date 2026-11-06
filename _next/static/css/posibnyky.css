@@ -75,6 +75,33 @@
   outline-offset: 3px;
 }
 
+/* Увесь рядок — посилання: номер, назва і «Відкрити» темнішають разом. */
+.vshanuy-guides-page__item {
+  position: relative;
+  transition: background-color 300ms ease-out;
+}
+
+.vshanuy-guides-page__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.vshanuy-guides-page__item:hover,
+.vshanuy-guides-page__item:has(.vshanuy-guides-page__link:focus-visible) {
+  background: var(--beige);
+}
+
+.vshanuy-guides-page__item:hover .vshanuy-trail-mark {
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vshanuy-guides-page__item {
+    transition: none;
+  }
+}
+
 @media (min-width: 1024px) {
   /* V на 25% і 75%: текст займає кол. 2–3, лінія його не ріже */
   .vshanuy-guides-page__list::before {
