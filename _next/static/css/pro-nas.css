@@ -458,6 +458,13 @@ body.vshanuy-about-page > .vshanuy-site-footer {
   border-top: 0;
 }
 
+/* <1024: одразу після #shcho-robymo; paper знімає mid V у повітрі над H бачення — інакше обрив */
+@media (max-width: 1023px) {
+  #bachennya.vshanuy-about-page__section {
+    background: var(--paper);
+  }
+}
+
 /* Team */
 
 .vshanuy-about-page__team {
