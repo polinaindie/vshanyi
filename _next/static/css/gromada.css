@@ -1753,6 +1753,9 @@ a.vshanuy-gromada__row:focus-visible,
 }
 
 #vydyma-pamyat .vshanuy-gromada__guide-copy > .vshanuy-gromada__guide-actions {
+  grid-column: auto;
+  grid-row: auto;
+  align-self: auto;
   margin-top: 0;
   padding: 0;
 }
