@@ -363,7 +363,7 @@ a.vshanuy-section-label__trail:focus-visible {
 
 @media (min-width: 720px) {
   .vshanuy-contact__topic-options {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -388,7 +388,7 @@ a.vshanuy-section-label__trail:focus-visible {
 
 @media (min-width: 720px) {
   .vshanuy-contact__choice {
-    margin: 0 -1px -1px 0;
+    margin: 0 -1px 0 0;
   }
 }
 
