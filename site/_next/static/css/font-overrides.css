@@ -3402,7 +3402,7 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   height: auto;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 410px) {
   .vshanuy-site-footer__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -4762,7 +4762,7 @@ a:is(
   }
 }
 
-@media (min-width: 640px) and (max-width: 1023px) {
+@media (min-width: 410px) and (max-width: 1023px) {
   .vshanuy-site-footer__column.vshanuy-site-footer__column--sections-secondary {
     border-bottom: 1px solid var(--vshanuy-footer-line);
   }
@@ -4770,7 +4770,16 @@ a:is(
   .vshanuy-site-footer__legal {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
 
+@media (min-width: 410px) and (max-width: 639px) {
+  .vshanuy-site-footer__column--brand > .vshanuy-site-footer__cta {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
   .vshanuy-site-footer__legal-text {
     flex-direction: row;
     align-items: center;
