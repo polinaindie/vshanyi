@@ -2497,14 +2497,19 @@ header.sticky.vshanuy-desktop-header {
 
 /* Mobile: «Закрити» — та сама рамка й місце, що й «Меню»; замість крапки — хрестик. */
 @media (max-width: 1023px) {
+  .vshanuy-menu-trigger {
+    width: 113px;
+    justify-content: space-between;
+  }
+
   .vshanuy-menu__close {
     top: 8px;
     right: 0;
-    width: auto;
+    width: 113px;
     height: 48px;
     min-width: 48px;
     min-height: 48px;
-    justify-content: center;
+    justify-content: space-between;
     gap: 8px;
     padding-inline: 12px;
     border: var(--line);
