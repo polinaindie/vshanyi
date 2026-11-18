@@ -53,7 +53,7 @@ def ps(*texts):
 
 CITY_CHATS = [
     ("Київ", "+AvW-hH5II9w1ZDUy"), ("Дніпро", "dnipro9_00"), ("Харків", "moment_of_honor_kharkiv"),
-    ("Суми", "moment_of_honor_sumy"), ("Одеса", "moment_of_honor_odesa"), ("Львів", "moment_of_honor_lviv"),
+    ("Суми", "+nS1NDZX0Sa8wZTgy"), ("Одеса", "moment_of_honor_odesa"), ("Львів", "moment_of_honor_lviv"),
     ("Вінниця", "moment_of_honor_vinnytsia"), ("Черкаси", "moment_of_honor_cherkasy"), ("Рівне", "rivne_moment_of_honor"),
     ("Миргород", "moment_of_honor_myrhorod"), ("Ужгород", "uzh_vshanui"), ("Чернігів", "+3jITZJdAXMI4ZGQy"),
     ("Полтава", "moment_of_honor_poltava"), ("Олександрія", "+odB87XCMr5piMGUy"), ("Ірпінь", "irpin_hvylyna_movchannya"),
