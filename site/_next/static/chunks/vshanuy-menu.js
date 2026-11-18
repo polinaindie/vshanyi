@@ -337,6 +337,40 @@
     return true;
   };
 
+  /* Mobile bar: ховається при скролі вниз, повертається при скролі вгору.
+     На головній лого в барі з'являється, коли велике лого hero пішло за край. */
+  const mountMobileBar = (bar) => {
+    const root = document.documentElement;
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = Math.max(0, window.scrollY);
+      if (root.classList.contains("vshanuy-menu-open")) {
+        lastY = y;
+        return;
+      }
+      if (y <= bar.offsetHeight) root.classList.remove("vshanuy-bar-hidden");
+      else if (y > lastY + 4) root.classList.add("vshanuy-bar-hidden");
+      else if (y < lastY - 4) root.classList.remove("vshanuy-bar-hidden");
+      if (Math.abs(y - lastY) > 4 || y <= bar.offsetHeight) lastY = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    bar.addEventListener("focusin", () =>
+      root.classList.remove("vshanuy-bar-hidden"),
+    );
+
+    if (!root.classList.contains("vshanuy-home")) return;
+    const heroLogo = document.querySelector("main .my-8.lg\\:hidden");
+    if (!heroLogo || !("IntersectionObserver" in window)) {
+      root.classList.add("vshanuy-bar-brand");
+      return;
+    }
+    new IntersectionObserver(
+      ([entry]) =>
+        root.classList.toggle("vshanuy-bar-brand", !entry.isIntersecting),
+      { rootMargin: "-64px 0px 0px 0px" },
+    ).observe(heroLogo);
+  };
+
   const mount = () => {
     const desktopMounted = mountDesktop();
     neutralizeInternalPageLinks();
@@ -346,6 +380,13 @@
     const template = document.createElement("template");
     template.innerHTML = markup.trim();
     document.body.append(template.content);
+
+    const bar = document.createElement("div");
+    bar.className = "vshanuy-mobile-bar";
+    bar.innerHTML = `<a class="vshanuy-mobile-bar__brand" href="${siteRoot}index.html" aria-label="Вшануй. 09:00 — на головну">${menuLogoMarkup}</a>`;
+    bar.append(document.querySelector(".vshanuy-menu-trigger"));
+    document.body.prepend(bar);
+    mountMobileBar(bar);
 
     const menu = document.querySelector(".vshanuy-menu");
     const closeButton = menu.querySelector(".vshanuy-menu__close");
