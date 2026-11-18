@@ -338,7 +338,7 @@
   };
 
   /* Mobile bar: ховається при скролі вниз, повертається при скролі вгору.
-     На головній лого в барі з'являється, коли велике лого hero пішло за край. */
+     На головній до першого скролу — лише 09:00, далі виїжджає лого (як на десктопі). */
   const mountMobileBar = (bar) => {
     const root = document.documentElement;
     let lastY = window.scrollY;
@@ -358,17 +358,13 @@
       root.classList.remove("vshanuy-bar-hidden"),
     );
 
-    if (!root.classList.contains("vshanuy-home")) return;
-    const heroLogo = document.querySelector("main .my-8.lg\\:hidden");
-    if (!heroLogo || !("IntersectionObserver" in window)) {
-      root.classList.add("vshanuy-bar-brand");
-      return;
-    }
-    new IntersectionObserver(
-      ([entry]) =>
-        root.classList.toggle("vshanuy-bar-brand", !entry.isIntersecting),
-      { rootMargin: "-64px 0px 0px 0px" },
-    ).observe(heroLogo);
+    const updateBrand = () =>
+      root.classList.toggle(
+        "vshanuy-bar-brand",
+        !root.classList.contains("vshanuy-home") || window.scrollY > 8,
+      );
+    window.addEventListener("scroll", updateBrand, { passive: true });
+    updateBrand();
   };
 
   const mount = () => {
@@ -383,7 +379,15 @@
 
     const bar = document.createElement("div");
     bar.className = "vshanuy-mobile-bar";
-    bar.innerHTML = `<a class="vshanuy-mobile-bar__brand" href="${siteRoot}index.html" aria-label="Вшануй. 09:00 — на головну">${menuLogoMarkup}</a>`;
+    const timerMarkup = menuLogoMarkup
+      .replace(/<path class="vshanuy-logo__name"[^>]*\/>/g, "")
+      .replace('viewBox="0 0 977.942 266.892"', 'viewBox="18 178 395 90"');
+    bar.innerHTML = `<a class="vshanuy-mobile-bar__brand" href="${siteRoot}index.html" aria-label="Вшануй. 09:00 — на головну">
+      <span class="vshanuy-mobile-bar__slide">
+        <span class="vshanuy-mobile-bar__layer vshanuy-mobile-bar__layer--time">${timerMarkup}</span>
+        <span class="vshanuy-mobile-bar__layer">${menuLogoMarkup}</span>
+      </span>
+    </a>`;
     bar.append(document.querySelector(".vshanuy-menu-trigger"));
     document.body.prepend(bar);
     mountMobileBar(bar);
