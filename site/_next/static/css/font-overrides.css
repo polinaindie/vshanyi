@@ -2408,13 +2408,33 @@ header.sticky.vshanuy-desktop-header {
     left: 20px;
     display: block;
     width: min(176px, 100vw - 238px);
+    height: 48px;
+    overflow: hidden;
     color: var(--ink);
-    transition: opacity 300ms ease-out, visibility 300ms;
   }
 
-  .vshanuy-home:not(.vshanuy-bar-brand) .vshanuy-mobile-bar__brand {
-    opacity: 0;
-    visibility: hidden;
+  .vshanuy-mobile-bar__slide {
+    display: block;
+    transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .vshanuy-bar-brand .vshanuy-mobile-bar__slide {
+    transform: translateY(-48px);
+  }
+
+  .vshanuy-mobile-bar__layer {
+    display: flex;
+    height: 48px;
+    align-items: flex-start;
+  }
+
+  .vshanuy-mobile-bar__layer--time {
+    align-items: center;
+  }
+
+  .vshanuy-mobile-bar__layer--time .vshanuy-menu__logo .vshanuy-logo__svg {
+    width: auto;
+    height: 20px;
   }
 
   .vshanuy-mobile-bar__brand:focus-visible {
@@ -2425,7 +2445,7 @@ header.sticky.vshanuy-desktop-header {
 
 @media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
   .vshanuy-mobile-bar,
-  .vshanuy-mobile-bar__brand {
+  .vshanuy-mobile-bar__slide {
     transition: none;
   }
 }
