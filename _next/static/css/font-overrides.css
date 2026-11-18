@@ -4832,26 +4832,13 @@ a:is(
   }
 }
 
-/* 410–1023: бренд — перший ряд (права половина порожня, H на всю ширину),
-   далі «Про нас» | «Діяльність», «Долучитися» | ©, політика й OpenTech. */
 @media (min-width: 410px) and (max-width: 1023px) {
-  .vshanuy-site-footer__column.vshanuy-site-footer__column--brand {
-    grid-column: 1 / -1;
-    padding-right: calc(50% + 16px);
-  }
-
   .vshanuy-site-footer__column.vshanuy-site-footer__column--sections-secondary {
     border-bottom: 1px solid var(--vshanuy-footer-line);
   }
 
-  .vshanuy-site-footer__column.vshanuy-site-footer__column--support {
-    border-bottom: 0;
-  }
-
   .vshanuy-site-footer__legal {
-    grid-column: 2;
-    align-content: start;
-    padding-top: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -4859,5 +4846,13 @@ a:is(
   .vshanuy-site-footer__column--brand > .vshanuy-site-footer__cta {
     width: 100%;
     min-width: 0;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .vshanuy-site-footer__legal-text {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
   }
 }
