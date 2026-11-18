@@ -245,6 +245,12 @@
     padding-inline: var(--space-2);
   }
 
+  .vshanuy-support-page__field dd[data-copy] {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding-right: calc(44px + 2 * var(--space-2));
+  }
+
   .vshanuy-support-page__copy {
     justify-self: end;
     margin-right: var(--space-2);

@@ -38,7 +38,8 @@
       button.addEventListener("click", async () => {
         const field = button.closest(".vshanuy-support-page__field");
         const label = field?.querySelector("dt")?.textContent.trim() ?? "";
-        const value = field?.querySelector("dd")?.textContent.trim() ?? "";
+        const dd = field?.querySelector("dd");
+        const value = (dd?.dataset.copy ?? dd?.textContent ?? "").trim();
         try {
           await writeClipboard(value);
           button.setAttribute("data-copied", "");
