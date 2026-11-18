@@ -2367,6 +2367,69 @@ header.sticky.vshanuy-desktop-header {
   visibility: hidden;
 }
 
+/* Mobile bar: лого й «Меню» там само, де в topline відкритого меню.
+   Вертикалі країв і середини + H знизу — T-стики з сіткою сторінки. */
+.vshanuy-mobile-bar {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .vshanuy-mobile-bar {
+    --vshanuy-bar-line: color-mix(in srgb, var(--grey) 20%, transparent);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: block;
+    box-sizing: border-box;
+    height: 64px;
+    border-bottom: 1px solid var(--vshanuy-bar-line);
+    background:
+      linear-gradient(var(--vshanuy-bar-line), var(--vshanuy-bar-line)) 50% 0 / 1px 100% no-repeat,
+      var(--paper);
+    transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .vshanuy-mobile-bar::before {
+    content: "";
+    position: absolute;
+    inset: 0 8px;
+    border-inline: 1px solid var(--vshanuy-bar-line);
+    pointer-events: none;
+  }
+
+  .vshanuy-bar-hidden .vshanuy-mobile-bar {
+    transform: translateY(calc(-100% - 1px));
+  }
+
+  .vshanuy-mobile-bar__brand {
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    display: block;
+    width: min(176px, 100vw - 238px);
+    color: var(--ink);
+    transition: opacity 300ms ease-out, visibility 300ms;
+  }
+
+  .vshanuy-home:not(.vshanuy-bar-brand) .vshanuy-mobile-bar__brand {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .vshanuy-mobile-bar__brand:focus-visible {
+    outline: 2px solid var(--graphite);
+    outline-offset: 3px;
+  }
+}
+
+@media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
+  .vshanuy-mobile-bar,
+  .vshanuy-mobile-bar__brand {
+    transition: none;
+  }
+}
+
 .vshanuy-menu-trigger:focus-visible,
 .vshanuy-menu__close:focus-visible,
 .vshanuy-menu a:focus-visible {
@@ -2714,11 +2777,6 @@ header.sticky.vshanuy-desktop-header {
     inset: 0 8px;
   }
 
-  .vshanuy-menu-trigger {
-    top: 16px;
-    right: 16px;
-  }
-
   .vshanuy-menu__topline {
     padding-right: calc(50% + 12px);
   }
@@ -2733,14 +2791,6 @@ header.sticky.vshanuy-desktop-header {
 
   .vshanuy-menu__cta {
     padding-inline: 24px;
-  }
-}
-
-/* «Закрити» стоїть там само, де «Меню» (16px від краю; меню вже має поле 8px). */
-@media (min-width: 640px) and (max-width: 1023px) {
-  .vshanuy-menu__close {
-    top: 16px;
-    right: 8px;
   }
 }
 
