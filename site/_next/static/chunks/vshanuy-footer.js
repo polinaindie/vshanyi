@@ -57,7 +57,7 @@
           <div class="vshanuy-site-footer__support-foot">
             <div class="vshanuy-site-footer__developer">
               <a href="https://opentech.softserveinc.com/" target="_blank" rel="noopener noreferrer" aria-label="OpenTech, Pro Bono Program, Founded by SoftServe">
-                <img src="${rootPrefix}_next/static/media/opentech-pro-bono.png" alt="" width="1024" height="114">
+                <img src="${rootPrefix}_next/static/media/opentech-pro-bono.png?v=2" alt="" width="1024" height="114">
               </a>
             </div>
           </div>
@@ -70,7 +70,7 @@
           </div>
           <div class="vshanuy-site-footer__developer vshanuy-site-footer__legal-developer">
             <a href="https://opentech.softserveinc.com/" target="_blank" rel="noopener noreferrer" aria-label="OpenTech, Pro Bono Program, Founded by SoftServe">
-              <img src="${rootPrefix}_next/static/media/opentech-pro-bono.png" alt="" width="1024" height="114">
+              <img src="${rootPrefix}_next/static/media/opentech-pro-bono.png?v=2" alt="" width="1024" height="114">
             </a>
           </div>
         </div>
