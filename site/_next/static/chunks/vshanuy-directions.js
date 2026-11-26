@@ -114,7 +114,6 @@
             </div>
             <div class="vshanuy-directions-carousel__nav">
               <button type="button" class="vshanuy-directions-carousel__arrow" data-directions-prev aria-label="Попередній напрям"><svg viewBox="0 0 8 8" aria-hidden="true" focusable="false"><path d="M5.5 1 2.5 4l3 3" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
-              <span class="vshanuy-directions-carousel__time" data-directions-time aria-hidden="true">9:00</span>
               <button type="button" class="vshanuy-directions-carousel__arrow" data-directions-next aria-label="Наступний напрям"><svg viewBox="0 0 8 8" aria-hidden="true" focusable="false"><path d="m2.5 1 3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
             </div>
           </div>
@@ -199,7 +198,7 @@
 
   /**
    * Horizontal carousel without scroll-jacking: page scrolls on, cards move
-   * by ‹ › buttons, arrow keys or native swipe. Time 9:00 → 9:06 = active card.
+   * by ‹ › buttons, arrow keys or native swipe.
    */
   const setupCarousel = (section) => {
     if (section.dataset.carouselReady === "true") return;
@@ -211,7 +210,6 @@
       section.querySelector(".vshanuy-directions-carousel__scroller") || viewport;
     const prev = section.querySelector("[data-directions-prev]");
     const next = section.querySelector("[data-directions-next]");
-    const time = section.querySelector("[data-directions-time]");
     if (!viewport || !prev || !next) return;
 
     section.classList.add("vshanuy-directions-carousel--static");
@@ -286,7 +284,6 @@
     };
 
     const renderState = () => {
-      if (time) time.textContent = `9:${String(activeIndex).padStart(2, "0")}`;
       prev.disabled = activeIndex <= 0;
       next.disabled = activeIndex >= lastIndex();
     };

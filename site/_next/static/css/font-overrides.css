@@ -4332,7 +4332,7 @@ main
   height: auto;
 }
 
-/* ‹ 9:00 › — як слайдер проєктів: beige bar, кнопки на папері, час посередині. */
+/* ‹ › — як слайдер проєктів: beige bar, кнопки на папері. */
 .vshanuy-directions-carousel__nav {
   position: relative;
   z-index: 3;
@@ -4388,13 +4388,6 @@ main
   cursor: default;
 }
 
-.vshanuy-directions-carousel__time {
-  font-family: "Fixel", system-ui, sans-serif;
-  font-size: 12px;
-  line-height: 1.2;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-}
 
 @media (min-width: 1024px) {
   .vshanuy-directions-carousel__nav {
