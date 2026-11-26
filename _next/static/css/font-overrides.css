@@ -2975,11 +2975,12 @@ header.fixed.inset-x-0.bottom-0.lg\:hidden {
   max-height: 64px;
   filter: grayscale(1) brightness(0);
   opacity: 0.68;
-  transition: opacity 300ms ease-out;
+  transition: opacity 300ms ease-out, filter 300ms ease-out;
 }
 
 .vshanuy-partners__item:hover img,
 .vshanuy-partners__link:focus-visible img {
+  filter: none;
   opacity: 1;
 }
 

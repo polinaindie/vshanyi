@@ -174,7 +174,7 @@
   max-height: 64px;
   filter: grayscale(1) brightness(0);
   opacity: 0.68;
-  transition: opacity 300ms ease-out;
+  transition: opacity 300ms ease-out, filter 300ms ease-out;
 }
 
 .vshanuy-partners-page__item--wide img {
@@ -184,6 +184,7 @@
 
 .vshanuy-partners-page__item:hover img,
 .vshanuy-partners-page__link:focus-visible img {
+  filter: none;
   opacity: 1;
 }
 
@@ -235,11 +236,12 @@
   max-height: 64px;
   filter: grayscale(1) brightness(0);
   opacity: 0.68;
-  transition: opacity 300ms ease-out;
+  transition: opacity 300ms ease-out, filter 300ms ease-out;
 }
 
 .vshanuy-partners-page__row-logo:hover img,
 .vshanuy-partners-page__row-logo:focus-visible img {
+  filter: none;
   opacity: 1;
 }
 
