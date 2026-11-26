@@ -105,12 +105,17 @@
           <div
             class="vshanuy-directions-carousel__viewport"
             tabindex="0"
-            aria-label="Наші напрями, гортайте скролом"
+            aria-label="Наші напрями, гортайте стрілками"
           >
             <div class="vshanuy-directions-carousel__scroller">
               <ol class="vshanuy-directions-carousel__track">
                 ${renderItems()}
               </ol>
+            </div>
+            <div class="vshanuy-directions-carousel__nav">
+              <button type="button" class="vshanuy-directions-carousel__arrow" data-directions-prev aria-label="Попередній напрям"><svg viewBox="0 0 8 8" aria-hidden="true" focusable="false"><path d="M5.5 1 2.5 4l3 3" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+              <span class="vshanuy-directions-carousel__time" data-directions-time aria-hidden="true">9:00</span>
+              <button type="button" class="vshanuy-directions-carousel__arrow" data-directions-next aria-label="Наступний напрям"><svg viewBox="0 0 8 8" aria-hidden="true" focusable="false"><path d="m2.5 1 3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
             </div>
           </div>
         </div>
@@ -193,28 +198,28 @@
   };
 
   /**
-   * Sticky pin at the bottom of the viewport: vertical scroll scrubs
-   * horizontal cards until the last one, then the next block continues.
+   * Horizontal carousel without scroll-jacking: page scrolls on, cards move
+   * by ‹ › buttons, arrow keys or native swipe. Time 9:00 → 9:06 = active card.
    */
   const setupCarousel = (section) => {
     if (section.dataset.carouselReady === "true") return;
     section.dataset.carouselReady = "true";
 
-    const pin = section.querySelector(".vshanuy-directions-carousel__pin");
     const runway = section.querySelector(".vshanuy-directions-carousel__runway");
     const viewport = section.querySelector(".vshanuy-directions-carousel__viewport");
-    /* Scrub the inner scroller — viewport keeps fixed V guides above cards. */
     const scroller =
       section.querySelector(".vshanuy-directions-carousel__scroller") || viewport;
-    if (!pin || !runway || !viewport) return;
+    const prev = section.querySelector("[data-directions-prev]");
+    const next = section.querySelector("[data-directions-next]");
+    const time = section.querySelector("[data-directions-time]");
+    if (!viewport || !prev || !next) return;
 
-    let frame = 0;
-    let runwayH = 0;
-    let activeIndex = -1;
+    section.classList.add("vshanuy-directions-carousel--static");
+    if (runway) runway.style.height = "0px";
+
+    let activeIndex = 0;
     let animFrame = 0;
-    let animFrom = 0;
-    let animTo = 0;
-    let animStart = 0;
+    let scrollFrame = 0;
 
     /* Brand transform easing: cubic-bezier(0.22, 1, 0.36, 1). */
     const SNAP_MS = 800;
@@ -248,164 +253,100 @@
       };
     })();
 
+    const slides = () => [
+      ...scroller.querySelectorAll(".vshanuy-directions-carousel__slide"),
+    ];
+    const lastIndex = () => Math.max(0, slides().length - 1);
     const maxScroll = () =>
       Math.max(0, scroller.scrollWidth - scroller.clientWidth);
 
-    /* One step = one direction card. */
-    const stepCount = () => {
-      const n = scroller.querySelectorAll(
-        ".vshanuy-directions-carousel__slide",
-      ).length;
-      return Math.max(1, n - 1);
-    };
-
     const centeredLeft = (index) => {
-      const slides = scroller.querySelectorAll(
-        ".vshanuy-directions-carousel__slide",
-      );
-      const slide = slides[index];
+      const slide = slides()[index];
       if (!slide) return 0;
-      const max = maxScroll();
-      const slideLeft = slide.offsetLeft;
       const slideW = slide.getBoundingClientRect().width;
-      const viewW = scroller.clientWidth;
-      /* Center the active card in the scroller (cols 2–3 on desktop). */
-      return clamp(slideLeft - (viewW - slideW) / 2, 0, max);
+      return clamp(
+        slide.offsetLeft - (scroller.clientWidth - slideW) / 2,
+        0,
+        maxScroll(),
+      );
     };
 
-    const scrollToCenteredSlide = (index, { immediate = false } = {}) => {
-      const target = centeredLeft(index);
-      const jump =
-        immediate || prefersReducedMotion() || activeIndex < 0;
+    const nearestIndex = () => {
+      const center = scroller.scrollLeft + scroller.clientWidth / 2;
+      let best = 0;
+      let bestDist = Infinity;
+      slides().forEach((slide, i) => {
+        const dist = Math.abs(slide.offsetLeft + slide.offsetWidth / 2 - center);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
+        }
+      });
+      return best;
+    };
 
-      if (jump) {
-        cancelAnimationFrame(animFrame);
+    const renderState = () => {
+      if (time) time.textContent = `9:${String(activeIndex).padStart(2, "0")}`;
+      prev.disabled = activeIndex <= 0;
+      next.disabled = activeIndex >= lastIndex();
+    };
+
+    const goTo = (index, { immediate = false } = {}) => {
+      activeIndex = clamp(index, 0, lastIndex());
+      renderState();
+      const target = centeredLeft(activeIndex);
+      cancelAnimationFrame(animFrame);
+      if (immediate || prefersReducedMotion()) {
         animFrame = 0;
-        activeIndex = index;
         scroller.scrollLeft = target;
         return;
       }
-
-      /* Same card — keep current / in-flight animation. */
-      if (index === activeIndex) return;
-
-      activeIndex = index;
-      animFrom = scroller.scrollLeft;
-      animTo = target;
-      animStart = performance.now();
-      cancelAnimationFrame(animFrame);
-
+      const from = scroller.scrollLeft;
+      const start = performance.now();
+      scroller.style.scrollSnapType = "none";
       const tick = (now) => {
-        const t = clamp((now - animStart) / SNAP_MS, 0, 1);
-        scroller.scrollLeft = animFrom + (animTo - animFrom) * easeBrand(t);
+        const t = clamp((now - start) / SNAP_MS, 0, 1);
+        scroller.scrollLeft = from + (target - from) * easeBrand(t);
         if (t < 1) {
           animFrame = requestAnimationFrame(tick);
         } else {
           animFrame = 0;
-          scroller.scrollLeft = animTo;
+          scroller.scrollLeft = target;
+          scroller.style.scrollSnapType = "";
         }
       };
       animFrame = requestAnimationFrame(tick);
     };
 
-    const applyProgress = (progress, { immediate = false } = {}) => {
-      /* Discrete snap: one runway step → one card, eased into center. */
-      const slides = scroller.querySelectorAll(
-        ".vshanuy-directions-carousel__slide",
-      ).length;
-      const steps = Math.max(1, slides - 1);
-      const index = clamp(Math.round(progress * steps), 0, steps);
-      scrollToCenteredSlide(index, { immediate });
-    };
+    prev.addEventListener("click", () => goTo(activeIndex - 1));
+    next.addEventListener("click", () => goTo(activeIndex + 1));
 
-    const syncProgress = ({ immediate = false } = {}) => {
-      if (prefersReducedMotion() || runwayH <= 0) {
-        applyProgress(0, { immediate: true });
-        return;
-      }
-
-      const pinBottom = pin.getBoundingClientRect().bottom;
-      const runwayTop = runway.getBoundingClientRect().top;
-      const progress = clamp((pinBottom - runwayTop) / runwayH, 0, 1);
-      applyProgress(progress, { immediate });
-
-      const headerH =
-        parseFloat(
-          getComputedStyle(document.documentElement).getPropertyValue(
-            "--header-height",
-          ),
-        ) || 33;
-      const stuck = pin.getBoundingClientRect().top <= headerH + 1;
-      section.classList.toggle(
-        "vshanuy-directions-carousel--pinned",
-        stuck && progress < 1,
-      );
-      section.classList.toggle(
-        "vshanuy-directions-carousel--complete",
-        progress >= 1,
-      );
-    };
-
-    const syncLayout = () => {
-      if (prefersReducedMotion()) {
-        section.classList.add("vshanuy-directions-carousel--static");
-        runway.style.height = "0px";
-        scroller.style.overflowX = "auto";
-        applyProgress(0);
-        return;
-      }
-
-      section.classList.remove("vshanuy-directions-carousel--static");
-      scroller.style.overflowX = "hidden";
-
-      const steps = stepCount();
-      const stepPx = Math.round(
-        Math.min(Math.max(window.innerHeight * 0.55, 280), 480),
-      );
-      runwayH = steps * stepPx;
-      runway.style.height = `${runwayH}px`;
-      /* Layout changes jump — no tween from a stale width. */
-      syncProgress({ immediate: true });
-    };
-
-    const onScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(syncProgress);
-    };
-
-    const onResize = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(syncLayout);
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize, { passive: true });
-    if (document.fonts?.ready) document.fonts.ready.then(syncLayout);
-
-    /* Images load can change track width */
-    viewport.querySelectorAll("img").forEach((img) => {
-      if (!img.complete) img.addEventListener("load", syncLayout, { once: true });
-    });
+    scroller.addEventListener(
+      "scroll",
+      () => {
+        if (animFrame) return;
+        cancelAnimationFrame(scrollFrame);
+        scrollFrame = requestAnimationFrame(() => {
+          const index = nearestIndex();
+          if (index === activeIndex) return;
+          activeIndex = index;
+          renderState();
+        });
+      },
+      { passive: true },
+    );
 
     viewport.addEventListener("keydown", (event) => {
       if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
       event.preventDefault();
-      const steps = stepCount();
-      if (runwayH <= 0 || steps <= 0) return;
-      const dir = event.key === "ArrowLeft" ? -1 : 1;
-      const pinBottom = pin.getBoundingClientRect().bottom;
-      const runwayTop = runway.getBoundingClientRect().top;
-      const currentProgress = clamp((pinBottom - runwayTop) / runwayH, 0, 1);
-      const currentStep = clamp(Math.round(currentProgress * steps), 0, steps);
-      const nextStep = clamp(currentStep + dir, 0, steps);
-      const targetProgress = nextStep / steps;
-      const delta = (targetProgress - currentProgress) * runwayH;
-      const top = window.scrollY + delta;
-      if (window.vshanuyLenis?.scrollTo) {
-        window.vshanuyLenis.scrollTo(top, { immediate: false });
-      } else {
-        window.scrollTo({ top, behavior: prefersReducedMotion() ? "auto" : "smooth" });
-      }
+      goTo(activeIndex + (event.key === "ArrowLeft" ? -1 : 1));
+    });
+
+    const syncLayout = () => goTo(activeIndex, { immediate: true });
+    window.addEventListener("resize", syncLayout, { passive: true });
+    if (document.fonts?.ready) document.fonts.ready.then(syncLayout);
+    viewport.querySelectorAll("img").forEach((img) => {
+      if (!img.complete) img.addEventListener("load", syncLayout, { once: true });
     });
 
     syncLayout();
@@ -426,6 +367,7 @@
     !section.querySelector(".vshanuy-directions-carousel__scroller") ||
     !section.querySelector(".vshanuy-directions-carousel__track") ||
     !section.querySelector(".vshanuy-directions-carousel__card") ||
+    !section.querySelector(".vshanuy-directions-carousel__nav") ||
     section.querySelector(".vshanuy-directions-carousel__controls") ||
     section.querySelector(".vshanuy-directions-carousel__bar") ||
     section.querySelector(".vshanuy-directions-carousel__index") ||

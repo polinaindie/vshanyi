@@ -4316,10 +4316,96 @@ main
   scrollbar-width: none;
 }
 
+.vshanuy-directions-carousel--static .vshanuy-directions-carousel__pin {
+  height: auto;
+  max-height: none;
+}
+
 .vshanuy-directions-carousel--static .vshanuy-directions-carousel__scroller {
+  height: auto;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  cursor: grab;
+}
+
+.vshanuy-directions-carousel--static .vshanuy-directions-carousel__track,
+.vshanuy-directions-carousel--static .vshanuy-directions-carousel__slide {
+  height: auto;
+}
+
+/* ‹ 9:00 › — як слайдер проєктів: beige bar, кнопки на папері, час посередині. */
+.vshanuy-directions-carousel__nav {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  height: 32px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 4px;
+  background: var(--beige);
+  box-sizing: border-box;
+}
+
+.vshanuy-directions-carousel__arrow {
+  position: relative;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid transparent;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color 500ms ease-out, opacity 300ms ease-out;
+}
+
+.vshanuy-directions-carousel__arrow::before {
+  content: "";
+  position: absolute;
+  width: 44px;
+  height: 44px;
+}
+
+.vshanuy-directions-carousel__arrow svg {
+  display: block;
+  width: 12px;
+  height: 12px;
+}
+
+.vshanuy-directions-carousel__arrow:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--grey) 45%, var(--paper));
+}
+
+.vshanuy-directions-carousel__arrow:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.vshanuy-directions-carousel__arrow:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.vshanuy-directions-carousel__time {
+  font-family: "Fixel", system-ui, sans-serif;
+  font-size: 12px;
+  line-height: 1.2;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 1024px) {
+  .vshanuy-directions-carousel__nav {
+    margin-inline: 25%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vshanuy-directions-carousel__arrow {
+    transition: none;
+  }
 }
 
 .vshanuy-directions-carousel__scroller::-webkit-scrollbar {
