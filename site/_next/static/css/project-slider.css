@@ -274,11 +274,12 @@
   height: 22px;
   filter: grayscale(1) brightness(0);
   opacity: 0.68;
-  transition: opacity 300ms ease-out;
+  transition: opacity 300ms ease-out, filter 300ms ease-out;
 }
 
 .vshanuy-project__partner:hover img,
 .vshanuy-project__partner:focus-visible img {
+  filter: none;
   opacity: 1;
 }
 
