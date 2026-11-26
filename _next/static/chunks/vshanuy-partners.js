@@ -22,7 +22,7 @@
     },
     {
       name: "Національне військове меморіальне кладовище",
-      logo: "_next/static/media/partners/nvmk.svg",
+      logo: "_next/static/media/partners/nvmk.svg?v=2",
       href: "https://nmmc.gov.ua/",
     },
   ];
