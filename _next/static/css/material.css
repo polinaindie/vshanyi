@@ -955,7 +955,8 @@
 
   .vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__author {
     grid-row: 4;
-    margin-top: 32px;
+    /* 32px як у ліду + відступ над літерами (≈0.36 кегля ліду): верх фото на рівні верху літер. */
+    margin-top: calc(32px + 0.36 * clamp(20px, 18.776px + 0.3265vw, 24px));
   }
 
   .vshanuy-article-page--material .vshanuy-article__intro > .vshanuy-article__standfirst {
