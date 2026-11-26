@@ -56,6 +56,14 @@
       description:
         "Використовуємо мистецтво як спосіб говорити про памʼять, людей і наш досвід.",
     },
+    {
+      index: "08",
+      title: "ЧекаFest",
+      href: "napryamky/chekafest.html",
+      image: "_next/static/media/vshanuy-proekt-chekafest-1600.webp",
+      description:
+        "Благодійний освітньо-музичний фестиваль памʼяті Ірини Цибух. Створений родиною та друзями Іри ЧЕКИ. Щорічний — у зручних датах біля 1 червня, дня її народження.",
+    },
   ];
 
   const prefersReducedMotion = () =>
